@@ -6,7 +6,7 @@ $(document).ready(function () {
         $('.alerta-login').html('<h2 class="alert alert-danger">*Llene todos los campos</h2>')
     } else {
         $.ajax({
-            url: "../login.php",
+            url: "../controllers/login.php",
             type: "POST",
             data: $('#myLogin').serialize(),
 

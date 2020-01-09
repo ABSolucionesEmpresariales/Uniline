@@ -6,7 +6,7 @@ $(document).ready(function () {
             e.preventDefault();
         } else {
             $.ajax({
-                url: "../registro.php",
+                url: "../controllers/registro.php",
                 type: "POST",
                 data: $('#registro').serialize(),
 
