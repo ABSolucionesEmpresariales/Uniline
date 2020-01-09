@@ -11,7 +11,7 @@ $(document).ready(function () {
                 data: $('#registro').serialize(),
 
                 success: function (response) {
-                    console.log(response);
+                    
                     if (response == 1) {
                        window.location.replace('../views/confirmacion.html');
                     }else if(response == "Existe"){

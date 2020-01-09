@@ -1,6 +1,5 @@
 <?php
 session_start();
-include ("modelos/Conexion.php");
 
 unset($_SESSION["nombreU"]);
 unset($_SESSION["passwordU"]);

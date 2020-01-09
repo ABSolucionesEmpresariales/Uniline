@@ -2,7 +2,7 @@
 
 use modelos\Conexion;
 
-require_once 'modelos/Conexion.php';    
+require_once '../modelos/Conexion.php';    
 $conexion = new modelos\Conexion();
 
 //$nombre = $_POST['usuario'];
