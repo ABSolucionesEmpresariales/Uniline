@@ -1,4 +1,17 @@
 $(document).ready(function () {
+
+    $('.closeCon').on("click", function (e) {
+        location.reload();
+    });
+    $('#btn-registrate').on("click", function (e) {
+        $('#login').modal('hide');
+    });
+
+    $(document).on('click', '#idprueba', function(){
+        $('#autobtn').click();
+    });
+
+
     $('#registro').submit(function (e) {
         if ($('#registrar-nombre').val() == '' || $('#registrar-tel').val() == '' || $('#registrar-correo').val() == '' || $('#registrar-pass').val() == '') {
             console.log('si llego');
@@ -12,8 +25,8 @@ $(document).ready(function () {
 
                 success: function (response) {
                     
-                    if (response == 1) {
-                       window.location.replace('../views/confirmacion.html');
+                    if (response != 0) {
+                        $('#confirmar').modal({show:true});
                     }else if(response == "Existe"){
                         $('.alertas').html('<h2 class="alert alert-danger">*Este correo ya esta registrado</h2>')
                     }else {

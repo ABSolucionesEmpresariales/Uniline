@@ -1,19 +1,5 @@
 <?php
-
-header('Content-Type: text/html; charset=UTF-8');
-header("Cache-control: private");
-header("Cache-control: no-cache, must-revalidate");
-header("Pragma: no-cache");
-//Iniciar una nueva sesión o reanudar la existente.
-session_start();
-//Si existe la sesión "cliente"..., la guardamos en una variable.
-if (isset($_SESSION['nombreU'])){
-    $usuario = $_SESSION['nombreU'];
-}else{
-header('Location: views/index.html');//Aqui lo redireccionas al lugar que quieras.
- die() ;
-
-}
+include '../controllers/sesion.php'
 ?>
 
 <!DOCTYPE html>
@@ -70,13 +56,13 @@ header('Location: views/index.html');//Aqui lo redireccionas al lugar que quiera
           <div class="row">
             <div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
                 <div id="logo">
-                    <a href="profile.html"><img src="../img/1.png" width="7%" alt="" title="" /></a>
+                    <a href="index.php"><img src="../img/uniline2.png" width="20%" alt="" title="" /></a>
                   </div>
             </div>
             <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-                <h3>bienvenido <?php echo $_SESSION['nombreU']; ?></h3>
-                <a class="btn btn-sm" href="events.html"><span></span>Mi perfil</a>
-                <a class="btn btn-sm" style="color: white;" href="../sesion-destroy.php">Cerrar sesion</a>
+                <img src="../img/perfil.png" alt="perfil" class="course_author_image">
+                <a class="btn btn-sm" href="editProfile.php"><span></span>Mi perfil</a>
+                <a class="btn btn-sm" style="color: white;" href="../controllers/sesion-destroy.php">Cerrar sesion</a>
             </div>
           </div>
         </div>
@@ -150,83 +136,10 @@ header('Location: views/index.html');//Aqui lo redireccionas al lugar que quiera
           </div>
         </div>
       </div>
-    
-
-
-    <!-- Popular -->
-
-    <div class="popular page_section">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="section_title text-center">
-              <h1>Cursos populares</h1>
-              <p>
-                Otras personas se actualizaron con estos cursos, descubre ¿por qué?
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row course_boxes">
-
-          <!-- Popular Course Item -->
-          <div class="col-lg-4 course_box">
-            <div class="card">
-              <img class="card-img-top" src="../img/html5.png" alt="https://unsplash.com/@kellybrito">
-              <div class="card-body text-center">
-                <div class="card-title"><a href="courses.html">Guía HTML desde cero</a></div>
-                <div class="card-text">Todo sobre html 5, CSS, Javascript & Bootstrap.</div>
-              </div>
-              <div class="price_box d-flex flex-row align-items-center">
-                <div class="course_author_image">
-                  <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-                </div>
-                <div class="course_author_name">Michael Smith, <span>Author</span></div>
-                <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Popular Course Item -->
-          <div class="col-lg-4 course_box">
-            <div class="card">
-              <img class="card-img-top" src="../img/progra.jpg" alt="https://unsplash.com/@cikstefan">
-              <div class="card-body text-center">
-                <div class="card-title"><a href="courses.html">Programación desde cero</a></div>
-                <div class="card-text">Fundamentos de Programación & POO.</div>
-              </div>
-              <div class="price_box d-flex flex-row align-items-center">
-                <div class="course_author_image">
-                  <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-                </div>
-                <div class="course_author_name">Michael Smith, <span>Author</span></div>
-                <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Popular Course Item -->
-          <div class="col-lg-4 course_box">
-            <div class="card">
-              <img class="card-img-top" src="../img/php.png" alt="https://unsplash.com/@dsmacinnes">
-              <div class="card-body text-center">
-                <div class="card-title"><a href="courses.html">PHP avanzado</a></div>
-                <div class="card-text">Adobe Guide, Layes, Smart Objects etc...</div>
-              </div>
-              <div class="price_box d-flex flex-row align-items-center">
-                <div class="course_author_image">
-                  <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-                </div>
-                <div class="course_author_name">Michael Smith, <span>Author</span></div>
-                <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
+
+  
 
     <!-- start footer Area -->
     <footer class="footer-area section-gap">

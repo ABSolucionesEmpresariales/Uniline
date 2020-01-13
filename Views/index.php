@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
@@ -20,6 +23,8 @@
     <!--
     CSS
     ============================================= -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/linearicons.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
@@ -69,17 +74,29 @@
     </div>
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
-          <div id="logo">
-            <a href="index.html"><img src="../img/1.png" width="50%" alt="" title="" /></a>
+          <div id="logo" class="col-lg-4">
+            <a href="index.php"><img src="../img/uniline2.png" width="50%" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
             <ul class="nav-menu">
+            <?php
+              if(isset($_SESSION['acceso'])){
+              ?> 
               <li><a href="index.html">Inicio</a></li>
-              <li><a href="courses.html">Cursos</a></li>
               <li><a href="events.html">Eventos</a></li>
-              <li><a href="gallery.html">Galeria</a></li>
+              <li><a href="profile.php">Mis cursos</a></li>             
               <li><a href="contact.html">Contacto</a></li>
-              <li><a class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
+              <img src="../img/perfil.png" alt="perfil" class="course_author_image">
+              <?php
+              }else{
+              ?>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="events.html">Eventos</a></li>            
+              <li><a href="contact.html">Contacto</a></li>
+              <li><a id="autobtn" class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
+              <?php
+              }
+              ?>
             </ul>
           </nav><!-- #nav-menu-container -->
         </div>
@@ -116,13 +133,29 @@
 
             <!-- Register -->
         <p>¿No tienes cuenta?
-            <a style="color:blue;" href="#reg1">Registrate</a>
+            <a id="btn-registrate" style="color:blue;" href="#reg1">Registrate</a>
         </p>
 
     			</div>
 
     			<div class="modal-footer">
     			</div>
+
+    		</div>
+    	</div>
+    </div>
+
+    <!-- confirmacion area -->
+    
+    <div class="confirm modal fade" id="confirmar">
+    	<div class="modal-dialog modal-login">
+    		<div class="modal-content">
+        <div class="modal-header">
+    				<button type="button" class="closeCon" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="container p-4 my-4 bg-primary text-white">
+              <h3 class="h3 text-white">Te enviamos un correo para confirmar tu cuenta, por favor abra el enlace que le enviamos a su correo electronico</h3>  
+          </div>
 
     		</div>
     	</div>
@@ -141,7 +174,7 @@ LOS MEJORES CURSOS DE ESPECIALIZACIÓN EN LÍNEA
             <p class="pt-10 pb-10">
               Estamos en la era de la información; prepárate, actualízate y crece a través de nuestros cursos en línea, estamos donde tú estés
             </p>
-            <a href="#" class="primary-btn text-uppercase">Comienza ya</a>
+            <a id="idprueba" href="#" class="primary-btn text-uppercase">Comienza ya</a>
           </div>
         </div>
       </div>
@@ -304,23 +337,13 @@ LOS MEJORES CURSOS DE ESPECIALIZACIÓN EN LÍNEA
             
             <form class="form-wrap" id="registro" method="post">             
               <h4 class="text-white pb-20 text-center mb-30">Registrate y obten acceso a los cursos.</h4>
-              <div class="alertas"></div>
+              <div id="alertas" class="alertas"></div>
               <input type="text" id="registrar-nombre" class="form-control" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'" >
               <input type="phone" id="registrar-tel" class="form-control" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'" >
               <input type="email" id="registrar-correo" class="form-control" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'" >
               <input type="password" id="registrar-pass" class="form-control" name="TPass" placeholder="Constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña'" >
               
-
-              <div class="form-select" id="service-select">
-                <select>
-                  <option datd-display="">Elegir Curso</option>
-                  <option value="1">Curso 1</option>
-                  <option value="2">Curso 2</option>
-                  <option value="3">Curso 3</option>
-                  <option value="4">Curso 4</option>
-                </select>
-              </div>
-              <button class="primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+              <button class="btn-registrar primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
             </form>
           </div>
         </div>
