@@ -1,7 +1,6 @@
-<?php
-session_start();    
-require_once 'modelos/Conexion.php';
-include 'modelos/email.php';
+<?php  
+require_once '../modelos/Conexion.php';
+include '../modelos/email.php';
 
 $emailClass = new modelos\Email();
 
