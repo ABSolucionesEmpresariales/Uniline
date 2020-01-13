@@ -42,6 +42,303 @@ max-width: 25%
   }
 }
 
-margineado{
+.margineado{
   margin-bottom: 1500;
 }
+
+@keyframes roll {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes roll2 {
+  0% {
+    transform: rotate(-90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.animacion-flecha-abajo{
+  animation: roll 0.5s;
+}
+.animacion-flecha-izquierda{
+  animation: roll2 0.4s;
+}
+.h-scroll {
+  height: 240px; 
+  overflow-y: scroll;
+  background: transparent;
+  width: auto;
+   
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Estilos del video <<<<<<<<<<<<<<<<<<<<<<<<<*/
+.videoContainer{
+	width:600px;
+	height:350px;
+	position:relative;
+	overflow:hidden;
+	background:#000;
+	color:#ccc;
+}
+
+/* video caption css */
+.caption{
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	padding:10px;
+	color:#ccc;
+	font-size:20px;
+	font-weight:bold;
+	box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	background: #1F1F1F; /* fallback */
+	background:-moz-linear-gradient(top,#242424 50%,#1F1F1F 50%,#171717 100%);
+	background:-webkit-linear-gradient(top,#242424 50%,#1F1F1F 50%,#171717 100%);
+	background:-o-linear-gradient(top,#242424 50%,#1F1F1F 50%,#171717 100%);
+}
+
+/*** VIDEO CONTROLS CSS ***/
+/* control holder */
+.control{
+	background: rgba(0,0,0,.7);
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+  height: 45px;
+	/*height: 13%;*/
+	z-index:5;
+	display:none;
+}
+
+/* control top part */
+.topControl {
+  float: left;
+  width: 50%;
+}
+
+/* control bottom part */
+.btmControl{
+	clear:both;
+	background: #1F1F1F; /* fallback */
+	background:-moz-linear-gradient(top,#242424 50%,#1F1F1F 50%,#171717 100%);
+	background:-webkit-linear-gradient(top,#242424 50%,#1F1F1F 50%,#171717 100%);
+	background:-o-linear-gradient(top,#242424 50%,#1F1F1F 50%,#171717 100%);
+}
+
+.control .btn {
+	float:left;
+	width:34px;
+	height:30px;
+	padding:0 10px;
+	cursor:pointer;
+}
+
+.control div.btnPlay::after {
+  content: "";
+  background-image: url(http://svgshare.com/i/3um.svg);
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background-size: cover;
+  position: relative;
+  top: -7px;
+}
+
+/*
+.control div.paused{
+}
+*/
+
+.control div.paused::after {
+  content: "";
+  background-image: url(http://svgshare.com/i/3vz.svg);
+  width: 65px;
+  height: 65px;
+  display: inline-block;
+  background-size: cover;
+  position: relative;
+  top: -15px;
+  left: -10px;
+}
+
+.control div.spdText {
+  width: 1em;
+  height: 1.5em;
+  line-height: 1.5em;
+  position: relative;
+  font-size: 1em;
+  border-radius: 5%;
+  color: #29303b;
+  background-color: hsla(0,0%,100%,.9);
+}
+
+.speed {
+	margin:0;
+	padding:0;
+  display: none;
+  position: absolute;
+  max-height: 0;
+  transition: max-height 1s;
+}
+
+.speed-title {
+	text-align: left;
+  text-transform: none;
+  padding: 5px 20px 5px 15px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.25em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.speed li {
+	padding: 5px 20px 5px 15px;
+}
+
+.speed .btnx3:hover, .btnx1:hover {
+	background-color: #505763;
+  color: #fff;
+  box-shadow: none;
+}
+
+.spdText:hover .speed {
+	text-align: center;
+  display: block;
+  list-style: none;
+  max-height: 300px;
+  transition: max-height 1s;
+  left:-25px;
+  background-color: black;
+  opacity: 0.5;
+  color: white;
+  top: -102px;
+}
+
+.control div.selected{
+	font-size:15px;
+	color:#ccc;
+}
+
+.control div.sound::after {
+  content: "";
+  background-image: url(http://svgshare.com/i/3ww.svg);
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  background-size: cover;
+  position: relative;
+  top: -5px;
+  /*left: -10px;*/
+}
+
+.control div.sound2::after {
+  content: "";
+  background-image: url(http://svgshare.com/i/3xS.svg);
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  background-size: cover;
+  position: relative;
+  top: -5px;
+  /*left: -10px;*/
+}
+
+.control div.muted::after {
+  content: "";
+  background-image: url(http://svgshare.com/i/3v_.svg);
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  background-size: cover;
+  position: relative;
+  top: -5px;
+}
+
+.control div.btnFS{
+	float: right;
+}
+
+.control div.btnFS::after {
+  content: "";
+  background-image: url(http://svgshare.com/i/3wo.svg); 
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  background-size: cover;
+  position: relative;
+  top: 0px;
+}
+
+/* PROGRESS BAR CSS */
+/* Progress bar */
+.progress {
+	width:85%;
+	height:10px;
+	position:relative;
+	float:left;
+	cursor:pointer;
+}
+
+.progress span {
+	height:40%;
+	position:absolute;
+	top:0;
+	left:0;
+	display:block;
+}
+
+.timeBar{
+	z-index:10;
+	width:0;
+	background: #2EB3D0;
+}
+
+.bufferBar{
+	z-index:5;
+	width:0;
+	background: #ddd;
+}
+
+/* time and duration */
+.time{
+	float:right;
+	text-align:center;
+	font-size:11px;
+	line-height:12px;
+}
+
+/* VOLUME BAR CSS */
+/* volume bar */
+.volume{
+	position:relative;
+	cursor:pointer;
+	width:70px;
+	height:10px;
+	float:right;
+	margin-top:10px;
+	margin-right:10px;
+}
+
+.volumeBar{
+	display:block;
+	height:40%;
+	position:absolute;
+}
+
+.fondo-lista{
+  background-color: rgba(70, 14, 173, 0.11);
+}
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Estilos del video <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
