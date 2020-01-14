@@ -1,18 +1,21 @@
 <?php
 use modelos\Conexion;
 require_once '../modelos/Conexion.php'; 
-include '../controllers/sesion.php';  
+session_start();
 
 $conexion = new modelos\Conexion();
 $vkey=$_GET['vkey'];
 $consulta = "SELECT * FROM usuario WHERE vkey = ?";
 $datos = array($vkey);
 $resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'s', false, null));
+$result = json_decode($resultado);
 
 if($resultado != '[]'){
     $update = "UPDATE usuario SET verificado = 1 WHERE vkey = ?";
     $datos2 = array($vkey);
-    $result = json_encode($conexion->consultaPreparada($datos2,$update,1,'i', false, null));
+    $resultUp = json_encode($conexion->consultaPreparada($datos2,$update,1,'i', false, null));
+    $_SESSION['acceso'] = $result[0][1];
+    $_SESSION['id'] = $result[0][0];
 }
 ?>
 <!DOCTYPE html>

@@ -24,6 +24,7 @@ $(document).ready(function () {
         });
         e.preventDefault();
     });
+/////////////////////// llevar datos al form //////////////////////////////
 
     function datosUsuario(){
         $.ajax({

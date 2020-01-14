@@ -3,16 +3,28 @@ include '../modelos/Archivos.php';
 require_once '../modelos/Conexion.php';
 
 session_start();
-$nombre = $_SESSION['acceso'];
 
 //traer datos de la base
 if(isset($_POST['datos'])){
+    $id = $_SESSION['id'];
     $conexion = new modelos\Conexion();
-    $consulta = "SELECT * FROM usuario";
-    $resultado = json_encode($conexion->obtenerDatosDeTabla($consulta));
+    $consulta = "SELECT * FROM usuario WHERE idusuario = ?";
+    $datos = array($id);
+    $resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'i', false, null));
     echo $resultado;
 }
  //actualizar datos de la base
+
+ if(isset($_POST['id'])){
+    $conexion = new modelos\Conexion();
+    $consultaUP = "UPDATE usuario SET nombre = ?, edad = ?, escolaridad = ?, telefono = ?, email = ?, password = ? WHERE idusuario = ?";
+    $datos = array($_POST['TNombre'], $_POST['TTelefono'], $_POST['TEmail'], $_POST['TEdad'], $_POST['TGrado'], $_POST['TPass'], $_POST['TPassNew'], $_POST['id']);
+    $resultado = $conexion->consultaPreparada($datos,$consultaUP,1,'sissssi', false, null);
+    if($resultado != 0){
+        echo "datos actualizados";
+    }    
+}
+
 /*
 
 function subirImagen($estado_imagen,$accion){
@@ -53,15 +65,4 @@ function subirImagen($estado_imagen,$accion){
     
 }
 */
- 
- if(isset($_POST['id'])){
-    $conexion = new modelos\Conexion();
-    $consultaUP = "UPDATE usuario SET nombre = ?, edad = ?, escolaridad = ?, telefono = ?, email = ?, password = ? WHERE idusuario = ?";
-    $datos = array($_POST['TNombre'], $_POST['TTelefono'], $_POST['TEmail'], $_POST['TEdad'], $_POST['TGrado'], $_POST['TPass'], $_POST['TPassNew'], $_POST['id']);
-    $resultado = $conexion->consultaPreparada($datos,$consultaUP,1,'sissssi', false, null);
-    if($resultado != 0){
-        echo "datos actualizados";
-    }
-    
-}
 ?>

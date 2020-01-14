@@ -55,7 +55,7 @@ include '../controllers/sesion.php'
           <div class="row">
             <div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
                 <div id="logo" style="height: 10%;">
-                    <a href="index.html"><img src="../img/uniline2.png" width="20%" alt="" title="" /></a>
+                    <a href="index.php"><img src="../img/uniline2.png" width="20%" alt="" title="" /></a>
                   </div>
             </div>
           </div>
@@ -67,7 +67,7 @@ include '../controllers/sesion.php'
 
     <div class="page_section">
         <div class="container">
-          <div class="row justify-content-center align-items-center">
+          <div class="row justify-content-center">
   
             <!-- Editar foto de perfil -->
             <div class="col-lg-3 course_box">
@@ -86,15 +86,15 @@ include '../controllers/sesion.php'
             </div>
   
             <!-- Popular Course Item -->
-            <div class="col-lg-6 course_box">
+            <div class="col-lg-5 course_box">
               <div class="form">
                 <div>
                   <form class="form-wrap" id="actualizar-perfil">
                     <div class="alertas"></div>
-                    <input type="text" id="registrar-nombre" class="form-control text-success" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'" >
-                    <input type="phone" id="registrar-tel" class="form-control text-success" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'" >
-                    <input type="email" id="registrar-correo" class="form-control text-success" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'" >
-                    <input type="text" id="registrar-edad" class="form-control text-success" name="TEdad" placeholder="Edad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu edad'" >
+                    <h4 class="h6 color">Nombre</h4><input type="text" id="registrar-nombre" class="form-control text-success" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'" >
+                    <h4 class="h6">Telefono</h4><input type="phone" id="registrar-tel" class="form-control text-success" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'" >
+                    <h4 class="h6">Correo electronico</h4><input type="email" id="registrar-correo" class="form-control text-success" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'" >
+                    <h4 class="h6">edad</h4><input type="text" id="registrar-edad" class="form-control text-success" name="TEdad" placeholder="Edad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu edad'" >
                      <div class="form-select" id="service-select">
                       <select id="registrar-grado" name="TGrado">
                         <option id="estudios">Selecciona grado de estudios</option>
