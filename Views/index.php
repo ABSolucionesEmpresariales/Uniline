@@ -82,16 +82,15 @@ session_start();
             <?php
               if(isset($_SESSION['acceso'])){
               ?> 
-              <li><a href="index.html">Inicio</a></li>
-              <li><a href="events.html">Eventos</a></li>
+              <li><a href="index.php">Inicio</a></li>
               <li><a href="profile.php">Mis cursos</a></li>             
               <li><a href="contact.html">Contacto</a></li>
-              <img src="../img/perfil.png" alt="perfil" class="course_author_image">
+              <li><a href="editProfile.php"><img src="../img/perfil.png" alt="perfil" class="course_author_image"></a></li>
               <?php
               }else{
               ?>
-              <li><a href="index.html">Inicio</a></li>
-              <li><a href="events.html">Eventos</a></li>            
+              <li><a href="index.php">Inicio</a></li>
+              <li><a href="#reg">Registrate</a></li>            
               <li><a href="contact.html">Contacto</a></li>
               <li><a id="autobtn" class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
               <?php

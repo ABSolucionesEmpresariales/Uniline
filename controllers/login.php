@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use modelos\Conexion;
+
 session_start();
 define('RUTA_UNILINE_APP','http://localhost/uniline/Views');
 require_once '../modelos/Conexion.php';
@@ -13,11 +16,13 @@ $datos = array($_POST['TUsuario']);
 $resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'s', false, null));
 $result = json_decode($resultado);
 
+
 if ($resultado != "[]") {
     if (password_verify($password, $result[0][7])) {
         if($result[0][9] == 1){
             echo '1';
             $_SESSION['acceso'] = $usuario;
+            $_SESSION['id'] = $result[0][0];
         }else{
             echo "NoVerificado";
         }

@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    //// algunos modales 
     $('.closeCon').on("click", function (e) {
         location.reload();
     });
@@ -10,6 +11,16 @@ $(document).ready(function () {
     $(document).on('click', '#idprueba', function(){
         $('#autobtn').click();
     });
+
+    //// animacion para todos los enlaces que te lleven a un div dentro de la misma pagina
+    $('#btn-registrate').click(function(e){				
+		e.preventDefault();		//evitar el eventos del enlace normal
+		var strAncla=$(this).attr('href'); //id del ancla
+			$('body,html').stop(true,true).animate({				
+				scrollTop: $(strAncla).offset().top
+			},500);
+		
+	});
 
 
     $('#registro').submit(function (e) {
