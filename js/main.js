@@ -1,6 +1,7 @@
 $(document).ready(function() {
     "use strict";
-
+    
+    
     var window_width = $(window).width(),
         window_height = window.innerHeight,
         header_height = $(".default-header").height(),
@@ -9,6 +10,26 @@ $(document).ready(function() {
 
     $(".fullscreen").css("height", window_height)
     $(".fitscreen").css("height", fitscreen);
+
+    //------- Estados Mexico --------//  
+
+    pintar_Estados_Mexico('registrar-estado');
+    function pintar_Estados_Mexico(comboBox){
+        var datos_estado_mexico = [];
+        var i = 0;
+      datos_estado_mexico = ["Aguascalientes","Baja California","Baja California Sur","Campeche","Chiapas","Chihuahua",
+      "Ciudad de México","Coahuila de Zaragoza","Colima","Durango","México","Guanajuato","Guerrero","Hidalgo","Jalisco",
+      "Michoacán de Ocampo","Morelos","Nayarit","Nuevo León","Oaxaca","Puebla","Querétaro","Quintana Roo","San Luis Potosí",
+      "Sinaloa","Sonora","Tabasco","Tamaulipas","Tlaxcala","Veracruz de Ignacio de la Llave","Yucatán","Zacatecas"
+      ];
+      let templete = `<option value="">Elejir</option>`;
+      for(i = 0; i < datos_estado_mexico.length; i++){
+        templete +=  `<option value="${datos_estado_mexico[i]}">${datos_estado_mexico[i]}</option>`;
+      }
+      console.log(templete);
+      $('#'+comboBox).html(templete);
+
+    }
 
     //------- Niceselect  js --------//  
 
@@ -20,7 +41,10 @@ $(document).ready(function() {
     };
     if (document.getElementById("service-select")) {
         $('select').niceSelect();
-    };    
+    };
+    if (document.getElementById("service-select2")) {
+        $('select').niceSelect();
+    };   
 
     //------- Lightbox  js --------//  
 
@@ -163,7 +187,6 @@ $(document).ready(function() {
     });
 
     //------- Mobile Nav  js --------//  
-
     if ($('#nav-menu-container').length) {
         var $mobile_nav = $('#nav-menu-container').clone().prop({
             id: 'mobile-nav'
@@ -173,9 +196,9 @@ $(document).ready(function() {
             'id': ''
         });
         $('body').append($mobile_nav);
-        $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>');
+        $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="fas fa-ellipsis-h"></i></button>');
         $('body').append('<div id="mobile-body-overly"></div>');
-        $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
+        $('#mobile-nav').find('.menu-has-children').prepend('<i class="fas fa-ellipsis-h"></i>');
 
         $(document).on('click', '.menu-has-children i', function(e) {
             $(this).next().toggleClass('menu-item-active');
@@ -185,7 +208,7 @@ $(document).ready(function() {
 
         $(document).on('click', '#mobile-nav-toggle', function(e) {
             $('body').toggleClass('mobile-nav-active');
-            $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
+            $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-v');
             $('#mobile-body-overly').toggle();
         });
 
@@ -194,7 +217,7 @@ $(document).ready(function() {
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 if ($('body').hasClass('mobile-nav-active')) {
                     $('body').removeClass('mobile-nav-active');
-                    $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
+                    $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-v');
                     $('#mobile-body-overly').fadeOut();
                 }
             }
@@ -247,13 +270,9 @@ $(document).ready(function() {
             setTimeout(function() {
 
                 $('html, body').scrollTop(0).show();
-
                 $('html, body').animate({
-
                     scrollTop: $(window.location.hash).offset().top - 108
-
                 }, 1000)
-
             }, 0);
 
         } else {

@@ -44,6 +44,10 @@ include '../controllers/sesion.php'
     
     <script src="../js/jquery.js"></script>
     <script src="../js/jquery-3.2.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
  
        
@@ -64,7 +68,7 @@ include '../controllers/sesion.php'
     </header><!-- #header -->
 
     <!-- Editar perfil -->
-
+    <form class="form-wrap" id="actualizar-perfil">
     <div class="page_section">
         <div class="container">
           <div class="row justify-content-center">
@@ -72,53 +76,96 @@ include '../controllers/sesion.php'
             <!-- Editar foto de perfil -->
             <div class="col-lg-3 course_box">
               <div class="card">
-                <img class="card-img-top" src="../img/perfil.png" alt="foto de perfil">
-                <div class="boton-perfil text-center">
-                  <button id="mostrar" class="btn btn-secondary" type="file">Editar foto de perfil</button>
-                </div>         
+                <img id="FotoPerfil" class="rounded-circle" width="260" height="210" src=<?php echo $_SESSION['imagen_perfil']?> alt="foto de perfil">
+                  <div class="boton-perfil text-center">
+                    <a id="mostrar" class="btn btn-secondary text-white" type="file">Editar foto de perfil</a>
+                  </div>         
                 <div id="cargaFoto" class="custom-file" style="display: none">
-                  <input type="file" class="custom-file-input" id="inputGroupFile01"
+                  <input type="file" name="Fimagen" class="custom-file-input pb-2" id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01">
-                  <label class="custom-file-label" for="inputGroupFile01">Selecciona tu archivo</label>
-                  <button id="actualizar" class="primary-btn btn-success" type="file" name="Fimagen">Actualizar</button>
+                  <label class="custom-file-label h5" for="inputGroupFile01">Selecciona tu archivo</label>
                 </div>      
               </div>
             </div>
-  
+            <div id="alertas" class="alert alert-danger fixed-top text-center" style="max-height:50px; display: none;">
+            </div>
             <!-- Popular Course Item -->
             <div class="col-lg-5 course_box">
               <div class="form">
                 <div>
-                  <form class="form-wrap" id="actualizar-perfil">
-                    <div class="alertas"></div>
-                    <h4 class="h6 color">Nombre</h4><input type="text" id="registrar-nombre" class="form-control text-success" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'" >
-                    <h4 class="h6">Telefono</h4><input type="phone" id="registrar-tel" class="form-control text-success" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'" >
-                    <h4 class="h6">Correo electronico</h4><input type="email" id="registrar-correo" class="form-control text-success" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'" >
-                    <h4 class="h6">edad</h4><input type="text" id="registrar-edad" class="form-control text-success" name="TEdad" placeholder="Edad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu edad'" >
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" id="registrar-nombre" class="form-control text-success" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'" >
+                      </div>
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+                        <input type="phone" id="registrar-tel" class="form-control text-success" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'" >
+                      </div>
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                        <input type="email" id="registrar-correo" class="form-control text-success" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'" >
+                      </div>
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="fas fa-sort-numeric-up-alt"></i></span>
+                        <input type="text" id="registrar-edad" class="form-control text-success" name="TEdad" placeholder="Edad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu edad'" >
+                      </div>
                      <div class="form-select" id="service-select">
                       <select id="registrar-grado" name="TGrado">
-                        <option id="estudios">Selecciona grado de estudios</option>
-                        <option value="1">Secundaria</option>
-                        <option value="2">bachillerato</option>
-                        <option value="3">Universidad</option>
-                        <option value="4">Superior</option>
+                        <option value="">Selecciona grado de estudios</option>
+                        <option value="Secundaria">Secundaria</option>
+                        <option value="Bachillerato">Bachillerato</option>
+                        <option value="Universidad">Universidad</option>
+                        <option value="Superior">Superior</option>
                       </select >
-                      <hr><br><br>
-                      <h4 id="mostrarPass" class="h6" style="cursor: pointer;">Si deseas cambiar tu contraseña haz clic aqui</h4>
-                      <div id="cambiarPass" class="ocultar" style="display: none">
-                        <input type="password" id="registrar-pass" class="form-control text-success" name="TPass" placeholder=" Tu constraseña actual" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña actual'" >
-                        <input type="password" id="registrar-passNew" class="form-control text-success" name="TPassNew" placeholder="Tu nueva constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu nueva Contraseña'" >
+                    </div>
+                    <div class="form-select" id="service-select2">
+                      <select id="registrar-estado" name="TEstado">
+                      </select >
+                    </div>
+                    <div class="input-group m-1">
+                      <span class="input-group-addon"><i class="fas fa-flag"></i></span>
+                      <input type="text" id="registrar-municipio" class="form-control text-success" name="TMunicipio" placeholder="Municipio" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu municipio'" >
+                    </div>
+                    <div class="form-select" id="service-select3">
+                      <select id="verifi-trabajo">
+                        <option value="">Trabajo</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                      </select >
+                    </div>
+                    <div class="show-date" style="display: none;">
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
+                        <input type="text" id="registrar-puesto" class="form-control text-success" name="TPuesto" placeholder="Puesto de trabajo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Puesto de trabajo'" >
+                      </div>
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="fas fa-address-book"></i></span>
+                        <input type="text" id="registrar-Descripcion" class="form-control text-success" name="TDescripcion" placeholder="Descripcion del Trabajo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Descripcion del Trabajo'" >
                       </div>
                     </div>
-                    <br><br><br><br><br>
+                      <p id="mostrarPass" class="h4 text-center" style="cursor: pointer;">Si deseas cambiar tu contraseña haz clic aqui</p>
+                      <div id="cambiarPass" class="ocultar text-center" style="display: none">
+                      <p>Ingresa tu contrasena actual para poder editar la contrasena</p>
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" id="registrar-pass" class="form-control text-success" name="TPass" placeholder=" Tu constraseña actual" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña actual'" >
+                      </div>
+                      <div class="input-group m-1">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" id="registrar-passNew" class="form-control text-success" disabled name="TPassNew" placeholder="Tu nueva constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu nueva Contraseña'" >
+                      </div>
+                      <div class="alert alerta-pass" role="alert" style="display: none;">
+                      </div>
+                      </div>
+                    
                     <button id="actualizar" class="btn-primary primary-btn text-uppercase" type="submit" name="submit">Actualizar perfil</button>
-                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      </form>
     
 
 

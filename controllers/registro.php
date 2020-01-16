@@ -12,7 +12,6 @@ $vkey = $emailClass->setEmail($email);
 $verificado = 0;
 $encriptado = trim(password_hash($password, PASSWORD_DEFAULT));
 
-
 if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
     $conexion = new modelos\Conexion();
 

@@ -23,6 +23,7 @@ if ($resultado != "[]") {
             echo '1';
             $_SESSION['acceso'] = $usuario;
             $_SESSION['id'] = $result[0][0];
+            $_SESSION['imagen_perfil'] = $result[0][4];
         }else{
             echo "NoVerificado";
         }

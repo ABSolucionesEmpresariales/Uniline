@@ -11,8 +11,8 @@
                 if ($tipo_imagen == "image/jpg" || $tipo_imagen == 'image/jpeg' || $tipo_imagen == 'image/png') {
                             $temp = explode(".", $_FILES[$nombre]["name"]);
                             $newfilename = round(microtime(true)) . '.' . end($temp);
-                            $imagen2 = $_SERVER['DOCUMENT_ROOT']."/uniline"."/"."img/"."users/".$newfilename."";
-                            $imagen3 = "http://localhost/uniline"."/"."img/"."users/".$newfilename."";
+                            $imagen2 = $_SERVER['DOCUMENT_ROOT']."/Uniline"."/"."img/"."Users/".$newfilename."";
+                            $imagen3 = "http://localhost/Uniline"."/"."img/"."Users/".$newfilename."";
                             if(move_uploaded_file($_FILES[$nombre]["tmp_name"],$imagen2)){
                                 return $imagen3;
                             }else{

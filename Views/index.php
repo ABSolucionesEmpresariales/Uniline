@@ -71,10 +71,10 @@ session_start();
             </div>
           </div>
         </div>
-    </div>
+    </div> 
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
-          <div id="logo" class="col-lg-4">
+          <div id="logo" class="col-lg-4 d-none d-lg-block">
             <a href="index.php"><img src="../img/uniline2.png" width="50%" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
@@ -85,12 +85,12 @@ session_start();
               <li><a href="index.php">Inicio</a></li>
               <li><a href="profile.php">Mis cursos</a></li>             
               <li><a href="contact.html">Contacto</a></li>
-              <li><a href="editProfile.php"><img src="../img/perfil.png" alt="perfil" class="course_author_image"></a></li>
+              <li><a href="editProfile.php"><img src= <?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
               <?php
               }else{
               ?>
               <li><a href="index.php">Inicio</a></li>
-              <li><a href="#reg">Registrate</a></li>            
+              <li><a class="cambiarRegistro" href="#reg1">Registrate</a></li>            
               <li><a href="contact.html">Contacto</a></li>
               <li><a id="autobtn" class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
               <?php
@@ -132,7 +132,7 @@ session_start();
 
             <!-- Register -->
         <p>¿No tienes cuenta?
-            <a id="btn-registrate" style="color:blue;" href="#reg1">Registrate</a>
+            <a id="btn-registrate" class="cambiarRegistro" style="color:blue;" href="#reg1">Registrate</a>
         </p>
 
     			</div>
@@ -150,11 +150,17 @@ session_start();
     	<div class="modal-dialog modal-login">
     		<div class="modal-content">
         <div class="modal-header">
-    				<button type="button" class="closeCon" data-dismiss="modal" aria-hidden="true">&times;</button>
+    				<button type="button" class="close closeCon" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <div class="container p-4 my-4 bg-primary text-white">
-              <h3 class="h3 text-white">Te enviamos un correo para confirmar tu cuenta, por favor abra el enlace que le enviamos a su correo electronico</h3>  
-          </div>
+              <div class="text-center bg-dark p-4">
+                <img src="../img/uniline2.png" width="70%" alt="" title="" />
+              </div>
+              <div class="container p-4 my-1 bg-primary text-white">
+                  <h3 class="h3 text-white">Te enviamos un correo para confirmar tu cuenta, por favor abra el enlace que le enviamos a su correo electronico</h3>  
+              </div>
+              <div class="text-center bg-dark p-1">
+                <p><a class="h4 item-link text-white align-middle" target="_blank" href="http://www.google.com">Ir a gmail</a></p>
+              </div>
 
     		</div>
     	</div>
@@ -337,10 +343,10 @@ LOS MEJORES CURSOS DE ESPECIALIZACIÓN EN LÍNEA
             <form class="form-wrap" id="registro" method="post">             
               <h4 class="text-white pb-20 text-center mb-30">Registrate y obten acceso a los cursos.</h4>
               <div id="alertas" class="alertas"></div>
-              <input type="text" id="registrar-nombre" class="form-control" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'" >
-              <input type="phone" id="registrar-tel" class="form-control" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'" >
-              <input type="email" id="registrar-correo" class="form-control" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'" >
-              <input type="password" id="registrar-pass" class="form-control" name="TPass" placeholder="Constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña'" >
+              <input type="text" id="registrar-nombre" class="form-control text-dark" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'" >
+              <input type="phone" id="registrar-tel" class="form-control text-dark" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'" >
+              <input type="email" id="registrar-correo" class="form-control text-dark" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'" >
+              <input type="password" id="registrar-pass" class="form-control text-dark" name="TPass" placeholder="Constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña'" >
               
               <button class="btn-registrar primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
             </form>
