@@ -76,12 +76,10 @@ include '../controllers/sesion.php'
             <!-- Editar foto de perfil -->
             <div class="col-lg-3 course_box">
               <div class="card">
-                <img id="FotoPerfil" class="rounded-circle" width="260" height="210" src=<?php echo $_SESSION['imagen_perfil']?> alt="foto de perfil">
-                  <div class="boton-perfil text-center">
-                    <a id="mostrar" class="btn btn-secondary text-white" type="file">Editar foto de perfil</a>
-                  </div>         
-                <div id="cargaFoto" class="custom-file" style="display: none">
-                  <input type="file" name="Fimagen" class="custom-file-input pb-2" id="inputGroupFile01"
+                <img id="FotoPerfil" class="rounded-circle" width="260" height="260" src=<?php echo $_SESSION['imagen_perfil']?> alt="foto de perfil">    
+                <p class="text-center m-2 h4">Editar foto de perfil</p>
+                <div id="cargaFoto" class="custom-file">
+                  <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01">
                   <label class="custom-file-label h5" for="inputGroupFile01">Selecciona tu archivo</label>
                 </div>      

@@ -25,19 +25,19 @@ $(document).ready(function () {
               $("#alertas").slideDown("slow");
               setTimeout(function(){
                 $("#alertas").slideUp("slow");
-              }, 1500);
+              }, 2500);
             }else if(response == 'imagenNoValida'){
               $("#alertas").html('<i class="fas fa-images m-2"></i></i>Tipo de imagen no valido');
               $("#alertas").slideDown("slow");
               setTimeout(function(){
                 $("#alertas").slideUp("slow");
-              }, 2000);
+              }, 2500);
             }else if(response == 'imagenGrande'){
               $("#alertas").html('<i class="fas fa-images m-2"></i></i>Imagen demaciado grande');
               $("#alertas").slideDown("slow");
               setTimeout(function(){
                 $("#alertas").slideUp("slow");
-              }, 2000);
+              }, 2500);
             }
              else {
               $("#alertas").html('<i class="fas fa-exclamation-triangle m-2"></i>Ups, algo salio mal,Por favor intentalo de nuevo');
@@ -50,11 +50,6 @@ $(document).ready(function () {
         });
       });
 
-
-
-    $("#mostrar").on( "click", function() {//mostrar carga de fotos
-        $('#cargaFoto').slideToggle(500,"linear"); 
-     });
     $("#mostrarPass").on( "click", function() {//mostrar cambio de contraseña
         $('#cambiarPass').slideToggle(500,"linear"); 
      });
@@ -68,6 +63,7 @@ $(document).ready(function () {
 
             success: function (response) {
                 let datos = JSON.parse(response);
+                console.log(datos);
                 $('#numero').val(datos[0][0]);
                 $('#registrar-nombre').val(datos[0][1]);
                 $('#registrar-tel').val(datos[0][5]);
@@ -103,7 +99,7 @@ $(document).ready(function () {
             if(response == "true"){
               $('.alerta-pass').removeClass('alert-danger');
               $('.alerta-pass').addClass('alert-success');
-              $('.alerta-pass').html('<i class="fas fa-check-circle m-2"></i>Esta contrasena es incorrecta');
+              $('.alerta-pass').html('<i class="fas fa-check-circle m-2"></i>Contrasena correcta, Puedes actualizar');
               $("#registrar-passNew").removeAttr('disabled');
             }else{
               $('.alerta-pass').addClass('alert-danger');
