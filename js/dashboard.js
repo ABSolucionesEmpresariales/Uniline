@@ -9,18 +9,6 @@ $(document).ready(function(){
     $(document).on('click','.spam',function(){
         controlId = $(this).attr("id");
         console.log(controlId);
-        if($('#'+controlId).hasClass("fa-chevron-down") == true){
-            $('#'+controlId).removeClass('fa-chevron-down');
-            $('#'+controlId).addClass('fa-chevron-left');
-            $('#'+controlId).removeClass('animacion-flecha-abajo');
-            $('#'+controlId).addClass('animacion-flecha-izquierda');
-        }else{
-            $('#'+controlId).removeClass('fa-chevron-left');
-            $('#'+controlId).addClass('fa-chevron-down');
-            $('#'+controlId).removeClass('animacion-flecha-izquierda');
-            $('#'+controlId).addClass('animacion-flecha-abajo');
-            /* $('.'+controlId).addClass('desplegar'); */
-        }
         $("."+controlId).slideToggle("slow");
     });
 
@@ -114,19 +102,17 @@ $(document).ready(function(){
     ];
     
     datos = [datos_actividad,datos_actividad2,datos_actividad3,datos_actividad4,datos_actividad5,datos_actividad6,datos_actividad7,datos_actividad8];
-    template = `<h4 class="widget_title mb-0">Contenido del curso</h4>`;
+    template = `<h4 style="padding: 1rem; background-color: rgba(255, 255, 255, 0.2);" class="h4 text-white text-center widget_title mb-0">Contenido del curso</h4>`;
     $.each(datos, function (i, item) {
         for(y=0; y < datos[i].length; y++){
             if(y == 0){
                 template += `
-                <div class="row container px-2 m-0">
-                    <h3 class="m-0 py-1">
-                    <div class="custom-checkbox pt-1 mx-auto">
-                        <input type="checkbox" class="custom-control-input d-inline-block" id="customCheck-bloque-${i+1}" name="example1">
-                        <label class="custom-control-label text-white d-inline-block pl-4 align-middle" for="customCheck-bloque-${i+1}"><a id="">${item[y]}</a></label>
-                        <i id="span-${i+1}" class="fas fa-chevron-left align-middle d-inline-block text-white spam ml-2"></i>
-                    </div>
-                    </h3>
+                <div class="row container px-0 m-0 no-padding">
+                        <div class="custom-checkbox d-flex" style="padding-bottom: 1rem; padding-left: 1rem;">
+                            <input type="checkbox" class="custom-control-input" id="customCheck-bloque-${i+1}" name="example1">
+                            <label class="custom-control-label" for="customCheck-bloque-${i+1}"></label>
+                            <h2 id="span-${i+1}" style="background: transparent;" class="text-white spam ml-2"><a class="h2" style="font-size: 16px;">${item[y]}</a></span>
+                        </div>
                     <div class="span-${i+1} p-0 mt-0" style="display: none;">`;
             }else{
                 template += 
@@ -141,6 +127,6 @@ $(document).ready(function(){
         </div>
         `;
     });
-    $('#lista-curso-aside').html(template);
+    $('.lista-curso-aside').html(template);
     }
 });
