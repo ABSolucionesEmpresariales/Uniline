@@ -28,7 +28,7 @@ $(document).ready(function(){
     });
 
     function lista_temas () {
-    datos_actividad = ["Activiad 1.  Creacion de bases de datos",
+    datos_actividad = ["Activiad 1.  Creacion de bases de datos en MySQL y PHP",
     "Tema 1.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 1.2 .- la mota no es adiccion",
     "Tema 1.3 .- la mota no es adiccion",
@@ -107,17 +107,16 @@ $(document).ready(function(){
         for(y=0; y < datos[i].length; y++){
             if(y == 0){
                 template += `
-                <div class="custom-checkbox row contenedor flex justify-content-center" style="padding: 1rem; border-top:solid 1px; border-color: rgb(220, 220, 220);">
-                            <input type="checkbox" class="custom-control-input" id="customCheck-bloque-${i+1}" name="example1">
-                            <label class="custom-control-label" for="customCheck-bloque-${i+1}"></label>
-                            <div id="span-${i+1}" class="spam ml-2"><a style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);" class="nav-link">${item[y]}</a></div>
-                       
+                <div class="row contenedor flex align-items-center" style="padding: .5rem; border-top:solid 1px; border-color: rgb(220, 220, 220);">
+                            <input type="checkbox" id="customCheck-bloque-${i+1}" name="example1">
+                            <label class="col-11"><div id="span-${i+1}" class="spam"><a style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);" class="nav-link">${item[y]}</a></div></label>
+                            
                     <div class="span-${i+1} p-0 mt-0" style="display: none;">`;
             }else{
                 template += 
                 `<div class="custom-checkbox pt-1 m-0">
-                    <input type="checkbox" class="custom-control-input" id="customCheck${i+1+"-"+y}" name="example1">
-                    <label class="custom-control-label text-justify pl-4 align-middle" for="customCheck${i+1+"-"+y}"><astyle="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">${item[y]}</astyle="font-family:></label>
+                    <input type="checkbox" class="" id="customCheck${i+1+"-"+y}" name="example1">
+                    <label class="text-justify pl-4 align-middle"><astyle="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">${item[y]}</astyle="font-family:></label>
                 </div>`;
             }
         }
@@ -143,6 +142,8 @@ $(window).resize(function() {
            $("#contenido-cursos").removeClass("fade");
            $("#contenido-cursos").addClass("active");      
            $("#mov-div").detach().appendTo('#contenido-cursos');
+           $("#scroll-responsive").addClass("scroll");
+           $("#nav-barra").addClass("scrollmenu");
         }
         
     }
@@ -151,6 +152,8 @@ $(window).resize(function() {
         $("#descripcion").addClass("active");
         $(".rem-nav").remove();
         $("#mov-div").detach().appendTo('#div-original');
+        $("#scroll-responsive").removeClass("scroll");
+        $("#nav-barra").removeClass("scrollmenu");
     }
 });
 
@@ -161,12 +164,16 @@ if ($(window).width() < 768) {
        $("#descripcion").removeClass("active");
        $("#contenido-cursos").removeClass("fade");
        $("#contenido-cursos").addClass("active");
+       $("#scroll-responsive").addClass("scroll");
+       $("#nav-barra").addClass("scrollmenu");
 }
 if ($(window).width() > 768){
     $("#nav-status").addClass("active");
     $("#descripcion").addClass("active");
     $(".rem-nav").remove();  
     $("#mov-div").detach().appendTo('#div-original');
+    $("#scroll-responsive").removeClass("scroll");
+    $("#nav-barra").removeClass("scrollmenu");
 }
         
    
