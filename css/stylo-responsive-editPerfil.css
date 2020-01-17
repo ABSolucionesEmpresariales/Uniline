@@ -30,8 +30,14 @@
 .whatsapp:hover i{
     color: black;
 }
-.clock li a:hover{
+.clock li a i:hover{
     color: gold;
+}
+.social-network a i:hover{
+    color: rgba(7, 143, 255, 0.815);
+}
+#imagen-perfil img{
+    width: 30%;
 }
 /*sm*/
 @media (min-width: 300px) {
@@ -75,7 +81,9 @@
         #cargaFoto{
             margin-left: -60px!important;
         }
-
+        #imagen-perfil img{
+            width: 70%;
+        }
     }
     /*lg*/
     @media (min-width: 992px) {
@@ -92,7 +100,14 @@
     #cargaFoto{
         margin-left: 0px!important;
     }
+    #imagen-perfil img{
+        width: 30%;
     }
+    }
+
+    @media (min-width: 1024px) {
+
+      }
     /*xl*/
     @media (min-width: 1200px) {
 
