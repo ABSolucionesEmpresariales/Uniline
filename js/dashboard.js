@@ -28,7 +28,7 @@ $(document).ready(function(){
     });
 
     function lista_temas () {
-    datos_actividad = ["Activiad 1.- Creacion de bases de datos",
+    datos_actividad = ["Activiad 1.  Creacion de bases de datos",
     "Tema 1.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 1.2 .- la mota no es adiccion",
     "Tema 1.3 .- la mota no es adiccion",
@@ -37,7 +37,7 @@ $(document).ready(function(){
     "Tema 1.6 .- la mota no es adiccion",
     "Tema 1.7 .- la mota no es adiccion",
     ];
-    datos_actividad2 = ["Activiad 2.- Creacion de bases de datos",
+    datos_actividad2 = ["Activiad 2.  Creacion de bases de datos",
     "Tema 2.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 2.2 .- la mota no es adiccion",
     "Tema 2.3 .- la mota no es adiccion",
@@ -46,7 +46,7 @@ $(document).ready(function(){
     "Tema 2.6 .- la mota no es adiccion",
     "Tema 2.7 .- la mota no es adiccion",
     ];
-    datos_actividad3 = ["Activiad 3.- Creacion de bases de datos",
+    datos_actividad3 = ["Activiad 3.   Creacion de bases de datos",
     "Tema 3.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 3.2 .- la mota no es adiccion",
     "Tema 3.3 .- la mota no es adiccion",
@@ -55,7 +55,7 @@ $(document).ready(function(){
     "Tema 3.6 .- la mota no es adiccion",
     "Tema 3.7 .- la mota no es adiccion",
     ];
-    datos_actividad4 = ["Activiad 4.- Creacion de bases de datos",
+    datos_actividad4 = ["Activiad 4.   Creacion de bases de datos",
     "Tema 4.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 4.2 .- la mota no es adiccion",
     "Tema 4.3 .- la mota no es adiccion",
@@ -64,7 +64,7 @@ $(document).ready(function(){
     "Tema 4.6 .- la mota no es adiccion",
     "Tema 4.7 .- la mota no es adiccion",
     ];
-    datos_actividad5 = ["Activiad 5.- Creacion de bases de datos",
+    datos_actividad5 = ["Activiad 5.   Creacion de bases de datos",
     "Tema 5.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 5.2 .- la mota no es adiccion",
     "Tema 5.3 .- la mota no es adiccion",
@@ -73,7 +73,7 @@ $(document).ready(function(){
     "Tema 5.6 .- la mota no es adiccion",
     "Tema 5.7 .- la mota no es adiccion",
     ];
-    datos_actividad6 = ["Activiad 6.- Creacion de bases de datos",
+    datos_actividad6 = ["Activiad 6.   Creacion de bases de datos",
     "Tema 6.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 6.2 .- la mota no es adiccion",
     "Tema 6.3 .- la mota no es adiccion",
@@ -82,7 +82,7 @@ $(document).ready(function(){
     "Tema 6.6 .- la mota no es adiccion",
     "Tema 7.7 .- la mota no es adiccion",
     ];
-    datos_actividad7 = ["Activiad 7.- Creacion de bases de datos",
+    datos_actividad7 = ["Activiad 7.   Creacion de bases de datos",
     "Tema 7.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 7.2 .- la mota no es adiccion",
     "Tema 7.3 .- la mota no es adiccion",
@@ -91,7 +91,7 @@ $(document).ready(function(){
     "Tema 7.6 .- la mota no es adiccion",
     "Tema 7.7 .- la mota no es adiccion",
     ];
-    datos_actividad8 = ["Activiad 8.- Creacion de bases de datos",
+    datos_actividad8 = ["Activiad 8.   Creacion de bases de datos",
     "Tema 8.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
     "Tema 8.2 .- la mota no es adiccion",
     "Tema 8.3 .- la mota no es adiccion",
@@ -102,23 +102,22 @@ $(document).ready(function(){
     ];
     
     datos = [datos_actividad,datos_actividad2,datos_actividad3,datos_actividad4,datos_actividad5,datos_actividad6,datos_actividad7,datos_actividad8];
-    template = `<h4 style="padding: 1rem; background-color: rgba(255, 255, 255, 0.2);" class="h4 text-white text-center widget_title mb-0">Contenido del curso</h4>`;
+    template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
     $.each(datos, function (i, item) {
         for(y=0; y < datos[i].length; y++){
             if(y == 0){
                 template += `
-                <div class="row container px-0 m-0 no-padding">
-                        <div class="custom-checkbox d-flex" style="padding-bottom: 1rem; padding-left: 1rem;">
+                <div class="custom-checkbox row contenedor flex justify-content-center" style="padding: 1rem; border-top:solid 1px; border-color: rgb(220, 220, 220);">
                             <input type="checkbox" class="custom-control-input" id="customCheck-bloque-${i+1}" name="example1">
                             <label class="custom-control-label" for="customCheck-bloque-${i+1}"></label>
-                            <h2 id="span-${i+1}" style="background: transparent;" class="text-white spam ml-2"><a class="h2" style="font-size: 16px;">${item[y]}</a></span>
-                        </div>
+                            <div id="span-${i+1}" class="spam ml-2"><a style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);" class="nav-link">${item[y]}</a></div>
+                       
                     <div class="span-${i+1} p-0 mt-0" style="display: none;">`;
             }else{
                 template += 
                 `<div class="custom-checkbox pt-1 m-0">
                     <input type="checkbox" class="custom-control-input" id="customCheck${i+1+"-"+y}" name="example1">
-                    <label class="custom-control-label text-white text-justify pl-4 align-middle" for="customCheck${i+1+"-"+y}"><a id="">${item[y]}</a></label>
+                    <label class="custom-control-label text-justify pl-4 align-middle" for="customCheck${i+1+"-"+y}"><astyle="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">${item[y]}</astyle="font-family:></label>
                 </div>`;
             }
         }
@@ -129,4 +128,46 @@ $(document).ready(function(){
     });
     $('.lista-curso-aside').html(template);
     }
+
+    contenido = `<li class="nav-item rem-nav">
+                        <a class="nav-link active" data-toggle="tab" href="#contenido-cursos">Contenido del curso</a>
+                      </li>`;
+
+$(window).resize(function() {
+    if ($(window).width() < 768) {
+
+        if($(".rem-nav").length != 1){
+           $(contenido).prependTo("#nav-barra");  
+           $("#nav-status").removeClass("active");
+           $("#descripcion").removeClass("active");
+           $("#contenido-cursos").removeClass("fade");
+           $("#contenido-cursos").addClass("active");      
+           $("#mov-div").detach().appendTo('#contenido-cursos');
+        }
+        
+    }
+    if ($(window).width() > 768){
+        $("#nav-status").addClass("active");
+        $("#descripcion").addClass("active");
+        $(".rem-nav").remove();
+        $("#mov-div").detach().appendTo('#div-original');
+    }
+});
+
+if ($(window).width() < 768) {
+       $(contenido).prependTo("#nav-barra");        
+       $("#mov-div").detach().appendTo('#contenido-cursos'); 
+       $("#nav-status").removeClass("active");
+       $("#descripcion").removeClass("active");
+       $("#contenido-cursos").removeClass("fade");
+       $("#contenido-cursos").addClass("active");
+}
+if ($(window).width() > 768){
+    $("#nav-status").addClass("active");
+    $("#descripcion").addClass("active");
+    $(".rem-nav").remove();  
+    $("#mov-div").detach().appendTo('#div-original');
+}
+        
+   
 });
