@@ -54,11 +54,11 @@ session_start();
   </head>
   <body>
     <header id="header" id="home">
-      <div class="header-top">
+<!--       <div class="header-top">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
-              <ul>
+              <ul class="text-center">
               <li><a href="#"><i class="fab fa-facebook"></i></a></li>
               <li><a href="#"><i class="fab fa-twitter"></i></a></li>
               <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
@@ -71,7 +71,7 @@ session_start();
             </div>
           </div>
         </div>
-    </div> 
+    </div>  -->
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo" class="col-lg-4 d-none d-lg-block">
@@ -82,17 +82,17 @@ session_start();
             <?php
               if(isset($_SESSION['acceso'])){
               ?> 
-              <li><a href="index.php">Inicio</a></li>
-              <li><a href="profile.php">Mis cursos</a></li>             
-              <li><a href="contact.html">Contacto</a></li>
-              <li><a href="editProfile.php"><img src= <?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
+              <li><a class="text-center" href="index.php">Inicio</a></li>
+              <li><a class="text-center" href="profile.php">Mis cursos</a></li>             
+              <li><a class="text-center" href="contact.html">Contacto</a></li>
+              <li><a class="text-center" href="editProfile.php"><img src= <?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
               <?php
               }else{
               ?>
-              <li><a href="index.php">Inicio</a></li>
-              <li><a class="cambiarRegistro" href="#reg1">Registrate</a></li>            
-              <li><a href="contact.html">Contacto</a></li>
-              <li><a id="autobtn" class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
+              <li><a class="text-center" href="index.php">Inicio</a></li>
+              <li><a class="text-center" class="cambiarRegistro" href="#reg1">Registrate</a></li>            
+              <li><a class="text-center" href="contact.html">Contacto</a></li>
+              <li><a class="text-center" id="autobtn" class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
               <?php
               }
               ?>

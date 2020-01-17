@@ -26,7 +26,6 @@ $(document).ready(function() {
       for(i = 0; i < datos_estado_mexico.length; i++){
         templete +=  `<option value="${datos_estado_mexico[i]}">${datos_estado_mexico[i]}</option>`;
       }
-      console.log(templete);
       $('#'+comboBox).html(templete);
 
     }
@@ -203,7 +202,7 @@ $(document).ready(function() {
 
         $(document).on('click', '#mobile-nav-toggle', function(e) {
             $('body').toggleClass('mobile-nav-active');
-            $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-v');
+            $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-h');
             $('#mobile-body-overly').toggle();
         });
 
@@ -212,7 +211,7 @@ $(document).ready(function() {
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 if ($('body').hasClass('mobile-nav-active')) {
                     $('body').removeClass('mobile-nav-active');
-                    $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-v');
+                    $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-h');
                     $('#mobile-body-overly').fadeOut();
                 }
             }
@@ -222,7 +221,6 @@ $(document).ready(function() {
     }
 
     //------- Smooth Scroll  js --------//  
-
     $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
@@ -266,7 +264,7 @@ $(document).ready(function() {
 
                 $('html, body').scrollTop(0).show();
                 $('html, body').animate({
-                    scrollTop: $(window.location.hash).offset().top - 108
+                    scrollTop: $(window.location.hash).offset().top - 80
                 }, 1000)
             }, 0);
 
