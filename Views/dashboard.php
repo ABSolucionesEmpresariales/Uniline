@@ -57,12 +57,17 @@ session_start();
     <div class="header-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-8 col-8 header-top-left no-padding">
+          <div class="col-lg-2 col-md-2 col-1 header-top-left no-padding">
             <a href="index.php"><img class="logo-responsive" src="../img/uniline2.png" alt="" title="" /></a>
           </div>
-          <div class="col-4 header-top-right no-padding">
-            <a class="btn btn-sm text-center" href="profile.php"><span></span>Mis cursos</a>
+          <div class="col-lg-8 col-md-8 col-6 header-top-left no-padding">
+            <a class="btn btn-sm text-center" href="#">Nombre del curso</a>
           </div>
+          <nav id="nav-menu-container">
+            <div class="col-2 header-top-right no-padding">
+              <a class="btn btn-sm text-center" href="profile.php"><span></span>Mis cursos</a>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
@@ -71,43 +76,54 @@ session_start();
   <br><br>
 
   <div class="device-container">
-    <section class="dash-area relative">
-      <div class="overlay overlay-bg"></div>
-      <div class="container">
-        <div class="row justify-content-between">
-          <div class="col-lg-7 col-md-6 col-sm-4 search-course-left">
-
-            <div class="flex">
-              <video id="video" src="../videos/Neon - 21368.mp4" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
+    <section class="relative">
+      <div class="contenedor">
+        <div id="div-original" class="row">
+          
+          <div class="col-lg-8 col-md-8 col-sm-12">
+            <div class="flex bg-color justify-content-center">
+              <video class="col-lg-9 col-md-12 col-sm-12" id="video" src="../videos/Neon - 21368.mp4" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
             </div>
 
-            <div class="row details-content" style="max-height: 22rem;">
-              <div class="col single-detials">
-                <div class="jq-tab-wrapper" id="horizontalTab">
-                  <div class="jq-tab-menu">
-                    <div class="jq-tab-title btn btn-light active text-white" style="background: transparent;" data-tab="1">
-                      Descripción</div>
-                    <div class="jq-tab-title btn btn-light text-white" style="background: transparent;" data-tab="2">
-                      Archivos adjuntos</div>
-                  </div>
+            <div class="col details-content" style="max-height: 35rem;">
+              <div class="jq-tab-wrapper" id="horizontalTab">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                  <ul class="nav nav-tabs" id="nav-barra">                  
+                      <li class="nav-item">
+                        <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#archivos">Archivos adjuntos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#progress">Progreso del curso</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#">Disabled</a>
+                      </li>
+                  </ul>
+                </nav>
 
-                  <div class="jq-tab-content-wrapper" style="background: transparent; color: white; height: 22rem;">
-                    <div class="jq-tab-content active text-justify h-scroll-box" data-tab="1">
-                      When you enter into any new area of science, you almost always find yourself with a baffling new
-                      language of technical terms to learn before you can converse with the experts. This is certainly true
-                      in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
-                      trade, the most prevalent being the telescope.
-                      <br>
-                      <br>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum.
+                <div class="tab-content" style="height: 30rem;">
+                  <div class="tab-pane container fade" id="contenido-cursos">
+                      <!--contenido de los cursos cuando es responsive-->
+                  </div>
+                  <div class="tab-pane container text-justify" id="descripcion" style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
+                    When you enter into any new area of science, you almost always find yourself with a baffling new
+                    language of technical terms to learn before you can converse with the experts. This is certainly true
+                    in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
+                    trade, the most prevalent being the telescope.
+                    <br>
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum.
                     </div>
-                    <div class="jq-tab-content" data-tab="2" style="display: none;">
+                    <div class="tab-pane container fade" id="archivos">
                       Descargar archivos
                       <br>
                       <br>
@@ -115,53 +131,50 @@ session_start();
                       <p>¿no se descarga el archivo? <a style="color:blue;" href="download/pack.txt" download="Pack.txt">Click aqui</a>
                       </p>
                     </div>
+                    <div class="tab-pane container fade" id="progress">
+                      <div class="row">
+                        <div class="col-lg-5 col-md-5 single-sidebar-widget tag_cloud_widget m-0 ">
+                          <div class="loaders m-0 flex justify-content-center">
+                            <div class="row elements_loaders_container col-lg-8">
+                              <!-- Loader -->
+                              <div class="loader mb-0" data-perc=".50"></div>
+                            </div>
+                          </div>
+                        </div><br>
+
+                        
+
+                        <div class="col-lg-6 col-md-7">
+                          <div class="container footer-bottom">
+                            <h6 class="mb-15 h3">Calidad del curso</h6>
+                            <div class="d-flex flex reviews justify-content-xl-around">
+                              <span>Regular</span>
+                                <div class="star" style="color: yellow">
+                                  <i id="1" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                  <i id="2" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                  <i id="3" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                  <i id="4" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                  <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                </div>
+                              <span>Excelente</span>
+                            </div>
+                          </div>
+                        </div>   
+                          
+                        
+                      </div>
+                    </div>
                   </div>
-                </div>
+                <!--</div>-->
               </div>
             </div>
           </div>
 
-          <div class="col-lg-5 col-md-6 search-course-right section-gap fondo-lista">
-            <div class="col" style=" position:absolute; top:20px;">
-              <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                  <div class="lista-curso-aside single_sidebar_widget post_category_widget mover h-scroll" style="height: 20rem;">
+          <div id="mov-div" class="col-lg-4 col-md-4 search-course-right section-gap fondo-lista">
+            <div class="col" style=" position:absolute; top:0px; height: 100%; background-color: rgb(245, 245, 245);">             
+                  <div class="lista-curso-aside single_sidebar_widget post_category_widget mover" style="height: 100%;">
+                  <!--loades lista-->
                   </div>
-                </ul>
-                <ul class="progreso">
-                  <br>
-                  <div class="single-sidebar-widget tag_cloud_widget m-0 ">
-                    <h4 style="padding: 1rem; background-color: rgba(255, 255, 255, 0.2);" class="widget_title h4 text-white text-center">Progreso del curso</h4>
-                    <div class="loaders m-0 flex justify-content-center">
-                      <div class="row elements_loaders_container col-lg-6">
-                        <!-- Loader -->
-                        <div class="loader mb-0" data-perc=".50"></div>
-                      </div>
-                    </div>
-                  </div><br>
-                  <aside class="single-sidebar-widget newsletter_widget align-content-center align-items-center">
-                    <div class="content ">
-                      <div class="review-top row flex justify-content-center">
-                        <div class="col-lg-8">
-                          <h6 class="mb-15" style="color: white;">Calidad del curso</h6>
-                          <div class="d-flex flex-row reviews justify-content-between">
-                            <span style="color: white;">Regular</span>
-                            <div class="star" style="color: yellow">
-                              <span id="1" class="fa fa-star start estrella" style="cursor: pointer;"></span>
-                              <span id="2" class="fa fa-star start estrella" style="cursor: pointer;"></span>
-                              <i id="3" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                              <i id="4" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                              <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                            </div>
-                            <span style="color: white;">Excelente</span>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </aside>
-                </ul>
-              </nav>
             </div>
           </div>
         </div>
