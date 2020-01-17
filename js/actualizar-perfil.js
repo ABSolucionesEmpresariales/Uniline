@@ -73,6 +73,7 @@ $(document).ready(function () {
                 }else{
                   $('#registrar-edad').val("");
                 }
+
                 if(datos[0][3] != ""){
                   $('#registrar-grado').val(datos[0][3]);
                 }else{
@@ -81,9 +82,25 @@ $(document).ready(function () {
                 if(datos[0][4] != ""){
                   $('#FotoPerfil').attr('src',datos[0][4])
                 }
+                  $('#registrar-estado').val(datos[0][11]);
+                  $('#registrar-municipio').val(datos[0][12]);
+                if(datos[0][13] != "###"){
+                  $('#verifi-trabajo').val("1");
+                  separar = datos[0][13].split('###');
+                  $('#registrar-puesto').val(separar[0]);
+                  $('#registrar-Descripcion').val(separar[1]);
+                  $('.show-date').slideDown("slow");
+                }else{
+                  $('#verifi-trabajo').val("0");
+                }
+                  
             }
         });
     }
+    function cambiar(datos){
+
+    }
+
     /////////////////////// Verificar si la contrasena es correcta //////////////////////////////
     $(document).on('keyup','#registrar-pass',function(e){
       console.log($(this).val().length);
@@ -118,6 +135,8 @@ $(document).ready(function () {
             $('.show-date').slideDown("slow");
           }else{
             $('.show-date').slideUp("slow");
+            $('#registrar-puesto').val("");
+            $('#registrar-Descripcion').val("");
           }
       });
 

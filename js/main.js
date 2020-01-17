@@ -39,12 +39,7 @@ $(document).ready(function() {
     if (document.getElementById("default-select2")) {
         $('select').niceSelect();
     };
-    if (document.getElementById("service-select")) {
-        $('select').niceSelect();
-    };
-    if (document.getElementById("service-select2")) {
-        $('select').niceSelect();
-    };   
+  
 
     //------- Lightbox  js --------//  
 

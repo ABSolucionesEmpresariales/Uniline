@@ -37,6 +37,7 @@ include '../controllers/sesion.php'
     <link rel="stylesheet" href="../css/styles/login.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/icons/all.css">
+    <link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
 
     <!--
     JS
@@ -74,17 +75,17 @@ include '../controllers/sesion.php'
           <div class="row justify-content-center">
   
             <!-- Editar foto de perfil -->
-            <div class="col-lg-3 course_box">
+            <div class="col-lg-3 course_box load-picture">
               <div class="card">
                 <img id="FotoPerfil" class="rounded-circle" width="260" height="260" src=<?php echo $_SESSION['imagen_perfil']?> alt="foto de perfil">    
-                <p class="text-center m-2 h4">Editar foto de perfil</p>
                 <div id="cargaFoto" class="custom-file">
                   <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01">
-                  <label class="custom-file-label h5" for="inputGroupFile01">Selecciona tu archivo</label>
+                  <label class="custom-file-label h5" for="inputGroupFile01">Editar foto de perfil</label>
                 </div>      
               </div>
             </div>
+
             <div id="alertas" class="alert alert-danger fixed-top text-center" style="max-height:50px; display: none;">
             </div>
             <!-- Popular Course Item -->
@@ -107,30 +108,24 @@ include '../controllers/sesion.php'
                         <span class="input-group-addon"><i class="fas fa-sort-numeric-up-alt"></i></span>
                         <input type="text" id="registrar-edad" class="form-control text-success" name="TEdad" placeholder="Edad" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu edad'" >
                       </div>
-                     <div class="form-select" id="service-select">
-                      <select id="registrar-grado" name="TGrado">
+                      <select id="registrar-grado" name="TGrado" class="form-control m-2" style="height: 35px!important">
                         <option value="">Selecciona grado de estudios</option>
                         <option value="Secundaria">Secundaria</option>
                         <option value="Bachillerato">Bachillerato</option>
                         <option value="Universidad">Universidad</option>
                         <option value="Superior">Superior</option>
+                      </select >  
+                      <select id="registrar-estado" name="TEstado" class="form-control m-2" style="height: 35px!important">
                       </select >
-                    </div>
-                    <div class="form-select" id="service-select2">
-                      <select id="registrar-estado" name="TEstado">
-                      </select >
-                    </div>
                     <div class="input-group m-1">
                       <span class="input-group-addon"><i class="fas fa-flag"></i></span>
                       <input type="text" id="registrar-municipio" class="form-control text-success" name="TMunicipio" placeholder="Municipio" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu municipio'" >
                     </div>
-                    <div class="form-select" id="service-select3">
-                      <select id="verifi-trabajo">
+                      <select id="verifi-trabajo" class="form-control" style="height: 35px!important">
                         <option value="">Trabajo</option>
                         <option value="1">Si</option>
                         <option value="0">No</option>
                       </select >
-                    </div>
                     <div class="show-date" style="display: none;">
                       <div class="input-group m-1">
                         <span class="input-group-addon"><i class="fas fa-briefcase"></i></span>
@@ -156,7 +151,7 @@ include '../controllers/sesion.php'
                       </div>
                       </div>
                     
-                    <button id="actualizar" class="btn-primary primary-btn text-uppercase" type="submit" name="submit">Actualizar perfil</button>
+                    <button id="actualizar" class="btn-primary primary-btn text-uppercase btn-sm-block" type="submit" name="submit">Actualizar perfil</button>
                 </div>
               </div>
             </div>
@@ -171,85 +166,37 @@ include '../controllers/sesion.php'
 
 
     <!-- start footer Area -->
-    <footer class="footer-area section-gap">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget">
-              <h4>Temas mas buscados</h4>
-              <ul>
-                <li><a href="#">Capacitaciones</a></li>
-                <li><a href="#">Programación</a></li>
-                <li><a href="#">Desarrollo Web</a></li>
-                <li><a href="#">Recursos Humanos</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget">
-              <h4>Quick links</h4>
-              <ul>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Brand Assets</a></li>
-                <li><a href="#">Investor Relations</a></li>
-                <li><a href="#">Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget">
-              <h4>Features</h4>
-              <ul>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Brand Assets</a></li>
-                <li><a href="#">Investor Relations</a></li>
-                <li><a href="#">Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6 col-sm-6">
-            <div class="single-footer-widget">
-              <h4>Resources</h4>
-              <ul>
-                <li><a href="#">Guides</a></li>
-                <li><a href="#">Research</a></li>
-                <li><a href="#">Experts</a></li>
-                <li><a href="#">Agencies</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4  col-md-6 col-sm-6">
-            <div class="single-footer-widget">
-              <h4>Newsletter</h4>
-              <p>Stay update with our latest</p>
-              <div class="" id="mc_embed_signup">
-                 <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get">
-                  <div class="input-group">
-                    <input type="text" class="form-control" name="EMAIL" placeholder="Enter Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email Address '" required="" type="email">
-                    <div class="input-group-btn">
-                      <button class="btn btn-default" type="submit">
-                        <span class="lnr lnr-arrow-right"></span>
-                      </button>
-                    </div>
-                      <div class="info"></div>
-                  </div>
-                </form>
+    <footer class="footer-area">
+        <div class="row footer-social text-center border-bottom ">
+               <a class="h1 text-primary col-4 facebook m-0 pt-5 pb-5" href="#">
+                  <p>Ya nos sigues ?</p>
+                  <i class="fab fa-facebook"></i>
+              </a>
+              <div class="col-4 pt-5 pb-5">
+                <h4 class="text-center text-primary">Contactanos!!</h4>
+                <p class="text-center">Te gustaria compartir tu conocimientos, impartiendo clases, contactanos y prodras hacerlo!!</p>
               </div>
-            </div>
+              <a class="h1 text-primary col-4 whatsapp m-0 pt-5 pb-5" href="#">
+              <p>Contactanos por whatsapp</p>
+                <i class="fab fa-whatsapp"></i>
+              </a>
+        </div>
+        <div class="row align-items-center mt-3 justify-content-between">
+          <div class="hy-auto m-0 col-sm-block">
+            <p class="mb-0">Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+            All rights reserved by AB Soluciones Empresariales .
+              
+            </p>
+            <ul class="list-inline mt-0 clock text-center">
+              <li class="list-inline-item">
+                <a href="#">Politicas de Privacidad</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Imagen Corporativa</a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="footer-bottom row align-items-center justify-content-between">
-          <p class="footer-text m-0 col-lg-6 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          <div class="col-lg-6 col-sm-12 footer-social">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
     </footer>
     <!-- End footer Area -->
 

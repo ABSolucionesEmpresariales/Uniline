@@ -14,15 +14,15 @@
                             $imagen2 = $_SERVER['DOCUMENT_ROOT']."/Uniline"."/"."img/"."Users/".$newfilename."";
                             $imagen3 = "http://localhost/Uniline"."/"."img/"."Users/".$newfilename."";
                             if(move_uploaded_file($_FILES[$nombre]["tmp_name"],$imagen2)){
-                                return $imagen3;
+                                return "../img/Users/".$newfilename."";
                             }else{
                                 return "Error";
                             }
                 }else{
-                    echo "imagenNoValida";
+                    return "imagenNoValida";
                 }
             }else{
-                echo "imagenGrande";
+                return "imagenGrande";
             }
 }else{
     $temp = explode(".", $_FILES[$nombre]["name"]);

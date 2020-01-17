@@ -29,46 +29,67 @@ if(isset($_POST['updatePass'])){
 }
  //actualizar datos de la base
 
- if(isset($_POST['TNombre']) && isset($_POST['TTelefono']) && isset($_POST['TEmail']) && isset($_POST['TEdad'])){
-     $conexion = new modelos\Conexion();
+ if(isset($_POST['TNombre']) && isset($_POST['TTelefono']) 
+ && isset($_POST['TEmail']) && isset($_POST['TEdad'])) {
+    
+    function actualizar($archivo){
+        $conexion = new modelos\Conexion();
+        if(isset($_POST['TPassNew'])){
+            $password = $_POST['TPassNew'];
+            $encriptado = trim(password_hash($password, PASSWORD_DEFAULT));
+        }else{
+            $consulta = "SELECT password FROM usuario WHERE idusuario = ?";
+            $datos = array($_SESSION['id']);
+            $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
+            $encriptado = $resultado[0][0];
+        }
+
+        $trabajo = $_POST['TPuesto'].'###'.$_POST['TDescripcion'];
+
+        $consultaUP = "UPDATE usuario SET nombre = ?, edad = ?, escolaridad = ?, telefono = ?, email = ?, password = ?, imagen = ?, estado = ?, municipio = ?, trabajo = ? WHERE idusuario = ?";
+        $datos = array($_POST['TNombre'],$_POST['TEdad'],$_POST['TGrado'], $_POST['TTelefono'], $_POST['TEmail'],$encriptado,$archivo,$_POST['TEstado'],$_POST['TMunicipio'],$trabajo,$_SESSION['id']);
+        
+        $resultado = $conexion->consultaPreparada($datos,$consultaUP,1,'sssssssssss',false,5);
+        if($resultado != 0){
+            if($archivo == ""){
+                $_SESSION['imagen_perfil'] = "../img/Users/perfil.png";
+            }else{
+                $_SESSION['imagen_perfil'] = $archivo;
+            }
+            
+        }
+        return $resultado; 
+    }
+
+
     $encriptado = "";
     $archivo = $_SESSION['imagen_perfil'];
     if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
         $archivo = subir_archivo('Fimagen',1);
-        if ($archivo == "Error") {
+        if ($archivo == "Error"){
             echo $archivo;
-        } else if ($archivo == "imagenNoValida") {
+        } else if ($archivo == "imagenNoValida"){
             echo $archivo;
-        } else if ($archivo == "imagenGrande") {
+        } else if ($archivo == "imagenGrande"){
             echo $archivo;
         } else {
-
-            if(isset($_POST['TPassNew'])){
-                $password = $_POST['TPassNew'];
-                $encriptado = trim(password_hash($password, PASSWORD_DEFAULT));
+            if($_SESSION['imagen_perfil'] != "../img/Users/perfil.png"){
+                unlink($_SESSION['imagen_perfil']);
+            }
+            if(actualizar($archivo) == 1){
+                echo 1;
             }else{
-                $consulta = "SELECT password FROM usuario WHERE idusuario = ?";
-                $datos = array($_SESSION['id']);
-                $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
-                $encriptado = $resultado[0][0];
+                echo 0;
             }
-
-            $trabajo = $_POST['TPuesto'].'###'.$_POST['TDescripcion'];
-
-            $consultaUP = "UPDATE usuario SET nombre = ?, edad = ?, escolaridad = ?, telefono = ?, email = ?, password = ?, imagen = ?, estado = ?, municipio = ?, trabajo = ? WHERE idusuario = ?";
-            $datos = array($_POST['TNombre'],$_POST['TEdad'],$_POST['TGrado'], $_POST['TTelefono'], $_POST['TEmail'],$encriptado,$archivo,$_POST['TEstado'],$_POST['TMunicipio'],$trabajo,$_SESSION['id']);
-            
-            $resultado = $conexion->consultaPreparada($datos,$consultaUP,1,'sssssssssss',false,5);
-            if($resultado != 0){
-                $_SESSION['imagen_perfil'] = $archivo;
-            }
-            echo $resultado;    
         }
     }else{
-        
+        $conexion = new modelos\Conexion();
+        $consulta = "SELECT imagen FROM usuario WHERE idusuario = ?";
+        $datos = array($_SESSION['id']);
+        $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
+        $imagen = $resultado[0][0];
+        echo actualizar($imagen);
     }
-
-
 }
 
 /*
