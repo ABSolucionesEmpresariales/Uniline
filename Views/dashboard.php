@@ -57,7 +57,7 @@ session_start();
     <div class="header-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-2 col-md-2 col-1 header-top-left no-padding">
+          <div id="logo-res" class="col-lg-2 col-md-2 col-1 header-top-left no-padding">
             <a href="index.php"><img class="logo-responsive" src="../img/uniline2.png" alt="" title="" /></a>
           </div>
           <div class="col-lg-8 col-md-8 col-6 header-top-left no-padding">
@@ -80,32 +80,32 @@ session_start();
       <div class="contenedor">
         <div id="div-original" class="row">
           
-          <div class="col-lg-9 col-md-8 col-sm-12 no-padding">
+          <div class="col-lg-9 col-md-7 col-sm-12 no-padding">
             <div class="flex bg-color justify-content-center">
               <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="../videos/Neon - 21368.mp4" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
             </div>
 
             <div class="col details-content no-padding" style="max-height: 35rem;">
-              <div class="jq-tab-wrapper" id="horizontalTab">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                  <ul class="nav nav-tabs" id="nav-barra">                  
-                      <li class="nav-item">
+              <div class="jq-tab-wrapper no-padding" id="horizontalTab">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding">
+                  <ul class="nav nav-tabs no-padding" id="nav-barra">                  
+                      <li class="nav-item no-padding">
                         <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item no-padding">
                         <a class="nav-link" data-toggle="tab" href="#archivos">Archivos adjuntos</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item no-padding">
                         <a class="nav-link" data-toggle="tab" href="#progress">Progreso del curso</a>
                       </li>
                   </ul>
                 </nav>
 
-                <div id="scroll-responsive" class="tab-content container" style="height: 30rem;">
+                <div id="scroll-responsive" class="tab-content container" style="height: 20rem;">
                   <div class="tab-pane container fade" id="contenido-cursos">
                       <!--contenido de los cursos cuando es responsive-->
                   </div>
-                  <div class="tab-pane container text-justify" id="descripcion" style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
+                  <div class="tab-pane container text-justify h-scroll" id="descripcion" style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
                     When you enter into any new area of science, you almost always find yourself with a baffling new
                     language of technical terms to learn before you can converse with the experts. This is certainly true
                     in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
@@ -167,9 +167,9 @@ session_start();
             </div>
           </div>
 
-          <div id="mov-div" class="col-lg-3 col-md-4 col-sm-12 search-course-right section-gap fondo-lista">
-            <div class="col bg-color-lista">             
-                  <div class="lista-curso-aside single_sidebar_widget post_category_widget mover" style="height: 100%;">
+          <div id="mov-div" class="col-lg-3 col-md-5 col-sm-12 search-course-right section-gap fondo-lista">
+            <div class="col bg-color-lista no-padding">             
+                  <div class="lista-curso-aside single_sidebar_widget post_category_widget mover h-scroll " style="height: 100%;">
                   <!--loades lista-->
                   </div>
             </div>
@@ -179,13 +179,39 @@ session_start();
     </section>
   </div>
 
-  <footer class="py-5 footer-area section-gap">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; AB Soluciones Empresariales
-        <script>document.write(new Date().getFullYear());</script>. All rights reserved</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+  <!-- start footer Area -->
+  <footer class="footer-area">
+        <div class="align-items-center justify-content-between">
+          <div class="row">
+            <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
+              <a class="" href="index.php"><img src="../img/uniline2.png" width="35%" alt="" title="" /></a>
+            </div>
+            <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
+              <p class="mb-0">&copy; AB Soluciones Empresariales <script>document.write(new Date().getFullYear());</script>
+                All rights reserved.
+              </p>
+              <ul class="list-inline  mt-0 clock text-center">
+                <li class="list-inline-item">
+                  <a href="#">Politicas de Privacidad</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">Imagen Corporativa</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
+              <div class="social-network mt-0">
+              <p class="h4 text-white">Siguenos en Redes Sociales</p>
+                  <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
+                  <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
+                  <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>
+                  <a class="h3 m-3 text-white" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+          </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

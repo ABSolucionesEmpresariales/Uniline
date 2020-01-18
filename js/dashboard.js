@@ -100,23 +100,52 @@ $(document).ready(function(){
     "Tema 8.6 .- la mota no es adiccion",
     "Tema 8.7 .- la mota no es adiccion",
     ];
+    datos_actividad9 = ["Activiad 9.   Creacion de bases de datos",
+    "Tema 9.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
+    "Tema 9.2 .- la mota no es adiccion",
+    "Tema 9.3 .- la mota no es adiccion",
+    "Tema 9.4 .- la mota no es adiccion",
+    "Tema 9.5 .- la mota no es adiccion",
+    "Tema 9.6 .- la mota no es adiccion",
+    "Tema 9.7 .- la mota no es adiccion",
+    ];
+    datos_actividad10 = ["Activiad 10.   Creacion de bases de datos",
+    "Tema 8.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
+    "Tema 8.2 .- la mota no es adiccion",
+    "Tema 8.3 .- la mota no es adiccion",
+    "Tema 8.4 .- la mota no es adiccion",
+    "Tema 8.5 .- la mota no es adiccion",
+    "Tema 8.6 .- la mota no es adiccion",
+    "Tema 8.7 .- la mota no es adiccion",
+    ];
+    datos_actividad11 = ["Activiad 11.   Creacion de bases de datos",
+    "Tema 8.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
+    "Tema 8.2 .- la mota no es adiccion",
+    "Tema 8.3 .- la mota no es adiccion",
+    "Tema 8.4 .- la mota no es adiccion",
+    "Tema 8.5 .- la mota no es adiccion",
+    "Tema 8.6 .- la mota no es adiccion",
+    "Tema 8.7 .- la mota no es adiccion",
+    ];
     
-    datos = [datos_actividad,datos_actividad2,datos_actividad3,datos_actividad4,datos_actividad5,datos_actividad6,datos_actividad7,datos_actividad8];
+    datos = [datos_actividad,datos_actividad2,datos_actividad3,datos_actividad4,datos_actividad5,datos_actividad6,datos_actividad7,datos_actividad8, datos_actividad9, datos_actividad10, datos_actividad11];
     template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
     $.each(datos, function (i, item) {
         for(y=0; y < datos[i].length; y++){
             if(y == 0){
                 template += `
-                <div class="row contenedor flex align-items-center" style="padding: .5rem; border-top:solid 1px; border-color: rgb(220, 220, 220);">
+                <div class="demo row contenedor flex align-items-center cont-actividades">
                             <input type="checkbox" id="customCheck-bloque-${i+1}" name="example1">
-                            <label class="col-11"><div id="span-${i+1}" class="spam"><a style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);" class="nav-link">${item[y]}</a></div></label>
+                             <label for="customCheck-bloque-${i+1}" class="col-2 flex align-items-center"><span></span></label>
+                            <a id="span-${i+1}" class="col-10 spam nav-link font-actividades">${item[y]}</a>
                             
-                    <div class="span-${i+1} p-0 mt-0" style="display: none;">`;
+                    <div class="span-${i+1}" style="display: none;">`;
             }else{
                 template += 
-                `<div class="custom-checkbox pt-1 m-0">
-                    <input type="checkbox" class="" id="customCheck${i+1+"-"+y}" name="example1">
-                    <label class="text-justify pl-4 align-middle"><astyle="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">${item[y]}</astyle="font-family:></label>
+                `<div class="demo row pt-1 m-0 flex align-items-center">
+                    <input type="checkbox" id="customCheck${i+1+"-"+y}" name="example1">
+                    <label for="customCheck${i+1+"-"+y}" class="col-3 text-justify pl-4 flex align-items-center"><span></span></label>
+                    <a class="col-9" style="font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${item[y]}</a>
                 </div>`;
             }
         }
@@ -144,6 +173,9 @@ $(window).resize(function() {
            $("#mov-div").detach().appendTo('#contenido-cursos');
            $("#scroll-responsive").addClass("scroll");
            $("#nav-barra").addClass("scrollmenu");
+           $("#scroll-responsive").css("height", "30rem");
+           $("#contenido-cursos").css("height", "100%");
+           $(".bg-color-lista").css("height", "170%");
         }
         
     }
@@ -154,6 +186,8 @@ $(window).resize(function() {
         $("#mov-div").detach().appendTo('#div-original');
         $("#scroll-responsive").removeClass("scroll");
         $("#nav-barra").removeClass("scrollmenu");
+        $("#scroll-responsive").css("height", "20rem");
+        $(".bg-color-lista").css("height", "100%");
     }
 });
 
@@ -166,6 +200,9 @@ if ($(window).width() < 768) {
        $("#contenido-cursos").addClass("active");
        $("#scroll-responsive").addClass("scroll");
        $("#nav-barra").addClass("scrollmenu");
+       $("#scroll-responsive").css("height", "30rem");
+       $("#contenido-cursos").css("height", "100%");
+       $(".bg-color-lista").css("height", "170%");
 }
 if ($(window).width() > 768){
     $("#nav-status").addClass("active");
@@ -174,6 +211,8 @@ if ($(window).width() > 768){
     $("#mov-div").detach().appendTo('#div-original');
     $("#scroll-responsive").removeClass("scroll");
     $("#nav-barra").removeClass("scrollmenu");
+    $("#scroll-responsive").css("height", "20rem");
+    $(".bg-color-lista").css("height", "100%");
 }
         
    
