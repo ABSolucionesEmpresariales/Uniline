@@ -78,7 +78,12 @@ max-width: 25%
   animation: roll2 0.4s;
 }
 .h-scroll {
-  height: 240px; 
+  height: 20rem; 
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.c-scroll {
+  height: 10rem; 
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -91,7 +96,7 @@ max-width: 25%
   border-color: rgb(220, 220, 220);
 }
 .h-scroll-box {
-  height: 240px; 
+  height: 250px; 
   overflow-y: scroll;
   background: transparent;
   width: auto;
@@ -188,4 +193,18 @@ background-color: rgb(28, 28, 37);
 }.font-actividades{
   font-family: 'Poppins:100', sans-serif;
   font-size: 16px; color: rgb(87, 87, 87);
+}
+.area-tareas{
+  background-color: rgb(243, 243, 243);
+}
+.sticky-aside{
+  position: -webkit-sticky; 
+ position: sticky;
+ top: 4rem;
+}
+.calificaciones{
+  width: 2.5rem;
+  padding: .5rem;
+  background-color: rgb(190, 255, 147);
+  border-radius: 2rem;
 }
