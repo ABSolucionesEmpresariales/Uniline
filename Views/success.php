@@ -37,7 +37,7 @@
             <div class="contenido">
 
             </div>
-            <div class="footer">
+            <div class="boton">
 
             </div>
         </div>

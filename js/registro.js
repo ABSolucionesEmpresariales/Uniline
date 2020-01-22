@@ -123,6 +123,7 @@ $(document).ready(function () {
             type: "POST",
             data: "cursos=cursos",
             success: function (response) {
+                console.log(response);
                 let datos = JSON.parse(response);
                 console.log(datos);
                 let templete = ``;
