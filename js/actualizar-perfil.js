@@ -63,7 +63,6 @@ $(document).ready(function () {
 
             success: function (response) {
                 let datos = JSON.parse(response);
-                console.log(datos);
                 $('#numero').val(datos[0][0]);
                 $('#registrar-nombre').val(datos[0][1]);
                 $('#registrar-tel').val(datos[0][5]);

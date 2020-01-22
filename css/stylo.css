@@ -125,3 +125,37 @@ max-width: 25%
 .bg-color{
 background-color: rgb(28, 28, 37);
 }
+.scroll{
+  overflow-y: scroll;
+  max-height: 25rem;
+  background-color: rgb(245, 245, 245);
+}
+
+/*menu responsivo del contenido*/
+.scrollmenu {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.scrollmenu li {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+/*acaba menu responsivo del contenido*/
+
+.bg-color-lista{
+  position:absolute; 
+  top:0px; 
+  height: 100%; 
+  background-color: rgb(245, 245, 245);
+}
+/* estilo checkbox*/
+.check{
+  border: 1px solid red;
+}
+/*acaba estilo checkbox*/

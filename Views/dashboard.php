@@ -80,12 +80,12 @@ session_start();
       <div class="contenedor">
         <div id="div-original" class="row">
           
-          <div class="col-lg-8 col-md-8 col-sm-12">
+          <div class="col-lg-9 col-md-8 col-sm-12 no-padding">
             <div class="flex bg-color justify-content-center">
-              <video class="col-lg-9 col-md-12 col-sm-12" id="video" src="../videos/Neon - 21368.mp4" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
+              <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="../videos/3remix-martin-near.wmv" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
             </div>
 
-            <div class="col details-content" style="max-height: 35rem;">
+            <div class="col details-content no-padding" style="max-height: 35rem;">
               <div class="jq-tab-wrapper" id="horizontalTab">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                   <ul class="nav nav-tabs" id="nav-barra">                  
@@ -98,13 +98,10 @@ session_start();
                       <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#progress">Progreso del curso</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#">Disabled</a>
-                      </li>
                   </ul>
                 </nav>
 
-                <div class="tab-content" style="height: 30rem;">
+                <div id="scroll-responsive" class="tab-content container" style="height: 30rem;">
                   <div class="tab-pane container fade" id="contenido-cursos">
                       <!--contenido de los cursos cuando es responsive-->
                   </div>
@@ -170,8 +167,8 @@ session_start();
             </div>
           </div>
 
-          <div id="mov-div" class="col-lg-4 col-md-4 search-course-right section-gap fondo-lista">
-            <div class="col" style=" position:absolute; top:0px; height: 100%; background-color: rgb(245, 245, 245);">             
+          <div id="mov-div" class="col-lg-3 col-md-4 col-sm-12 search-course-right section-gap fondo-lista">
+            <div class="col bg-color-lista">             
                   <div class="lista-curso-aside single_sidebar_widget post_category_widget mover" style="height: 100%;">
                   <!--loades lista-->
                   </div>

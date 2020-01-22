@@ -70,7 +70,7 @@
         }
     }
     /*md*/
-    @media (min-width: 768px) {
+    @media (min-width: 767px) {
         .load-picture div img{
             width: 400px;
             height: 400px;
@@ -82,7 +82,7 @@
             margin-left: -60px!important;
         }
         #imagen-perfil img{
-            width: 70%;
+            width: 100%;
         }
     }
     /*lg*/
@@ -106,7 +106,9 @@
     }
 
     @media (min-width: 1024px) {
-
+        #imagen-perfil img{
+            width: 23%;
+        }
       }
     /*xl*/
     @media (min-width: 1200px) {

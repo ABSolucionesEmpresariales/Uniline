@@ -173,11 +173,11 @@ include '../controllers/sesion.php'
 
 
     <!-- start footer Area -->
-    <footer class="footer-area">
+    <footer class="footer-area footer-ipad-pro">
         <div class="align-items-center justify-content-between">
           <div class="row">
             <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
-              <a class="" href="index.php"><img src="../img/uniline2.png" width="35%" alt="" title="" /></a>
+              <a class="" href="index.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
             </div>
             <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
               <p class="mb-0">&copy; AB Soluciones Empresariales <script>document.write(new Date().getFullYear());</script>
