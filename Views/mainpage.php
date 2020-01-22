@@ -354,7 +354,7 @@ session_start();
         </div>
       </div>
     </div>
-
+    <button id="date-modal" type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#modal-cursos"></button>
 
     <!-- Start search-course Area -->
     <section class="search-course-area relative">
