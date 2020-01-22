@@ -82,95 +82,119 @@ session_start();
       <div class="contenedor">
         <div id="div-original" class="row">
 
-          <div class="col-lg-9 col-md-7 col-sm-12 no-padding">
-            <div class="flex bg-color justify-content-center">
-              <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="../videos/Neon - 21368.mp4" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
-            </div>
-
-            <div class="col details-content no-padding" style="max-height: 35rem;">
-              <div class="jq-tab-wrapper no-padding" id="horizontalTab">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding">
-                  <ul class="nav nav-tabs no-padding" id="nav-barra">
-                    <li class="nav-item no-padding">
-                      <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
-                    </li>
-                    <li class="nav-item no-padding">
-                      <a class="nav-link" data-toggle="tab" href="#archivos">Archivos adjuntos</a>
-                    </li>
-                    <li class="nav-item no-padding">
-                      <a class="nav-link" data-toggle="tab" href="#progress">Progreso del curso</a>
-                    </li>
-                  </ul>
-                </nav>
-
-                <div id="scroll-responsive" class="tab-content container pr-0" style="height: 10rem;">
-                  <div class="tab-pane container fade" id="contenido-cursos">
-                    <!--contenido de los cursos cuando es responsive-->
-                  </div>
-                  <div class="tab-pane container text-justify h-scroll" id="descripcion" style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
-                    <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
-                    <br>
-                    <div class="container">
-                      When you enter into any new area of science, you almost always find yourself with a baffling new
-                      language of technical terms to learn before you can converse with the experts. This is certainly true
-                      in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
-                      trade, the most prevalent being the telescope.
-                      <br>
-                      <br>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum.
-                    </div>
-                  </div>
-                  <div class="tab-pane container fade" id="archivos">
-                    Descargar archivos
-                    <br>
-                    <br>
-                    <a href="download/pack.txt" download="Pack.txt">Descargar</a>
-                    <p>¿no se descarga el archivo? <a style="color:blue;" href="download/pack.txt" download="Pack.txt">Click aqui</a>
-                    </p>
-                  </div>
-                  <div class="tab-pane container fade" id="progress">
-                    <div class="row">
-                      <div class="col-lg-5 col-md-5 single-sidebar-widget tag_cloud_widget m-0 ">
-                        <div class="loaders m-0 flex justify-content-center">
-                          <div class="row elements_loaders_container col-lg-8">
-                            <!-- Loader -->
-                            <div class="loader mb-0" data-perc=".50"></div>
-                          </div>
-                        </div>
-                      </div><br>
-                      <div class="col-lg-6 col-md-7">
-                        <div class="container footer-bottom">
-                          <h6 class="mb-15 h3">Calidad del curso</h6>
-                          <div class="d-flex flex reviews justify-content-xl-around">
-                            <span>Regular</span>
-                            <div class="star" style="color: yellow">
-                              <i id="1" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                              <i id="2" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                              <i id="3" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                              <i id="4" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                              <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                            </div>
-                            <span>Excelente</span>
-                          </div>
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
-                  <div class="tab-pane container fade" id="contenido-comentarios">
-                    <!--contenido de los cursos cuando es responsive-->
-                  </div>
-                </div>
-                <!--</div>-->
+          <div id="cambiar-a-examen" class="col-lg-9 col-md-7 col-sm-12 no-padding">
+            <div id="cambio-examen-video">
+              <div class="flex bg-color justify-content-center">
+                  <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="../videos/Neon - 21368.mp4" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
               </div>
-            </div>
+            
+
+              <div class="col details-content no-padding" style="max-height: 35rem;">
+                <div class="jq-tab-wrapper no-padding" id="horizontalTab">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding">
+                    <ul class="nav nav-tabs no-padding" id="nav-barra">
+                      <li class="nav-item no-padding">
+                        <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
+                      </li>
+                      <li class="nav-item no-padding">
+                        <a class="nav-link" data-toggle="tab" href="#archivos">Archivos adjuntos</a>
+                      </li>
+                      <li class="nav-item no-padding">
+                        <a class="nav-link" data-toggle="tab" href="#progress">Progreso del curso</a>
+                      </li>
+                      <li class="nav-item no-padding">
+                        <a class="nav-link" data-toggle="tab" href="#tareas">Subir tareas</a>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  <div id="scroll-responsive" class="tab-content container pr-0" style="height: 10rem;">
+                    <div class="tab-pane container fade" id="contenido-cursos">
+                      <!--contenido de los cursos cuando es responsive-->
+                    </div>
+                    <div class="tab-pane container text-justify h-scroll" id="descripcion" style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
+                      <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
+                      <br>
+                      <div class="container">
+                        When you enter into any new area of science, you almost always find yourself with a baffling new
+                        language of technical terms to learn before you can converse with the experts. This is certainly true
+                        in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
+                        trade, the most prevalent being the telescope.
+                        <br>
+                        <br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum.
+                      </div>
+                    </div>
+                    <div class="tab-pane container fade" id="archivos">
+                      Descargar archivos
+                      <br>
+                      <br>
+                      <a href="download/pack.txt" download="Pack.txt">Descargar</a>
+                      <p>¿no se descarga el archivo? <a style="color:blue;" href="download/pack.txt" download="Pack.txt">Click aqui</a>
+                      </p>
+                    </div>
+                    <div class="tab-pane container fade" id="progress">
+                      <div class="row">
+                        <div class="col-lg-5 col-md-5 single-sidebar-widget tag_cloud_widget m-0 ">
+                          <div class="loaders m-0 flex justify-content-center">
+                            <div class="row elements_loaders_container col-lg-8">
+                              <!-- Loader -->
+                              <div class="loader mb-0" data-perc=".50"></div>
+                            </div>
+                          </div>
+                        </div><br>
+                        <div class="col-lg-6 col-md-7">
+                          <div class="container footer-bottom">
+                            <h6 class="mb-15 h3">Calidad del curso</h6>
+                            <div class="d-flex flex reviews justify-content-xl-around">
+                              <span>Regular</span>
+                              <div class="star" style="color: yellow">
+                                <i id="1" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                <i id="2" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                <i id="3" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                <i id="4" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                              </div>
+                              <span>Excelente</span>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                    <div class="tab-pane container fade" id="tareas">
+                      <div class="container">
+                        <hr>
+                        <h4 class="h4">Sube tus tareas aqui</h4>
+                        <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
+                        <form id="subir-tareas" class="form-control d-inline-flex col-lg-10">
+                          <div class="custom-file col-lg-10">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
+                          </div>
+                          <div class="col-lg-4">
+                            <button class="btn btn-primary" type="submit">Subir</button>
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane container fade" id="contenido-comentarios">
+                      <!--contenido de los cursos cuando es responsive-->
+                    </div>
+                  </div>
+                  <!--</div>-->
+                </div>
+              </div>
 
             <!-- seccion de comentarios -->
             <div id="div-original-comentarios">
@@ -205,7 +229,7 @@ session_start();
                 </section>
               </div>
             </div>
-
+            </div>
           </div>
 
           <div id="mov-div" class="col-lg-3 col-md-5 col-sm-12 search-course-right section-gap fondo-lista">
@@ -248,12 +272,12 @@ session_start();
                 <img src="../img/descargar.png" alt="descargar-archivo" width="100%">
               </a>
             </td>
-            <td class="d-inline-flex">
-              <div class="calificaciones mr-1">10</div>
-              <div class="calificaciones">8</div>
+            <td id="cali" class="d-inline-flex">
+              <div class="calificaciones mr-1">5</div>
+              <div class="calificaciones">3</div>
             </td>
             <td style="width: 5rem;">
-              <div><button class="btn btn-success">Calificar</button></div>
+            <div><button id="btn-calificar-tabla" class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal">Calificar</button></div>
             </td>
           </tr>
           <tr>
@@ -262,21 +286,54 @@ session_start();
             </td>
             <td>
               <a href="../img/users/1579284226.jpg" download="tarea-">
-                <img src="../img/descargar.png" alt="descargar-archivo" width="5%">
+                <img src="../img/descargar.png" alt="descargar-archivo" width="100%">
               </a>
             </td>
             <td>
-              <div><div id="counter" class="calificaciones">0</div></div>
+              <div>
+                <div id="counter" class="calificaciones">0</div>
+              </div>
             </td>
             <td>
-              <div><button class="btn btn-success">Calificar</button></div>
+              <div><button class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal">Calificar</button></div>
             </td>
           </tr>
         </tbody>
       </table>
-      
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title h4">Califica esta tarea</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center no-padding">
+              <p class="clasificacion">
+                <input id="radio1" type="radio" name="estrellas" value="1">
+                <label for="radio1">★</label>
+                <input id="radio2" type="radio" name="estrellas" value="2">
+                <label for="radio2">★</label>
+                <input id="radio3" type="radio" name="estrellas" value="3">
+                <label for="radio3">★</label>
+                <input id="radio4" type="radio" name="estrellas" value="4">
+                <label for="radio4">★</label>
+                <input id="radio5" type="radio" name="estrellas" value="5">
+                <label for="radio5">★</label>               
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button id="btn-cali" type="button" class="btn btn-default" data-dismiss="modal">Listo</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
+
 
   <!-- start footer Area -->
 

@@ -208,3 +208,19 @@ background-color: rgb(28, 28, 37);
   background-color: rgb(190, 255, 147);
   border-radius: 2rem;
 }
+
+/* stylos estrellas*/
+.clasificacion input[type='radio'] {
+    opacity: 0;
+  }
+  .clasificacion label {
+    font-size: 50px;
+    color:rgb(150, 150, 150);
+    cursor: pointer;
+  }
+  .clasificacion label:hover {
+    color: rgb(217, 215, 11);
+  }
+   .activo + label{
+   color: rgb(255, 230, 0) !important;
+   }
