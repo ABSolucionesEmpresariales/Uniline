@@ -78,13 +78,25 @@ max-width: 25%
   animation: roll2 0.4s;
 }
 .h-scroll {
-  height: 240px; 
+  height: 20rem; 
   overflow-y: scroll;
-  background: transparent;
-  width: auto;
+  overflow-x: hidden;
+}
+.c-scroll {
+  height: 10rem; 
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.cont-actividades{
+  padding-left: 1rem; 
+  padding-top: .4rem; 
+  padding-right: .4rem; 
+  padding-bottom: .4rem; 
+  border-top:solid 1px; 
+  border-color: rgb(220, 220, 220);
 }
 .h-scroll-box {
-  height: 240px; 
+  height: 250px; 
   overflow-y: scroll;
   background: transparent;
   width: auto;
@@ -127,8 +139,11 @@ background-color: rgb(28, 28, 37);
 }
 .scroll{
   overflow-y: scroll;
-  max-height: 25rem;
+  max-height: 30rem;
   background-color: rgb(245, 245, 245);
+}
+::-webkit-scrollbar {
+  display: none;
 }
 
 /*menu responsivo del contenido*/
@@ -155,7 +170,57 @@ background-color: rgb(28, 28, 37);
   background-color: rgb(245, 245, 245);
 }
 /* estilo checkbox*/
-.check{
-  border: 1px solid red;
+.demo input[type="checkbox"] {
+	display: none;
+}
+.demo input[type="checkbox"] + label span{
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	margin: -1px 4px 0 0;
+	vertical-align: middle;
+	background: url(../img/checkbox-uncheck.png);
+	background-size: cover;
+	cursor: pointer;
+}
+.demo input[type="checkbox"]:checked + label span{
+	background: url(../img/checkbox-check.png);
+	background-size: cover;
 }
 /*acaba estilo checkbox*/
+.tamaño{
+  width: 100%;
+}.font-actividades{
+  font-family: 'Poppins:100', sans-serif;
+  font-size: 16px; color: rgb(87, 87, 87);
+}
+.area-tareas{
+  background-color: rgb(243, 243, 243);
+}
+.sticky-aside{
+  position: -webkit-sticky; 
+ position: sticky;
+ top: 4rem;
+}
+.calificaciones{
+  width: 2.5rem;
+  padding: .5rem;
+  background-color: rgb(190, 255, 147);
+  border-radius: 2rem;
+}
+
+/* stylos estrellas*/
+.clasificacion input[type='radio'] {
+    opacity: 0;
+  }
+  .clasificacion label {
+    font-size: 50px;
+    color:rgb(150, 150, 150);
+    cursor: pointer;
+  }
+  .clasificacion label:hover {
+    color: rgb(217, 215, 11);
+  }
+   .activo + label{
+   color: rgb(255, 230, 0) !important;
+   }
