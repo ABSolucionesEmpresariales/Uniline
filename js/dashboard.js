@@ -286,8 +286,12 @@ $(document).ready(function () {
     });
 
     /* VERIFICAR SI ESTA MARCADA EL CHECKBOX  */
+
+   
     $(".cont-bloque").hide();
-    $("#mostrar-tareas").hide();
+    $(".mostrar-tareas").hide();
+    
+    
 
     $(document).on('click', '.chk-examen', function () {
         ctrolId = $(this).attr("id");
@@ -297,7 +301,6 @@ $(document).ready(function () {
 
         } else {
             $("." + ctrolId).slideToggle();
-            $("#cont").addClass("ml-5");
         }
     });
 
