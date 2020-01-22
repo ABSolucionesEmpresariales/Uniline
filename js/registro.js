@@ -33,7 +33,7 @@ $(document).ready(function () {
                 $.each(datos, function (i, item) {
                     templete += `
                     <div class="row">
-                        <video src="${item[8]}" preload="auto" controls width="67%" height="67%" controlslist="nodownload"></video> 
+                        <video src="${item[8]}" controls preload="auto" autoplay width="67%" height="67%" controlslist="nodownload"></video> 
                     </div>
                     <div class="row">
                         <div class="col-7">
@@ -56,15 +56,13 @@ $(document).ready(function () {
                         </div>
                         <div class="col-9">
                             <p class="h4 mt-5"><strong>Maestro:</strong></p>
-                            <p class="h4">${item[5]}</p>                               
-                            <p class="h4"><strong>Titulado en:</strong></p>                               
-                            <p class="h4">Ingeniero en Teleinformatica</p>
+                            <p class="h4">${item[5]}</p>                   
                         </div>
                     </div>
                     `;
                 });
                 $('.view-curso').html(templete);
-                $('#modal-cursos').modal("show");
+                $('#date-modal').click();
             }
         });
 /*         $.ajax({
