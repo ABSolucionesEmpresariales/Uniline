@@ -40,7 +40,7 @@
                             <h3 class="h2">¡Listo!</h3>
                             <h4 class="h3">Tu pago ha sido aprovado</h4>
                             <br>
-                            <a class="btn btn-success" href="profile.php">Ir a curso!</a>
+                            <a class="btn btn-success" href="misCursos.php">Ir a curso!</a>
                         </div>
                     </div>                 
             </div>
