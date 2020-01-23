@@ -38,6 +38,7 @@ session_start();
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/styles/login.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylo.css">
     <link rel="stylesheet" href="../css/icons/all.css">
 
     <!--
@@ -57,6 +58,25 @@ session_start();
     
   </head>
   <body>
+        <!-- Modal Contenido del curso-->
+        <div class="modal fade" id="modal-cursos" role="dialog">
+              <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+                <div class="modal-content back-modal">
+                    <div class="modal-header">
+                      <div id="logo" class="ml-0">
+                        <a href="index.php"><img src="../img/uniline2.png" width="30%" alt="" title="" /></a>
+                      </div>
+                    <button type="button w-2" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container view-curso"></div>
+                    </div>
+                    <div class="modal-footer boton-footer"></div>
+                </div>
+              </div>
+          </div>
+    <!---------end modal ----------->
     <header id="header" id="home">
 <!--       <div class="header-top">
         <div class="container">
@@ -252,107 +272,7 @@ session_start();
             </div>
           </div>
         </div>
-        <div class="cursos">
-        <div class="row course_boxes">
-
-          <!-- Popular Course Item -->
-          <div class="col-lg-4 course_box">
-            <div class="card">
-              <img class="card-img-top" height="" src="../img/html5.png" alt="https://unsplash.com/@kellybrito">
-              <div class="card-body text-center">
-                <div class="card-title"><a href="courses.html">Guía HTML desde cero</a></div>
-                <div class="card-text">Todo sobre html 5, CSS, Javascript & Bootstrap.</div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-center pt-3">
-                  <div class="star" style="color: yellow">
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="far fa-star" style="cursor: pointer;"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="price_box d-flex flex-row align-items-center">
-                <div class="course_author_image">
-                  <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-                </div>
-                <div class="course_author_name">Michael Smith, <span>Author</span></div>
-                <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Popular Course Item -->
-          <div class="col-lg-4 course_box">
-            <div class="card">
-              <img class="card-img-top" src="../img/html5.png" alt="https://unsplash.com/@kellybrito">
-              <div class="card-body text-center">
-                <div class="card-title"><a href="courses.html">Guía HTML desde cero</a></div>
-                <div class="card-text">Todo sobre html 5, CSS, Javascript & Bootstrap.</div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-center pt-3">
-                  <div class="star" style="color: yellow">
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="far fa-star" style="cursor: pointer;"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="price_box d-flex flex-row align-items-center">
-                <div class="course_author_image">
-                  <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-                </div>
-                <div class="course_author_name">Michael Smith, <span>Author</span></div>
-                <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Popular Course Item -->
-          <div class="col-lg-4 course_box">
-            <div class="card">
-              <img class="card-img-top" src="../img/html5.png" alt="https://unsplash.com/@kellybrito">
-              <div class="card-body text-center">
-                <div class="card-title"><a href="courses.html">Guía HTML desde cero</a></div>
-                <div class="card-text">Todo sobre html 5, CSS, Javascript & Bootstrap.</div>
-              </div>
-              <div class="row">
-                <div class="col-12 text-center pt-3">
-                  <div class="star" style="color: yellow">
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                    <i class="far fa-star" style="cursor: pointer;"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="price_box d-flex flex-row align-items-center">
-                <div class="course_author_image">
-                  <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
-                </div>
-                <div class="course_author_name">Michael Smith, <span>Author</span></div>
-                <div class="course_price d-flex flex-column align-items-center justify-content-center"><span>$29</span></div>
-              </div>
-            </div>
-          </div>
-
-          </div>
-          <div class="row">
-          <div class="col-12 text-center">
-              <a class="m-2" href="#">1</a>
-              <a class="m-2" href="#">2</a>
-              <a class="m-2" href="#">3</a>
-              <a class="m-2" href="#">4</a>
-          </div>
-          </div>
-        </div>
-      </div>
+        <div class="cursos"></div>
     </div>
     <button id="date-modal" type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#modal-cursos"></button>
 
@@ -488,33 +408,6 @@ session_start();
         </div>
     </footer>
     <!-- End footer Area -->
-    
-        <div class="container">
-        <!-- Modal -->
-        <div class="modal fade" id="modal-cursos" role="dialog">
-            <div class="modal-dialog modal-lg">
-            
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="container view-curso">
- 
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" data-actcs="" class="btn btn-md btn-outline-secondary border border-secondary" data-dismiss="modal">Obtener curso</button>
-                </div>
-            </div>
-            
-            </div>
-        </div>
-        
-        </div>
-    <!---------end modal ----------->
 
 
 
