@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    let templete2 = ``;
     obtener_Cursos();
     //// algunos modales 
     $('.closeCon').on("click", function (e) {
@@ -12,22 +12,17 @@ $(document).ready(function () {
     $(document).on('click', '#idprueba', function(){
         $('#autobtn').click();
     });
-    /* <---------------------Desplegar el contenido del curso-----------------------> */
-    $(document).on('click','.cursos-slide',function(){
-        contenido = $(this).data("bloque");
-        $('.'+contenido).slideToggle("slow");
-    });
-    /* <---------------------Pintar el body del modal-----------------------> */
+
+    /* <---------------------Pintar el body del modal y los loques del curso-----------------------> */
     $(document).on('click','.curso',function(){
         curso = $(this).data("curso");
-        let templete = ``;
+        templete = "";
         $.ajax({
             url:"../controllers/contenido_index.php",
             type:"POST",
             data:"cursos-modal="+curso,
 
             success: function(response){
-                
                 let datos = JSON.parse(response);
                 console.log(datos);
                 $.each(datos, function (i, item) {
@@ -35,75 +30,77 @@ $(document).ready(function () {
                     <div class="row">
                         <video src="${item[8]}" controls preload="auto" autoplay width="67%" height="67%" controlslist="nodownload"></video> 
                     </div>
-                    <div class="row">
-                        <div class="col-7">
-                            <p class="h3">${item[1]}</p>
+                    <div class="row border-bottom mb-2"  style="width: 765px">
+                        <div class="col-9">
+                            <p class="h3 text-bold text-white">- ${item[1]}</p>
                         </div>
-                        <div class="col-5 ">
-                            <p class="h3" style="margin-left: -13px;"><strong>${item[4]} horas</strong></p>
+                        <div class="col-3">
+                            <p class="h3 "><strong class="text-white">Precio </strong><strong class="text-info">$${item[7]}</strong></p>
                         </div>
                     </div>
                 
-                    <div class="row">
-                        <div class="col-6">
-                            <p class="h5">Descripcion</p>
-                            <p class="h5">${item[2]}</p>
-                        </div>
-                    </div>
-                    <div class="row" style="width: 765px">
-                        <div class="col-3 p-3">
-                            <img class="rounded-circle" width="160" height="160" src="${item[6]}" alt="Fotografia del profesor ">
-                        </div>
+                    <div class="row border-bottom"  style="width: 765px">
                         <div class="col-9">
-                            <p class="h4 mt-5"><strong>Maestro:</strong></p>
-                            <p class="h4">${item[5]}</p>                   
+                            <p class="h3 mt-5 text-white text-info"><strong>-Descripcion:</strong></p>
+                            <p class="h4 text-justify text-white inter">${item[2]}</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="h3 mt-5 text-white text-info"><strong>-Maestro:</strong></p>
+                            <p class="h4 text-white">-${item[5]}</p> 
+                            <p class="h3 text-white mt-0 text-info"><i class="far fa-clock"></i> ${item[4]} Hrs</p> 
                         </div>
                     </div>
                     `;
                 });
-                $('.view-curso').html(templete);
-                $('#date-modal').click();
+                $.ajax({
+                    url:"../controllers/contenido_index.php",type:"POST",data:"cursos-contenido="+curso,success: function(response){
+                        let datos = JSON.parse(response);
+                        templete +=`                    
+                        <div class="row" style="width: 765px">
+                            <p class="h3 p-2 text-white" style="margin-left: 280px;">Contenido del curso</p>`;
+                        $.each(datos, function (i, item) {
+                            templete +=`
+                                <div class="col-12 border-bottom">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p style="cursor:pointer;" data-bloque="bloque-${item[0]}" class="h4 cursos-slide font-italic text-white">+ Contenido del bloque ${i + 1}</p>
+                                        </div>
+                                        <div data-temas="bloque-${item[2]}-${item[0]}" class="row ml-5 bloque-${item[0]}" style="display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+            templete +=`</div>`;
+                        $('.view-curso').html(templete);
+                        $('.boton-footer').html(`<button type="button" data-actcs="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white" data-dismiss="modal">Comprar</button>`);
+                        $('#date-modal').click(); 
+                    }
+                });
             }
         });
-/*         $.ajax({
-            url:"../controllers/contenido_index.php",
-            type:"POST",
-            data:"cursos-contenido="+curso,
-
-            success: function(response){
-                console.log(response);
-                templete +=`
-                <div class="row" style="width: 765px">
-                    <p class="h3 p-2" style="margin-left: 280px;">Contenido del curso</p>
-                    <div class="col-12 h-scroll border-bottom">
-                        <div class="row">
+    });
+    /* <---------------------Desplegar el contenido del curso e imprime los temas -----------------------> */
+    $(document).on('click','.cursos-slide',function(){
+        contenido = $(this).data("bloque");
+        temas = $('.'+contenido).data("temas");
+        datos_tema = temas.split("-");
+            $.ajax({
+            url:"../controllers/contenido_index.php",type:"POST",data:"temas-bloque="+datos_tema[2],success: function(response){
+                        let datos2 = JSON.parse(response);
+                        templete2 = "";
+                        $.each(datos2, function (y, item2) {
+                            templete2 +=`     
                             <div class="col-12">
-                                <p style="cursor:pointer;" data-bloque="bloque-1" class="h4 cursos-slide">+ Contenido del bloque uno</p>
+                                <p class="h5 text-justify text-light font-italic ml-2">- ${item2[1]}</p>
                             </div>
-                            <div class="row ml-5 bloque-1" style="display: none">
-                                <div class="col-12">
-                                    <p class="h5">- Tema 1.1 Priemweos temas delc urso </p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="h5">- Tema 1.1 Priemweos temas delc urso </p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="h5">- Tema 1.1 Priemweos temas delc urso </p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="h5">- Tema 1.1 Priemweos temas delc urso </p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="h5">- Tema 1.1 Priemweos temas delc urso </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
-            }
-        }); */
-
+                            `;
+                        });
+                        $('.'+contenido).html(templete2);
+                    }
+            }); 
+            setTimeout(function(){$('.'+contenido).slideToggle("slow");},150);
+        
     });
     /* <---------------------Mostrar el div seleccionado del curso-----------------------> */
     $(document).on('click','.mostrar',function(e){
@@ -154,9 +151,8 @@ $(document).ready(function () {
                                             <div class="card">
                                                 <img  width="250px" height="200px"  src="${datos[i][3]}" alt="Imagen del curso ${datos[i][1]}">
                                                 <div class="card-body text-center mt-0">
-                                                    <div style="width: 100%; height: 70px;" class="card-title mt-3"><p class="h4" >${datos[i][1]}</p></div>
+                                                    <div style="width: 100%; height: 70px;" class="card-title"><p class="h4 font-weight-bold" >${datos[i][1]}</p></div>
                                                     <div class="card-text"><strong>${datos[i][5]} Hrs</strong></div>
-                                                    <div class="card-text mt-3"><a class="curso text-primary" data-curso="${datos[i][0]}" style="cursor: pointer;">Ver mas</a></div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12 text-center pt-3">
@@ -169,9 +165,12 @@ $(document).ready(function () {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="card-text mt-3 text-center">
+                                                    <a class="curso text-primary h4" data-curso="${datos[i][0]}" style="cursor: pointer;">Ver mas</a>
+                                                </div>
                                                 <div class="price_box d-flex flex-row align-items-center">
                                                     <div class="course_author_image">
-                                                        <img src="${datos[i][7]}" alt="Imagen del profesor ${datos[i][6]}">
+                                                        <img src="${datos[i][7]}"  alt="Imagen del profesor ${datos[i][6]}">
                                                     </div>
                                                     <div class="course_author_name">
                                                         <span>${datos[i][6]}</span>
@@ -189,14 +188,20 @@ $(document).ready(function () {
                 }
                 console.log(cont);
                 templete +=  `                
-                <div class="row mt-5">
-                    <div class="col-12 text-center">`;
+                <div class="row m-5">
+                    <div class="col-12 text-center">
+                    << `;
                 for(y=0; y < contdador_page; y++){
-                    templete +=  `<a id="page-${y+1}" class="m-2 mostrar" href="#">${y+1}</a>`;
+                    if(y == 0){
+                        templete +=  `<a id="page-${y+1}" class="m-2 mostrar h4 estado-activo" href="#">${y+1}</a>`;
+                    }else{
+                        templete +=  `<a id="page-${y+1}" class="m-2 mostrar h4" href="#">${y+1}</a>`;
+                    }
                 }
-                templete +=  `
+                templete +=  ` >>
                     </div>
                 </div>`;
+
                 $('.cursos').html(templete);
             }
         });

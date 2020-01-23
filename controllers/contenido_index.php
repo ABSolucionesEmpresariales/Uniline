@@ -16,3 +16,16 @@ if(isset($_POST['cursos-modal'])){
     FROM curso c INNER JOIN usuario u ON c.profesor = u.idusuario WHERE c.idcurso = ?";
     echo json_encode($conexion->consultaPreparada($data,$consuta,2,"i",false,null));
 }
+
+if(isset($_POST['cursos-contenido'])){
+    $conexion = new modelos\Conexion();
+    $data = array($_POST['cursos-contenido']);
+    $consuta = "SELECT * FROM bloque b WHERE b.curso = ?";
+    echo json_encode($conexion->consultaPreparada($data,$consuta,2,"i",false,null));
+}
+if(isset($_POST['temas-bloque'])){
+    $conexion = new modelos\Conexion();
+    $data = array($_POST['temas-bloque']);
+    $consuta = "SELECT t.idtema,t.nombre FROM tema t WHERE t.bloque = ?";
+    echo json_encode($conexion->consultaPreparada($data,$consuta,2,"i",false,null));
+}

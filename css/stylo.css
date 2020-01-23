@@ -224,3 +224,14 @@ background-color: rgb(28, 28, 37);
    .activo + label{
    color: rgb(255, 230, 0) !important;
    }
+
+   .estado-activo{
+     color: blue;
+   }
+
+   .inter{
+     line-height: 5px;
+   }
+   .back-modal{
+     background-color: rgb(75, 75, 83)!important;
+   }
