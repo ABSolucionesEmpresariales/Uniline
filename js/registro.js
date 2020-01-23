@@ -27,24 +27,24 @@ $(document).ready(function () {
                 console.log(datos);
                 $.each(datos, function (i, item) {
                     templete += `
-                    <div class="row">
-                        <video src="${item[8]}" controls preload="auto" autoplay width="67%" height="67%" controlslist="nodownload"></video> 
+                    <div class="row mt-0" style="width: 765px">
+                        <video class="responsive-video" src="${item[8]}" controls preload="auto" autoplay width="765px" height="330px controlslist="nodownload"></video> 
                     </div>
-                    <div class="row border-bottom mb-2"  style="width: 765px">
-                        <div class="col-9">
+                    <div class="row border-bottom mb-2 title-responsive"  style="width: 765px">
+                        <div class="col-lg-9 col-sm-12 ml-0">
                             <p class="h3 text-bold text-white">- ${item[1]}</p>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-12">
                             <p class="h3 "><strong class="text-white">Precio </strong><strong class="text-info">$${item[7]}</strong></p>
                         </div>
                     </div>
                 
-                    <div class="row border-bottom"  style="width: 765px">
-                        <div class="col-9">
+                    <div class="row border-bottom  title-responsive"  style="width: 765px">
+                        <div class="col-lg-9 col-sm-12">
                             <p class="h3 mt-5 text-white text-info"><strong>-Descripcion:</strong></p>
                             <p class="h4 text-justify text-white inter">${item[2]}</p>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-12">
                             <p class="h3 mt-5 text-white text-info"><strong>-Maestro:</strong></p>
                             <p class="h4 text-white">-${item[5]}</p> 
                             <p class="h3 text-white mt-0 text-info"><i class="far fa-clock"></i> ${item[4]} Hrs</p> 
@@ -56,8 +56,8 @@ $(document).ready(function () {
                     url:"../controllers/contenido_index.php",type:"POST",data:"cursos-contenido="+curso,success: function(response){
                         let datos = JSON.parse(response);
                         templete +=`                    
-                        <div class="row" style="width: 765px">
-                            <p class="h3 p-2 text-white" style="margin-left: 280px;">Contenido del curso</p>`;
+                        <div class="row title-responsive" style="width: 765px">
+                            <p class="h3 p-2 text-white cont-curso-responsive" style="margin-left: 280px;">Contenido del curso</p>`;
                         $.each(datos, function (i, item) {
                             templete +=`
                                 <div class="col-12 border-bottom">
@@ -73,7 +73,7 @@ $(document).ready(function () {
                         });
             templete +=`</div>`;
                         $('.view-curso').html(templete);
-                        $('.boton-footer').html(`<button type="button" data-actcs="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white" data-dismiss="modal">Comprar</button>`);
+                        $('.boton-footer').html(`<button type="button" data-actcs="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive" data-dismiss="modal">Comprar</button>`);
                         $('#date-modal').click(); 
                     }
                 });
@@ -91,8 +91,8 @@ $(document).ready(function () {
                         templete2 = "";
                         $.each(datos2, function (y, item2) {
                             templete2 +=`     
-                            <div class="col-12">
-                                <p class="h5 text-justify text-light font-italic ml-2">- ${item2[1]}</p>
+                            <div class="col-12 temas-curso-responsive">
+                                <p class="h5 text-justify text-light font-italic ml-2 text-center text-lg-left margin-responsive">- ${item2[1]}</p>
                             </div>
                             `;
                         });
@@ -147,9 +147,9 @@ $(document).ready(function () {
                         console.log('llego'+contdador_page);
                     }
                                     templete += `
-                                        <div class="col-lg-3 course_box">
+                                        <div class="col-lg-3 course_box bor-responsive">
                                             <div class="card">
-                                                <img  width="250px" height="200px"  src="${datos[i][3]}" alt="Imagen del curso ${datos[i][1]}">
+                                                <img class="responsive-image"  width="250px" height="200px"  src="${datos[i][3]}" alt="Imagen del curso ${datos[i][1]}">
                                                 <div class="card-body text-center mt-0">
                                                     <div style="width: 100%; height: 70px;" class="card-title"><p class="h4 font-weight-bold" >${datos[i][1]}</p></div>
                                                     <div class="card-text"><strong>${datos[i][5]} Hrs</strong></div>
@@ -166,7 +166,7 @@ $(document).ready(function () {
                                                     </div>
                                                 </div>
                                                 <div class="card-text mt-3 text-center">
-                                                    <a class="curso text-primary h4" data-curso="${datos[i][0]}" style="cursor: pointer;">Ver mas</a>
+                                                    <a class="curso text-primary h4 more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Ver mas</a>
                                                 </div>
                                                 <div class="price_box d-flex flex-row align-items-center">
                                                     <div class="course_author_image">

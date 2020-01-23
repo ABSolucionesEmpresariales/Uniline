@@ -39,6 +39,7 @@ session_start();
     <link rel="stylesheet" href="../css/styles/login.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/stylo.css">
+    <link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
     <link rel="stylesheet" href="../css/icons/all.css">
 
     <!--
@@ -65,7 +66,7 @@ session_start();
                 <div class="modal-content back-modal">
                     <div class="modal-header">
                       <div id="logo" class="ml-0">
-                        <a href="index.php"><img src="../img/uniline2.png" width="30%" alt="" title="" /></a>
+                        <a href="mainpage.php"><img src="../img/uniline2.png" width="30%" alt="" title="" /></a>
                       </div>
                     <button type="button w-2" class="close" data-dismiss="modal">&times;</button>
                     </div>
@@ -99,21 +100,21 @@ session_start();
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo" class="col-lg-4 d-none d-lg-block">
-            <a href="index.php"><img src="../img/uniline2.png" width="50%" alt="" title="" /></a>
+            <a href="mainpage.php"><img src="../img/uniline2.png" width="50%" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
             <ul class="nav-menu">
             <?php
               if(isset($_SESSION['acceso'])){
               ?> 
-              <li><a class="text-center" href="index.php">Inicio</a></li>
-              <li><a class="text-center" href="profile.php">Mis cursos</a></li>             
+              <li><a class="text-center" href="mainpage.php">Inicio</a></li>
+              <li><a class="text-center" href="misCursos.php">Mis cursos</a></li>             
               <li><a class="text-center" href="contact.html">Contacto</a></li>
-              <li><a class="text-center" href="editProfile.php"><img src= <?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
+              <li><a class="text-center" href="editmisCursos.php"><img src= <?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
               <?php
               }else{
               ?>
-              <li><a class="text-center" href="index.php">Inicio</a></li>
+              <li><a class="text-center" href="mainpage.php">Inicio</a></li>
               <li><a class="text-center" class="cambiarRegistro" href="#reg1">Registrate</a></li>            
               <li><a class="text-center" href="contact.html">Contacto</a></li>
               <li><a class="text-center" id="autobtn" class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
@@ -380,7 +381,7 @@ session_start();
         <div class="align-items-center justify-content-between">
           <div class="row">
             <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
-              <a class="" href="index.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
+              <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
             </div>
             <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
               <p class="mb-0">&copy; AB Soluciones Empresariales <script>document.write(new Date().getFullYear());</script>
