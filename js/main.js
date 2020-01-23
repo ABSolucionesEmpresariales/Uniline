@@ -59,10 +59,10 @@ $(document).ready(function() {
 
     //------- Datepicker  js --------//  
 
-      $( function() {
+      /*$( function() {
         $( "#datepicker" ).datepicker();
         $( "#datepicker2" ).datepicker();
-      } );
+      } );*/
 
 
     //------- Superfist nav menu  js --------//  

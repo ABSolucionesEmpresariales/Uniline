@@ -38,8 +38,9 @@
                         </div>
                         <div class="contenido text-center">
                             <h3 class="h2">¡Listo!</h3>
-                            <h4 class="h3">Tu pago sera aprobado en 2 dias habiles</h4>
-                            <h4 class="h4">Por favor sea paciente</h4>
+                            <br>
+                            <h4 class="h3">Estamos procesando el pago</h4>
+                            <h4 class="h4">En menos de 2 dias hábiles podras acceder a tu curso. Te notificaremos por E-mail cuando el pago sea aprobado.</h4>
                             <br>
                             <a class="btn btn-primary text-white" href="mainpage.php">Ir a pagina principal</a>
                         </div>

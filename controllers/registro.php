@@ -1,8 +1,8 @@
 <?php  
-require_once '../modelos/Conexion.php';
-include '../modelos/email.php';
+require_once '../Modelos/Conexion.php';
+include '../Modelos/email.php';
 
-$emailClass = new modelos\Email();
+$emailClass = new Modelos\Email();
 
 $email = $_POST['TEmail'];
 $password = $_POST['TPass'];
@@ -13,7 +13,7 @@ $verificado = 0;
 $encriptado = trim(password_hash($password, PASSWORD_DEFAULT));
 
 if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
-    $conexion = new modelos\Conexion();
+    $conexion = new Modelos\Conexion();
 
     $consulta_verificar = "SELECT * FROM usuario WHERE email = ?";
     $datos_verificar = array($_POST['TEmail']);

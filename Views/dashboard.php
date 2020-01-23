@@ -66,7 +66,7 @@ session_start();
           <nav id="nav-menu-container">
             <ul id="navdash" class="nav-menu d-inline-flex col-2 header-top-right no-padding flex align-items-center">
               <li><a class="btn btn-sm text-center" href="mainpage.php">Inicio</a></li>
-              <li><a class="btn btn-sm text-center" href="profile.php"><span></span>Mis cursos</a></li>
+              <li><a class="btn btn-sm text-center" href="misCursos.php"><span></span>Mis cursos</a></li>
               <li><a class="text-center" href="editProfile.php"><img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
             </ul>
           </nav>

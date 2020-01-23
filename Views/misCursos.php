@@ -8,7 +8,7 @@ include '../controllers/sesion.php'
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon-->
-  <link rel="shortcut icon" href="../img/fav.png">
+  
   <!-- Author Meta -->
   <meta name="author" content="colorlib">
   <!-- Meta Description -->
@@ -24,7 +24,7 @@ include '../controllers/sesion.php'
     <!--
     CSS
     ============================================= -->
-    <link rel="stylesheet" href="../css/linearicons.css">
+
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/magnific-popup.css">
@@ -45,7 +45,6 @@ include '../controllers/sesion.php'
     
     <script src="../js/jquery.js"></script>
     <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="../js/ajax.js"></script>
  
        
   </head>
@@ -60,7 +59,7 @@ include '../controllers/sesion.php'
                   </div>
             </div>
             <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-                <img src="../img/perfil.png" alt="perfil" class="course_author_image">
+                <a class="text-center" href="editProfile.php"><img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a>
                 <a class="btn btn-sm" href="editProfile.php"><span></span>Mi perfil</a>
                 <a class="btn btn-sm" style="color: white;" href="../controllers/sesion-destroy.php">Cerrar sesion</a>
             </div>
@@ -93,7 +92,7 @@ include '../controllers/sesion.php'
                 </div>
                 <div class="price_box d-flex flex-row align-items-center">
                   <div class="course_author_image">
-                    <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
+                    <img src="" alt="https://unsplash.com/@mehdizadeh">
                   </div>
                   <div class="course_author_name">Michael Smith, <span>Author</span></div>
                 </div>
@@ -110,7 +109,7 @@ include '../controllers/sesion.php'
                 </div>
                 <div class="price_box d-flex flex-row align-items-center">
                   <div class="course_author_image">
-                    <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
+                    <img src="" alt="https://unsplash.com/@mehdizadeh">
                   </div>
                   <div class="course_author_name">Michael Smith, <span>Author</span></div>
                 </div>
@@ -127,7 +126,7 @@ include '../controllers/sesion.php'
                 </div>
                 <div class="price_box d-flex flex-row align-items-center">
                   <div class="course_author_image">
-                    <img src="../images/author.jpg" alt="https://unsplash.com/@mehdizadeh">
+                    <img src="" alt="https://unsplash.com/@mehdizadeh">
                   </div>
                   <div class="course_author_name">Michael Smith, <span>Author</span></div>
                 </div>
@@ -231,21 +230,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="../js/vendor/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-      <script src="../js/easing.min.js"></script>
+    <script src="../js/easing.min.js"></script>
     <script src="../js/hoverIntent.js"></script>
     <script src="../js/superfish.min.js"></script>
     <script src="../js/jquery.ajaxchimp.min.js"></script>
     <script src="../js/jquery.magnific-popup.min.js"></script>
-      <script src="../js/jquery.tabs.min.js"></script>
+    <script src="../js/jquery.tabs.min.js"></script>
     <script src="../js/jquery.nice-select.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/mail-script.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/miscursos.js"></script>
 
 <!-- styles course -->
 <script src="../js/popper.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<script src="../js/custom.js"></script>
 
   </body>
 </html>

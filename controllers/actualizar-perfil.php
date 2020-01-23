@@ -1,13 +1,13 @@
 <?php 
-include '../modelos/Archivos.php';
-require_once '../modelos/Conexion.php';
+include '../Modelos/Archivos.php';
+require_once '../Modelos/Conexion.php';
 
 session_start();
 
 //traer datos de la base
 if(isset($_POST['datos'])){
-    $id = $_SESSION['id'];
-    $conexion = new modelos\Conexion();
+    $id = $_SESSION['idusuario'];
+    $conexion = new Modelos\Conexion();
     $consulta = "SELECT * FROM usuario WHERE idusuario = ?";
     $datos = array($id);
     $resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'i', false, null));
@@ -16,9 +16,9 @@ if(isset($_POST['datos'])){
 
 if(isset($_POST['updatePass'])){
     $password = $_POST['updatePass'];
-    $conexion = new modelos\Conexion();
+    $conexion = new Modelos\Conexion();
     $consulta = "SELECT password FROM usuario WHERE idusuario = ?";
-    $datos = array($_SESSION['id']);
+    $datos = array($_SESSION['idusuario']);
     $resultado = $conexion->consultaPreparada($datos,$consulta,2,'s',false,null);
       if(password_verify($password,$resultado[0][0])){
         echo "true";
@@ -33,13 +33,13 @@ if(isset($_POST['updatePass'])){
  && isset($_POST['TEmail']) && isset($_POST['TEdad'])) {
     
     function actualizar($archivo){
-        $conexion = new modelos\Conexion();
+        $conexion = new Modelos\Conexion();
         if(isset($_POST['TPassNew'])){
             $password = $_POST['TPassNew'];
             $encriptado = trim(password_hash($password, PASSWORD_DEFAULT));
         }else{
             $consulta = "SELECT password FROM usuario WHERE idusuario = ?";
-            $datos = array($_SESSION['id']);
+            $datos = array($_SESSION['idusuario']);
             $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
             $encriptado = $resultado[0][0];
         }
@@ -47,7 +47,7 @@ if(isset($_POST['updatePass'])){
         $trabajo = $_POST['TPuesto'].'###'.$_POST['TDescripcion'];
 
         $consultaUP = "UPDATE usuario SET nombre = ?, edad = ?, escolaridad = ?, telefono = ?, email = ?, password = ?, imagen = ?, estado = ?, municipio = ?, trabajo = ? WHERE idusuario = ?";
-        $datos = array($_POST['TNombre'],$_POST['TEdad'],$_POST['TGrado'], $_POST['TTelefono'], $_POST['TEmail'],$encriptado,$archivo,$_POST['TEstado'],$_POST['TMunicipio'],$trabajo,$_SESSION['id']);
+        $datos = array($_POST['TNombre'],$_POST['TEdad'],$_POST['TGrado'], $_POST['TTelefono'], $_POST['TEmail'],$encriptado,$archivo,$_POST['TEstado'],$_POST['TMunicipio'],$trabajo,$_SESSION['idusuario']);
         
         $resultado = $conexion->consultaPreparada($datos,$consultaUP,1,'sssssssssss',false,5);
         if($resultado != 0){
@@ -83,9 +83,9 @@ if(isset($_POST['updatePass'])){
             }
         }
     }else{
-        $conexion = new modelos\Conexion();
+        $conexion = new Modelos\Conexion();
         $consulta = "SELECT imagen FROM usuario WHERE idusuario = ?";
-        $datos = array($_SESSION['id']);
+        $datos = array($_SESSION['idusuario']);
         $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
         $imagen = $resultado[0][0];
         echo actualizar($imagen);
@@ -96,7 +96,7 @@ if(isset($_POST['updatePass'])){
 
 function subirImagen($estado_imagen,$accion){
  
-        $conexion = new modelos\Conexion();
+        $conexion = new Modelos\Conexion();
         $estado_imagen;
             
 

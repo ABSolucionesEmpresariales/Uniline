@@ -65,8 +65,8 @@ include '../controllers/sesion.php'
             <nav id="nav-menu-container" class="float-right">
               <div class= "row">
                 <a class="btn btn-sm text-center" href="mainpage.php" style="font-size: 17px"><span></span>Inicio</a>
-                <a class="btn btn-sm text-center" href="profile.php"style="font-size: 17px"><span></span>Mis cursos</a>
-                <a class="btn btn-sm text-center" href="profile.php"style="font-size: 17px"><span></span>Mas cursos</a>
+                <a class="btn btn-sm text-center" href="misCursos.php"style="font-size: 17px"><span></span>Mis cursos</a>
+                <a class="btn btn-sm text-center" href="misCursos.php"style="font-size: 17px"><span></span>Mas cursos</a>
               </div>
             </nav>
           </div>
