@@ -61,11 +61,11 @@
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
           <div id="logo">
-            <a href="index.html"><img src="img/1.png" width="50%" alt="" title="" /></a>
+            <a href="mainpage.html"><img src="img/1.png" width="50%" alt="" title="" /></a>
           </div>
           <nav id="nav-menu-container">
             <ul class="nav-menu">
-              <li><a href="index.html">Inicio</a></li>
+              <li><a href="mainpage.html">Inicio</a></li>
               <li><a href="courses.html">Cursos</a></li>
               <li><a href="events.html">Eventos</a></li>
               <li><a href="gallery.html">Galeria</a></li>
@@ -130,7 +130,7 @@
             <h1 class="text-white">
               Contacto
             </h1>
-            <p class="text-white link-nav"><a href="index.html">Inicio </a>  <span class="fa fa-arrow-right"></span>  <a href="gallery.html"> Contacto</a></p>
+            <p class="text-white link-nav"><a href="mainpage.html">Inicio </a>  <span class="fa fa-arrow-right"></span>  <a href="gallery.html"> Contacto</a></p>
           </div>
         </div>
       </div>

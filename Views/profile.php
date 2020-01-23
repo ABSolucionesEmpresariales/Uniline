@@ -56,7 +56,7 @@ include '../controllers/sesion.php'
           <div class="row">
             <div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
                 <div id="logo">
-                    <a href="index.php"><img src="../img/uniline2.png" width="20%" alt="" title="" /></a>
+                    <a href="mainpage.php"><img src="../img/uniline2.png" width="20%" alt="" title="" /></a>
                   </div>
             </div>
             <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">

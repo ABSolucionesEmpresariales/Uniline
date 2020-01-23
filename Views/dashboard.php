@@ -58,14 +58,14 @@ session_start();
       <div class="container">
         <div class="row">
           <div id="logo-res" class="col-lg-2 col-md-2 col-1 header-top-left no-padding">
-            <a href="index.php"><img class="logo-responsive" src="../img/uniline2.png" alt="" title="" /></a>
+            <a href="mainpage.php"><img class="logo-responsive" src="../img/uniline2.png" alt="" title="" /></a>
           </div>
           <div class="col-xl-7 col-lg-6 col-md-5 col-6 header-top-left no-padding">
             <a class="btn btn-sm text-center" href="#">Nombre del curso</a>
           </div>
           <nav id="nav-menu-container">
             <ul id="navdash" class="nav-menu d-inline-flex col-2 header-top-right no-padding flex align-items-center">
-              <li><a class="btn btn-sm text-center" href="index.php">Inicio</a></li>
+              <li><a class="btn btn-sm text-center" href="mainpage.php">Inicio</a></li>
               <li><a class="btn btn-sm text-center" href="profile.php"><span></span>Mis cursos</a></li>
               <li><a class="text-center" href="editProfile.php"><img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
             </ul>
@@ -341,7 +341,7 @@ session_start();
     <div class="align-items-center justify-content-between">
       <div class="row">
         <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
-          <a class="" href="index.php"><img src="../img/uniline2.png" width="35%" alt="" title="" /></a>
+          <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="35%" alt="" title="" /></a>
         </div>
         <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
           <p class="mb-0">&copy; AB Soluciones Empresariales <script>

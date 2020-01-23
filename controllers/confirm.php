@@ -54,7 +54,7 @@ if($resultado != '[]'){
 <body>
     <div class="container p-3 my-3 bg-primary text-white center-block">
         <h2 class="h2 text-white">¡Cuenta verificada!</h2>
-        <a class="text-black" href="../views/index.php">inicia sesion aqui</a>
+        <a class="text-black" href="../views/mainpage.php">inicia sesion aqui</a>
     </div>
     
 </body>

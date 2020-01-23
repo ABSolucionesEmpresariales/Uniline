@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Success</title>
+    <title>Error</title>
 
     <!--
     CSS
@@ -34,13 +34,14 @@
             <div class="align-items-center justify-content-center bg-light" style="width: 50%; height: 80%; border-radius: 1rem;">                
                     <div id="mostrar">
                         <div class="imagen text-center">
-                            <span style="font-size: 250px;"><i class="fas fa-check-circle text-success"></i></span>
+                            <span style="font-size: 250px;"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                         </div>
                         <div class="contenido text-center">
-                            <h3 class="h2">¡Listo!</h3>
-                            <h4 class="h3">Tu pago ha sido aprovado</h4>
+                            <h3 class="h2">Error</h3>
+                            <h4 class="h3">Hubo un problema con su pago</h4>
+                            <h4 class="h4">Por favor inténtelo de nuevo</h4>
                             <br>
-                            <a class="btn btn-success" href="profile.php">Ir a curso!</a>
+                            <a class="btn btn-warning" href="profile.php">Ir a cursos</a>
                         </div>
                     </div>                 
             </div>

@@ -12,7 +12,7 @@ $(document).ready(function () {
 
             success: function (response) {
                 if (response == 1) {
-                    window.location.replace('../views/index.php');
+                    window.location.replace('../views/mainpage.php');
                     console.log("ingresado")
                     
                 }else if(response == "NoVerificado"){

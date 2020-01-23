@@ -58,15 +58,15 @@ include '../controllers/sesion.php'
     <div class="header-top">
       <div class="container">
         <div class="row">
-          <div id="imagen-perfil" class="col-lg-6 col-md-2 col-sm-12 m-0 text-center header-top-left">
-            <a href="index.php"><img src="../img/uniline2.png" alt="" title="" /></a>
+          <div id="imagen-perfil" class="col-lg-6 col-md-2 col-sm-12 m-0 header-top-left float-left">
+            <a href="mainpage.php"><img src="../img/uniline2.png" alt="" title="" /></a>
           </div>
           <div class="col-lg-6 col-sm-12 ml-auto header-top-right">
-            <nav id="nav-menu-container">
+            <nav id="nav-menu-container" class="float-right">
               <div class= "row">
-                <a class="m-3 col-lg-2 col-sm-12 text-center" href="index.php"><span></span>Inicio</a>
-                <a class="m-3 col-lg-2 col-sm-12 text-center" href="profile.php"><span></span>Mis cursos</a>
-                <a class="m-3 col-lg-2 col-sm-12 text-center" href="profile.php"><span></span>Mas cursos</a>
+                <a class="btn btn-sm text-center" href="mainpage.php" style="font-size: 17px"><span></span>Inicio</a>
+                <a class="btn btn-sm text-center" href="profile.php"style="font-size: 17px"><span></span>Mis cursos</a>
+                <a class="btn btn-sm text-center" href="profile.php"style="font-size: 17px"><span></span>Mas cursos</a>
               </div>
             </nav>
           </div>
@@ -177,7 +177,7 @@ include '../controllers/sesion.php'
         <div class="align-items-center justify-content-between">
           <div class="row">
             <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
-              <a class="" href="index.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
+              <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
             </div>
             <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
               <p class="mb-0">&copy; AB Soluciones Empresariales <script>document.write(new Date().getFullYear());</script>
