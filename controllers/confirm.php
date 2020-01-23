@@ -3,7 +3,7 @@ use modelos\Conexion;
 require_once '../modelos/Conexion.php'; 
 session_start();
 
-$conexion = new modelos\Conexion();
+$conexion = new Modelos\Conexion();
 $vkey=$_GET['vkey'];
 $consulta = "SELECT * FROM usuario WHERE vkey = ?";
 $datos = array($vkey);
