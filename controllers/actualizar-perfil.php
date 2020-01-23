@@ -1,12 +1,12 @@
 <?php 
-include '../modelos/Archivos.php';
-require_once '../modelos/Conexion.php';
+include '../Modelos/Archivos.php';
+require_once '../Modelos/Conexion.php';
 
 session_start();
 
 //traer datos de la base
 if(isset($_POST['datos'])){
-    $id = $_SESSION['id'];
+    $id = $_SESSION['idusuario'];
     $conexion = new Modelos\Conexion();
     $consulta = "SELECT * FROM usuario WHERE idusuario = ?";
     $datos = array($id);
@@ -18,7 +18,7 @@ if(isset($_POST['updatePass'])){
     $password = $_POST['updatePass'];
     $conexion = new Modelos\Conexion();
     $consulta = "SELECT password FROM usuario WHERE idusuario = ?";
-    $datos = array($_SESSION['id']);
+    $datos = array($_SESSION['idusuario']);
     $resultado = $conexion->consultaPreparada($datos,$consulta,2,'s',false,null);
       if(password_verify($password,$resultado[0][0])){
         echo "true";
@@ -39,7 +39,7 @@ if(isset($_POST['updatePass'])){
             $encriptado = trim(password_hash($password, PASSWORD_DEFAULT));
         }else{
             $consulta = "SELECT password FROM usuario WHERE idusuario = ?";
-            $datos = array($_SESSION['id']);
+            $datos = array($_SESSION['idusuario']);
             $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
             $encriptado = $resultado[0][0];
         }
@@ -85,7 +85,7 @@ if(isset($_POST['updatePass'])){
     }else{
         $conexion = new Modelos\Conexion();
         $consulta = "SELECT imagen FROM usuario WHERE idusuario = ?";
-        $datos = array($_SESSION['id']);
+        $datos = array($_SESSION['idusuario']);
         $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
         $imagen = $resultado[0][0];
         echo actualizar($imagen);

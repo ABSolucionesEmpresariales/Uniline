@@ -1,10 +1,10 @@
 <?php
 
-use modelos\Conexion;
+use Modelos\Conexion;
 
 session_start();
 define('RUTA_UNILINE_APP','http://localhost/uniline/Views');
-require_once '../modelos/Conexion.php';
+require_once '../Modelos/Conexion.php';
 
 $conexion = new Modelos\Conexion();
 
@@ -22,7 +22,7 @@ if ($resultado != "[]") {
         if($result[0][9] == 1){
             echo '1';
             $_SESSION['acceso'] = $usuario;
-            $_SESSION['id'] = $result[0][0];
+            $_SESSION['idusuario'] = $result[0][0];
             if($result[0][4] != ""){
                 $_SESSION['imagen_perfil'] = $result[0][4];
             }else{

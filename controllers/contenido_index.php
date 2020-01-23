@@ -1,5 +1,5 @@
 <?php
-require_once '../modelos/Conexion.php';
+require_once '../Modelos/Conexion.php';
 
 if(isset($_POST['cursos'])){
     $conexion = new Modelos\Conexion();

@@ -1,6 +1,6 @@
 <?php
-use modelos\Conexion;
-require_once '../modelos/Conexion.php'; 
+use Modelos\Conexion;
+require_once '../Modelos/Conexion.php'; 
 session_start();
 
 $conexion = new Modelos\Conexion();
@@ -15,7 +15,7 @@ if($resultado != '[]'){
     $datos2 = array($vkey);
     $resultUp = json_encode($conexion->consultaPreparada($datos2,$update,1,'i', false, null));
     $_SESSION['acceso'] = $result[0][1];
-    $_SESSION['id'] = $result[0][0];
+    $_SESSION['idusuario'] = $result[0][0];
 }
 ?>
 <!DOCTYPE html>

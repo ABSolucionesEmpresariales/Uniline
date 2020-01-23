@@ -1,6 +1,6 @@
 <?php  
-require_once '../modelos/Conexion.php';
-include '../modelos/email.php';
+require_once '../Modelos/Conexion.php';
+include '../Modelos/email.php';
 
 $emailClass = new Modelos\Email();
 

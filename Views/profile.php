@@ -60,7 +60,7 @@ include '../controllers/sesion.php'
                   </div>
             </div>
             <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-                <img src="../img/perfil.png" alt="perfil" class="course_author_image">
+                <a class="text-center" href="editProfile.php"><img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a>
                 <a class="btn btn-sm" href="editProfile.php"><span></span>Mi perfil</a>
                 <a class="btn btn-sm" style="color: white;" href="../controllers/sesion-destroy.php">Cerrar sesion</a>
             </div>
