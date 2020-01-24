@@ -235,3 +235,25 @@ background-color: rgb(28, 28, 37);
    .back-modal{
      background-color: rgb(75, 75, 83)!important;
    }
+   .alertaspago-responsive{
+    width: 100%; 
+    height: 90%; 
+    border-radius: 1rem;
+   }
+   .alertaspago{
+    width: 50%; 
+    height: 80%; 
+    border-radius: 1rem;
+   }
+   .over-bg{
+     height: 51rem;
+   }
+   .alertaspago-xl{
+    margin: auto;
+    width: 50%; 
+    height: 90%; 
+    border-radius: 1rem;
+   }
+   .over-bg-xl{
+     height: 60rem;
+   }
