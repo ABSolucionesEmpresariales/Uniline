@@ -142,8 +142,8 @@ session_start();
         </div>
     </div>  -->
     <div class="container main-menu">
-      <div class="row align-items-center d-flex">
-        <div id="logo" class="col-lg-8 d-none d-lg-block float-left">
+      <div class="row align-items-center d-flex justify-content-between">
+        <div id="logo" class="col-lg-4 d-none d-lg-block">
           <a href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
         </div>
         <nav id="nav-menu-container">
