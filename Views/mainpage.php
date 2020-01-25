@@ -110,7 +110,7 @@ session_start();
               <li><a class="text-center" href="mainpage.php">Inicio</a></li>
               <li><a class="text-center" href="misCursos.php">Mis cursos</a></li>             
               <li><a class="text-center" href="contact.html">Contacto</a></li>
-              <li><a class="text-center" href="editmisCursos.php"><img src= <?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
+              <li><a class="text-center" href="editProfile.php"><img src= <?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
               <?php
               }else{
               ?>
@@ -172,7 +172,7 @@ session_start();
     <!-- confirmacion area -->
     
     <div class="confirm modal fade" id="confirmar">
-    	<div class="modal-dialog modal-login">
+    	<div class="modal-dialog modal-login modal-sm">
     		<div class="modal-content">
         <div class="modal-header">
     				<button type="button" class="close closeCon" data-dismiss="modal" aria-hidden="true">&times;</button>

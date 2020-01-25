@@ -1,5 +1,25 @@
 $(document).ready(function () {
-    lista_temas();
+    //lista_temas();
+    lista();
+
+    $(document).ready(function(){
+        $(".cont-bloque").hide();
+        $(".mostrar-tareas").hide();
+    });
+
+        /* RESPONSIVE DE CONTENIDOS ESPECIFICOS*/
+
+    contenido = `
+    <li class="nav-item rem-nav">
+        <a class="nav-link active" data-toggle="tab" href="#contenido-cursos">Contenido del curso</a>
+    </li>
+            `;
+    contenidoCom = `
+        <li class="nav-item rem-nav">
+            <a class="nav-link" data-toggle="tab" href="#contenido-comentarios">Comentarios del curso</a>
+        </li>
+            `;
+
 
     $("#video").on('ended', function () {
         $(this).attr('src', '../videos/Turntable - 10857.mp4');
@@ -31,136 +51,33 @@ $(document).ready(function () {
 
     /* PINTAR CONTENIDO DE LAS ACTIVIDADES*/
 
-    function lista_temas() {
-        datos_actividad = ["Examen diagnostico Previo", "Activiad 1.  Creacion de bases de datos en MySQL y PHP",
-            "Tema 1.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 1.2 .- la mota no es adiccion",
-            "Tema 1.3 .- la mota no es adiccion",
-            "Tema 1.4 .- la mota no es adiccion",
-            "Tema 1.5 .- la mota no es adiccion",
-            "Tema 1.6 .- la mota no es adiccion",
-            "Tema 1.7 .- la mota no es adiccion",
-        ];
-        datos_actividad2 = ["Examen diagnostico Previo", "Activiad 2.  Creacion de bases de datos",
-            "Tema 2.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 2.2 .- la mota no es adiccion",
-            "Tema 2.3 .- la mota no es adiccion",
-            "Tema 2.4 .- la mota no es adiccion",
-            "Tema 2.5 .- la mota no es adiccion",
-            "Tema 2.6 .- la mota no es adiccion",
-            "Tema 2.7 .- la mota no es adiccion",
-        ];
-        datos_actividad3 = ["Examen diagnostico Previo", "Activiad 3.   Creacion de bases de datos",
-            "Tema 3.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 3.2 .- la mota no es adiccion",
-            "Tema 3.3 .- la mota no es adiccion",
-            "Tema 3.4 .- la mota no es adiccion",
-            "Tema 3.5 .- la mota no es adiccion",
-            "Tema 3.6 .- la mota no es adiccion",
-            "Tema 3.7 .- la mota no es adiccion",
-        ];
-        datos_actividad4 = ["Examen diagnostico Previo", "Activiad 4.   Creacion de bases de datos",
-            "Tema 4.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 4.2 .- la mota no es adiccion",
-            "Tema 4.3 .- la mota no es adiccion",
-            "Tema 4.4 .- la mota no es adiccion",
-            "Tema 4.5 .- la mota no es adiccion",
-            "Tema 4.6 .- la mota no es adiccion",
-            "Tema 4.7 .- la mota no es adiccion",
-        ];
-        datos_actividad5 = ["Examen diagnostico Previo", "Activiad 5.   Creacion de bases de datos",
-            "Tema 5.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 5.2 .- la mota no es adiccion",
-            "Tema 5.3 .- la mota no es adiccion",
-            "Tema 5.4 .- la mota no es adiccion",
-            "Tema 5.5 .- la mota no es adiccion",
-            "Tema 5.6 .- la mota no es adiccion",
-            "Tema 5.7 .- la mota no es adiccion",
-        ];
-        datos_actividad6 = ["Examen diagnostico Previo", "Activiad 6.   Creacion de bases de datos",
-            "Tema 6.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 6.2 .- la mota no es adiccion",
-            "Tema 6.3 .- la mota no es adiccion",
-            "Tema 6.4 .- la mota no es adiccion",
-            "Tema 6.5 .- la mota no es adiccion",
-            "Tema 6.6 .- la mota no es adiccion",
-            "Tema 7.7 .- la mota no es adiccion",
-        ];
-        datos_actividad7 = ["Examen diagnostico Previo", "Activiad 7.   Creacion de bases de datos",
-            "Tema 7.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 7.2 .- la mota no es adiccion",
-            "Tema 7.3 .- la mota no es adiccion",
-            "Tema 7.4 .- la mota no es adiccion",
-            "Tema 7.5 .- la mota no es adiccion",
-            "Tema 7.6 .- la mota no es adiccion",
-            "Tema 7.7 .- la mota no es adiccion",
-        ];
-        datos_actividad8 = ["Examen diagnostico Previo", "Activiad 8.   Creacion de bases de datos",
-            "Tema 8.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 8.2 .- la mota no es adiccion",
-            "Tema 8.3 .- la mota no es adiccion",
-            "Tema 8.4 .- la mota no es adiccion",
-            "Tema 8.5 .- la mota no es adiccion",
-            "Tema 8.6 .- la mota no es adiccion",
-            "Tema 8.7 .- la mota no es adiccion",
-        ];
-        datos_actividad9 = ["Examen diagnostico Previo", "Activiad 9.   Creacion de bases de datos",
-            "Tema 9.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 9.2 .- la mota no es adiccion",
-            "Tema 9.3 .- la mota no es adiccion",
-            "Tema 9.4 .- la mota no es adiccion",
-            "Tema 9.5 .- la mota no es adiccion",
-            "Tema 9.6 .- la mota no es adiccion",
-            "Tema 9.7 .- la mota no es adiccion",
-        ];
-        datos_actividad10 = ["Examen diagnostico Previo", "Activiad 10.   Creacion de bases de datos",
-            "Tema 8.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 8.2 .- la mota no es adiccion",
-            "Tema 8.3 .- la mota no es adiccion",
-            "Tema 8.4 .- la mota no es adiccion",
-            "Tema 8.5 .- la mota no es adiccion",
-            "Tema 8.6 .- la mota no es adiccion",
-            "Tema 8.7 .- la mota no es adiccion",
-        ];
-        datos_actividad11 = ["Examen diagnostico Previo", "Activiad 11.   Creacion de bases de datos",
-            "Tema 8.1.- la mota no es adiccion es un tema delicado por ver safffsfs",
-            "Tema 8.2 .- la mota no es adiccion",
-            "Tema 8.3 .- la mota no es adiccion",
-            "Tema 8.4 .- la mota no es adiccion",
-            "Tema 8.5 .- la mota no es adiccion",
-            "Tema 8.6 .- la mota no es adiccion",
-            "Tema 8.7 .- la mota no es adiccion",
-        ];
-
-        datos = [datos_actividad, datos_actividad2, datos_actividad3, datos_actividad4, datos_actividad5, datos_actividad6, datos_actividad7, datos_actividad8, datos_actividad9, datos_actividad10, datos_actividad11];
+/*     function lista_temas() {
         template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
         $.each(datos, function (i, item) {
             for (y = 0; y < datos[i].length; y++) {
                 if (y == 0) {
                     template += `
-                <div class="demo row contenedor flex align-items-center cont-actividades">
+                        <div class="demo row contenedor flex align-items-center cont-actividades">
                             <input type="checkbox" class="chk-examen" id="customCheck-examen-${i + 1}" name="example1">
-                             <label for="customCheck-examen-${i + 1}" class="col-2 flex align-items-center"><span></span></label>
+                            <label for="customCheck-examen-${i + 1}" class="col-2 flex align-items-center"><span></span></label>
                             <a data-idexamen="${i + 1}" style="cursor: pointer;" id="span-${i + 1}" class="mostrar-examen col-10 nav-link font-actividades">${item[y]}</a>
-                        </div>
-                            
+                        </div>      
                     `;
                    
                 } else if (y == 1) {
                     template += `
-                <div class="demo row contenedor flex align-items-center cont-actividades">
-                            <input type="checkbox" id="customCheck-bloque-${i + 1}" name="example1">
-                             <label id="bloque-${i + 1}" for="customCheck-bloque-${i + 1}" class="cont-bloque col-2 flex align-items-center customCheck-examen-${i + 1}"><span></span></label>
-                            <a data-idactividad="${i + 1}" style="cursor: pointer;" id="span-${i + 1}" class="mostrar-actividad col-10 spam nav-link font-actividades">${item[y]}</a>
-                            
+                    <div class="demo row contenedor flex align-items-center cont-actividades">
+                        <input type="checkbox" id="customCheck-bloque-${i + 1}" name="example1">
+                        <label id="bloque-${i + 1}" for="customCheck-bloque-${i + 1}" class="cont-bloque col-2 flex align-items-center customCheck-examen-${i + 1}"><span></span></label>
+                        <a data-idactividad="${i + 1}" style="cursor: pointer;" id="span-${i + 1}" class="mostrar-actividad col-10 spam nav-link font-actividades">${item[y]}</a>
                     <div class="span-${i + 1}" style="display: none;">`;
                 } else {
                     template +=
-                        `<div class="demo row pt-1 m-0 flex align-items-center">
-                    <input type="checkbox" id="customCheck${i + 1 + "-" + y}" name="example1">
-                    <label id="tema-${i + 1}" for="customCheck${i + 1 + "-" + y}" class="cont-bloque col-3 text-justify pl-4 flex align-items-center customCheck-examen-${i + 1}"><span></span></label>
-                    <a id="cont" class="col-9" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${item[y]}</a>
-                </div>
+                    `<div class="demo row pt-1 m-0 flex align-items-center">
+                        <input type="checkbox" id="customCheck${i + 1 + "-" + y}" name="example1">
+                        <label id="tema-${i + 1}" for="customCheck${i + 1 + "-" + y}" class="cont-bloque col-3 text-justify pl-4 flex align-items-center customCheck-examen-${i + 1}"><span></span></label>
+                        <a id="cont" class="col-9" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${item[y]}</a>
+                    </div>
                 `;
                 }
             }
@@ -177,20 +94,71 @@ $(document).ready(function () {
         `;
         });
         $('.lista-curso-aside').html(template);
+    } */
+    
+    function lista(){
+        $.ajax({
+            url: "../controllers/dashboard.php",
+            type: "POST",
+            data: "datos_lista=datos_lista",
+
+            success: function (response) {
+                console.log(response);
+                datos = JSON.parse(response)
+                console.log(datos);
+                template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
+
+                for(i = 0; i < datos.length; i++){
+                    for(y = 0; y < datos[i].length; y++){
+                         if(y == 0){
+                            template += `
+                                <div class="demo row contenedor flex align-items-center cont-actividades">
+                                    <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y + 1}" name="example1">
+                                    <label for="customCheck-examen-${i+"-"+y + 1}" class="col-2 flex align-items-center" style = "display:none;"><span></span></label>
+                                    <a data-idexamenbase="${datos[i][0][0]}" style="cursor: pointer;" id="span-${i + 1}" class="mostrar-examen col-10 nav-link font-actividades">${datos[i][0][1]}</a>
+                                </div>      
+                            `;
+                        }else if(y == 1){
+                            template += `
+                            <div class="demo row contenedor flex align-items-center cont-actividades">
+                                    <input type="checkbox" id="customCheck-bloque-${i+"-"+y + 1}" name="example1">
+                                    <label id="bloque-${i+"-"+ y + 1}" for="customCheck-bloque-${i+"-"+ y + 1}" class="cont-bloque col-2 flex align-items-center customCheck-examen-${i+"-"+y + 1}" style = "display:none;"><span></span></label>
+                                    <a data-idbloquebase="${datos[i][1]}" data-idactividad="${i+"-"+ y + 1}" style="cursor: pointer;" id="span-${i +"-"+ y + 1}" class="mostrar-actividad col-10 spam nav-link font-actividades">${datos[i][2]}</a>
+                                <div class="span-${i +"-"+ y + 1}" style="display: none;">`;
+                            for(z = 0; z< datos[i][3].length; z++){
+                                    template +=
+                                    `<div class="demo row pt-1 m-0 flex align-items-center">
+                                        <input type="checkbox" id="customCheck${i +"-"+ y + "-" + z}" name="example1">
+                                        <label id="tema-${i+"-"+ y +"-"+z}" for="customCheck${i +"-"+ y + "-" + z}" class="cont-bloque col-3 text-justify pl-4 flex align-items-center customCheck-examen-${i+"-"+ y +"-"+z}" style = "display:none;"><span></span></label>
+                                        <a data-idtemabase="${datos[i][3][z][0]}" id="cont" class="col-9" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
+                                     </div>
+                                    `;  
+                            }
+                        }else if(y == 4){
+                            for(z = 0; z< datos[i][4].length; z++){
+                                template += `
+
+                                        <div class="">
+                                            <a data-idtareabase="${datos[i][4][0][0]}" data-idtarea="${y + 1}" id="mostrar-tareas" class="mostrar-tareas customCheck-examen-${y + 1}" href="#seccion-tareas">
+                                                <h4 class="h5">Tareas del bloque</h4>
+                                                <div class="ml-5">
+                                                    ${datos[i][4][0][1]}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                `;
+                            }                          
+                        } 
+                    }   
+                }
+               // console.log(template);
+                $('.lista-curso-aside').html(template);
+            }
+        });
     }
-
-    /* RESPONSIVE DE CONTENIDOS ESPECIFICOS*/
-
-    contenido = `
-                <li class="nav-item rem-nav">
-                    <a class="nav-link active" data-toggle="tab" href="#contenido-cursos">Contenido del curso</a>
-                </li>
-                      `;
-    contenidoCom = `
-                    <li class="nav-item rem-nav">
-                      <a class="nav-link" data-toggle="tab" href="#contenido-comentarios">Comentarios del curso</a>
-                    </li>
-                        `;
 
     $(window).resize(function () {
         if ($(window).width() < 768) {
@@ -287,9 +255,6 @@ $(document).ready(function () {
 
     /* VERIFICAR SI ESTA MARCADA EL CHECKBOX  */
 
-   
-    $(".cont-bloque").hide();
-    $(".mostrar-tareas").hide();
     
     
 
@@ -302,6 +267,11 @@ $(document).ready(function () {
         } else {
             $("." + ctrolId).slideToggle();
         }
+    });
+
+    $(document).on('click','.cont-bloque',function(){
+        console.log("llehoestamadre");
+        $(this).show();
     });
 
     // CAMBIAR A SELECCIONADO CUANDO TIENE ALGO EL INPUT
@@ -343,8 +313,7 @@ $(document).ready(function () {
       // MOSTRAR EXAMEN AL HACER CLIC EN EL ENLACE
 
       $(document).on("click",".mostrar-examen", function () {
-        console.log($(this).data("idexamen"));
-        if($(this).data("idexamen") == 1){
+        console.log($(this).data("idexamenbase"));
             $("#cambio-examen-video").addClass("d-none");
             contExamen = `
                 <div id="contenido-examen" class="container p-5" style="height: 100%;">
@@ -362,80 +331,8 @@ $(document).ready(function () {
                         </div>
                     </div>
                     <hr>
-                    <div class="pregresp flex justify-content-center d-inline-block">
-                        <div class="pregunta">
-                            1. ¿Crees que HTML es una buena tecnología?<br />
-                        </div>
-                        <div class="respuestas d-inline-flex flex justify-content-between">
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="1" /> Sí</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="2" /> No</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="3" /> es un lenguaje de programacion :v</li>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="pregresp flex justify-content-center d-inline-block">
-                        <div class="pregunta">
-                            1. ¿Crees que HTML es una buena tecnología?<br />
-                        </div>
-                        <div class="respuestas d-inline-flex flex justify-content-between">
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="1" /> Sí</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="2" /> No</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="3" /> es un lenguaje de programacion :v</li>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="pregresp flex justify-content-center d-inline-block">
-                        <div class="pregunta">
-                            1. ¿Crees que HTML es una buena tecnología?<br />
-                        </div>
-                        <div class="respuestas d-inline-flex flex justify-content-between">
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="1" /> Sí</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="2" /> No</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="3" /> es un lenguaje de programacion :v</li>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="pregresp flex justify-content-center d-inline-block">
-                        <div class="pregunta">
-                            1. ¿Crees que HTML es una buena tecnología?<br />
-                        </div>
-                        <div class="respuestas d-inline-flex flex justify-content-between">
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="1" /> Sí</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="2" /> No</li>
-                            <li class="list-inline p-2"><input type="radio" name="preg1" value="3" /> es un lenguaje de programacion :v</li>
-                        </div>
-                    </div>
-                    <br>
-                    <div>
-                        <button class="btn btn-info" type="button" data-toggle="modal" data-target="#myModalExam">Enviar</button>
-                    </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModalExam" role="dialog">
-                      <div class="modal-dialog">
-              
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h4 class="modal-title h4">¡Listo!</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-                          <div class="modal-body text-center no-padding">
-                            <h4 class="h4">Tu calificacion es de ___</h4>
-                            <p>Con esta califiacion puedes saltarte hasta el tema 3 de este bloque</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button id="btn-cali" type="button" class="btn btn-default ir-actividad" data-dismiss="modal">OK</button>
-                          </div>
-                        </div>
-              
-                      </div>
-                    </div>
-
-
                 </div>`;
             $(contExamen).appendTo("#cambiar-a-examen"); 
-        }
     });
 
     // MOSTRAR ACTIVIDAD AL HACER CLIC EN EL ENLACE
