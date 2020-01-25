@@ -1,9 +1,8 @@
-<?php
-session_start();    
-require_once 'modelos/Conexion.php';
-include 'modelos/email.php';
+<?php  
+require_once '../Modelos/Conexion.php';
+include '../Modelos/Email.php';
 
-$emailClass = new modelos\Email();
+$emailClass = new Modelos\Email();
 
 $email = $_POST['TEmail'];
 $password = $_POST['TPass'];
@@ -13,9 +12,8 @@ $vkey = $emailClass->setEmail($email);
 $verificado = 0;
 $encriptado = trim(password_hash($password, PASSWORD_DEFAULT));
 
-
 if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
-    $conexion = new modelos\Conexion();
+    $conexion = new Modelos\Conexion();
 
     $consulta_verificar = "SELECT * FROM usuario WHERE email = ?";
     $datos_verificar = array($_POST['TEmail']);
@@ -31,7 +29,7 @@ if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
             $enviar = $emailClass->enviarEmailConfirmacion();
             
           }
-          
+     echo 'error';     
           
     }
     

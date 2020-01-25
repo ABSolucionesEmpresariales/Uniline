@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 // Load Composer's autoloader
-include 'APIs/PHPMailer/vendor/autoload.php';
+include '../APIs/PHPMailer/vendor/autoload.php';
 
 class Email
 {
@@ -28,10 +28,10 @@ class Email
             //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'smtp.hostinger.mx';                    // Set the SMTP server to send through
+            $mail->Host       = 'smtp.sendgrid.net';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'soporte@cafionline.com';               // SMTP username
-            $mail->Password   = 'p2VL9TZzyXXm';                         // SMTP password
+            $mail->Username   = 'apikey';               // SMTP username
+            $mail->Password   = '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';                         // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
             $mail->Port       = 587;                                    // TCP port to connect to
 
@@ -43,8 +43,8 @@ class Email
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Verificacion de correo CAFI';
-            $mail->Body    = "<a href='http://localhost/uniline/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
-            $mail->AltBody = "<a href='http://localhost/uniline/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
+            $mail->Body    = "<a href='http://localhost/uniline/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
+            $mail->AltBody = "<a href='http://localhost/uniline/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
 
             $mail->send();
 

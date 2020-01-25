@@ -1,6 +1,10 @@
-<?php 
+<?php
+
+use Modelos\Conexion;
+
 session_start();
-require_once 'modelos/Conexion.php';
+define('RUTA_UNILINE_APP','http://localhost/uniline/Views');
+require_once '../Modelos/Conexion.php';
 
 $conexion = new Modelos\Conexion();
 
@@ -12,12 +16,20 @@ $datos = array($_POST['TUsuario']);
 $resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'s', false, null));
 $result = json_decode($resultado);
 
+
 if ($resultado != "[]") {
-    if (password_verify($password, $result[0][4])) {
-        if($result[0][6] == 1){
+    if (password_verify($password, $result[0][7])) {
+        if($result[0][9] == 1){
             echo '1';
-            $_SESSION['nombreU'] = $usuario;
-            $_SESSION['passwordU'] = $password;
+            $_SESSION['acceso'] = $usuario;
+            $_SESSION['idusuario'] = $result[0][0];
+            $_SESSION['emailusuario'] = $result[0][6];
+            if($result[0][4] != ""){
+                $_SESSION['imagen_perfil'] = $result[0][4];
+            }else{
+                $_SESSION['imagen_perfil'] = "../img/Users/perfil.png";
+            }
+            
         }else{
             echo "NoVerificado";
         }
@@ -30,4 +42,10 @@ if ($resultado != "[]") {
         echo "no existe";
     }
 
+    if (isset($_GET['cerrar_sesion'])) {
+        session_unset();
+        session_destroy();
+        header('Location: ../Views/login.php');
+        //se destruye la sesion al dar click en los botones de salir
+    }
  ?>
