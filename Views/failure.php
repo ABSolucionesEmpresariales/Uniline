@@ -31,7 +31,7 @@
 <body class="dash-area">
     <div class="overlay-bg">
         <div class="container fullscreen flex align-items-center justify-content-center">
-            <div class="align-items-center justify-content-center bg-light" style="width: 50%; height: 80%; border-radius: 1rem;">                
+            <div id="ventana-alerta" class="align-items-center justify-content-center bg-light alertaspago">                
                     <div id="mostrar">
                         <div class="imagen text-center">
                             <span style="font-size: 250px;"><i class="fas fa-exclamation-triangle text-danger"></i></span>

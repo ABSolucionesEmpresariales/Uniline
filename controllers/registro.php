@@ -1,6 +1,6 @@
 <?php  
 require_once '../Modelos/Conexion.php';
-include '../Modelos/email.php';
+include '../Modelos/Email.php';
 
 $emailClass = new Modelos\Email();
 
@@ -29,7 +29,7 @@ if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
             $enviar = $emailClass->enviarEmailConfirmacion();
             
           }
-          
+     echo 'error';     
           
     }
     

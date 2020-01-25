@@ -12,6 +12,7 @@ $(document).ready(function () {
     $(document).on('click', '#idprueba', function(){
         $('#autobtn').click();
     });
+    $('#confirmar').hide("slow");
 
     /* <---------------------Pintar el body del modal y los loques del curso-----------------------> */
     $(document).on('click','.curso',function(){
@@ -208,18 +209,24 @@ $(document).ready(function () {
     }
 
     //// animacion para todos los enlaces que te lleven a un div dentro de la misma pagina
-    $(document).on('click','.cambiarRegistro',function(e){
+    $(document).on('click','.cambiarContacto',function(e){
 		e.preventDefault();		//evitar el eventos del enlace normal
 		var strAncla = $(this).attr('href'); //id del ancla
 			$('body,html,header').stop(true,true).animate({				
 				scrollTop: $(strAncla).offset().top
-			},500);
+			},300);
     });
 
     $('#registro').submit(function (e) {
         if ($('#registrar-nombre').val() == '' || $('#registrar-tel').val() == '' || $('#registrar-correo').val() == '' || $('#registrar-pass').val() == '') {
             console.log('si llego');
-            $('.alertas').html('<h2 class="alert alert-danger">*Llene todos los campos</h2>')
+            $("#alertas").removeClass('alert-success');
+            $("#alertas").addClass('alert-danger');
+            $("#alertas").html('<h4>Por favor llene todos los campos</>');
+            $("#alertas").slideDown("slow");
+                    setTimeout(function(){
+                    $("#alertas").slideUp("slow");
+                    }, 3000);
             e.preventDefault();
         } else {
             $.ajax({
@@ -229,12 +236,36 @@ $(document).ready(function () {
 
                 success: function (response) {
                     
-                    if (response != 0) {
-                        $('#confirmar').modal({show:true});
-                    }else if(response == "Existe"){
-                        $('.alertas').html('<h2 class="alert alert-danger">*Este correo ya esta registrado</h2>')
+                    if (response == "Existe"){
+                        console.log(response);
+                        $("#alertas").removeClass('alert-success');
+                        $("#alertas").addClass('alert-danger');
+                        $("#alertas").html('<h4>Este correo ya esta registrado</h4>');
+                        $("#alertas").slideDown("slow");
+                        setTimeout(function(){
+                            $("#alertas").slideUp("slow");
+                        }, 3000);
+         
+                    }else if(response == 'error') {
+                        console.log(response);
+                        $("#alertas").removeClass('alert-success');
+                        $("#alertas").addClass('alert-danger');
+                        $("#alertas").html('<h4>Ups! hubo un error, intentelo de nuevo</h4>');
+                        $("#alertas").slideDown("slow");
+                        setTimeout(function(){
+                            $("#alertas").slideUp("slow");
+                        }, 3000);
+                        
                     }else {
-                        console.log("fallo3");
+                        console.log(response);
+                        $("#alertas").removeClass('alert-danger');
+                        $("#alertas").addClass('alert-success');                       
+                        $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
+                        $("#alertas").slideDown("slow");
+                        setTimeout(function(){
+                            $("#alertas").slideUp("slow");
+                        }, 3000);
+                        
                     }
                 }
             });
