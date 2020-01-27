@@ -83,9 +83,11 @@ session_start();
         <div id="div-original" class="row">
 
           <div id="cambiar-a-examen" class="col-lg-9 col-md-7 col-sm-12 no-padding">
+          <div id="contenido-examen" class="container p-5 d-none" style="height: 100%;">
+          </div>
             <div id="cambio-examen-video">
               <div class="flex bg-color justify-content-center">
-                  <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="../videos/Neon - 21368.mp4" preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
+                  <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="../videos/Neon - 21368.mp4" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
               </div>
             
 
@@ -115,7 +117,7 @@ session_start();
                     <div class="tab-pane container text-justify h-scroll" id="descripcion" style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
                       <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
                       <br>
-                      <div class="container">
+                      <div class="container descripcion-tema">
                         When you enter into any new area of science, you almost always find yourself with a baffling new
                         language of technical terms to learn before you can converse with the experts. This is certainly true
                         in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
@@ -135,8 +137,7 @@ session_start();
                       Descargar archivos
                       <br>
                       <br>
-                      <a href="download/pack.txt" download="Pack.txt">Descargar</a>
-                      <p>¿no se descarga el archivo? <a style="color:blue;" href="download/pack.txt" download="Pack.txt">Click aqui</a>
+                      En este apartado podras descargar los archivos de cada tema <a class="descarga" href="download/pack.txt" download="Pack.txt"> descargar</a>
                       </p>
                     </div>
                     <div class="tab-pane container fade" id="progress">
