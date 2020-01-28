@@ -4,8 +4,7 @@ session_start();
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 require_once '../Modelos/Conexion.php';
 require_once '../Stripe/vendor/autoload.php';
-$_SESSION['idusuario'] = 1;
-$_SESSION['emailusuario'] = 'ejemplo@gmail.com';
+
 if (!empty($_POST['idcurso'])) {
     $conexion = new Modelos\Conexion();
     $respuesta = $conexion->consultaPreparada(
