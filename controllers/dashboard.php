@@ -74,3 +74,10 @@ if(isset($_POST['DatosTemaAcutual'])){
     $consulta = "SELECT t.video,t.nombre,t.descripcion,t.archivo FROM tema t WHERE t.idtema = ?";
     echo json_encode($conexion->consultaPreparada($datos_tema,$consulta,2,"i",false,null));
 }
+
+if(isset($_POST['temaCompleto'])){
+    $conexion = New Modelos\Conexion();
+    $datos_tema = array($_POST['temaCompleto'],1);
+    $consulta = "INSERT INTO tema_completado (tema,usuario) VALUES (?,?)";
+    echo $conexion->consultaPreparada($datos_tema,$consulta,1,"ii",false,null);
+}  

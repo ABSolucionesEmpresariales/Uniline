@@ -17,11 +17,43 @@ $(document).ready(function () {
         </li>
             `;
 
-
+    //Funcion que escucha cuando el video esta por terminar
     $("#video").on('ended', function () {
-
-        $(this).attr('src', '../videos/Turntable - 10857.mp4');
+        //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
+        datos_redirect = id_control_direccionamiento.split("-");
+        //Lo formamos el siguiente tema
+        id_redirecionado = datos_redirect[0]+"-"+(parseInt(datos_redirect[1])+1);
+        //verificaos si el tema existe
+        if($("#tema-"+id_redirecionado).length > 0){
+            //checkeamos el tema actual
+            $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+            //Realizar registro del tema
+            registrarTemaCompletado(id_actual_base);
+            //obtenemos los datos del nuevo tema para pintarlos
+            obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
+            //igualamos la variable global a el tema actual
+            id_control_direccionamiento = id_redirecionado;
+            //tomamos el id de la base del tema actual
+            id_actual_base = $("#tema-"+id_redirecionado).data("idtemabase");
+        }else{
+            //si el id siguiente no existe se brincara al examen
+            $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+            id_examen = (parseInt(datos_redirect[0])+1)+"--1";
+            $("#"+id_examen).click();
+        }
     });
+
+    function registrarTemaCompletado(tema){
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:"temaCompleto="+tema,
+
+            success: function (response){
+                console.log(response);
+            }
+        });
+    }
 
 
     $(document).on('click', '.spam', function () {
@@ -110,6 +142,7 @@ $(document).ready(function () {
                 control_seleccion = "";
                 control_video = "";
                 control_del_chequeo = "";
+                checkeo_final = ``;
                 for(i = 0; i < datos.length; i++){
                     for(y = 0; y < datos[i].length; y++){
                          if(y == 0){
@@ -118,6 +151,7 @@ $(document).ready(function () {
                              if(datos[i][0][4] == 1){
                                 control_seleccion = "checked";
                                 control_del_chequeo = "temas_vistos";
+                                checkeo_final = `span-${(i+1)+"-"+(y)}`;
                              }else{
                                 control_del_chequeo = "";
                                 control_seleccion = "disabled";
@@ -126,13 +160,13 @@ $(document).ready(function () {
                                 <div class="demo row contenedor flex align-items-center cont-actividades">
                                     <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
                                     <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
-                                    <a id="" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades">+${datos[i][0][1]}</a>
+                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades">+${datos[i][0][1]}</a>
                                 </div>`;
                         }else if(y == 1){
                             template += `
                             <div class="demo row contenedor flex align-items-center cont-actividades">
                                     <input type="checkbox" id="customCheck-bloque-${(i+1)+"-"+(y-1)}" name="example1" ${control_seleccion}>
-                                    <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center desbloqueo-${i}"><span></span></label>
+                                    <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center desbloqueo-${i}"><span class="registro_tema"></span></label>
                                     <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">-${datos[i][2]}</a>
                                 <div class="span-${(i+1)+"-"+(y-1)}" style="display: none;">`;
                                 cont = 0;
@@ -162,20 +196,29 @@ $(document).ready(function () {
                                     template +=
                                     `<div class="demo row pt-1 m-0 flex align-items-center">
                                         <input class="" type="checkbox" id="customCheck-${(i+1)+"-"+(z+1)}" name="example1" ${control_seleccion}>
-                                        <label data-idtemabase="${datos[i][3][z][0]}" id="tema-${(i+1)+"-"+(z+1)}" for="customCheck-${(i+1)+"-"+(z+1)}" class="${control_del_chequeo} col-3 text-justify desbloqueo-${i} pl-4 flex align-items-center"><span></span></label>
-                                        <a id="${(i+1) +"-"+(z+1)}" data-videotema="${datos[i][3][z][3]}" class="col-9 mostrar-tema" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
-                                     </div>
-                                    `;  
+                                        <label data-idtemabase="${datos[i][3][z][0]}" id="tema-${(i+1)+"-"+(z+1)}" for="customCheck-${(i+1)+"-"+(z+1)}" class="${control_del_chequeo} col-3 text-justify desbloqueo-${i} pl-4 flex align-items-center"><span class="registro_tema"></span></label>
+                                        <a id="${(i+1) +"-"+(z+1)}" class="col-9 mostrar-tema" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
+                                     </div>`;  
                             }
                         }else if(y == 4){
                             for(z = 0; z< datos[i][4].length; z++){
                                 template += `
-                                        <div class="">
+                                        <div class="tarea-${(i+1)+"--"+1}">
                                             <a data-idtareabase="${datos[i][4][0][0]}" data-idtarea="${y + 1}" id="mostrar-tareas" class="mostrar-tareas" href="#seccion-tareas">
                                                 <h4 class="h5">Tareas del bloque</h4>
-                                                <div class="ml-5">
-                                                    ${datos[i][4][0][1]}
-                                                </div>
+                                                <div class="ml-5">`;
+                                                datdoles = "";
+                                                tema = "";
+                                                if(datos[i][4][0][3]){
+                                                    datos_dow = datos[i][4][0][3].split("/");
+                                                    datdoles = datos_dow[2];
+                                                    tema = "Descargar el archivo"
+                                                }else{
+                                                    tema = "No hay archivo disponible";
+                                                    datdoles = "";
+                                                }
+                                        template += ` <a href="${datos[i][4][0][3]}" download="${datdoles}">${tema}</a>
+                                        </div>
                                             </a>
                                         </div>
                                     </div>
@@ -188,8 +231,9 @@ $(document).ready(function () {
                 }
                // console.log(template);
                 $('.lista-curso-aside').html(template);
-                
                 obtenerMostrarDatosTema(id_actual_base);
+                console.log(checkeo_final);
+                $("#".checkeo_final).click();
             }
         });
     }
@@ -204,22 +248,26 @@ $(document).ready(function () {
                 //console.log(response);
                 datos_tema = JSON.parse(response);
                 //console.log(datos_tema);
+                if(datos_tema[0][3]){
                 datos_download = datos_tema[0][3].split("/");
+                dat = datos_download;
+                }else{
+                dat = "no existe archivo";
+                }
                 $('.descarga').attr("href",datos_tema[0][3]);
                 $("#video").attr('src',datos_tema[0][0]);
                 $(".descripcion-tema").html(datos_tema[0][2]);
-                $('.descarga').attr("download",datos_download[2]);
+                $('.descarga').attr("download",dat);
             }
         });
     }
 
     $(document).on('click','.mostrar-tema',function(){
         if($(this).prev().hasClass("temas_vistos")){
-            video = $(this).data("videotema");
             id_de_base = $(this).prev().data("idtemabase");
             obtenerMostrarDatosTema(id_de_base);
             id_actual_base = id_de_base;
-            $("#video").attr('src',video);
+            id_control_direccionamiento = $(this).prev().attr("id");
         }
     });
 
