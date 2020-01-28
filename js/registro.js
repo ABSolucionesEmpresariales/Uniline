@@ -74,7 +74,7 @@ $(document).ready(function () {
                         });
             templete +=`</div>`;
                         $('.view-curso').html(templete);
-                        $('.boton-footer').html(`<button type="button" data-actcs="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive" data-dismiss="modal">Comprar</button>`);
+                        $('.boton-footer').html(`<button type="button" value="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive compras" data-dismiss="modal">Comprar</button>`);
                         $('#date-modal').click(); 
                     }
                 });

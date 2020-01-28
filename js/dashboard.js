@@ -27,10 +27,12 @@ $(document).ready(function () {
         if($("#tema-"+id_redirecionado).length > 0){
             //checkeamos el tema actual
             $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+            $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
             //Realizar registro del tema
             registrarTemaCompletado(id_actual_base);
             //obtenemos los datos del nuevo tema para pintarlos
             obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
+            $("#tema-"+id_redirecionado).next().addClass("text-info");
             //igualamos la variable global a el tema actual
             id_control_direccionamiento = id_redirecionado;
             //tomamos el id de la base del tema actual
@@ -38,6 +40,7 @@ $(document).ready(function () {
         }else{
             //si el id siguiente no existe se brincara al examen
             $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+            registrarTemaCompletado(id_actual_base);
             id_examen = (parseInt(datos_redirect[0])+1)+"--1";
             $("#"+id_examen).click();
         }
@@ -80,53 +83,6 @@ $(document).ready(function () {
     });
 
     /* PINTAR CONTENIDO DE LAS ACTIVIDADES*/
-
-/*     function lista_temas() {
-        template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
-        $.each(datos, function (i, item) {
-            for (y = 0; y < datos[i].length; y++) {
-                if (y == 0) {
-                    template += `
-                        <div class="demo row contenedor flex align-items-center cont-actividades">
-                            <input type="checkbox" class="chk-examen" id="customCheck-examen-${i + 1}" name="example1">
-                            <label for="customCheck-examen-${i + 1}" class="col-2 flex align-items-center"><span></span></label>
-                            <a data-idexamen="${i + 1}" style="cursor: pointer;" id="span-${i + 1}" class="mostrar-examen col-10 nav-link font-actividades">${item[y]}</a>
-                        </div>      
-                    `;
-                   
-                } else if (y == 1) {
-                    template += `
-                    <div class="demo row contenedor flex align-items-center cont-actividades">
-                        <input type="checkbox" id="customCheck-bloque-${i + 1}" name="example1">
-                        <label id="bloque-${i + 1}" for="customCheck-bloque-${i + 1}" class="cont-bloque col-2 flex align-items-center customCheck-examen-${i + 1}"><span></span></label>
-                        <a data-idactividad="${i + 1}" style="cursor: pointer;" id="span-${i + 1}" class="mostrar-actividad col-10 spam nav-link font-actividades">${item[y]}</a>
-                    <div class="span-${i + 1}" style="display: none;">`;
-                } else {
-                    template +=
-                    `<div class="demo row pt-1 m-0 flex align-items-center">
-                        <input type="checkbox" id="customCheck${i + 1 + "-" + y}" name="example1">
-                        <label id="tema-${i + 1}" for="customCheck${i + 1 + "-" + y}" class="cont-bloque col-3 text-justify pl-4 flex align-items-center customCheck-examen-${i + 1}"><span></span></label>
-                        <a id="cont" class="col-9" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${item[y]}</a>
-                    </div>
-                `;
-                }
-            }
-            template += `
-            <a data-idtarea="${i + 1}" id="mostrar-tareas" class="mostrar-tareas customCheck-examen-${i + 1}" href="#seccion-tareas">
-                <h4 class="h5">Tareas del bloque</h4>
-                <div class="container">
-                    Hacer conexion a BD
-                </div>
-            </a>
-
-            </div>
-        </div>
-        `;
-        });
-        $('.lista-curso-aside').html(template);
-
-
-    } */
     
     function lista(){
         $.ajax({
@@ -151,7 +107,6 @@ $(document).ready(function () {
                              if(datos[i][0][4] == 1){
                                 control_seleccion = "checked";
                                 control_del_chequeo = "temas_vistos";
-                                checkeo_final = `span-${(i+1)+"-"+(y)}`;
                              }else{
                                 control_del_chequeo = "";
                                 control_seleccion = "disabled";
@@ -166,7 +121,7 @@ $(document).ready(function () {
                             template += `
                             <div class="demo row contenedor flex align-items-center cont-actividades">
                                     <input type="checkbox" id="customCheck-bloque-${(i+1)+"-"+(y-1)}" name="example1" ${control_seleccion}>
-                                    <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center desbloqueo-${i}"><span class="registro_tema"></span></label>
+                                    <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center"><span class="registro_tema"></span></label>
                                     <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">-${datos[i][2]}</a>
                                 <div class="span-${(i+1)+"-"+(y-1)}" style="display: none;">`;
                                 cont = 0;
@@ -182,14 +137,14 @@ $(document).ready(function () {
                                         cont++;
                                     }
                                     if(datos[i][3][z][5] == 1){
-                                        control_seleccion = "checked";
-                                        //guardo el id proviniente de la base de datos del tema
-                                        id_actual_base = datos[i][3][z+1][0];
-                                        //guardo el link del video para mostrarlo
-                                        control_video = datos[i][3][z+1][3];
-                                        //guardo el id con el que se lleva el control del cambio de la infomacion del tema
-                                        id_control_direccionamiento = (i+1)+"-"+(z+2);
-                                        cont++;
+                                            //guardo el id proviniente de la base de datos del tema
+                                            id_actual_base = datos[i][3][z][0];
+                                            control_seleccion = "checked";
+                                            //guardo el link del video para mostrarlo
+                                            control_video = datos[i][3][z][3];
+                                            //guardo el id con el que se lleva el control del cambio de la infomacion del tema
+                                            id_control_direccionamiento = (i+1)+"-"+(z+1);
+                                            cont++;
                                     }else{
                                         control_seleccion = "disabled";
                                     }
@@ -232,8 +187,7 @@ $(document).ready(function () {
                // console.log(template);
                 $('.lista-curso-aside').html(template);
                 obtenerMostrarDatosTema(id_actual_base);
-                console.log(checkeo_final);
-                $("#".checkeo_final).click();
+                $("#tema-"+id_control_direccionamiento).next().addClass("text-info");
             }
         });
     }
@@ -266,10 +220,22 @@ $(document).ready(function () {
         if($(this).prev().hasClass("temas_vistos")){
             id_de_base = $(this).prev().data("idtemabase");
             obtenerMostrarDatosTema(id_de_base);
+            $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
             id_actual_base = id_de_base;
-            id_control_direccionamiento = $(this).prev().attr("id");
+            console.log(id_actual_base);
+            datos = $(this).prev().attr("id").split("-");
+            id_control_direccionamiento = datos[1]+"-"+datos[2];
+            $(this).addClass("text-info");
         }
     });
+
+    $(document).on("click",".temas_vistos",function(){
+        $(this).prev().removeAttr("disabled");
+        registrarTemaCompletado($(this).data("idtemabase"));
+
+    });
+
+
 
           // MOSTRAR EXAMEN AL HACER CLIC EN EL ENLACE
           $(document).on("click",".mostrar-examen", function () {
@@ -313,11 +279,6 @@ $(document).ready(function () {
                     console.log(templete2);
                 }
             });
-    });
-
-    $(document).on('click','.temas_vistos',function(){
-        $(this).prev().removeAttr("disabled");
-        console.log($(this).data("idtemabase")); 
     });
 
     $(window).resize(function () {
