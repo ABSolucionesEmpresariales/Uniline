@@ -1,14 +1,23 @@
 $(document).ready(function () {
-$(document).on('click', '.compras', function(event){
-    $.post("../controllers/checkout.php", {idcurso: '1'}, function(response){
-       var stripe = Stripe('pk_test_OTcbgHS4tbxZaWVcZ1IjcUt900jFHDsOdd');
-       stripe.redirectToCheckout({
-           sessionId: response
-         }).then(function (result) {
-           // If `redirectToCheckout` fails due to a browser or network
-           // error, display the localized error message to your customer
-           // using `result.error.message`.
-         });
-      });
-});
+  $(document).on('click', '.compras', function (event) {
+    let idcurso = $(this).val();
+    $.post("../controllers/checkout.php", { idcurso: idcurso}, function (response) {
+   
+      if (response == "pagado") {
+        window.location.replace('../Views/dashboard.php?idcurso='+idcurso);
+      } else {
+        console.log(response);
+        var stripe = Stripe('pk_test_OTcbgHS4tbxZaWVcZ1IjcUt900jFHDsOdd');
+        stripe.redirectToCheckout({
+          sessionId: response
+        }).then(function (response) {
+        
+          swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
+           //imprimir mensaje ocurrio un problema
+          // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
+       
+        });
+      }
+    });
+  });
 });
