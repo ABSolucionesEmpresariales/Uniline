@@ -30,13 +30,13 @@ include '../controllers/registro-datos.php';
         </ul>
 
         <div class="tab-content" >
-            <div id="home" class="tab-pane fade in active">
+            <div id="home" class="tab-pane fade in active"> <!-- REGISTRO DE PROFESORES -->
                 <h3>Registro de Profesores</h3>
                 <hr>
                 <div class="form col-lg-5">
                     <form class="form-wrap" id="registro-profesor" method="post">
                         <input type="text" id="registrar-nombre" class="form-control" name="TNombre" placeholder="Nombre">
-                        <input type="text" id="registrar-edad" class="form-control" name="TTelefono" placeholder="Edad">
+                        <input type="text" id="registrar-edad" class="form-control" name="TEdad" placeholder="Edad">
                         <select id="registrar-grado" name="TGrado" class="form-control m-1" style="height: 35px!important">
                             <option value="">Selecciona grado de estudios</option>
                             <option value="Secundaria">Secundaria</option>
@@ -44,13 +44,13 @@ include '../controllers/registro-datos.php';
                             <option value="Universidad">Universidad</option>
                             <option value="Superior">Superior</option>
                         </select > 
-                        <input type="phone" id="registrar-tel" class="form-control" name="TPass" placeholder="Telefono">
-                        <input type="email" id="registrar-email" class="form-control" name="TNombre" placeholder="Email">
-                        <input type="password" id="registrar-pass" class="form-control" name="TTelefono" placeholder="Password">
+                        <input type="phone" id="registrar-tel" class="form-control" name="TTel" placeholder="Telefono">
+                        <input type="email" id="registrar-email" class="form-control" name="TEmail" placeholder="Email">
+                        <input type="password" id="registrar-pass" class="form-control" name="TPass" placeholder="Password">
                         <select id="registrar-estado2" name="TEstado" class="form-control m-1" style="height: 35px!important">
                         </select >
-                        <input type="text" id="registrar-municipio" class="form-control" name="TNombre" placeholder="Municipio">
-                        <input type="text" id="registrar-profesion" class="form-control" name="TTelefono" placeholder="Profesion">
+                        <input type="text" id="registrar-municipio" class="form-control" name="TMunicipio" placeholder="Municipio">
+                        <input type="text" id="registrar-profesion" class="form-control" name="TProfesion" placeholder="Profesion">
                         <br>
                         <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                     </form>
