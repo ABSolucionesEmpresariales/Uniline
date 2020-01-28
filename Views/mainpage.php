@@ -24,6 +24,8 @@ session_start();
  
     CSS
     ============================================= -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="../css/linearicons.css">
@@ -46,7 +48,8 @@ session_start();
   <!--
     JS
     ============================================= -->
-
+  <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script>
+  <script src="https://js.stripe.com/v3/"></script>
   <script src="../js/jquery.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
   <script src="../js/registro.js"></script>
