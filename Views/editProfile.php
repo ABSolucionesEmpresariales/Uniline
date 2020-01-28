@@ -36,6 +36,7 @@ include '../controllers/sesion.php'
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/styles/login.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylo.css">
     <link rel="stylesheet" href="../css/icons/all.css">
     <link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
 
@@ -54,21 +55,29 @@ include '../controllers/sesion.php'
        
   </head>
   <body>
-  <header id="header" id="home">
+  <header id="header">
     <div class="header-top">
       <div class="container">
-        <div class="row">
-          <div id="imagen-perfil" class="col-lg-6 col-md-2 col-sm-12 m-0 header-top-left float-left">
-            <a href="mainpage.php"><img src="../img/uniline2.png" alt="" title="" /></a>
+        <div class="row justify-content-between">
+          <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
+            <a href="mainpage.php"><img src="../img/uniline2.png" width="40%" alt="" title="" /></a>
           </div>
-          <div class="col-lg-6 col-sm-12 ml-auto header-top-right">
-            <nav id="nav-menu-container" class="float-right">
-              <div class= "row">
-                <a class="btn btn-sm text-center" href="mainpage.php" style="font-size: 17px"><span></span>Inicio</a>
-                <a class="btn btn-sm text-center" href="misCursos.php"style="font-size: 17px"><span></span>Mis cursos</a>
-                <a class="btn btn-sm text-center" href="misCursos.php"style="font-size: 17px"><span></span>Mas cursos</a>
-              </div>
-            </nav>
+          <div class="float-right">
+            <nav id="nav-menu-container">
+              <ul class="nav-menu">
+                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
+                <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
+                <img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image">
+                </a>
+                <div class="dropdown-menu opciones-perfil">
+                  <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                </div>
+              </ul>
+            </nav><!-- #nav-menu-container -->
           </div>
         </div>
       </div>

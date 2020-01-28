@@ -20,8 +20,8 @@ session_start();
   <!-- Site Title -->
   <title>Escuela Al Revés</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-  <!--
+  <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+ 
     CSS
     ============================================= -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -90,7 +90,7 @@ session_start();
 
                 <button class="btn-registrar btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
               </form>
-                             
+
             </div>
           </div>
         </div>
@@ -119,54 +119,44 @@ session_start();
     </div>
   </div>
   <!---------end modal ----------->
-  <header id="header" id="home">
-
-
-
-    <!--       <div class="header-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
-              <ul class="text-center">
-              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
-              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-              </ul>
-            </div>
-            <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-              <a href="tel:+953 012 3654 896"><span class="fa fa-phone-square"></span> <span class="text">+52 317 123 1234</span></a>
-              <a href="mailto:support@colorlib.com"><span class="fa fa-envelope"></span> <span class="text">soporte@ear.com</span></a>
-            </div>
-          </div>
-        </div>
-    </div>  -->
+  <header id="header">
     <div class="container main-menu">
-      <div class="row align-items-center d-flex justify-content-between">
-        <div id="logo" class="col-lg-4 d-none d-lg-block">
-          <a href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
+      <div class="row justify-content-between">
+        <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
+          <a href="mainpage.php"><img src="../img/uniline2.png" width="40%" alt="" title="" /></a>
         </div>
-        <nav id="nav-menu-container">
-          <ul class="nav-menu">
-            <?php
-            if (isset($_SESSION['acceso'])) {
-            ?>
-              <li><a class="text-center" href="mainpage.php">Inicio</a></li>
-              <li><a class="text-center" href="misCursos.php">Mis cursos</a></li>
-              <li><a class="text-center cambiarContacto" href="#home-contacto">Contacto</a></li>
-              <li><a class="text-center" href="editProfile.php"><img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
-            <?php
-            } else {
-            ?>
-              <li><a class="text-center" href="mainpage.php">Inicio</a></li>
-              <li><a data-toggle="modal" class="text-center" data-target="#modal-registro" href="#">Registrate</a></li>
-              <li><a class="text-center cambiarContacto" href="#home-contacto">Contacto</a></li>
-              <li><a class="text-center" id="autobtn" class="btn btn-primary btn-sm" style="color: white;" data-toggle="modal" href=".login">Login</a></li>
-            <?php
-            }
-            ?>
-          </ul>
-        </nav><!-- #nav-menu-container -->
+        <div class="float-right">
+          <nav id="nav-menu-container">
+            <ul class="nav-menu">
+              <?php
+              if (isset($_SESSION['acceso'])) {
+              ?>
+                <li class="mt-3"><a class="text-center" href="#home-banner" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
+                <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
+                <img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image">
+                </a>
+                <div id="drop" class="dropdown-menu opciones-perfil">
+                  <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                </div>
+                
+              <?php
+              } else {
+              ?>
+                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                <li class="mt-3"><a class="text-center" href="#" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                <li class="mt-3"><a data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
+                <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Login</a></li>
+              <?php
+              }
+              ?>
+            </ul>
+          </nav><!-- #nav-menu-container -->
+        </div>
       </div>
     </div>
   </header><!-- #header -->
@@ -385,7 +375,7 @@ session_start();
 
   <!-- Popular -->
 
-  <div class="popular page_section">
+  <div id="all-cursos" class="popular page_section">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -402,16 +392,16 @@ session_start();
     <button id="date-modal" type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#modal-cursos"></button>
 
     <!-- start banner Area -->
-    <section class="banner-area" id="home-contacto">
+    <section class="banner-area" id="home-contacto" style="height: 30rem;">
       <div class="overlay overlay-bg"></div>
       <div class="container">
-        <div class="row d-flex align-items-center justify-content-center">
+        <div class="row d-flex align-items-center justify-content-center mt-10">
           <div class="col-lg-12 text-center">
             <h1 class="text-white">
               Contacto
             </h1>
             <div class="col-lg-12 d-flex text-white justify-content-between">
-              <div class="single-contact-address d-flex flex-row">
+              <div class="single-contact-address d-inline-block">
                 <div class="icon">
                   <span class="fa fa-home"></span>
                 </div>
@@ -422,7 +412,7 @@ session_start();
                   </p>
                 </div>
               </div>
-              <div class="single-contact-address d-flex flex-row">
+              <div class="single-contact-address d-inline-block">
                 <div class="icon">
                   <span class="fa fa-phone"></span>
                 </div>
@@ -431,7 +421,7 @@ session_start();
                   <p>Lunes - Viernes con atención de 9 am - 4 pm</p>
                 </div>
               </div>
-              <div class="single-contact-address d-flex flex-row">
+              <div class="single-contact-address d-inline-block">
                 <div class="icon">
                   <span class="fa fa-envelope"></span>
                 </div>

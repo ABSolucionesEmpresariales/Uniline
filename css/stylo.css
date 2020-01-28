@@ -257,3 +257,35 @@ background-color: rgb(28, 28, 37);
    .over-bg-xl{
      height: 60rem;
    }
+   .opciones-perfil{
+    width: 15rem;
+    
+   }
+   .enlaces-perfil{
+    font-size: 25px;
+    color: black;
+    text-decoration: none;
+    
+ }
+   .enlaces-perfil:hover{
+     color: rgb(255, 115, 0);
+     text-decoration: none;
+     
+  }
+  .opciones-perfil-main{
+    margin-right: 8rem; 
+    padding: 2rem; 
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.164);
+   }
+   .enlaces-perfil-main{
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    
+ }
+   .enlaces-perfil-main:hover{
+     color: rgb(255, 115, 0);
+     text-decoration: none;
+     
+  }
