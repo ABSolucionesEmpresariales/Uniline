@@ -4,39 +4,42 @@ $(document).ready(function () {
   traerDatosCurso();
 
   ////////LLENAR COMBO CURSO//////////////
-  function traerDatosCurso(){
+  function traerDatosCurso() {
     $.ajax({
-        url: "../controllers/registro-datos.php",
-        type: "POST",
-        data: 'info-cursos=cursos',
+      url: "../controllers/registro-datos.php",
+      type: "POST",
+      data: 'info-cursos=cursos',
 
-        success: function (response) {
-          datos=JSON.parse(response);
-          template = '';
-          for (i = 0; i < datos.length; i++){
-            template +=
-                                `
+      success: function (response) {
+        datos = JSON.parse(response);
+        template = '';
+        for (i = 0; i < datos.length; i++) {
+          template +=
+            `
                   <option value="${datos[i][0]}">${datos[i][1]}</option>
 
                         `;
-          }     
-            $('#select-curso-tema').append(template);     
         }
+        $('#select-curso-tema').append(template);
+      }
     });
   }
 
   function datosUsuario() {
-    
-///////////////////AGREGAR A LA TABLA ANTES DE ENVIAR////////////////////////////
-    $(document).on('click','#btn-bloque-añadir', function(){
+
+    ///////////////////AGREGAR A LA TABLA ANTES DE ENVIAR////////////////////////////
+    $(document).on('click', '#btn-bloque-añadir', function () {
       var nombre = $('#nombre-bloque').val();
       var curso = $('#select-curso-tema').val();
+      var text = $('#select-curso-tema option:selected').text();
       template = '';
       template +=
         `
         <tr class="del">
-        <th scope="row" class="idcurso">${curso}</th>
-        <th scope="row" class="nombrecurso">${nombre}</th>
+        <td scope="row" class="idbloque" style="display: none;"></td>
+        <td scope="row" class="idcurso" style="display: none;">${curso}</td>
+        <td scope="row" class="nombrebloque">${nombre}</td>
+        <td scope="row">${text}</td>
         <td>
         <button id="borrar-bloque">borrar</button>
         </td>
@@ -48,47 +51,52 @@ $(document).ready(function () {
 
     });
 
-    $(document).on('click','#borrar-bloque', function(){//BORRA CONTENIDO ANTES DE ENVIAR
+    $(document).on('click', '#borrar-bloque', function () {//BORRA CONTENIDO ANTES DE ENVIAR
       $(this).parent().parent().remove();
     });
 
-    $(document).on('click','#btn-bloque', function(){//RESTABLECE VALORES A NULL AL AGREGAR A LA TABLA
-      var valores="";
+    $(document).on('click', '#btn-bloque', function () {//RESTABLECE VALORES A NULL AL AGREGAR A LA TABLA
+      var valores = "";
 
-    $('#datos-bloque').find("th").each(function(){
-      valores+=$(this).html()+"\n";
-    });
+      $('#datos-bloque').find("th").each(function () {
+        valores += $(this).html() + "\n";
+      });
 
-    ////////////MANDAR ARRAY A BACK(PHP)//////////////
+      ////////////MANDAR ARRAY A BACK(PHP)//////////////
 
-    let arrayCursos = [];
+      let arrayCursos = [];
 
-    document.querySelectorAll('#tabla tbody tr').forEach(function(e){
-      let fila = {
-        idcurso: e.querySelector('.idcurso').innerText,
-        nombrecurso: e.querySelector('.nombrecurso').innerText,
-      };
-      arrayCursos.push(fila);
-    });
+      document.querySelectorAll('#tabla tbody tr').forEach(function (e) {
+        let fila = [
+          e.querySelector('.idbloque').innerText,
+          e.querySelector('.nombrebloque').innerText,
+          e.querySelector('.idcurso').innerText,
 
-console.log(arrayCursos);
+         ];
+        arrayCursos.push(fila);
+      });
+
+     // console.debug(arrayCursos);
 
       $.ajax({
-            url: "../controllers/registro-datos.php",
-            type: "POST",
-            data: {'array': JSON.stringify(arrayCursos)},
+        url: "../controllers/bloque.php",
+        type: "POST",
+        data: {
+          'JSON': JSON.stringify(arrayCursos),
+          'accion': 'insertar'
+        },
 
-            success: function (response) {
-              if(response){
-                console.log("entra: "+response);
-              }
-              
-            }
-        });
+        success: function (response) {
+
+          console.log("entra: " + response);
+
+
+        }
+      });
 
     });
-    
-}
+
+  }
 
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];

@@ -9,8 +9,8 @@ if (!empty($_POST['accion'])) {
             $tabla =  json_decode($_POST['JSON']);
             for ($fila = 0; $fila < sizeof($tabla); $fila++) {
                 if (!empty($nombre = $tabla[$fila][$columna = 1]) && !empty($curso = $tabla[$fila][$columna = 2])) {
-                    $conexion->consultaPreparada(
-                        $tabla[$tabla],
+                    echo $conexion->consultaPreparada(
+                        $tabla[$fila],
                         "INSERT INTO bloque (idbloque,nombre,curso) VALUES (?,?,?)",
                         1,
                         "sss",
@@ -25,7 +25,7 @@ if (!empty($_POST['accion'])) {
             $tabla =  json_decode($_POST['JSON']);
             for ($fila = 0; $fila < sizeof($tabla); $fila++) {
                 if (!empty($nombre = $tabla[$fila][$columna = 1]) && !empty($curso = $tabla[$fila][$columna = 2])) {
-                    $conexion->consultaPreparada(
+                    echo $conexion->consultaPreparada(
                         $tabla[$fila],
                         "UPDATE bloque SET nombre = ?, curso = ? WHERE idbloque = ? ",
                         1,

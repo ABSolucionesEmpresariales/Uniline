@@ -70,8 +70,9 @@
                                 <table id="tabla" class="table">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">Curso</th>
+                                            
                                             <th scope="col">Nombre</th>
+                                            <th scope="col">Curso</th>
                                             <th scope="col">Opcion</th>
                                         </tr>
                                     </thead>
@@ -90,7 +91,7 @@
                                 <form class="form-wrap" id="registro-temas">
                                     <input type="text" id="nombre-tema" class="form-control" name="TTema" placeholder="Nombre del tema">
                                     <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TDescripcion-tema" placeholder="Descripcion del tema"></textarea>
-                                    <div>video<input type="file" id="video-tema" class="form-control" name="TVideo"></div>
+                                    <input type="text" id="video-tema" class="form-control" name="TVideo" placeholder="URL video"></<input>
                                     <div>archivo<input type="file" id="archivo-tema" class="form-control" name="TArchivo"></div>
                                     <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                 </form>
