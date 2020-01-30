@@ -6,11 +6,12 @@ $(document).ready(function () {
   ////////LLENAR COMBO CURSO//////////////
   function traerDatosCurso() {
     $.ajax({
-      url: "../controllers/registro-datos.php",
+      url: "../controllers/bloque.php",
       type: "POST",
-      data: 'info-cursos=cursos',
+      data: {'accion':'items'},
 
       success: function (response) {
+        console.log(response);
         datos = JSON.parse(response);
         template = '';
         for (i = 0; i < datos.length; i++) {
