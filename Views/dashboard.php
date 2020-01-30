@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once '../Modelos/Conexion.php';
+$_SESSION['idusuario'] = 1;
+$_SESSION['idcurso'] = 1;
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -53,6 +56,28 @@ session_start();
 </head>
 
 <body>
+
+  <div id="alertas" class="alert alert-danger fixed-top text-center" style="max-height:85px;display: none;">
+  </div>
+
+  <div class="modal fade" id="examenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Examen de diagnostico</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body calificacion">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary final" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header id="header" id="home">
     <div class="header-top">
       <div class="container">
@@ -87,7 +112,7 @@ session_start();
           </div>
             <div id="cambio-examen-video">
               <div class="flex bg-color justify-content-center">
-                  <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="../videos/Neon - 21368.mp4" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
+                  <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
               </div>
             
 
@@ -104,9 +129,7 @@ session_start();
                       <li class="nav-item no-padding">
                         <a class="nav-link" data-toggle="tab" href="#progress">Progreso del curso</a>
                       </li>
-                      <li class="nav-item no-padding">
-                        <a class="nav-link" data-toggle="tab" href="#tareas">Subir tareas</a>
-                      </li>
+
                     </ul>
                   </nav>
 
@@ -146,7 +169,27 @@ session_start();
                           <div class="loaders m-0 flex justify-content-center">
                             <div class="row elements_loaders_container col-lg-8">
                               <!-- Loader -->
-                              <div class="loader mb-0" data-perc=".50"></div>
+                              <?php 
+                                  $conexion = New Modelos\Conexion();
+                                  $datos_tema = array($_SESSION['idcurso']);
+                                  $cosulta_temas_curso = "SELECT COUNT(idtema) AS cantidadTemas FROM tema t 
+                                  INNER JOIN bloque b ON t.bloque = b.idbloque WHERE b.curso = ?";
+                                  $result = $conexion->consultaPreparada($datos_tema,$cosulta_temas_curso,2,"i",false,null);
+                              
+                                  $temas_curso = $result[0][0];
+                              
+                                  $consulta_temas_alumno = "SELECT COUNT(tema) FROM tema_completado tm 
+                                  INNER JOIN tema t ON t.idtema = tm.tema 
+                                  INNER JOIN bloque b ON b.idbloque = t.bloque WHERE b.curso = ? AND tm.usuario = ?";
+                                  $datos_temas_vistos = array($_SESSION['idcurso'],$_SESSION['idusuario']);
+                              
+                                  $result2 = $conexion->consultaPreparada($datos_temas_vistos,$consulta_temas_alumno,2,"ii",false,null);
+                              
+                                  $temas_vistos = $result2[0][0];
+                                  $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
+                                  $colculo = round($calculo);
+                              ?>
+                              <div id="progreso" class="loader mb-0" data-perc="<?php echo ".".$colculo ?>"></div>
                             </div>
                           </div>
                         </div><br>
@@ -171,23 +214,7 @@ session_start();
                       </div>
                     </div>
 
-                    <div class="tab-pane container fade" id="tareas">
-                      <div class="container">
-                        <hr>
-                        <h4 class="h4">Sube tus tareas aqui</h4>
-                        <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
-                        <form id="subir-tareas" class="form-control d-inline-flex col-lg-10">
-                          <div class="custom-file col-lg-10">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
-                          </div>
-                          <div class="col-lg-4">
-                            <button class="btn btn-primary" type="submit">Subir</button>
-                          </div>
 
-                        </form>
-                      </div>
-                    </div>
 
                     <div class="tab-pane container fade" id="contenido-comentarios">
                       <!--contenido de los cursos cuando es responsive-->
@@ -246,7 +273,42 @@ session_start();
   </div>
 
   <!-- area de tareas -->
-  <div id="seccion-tareas" class="area-tareas pl-5 pr-5">
+
+  <div id="seccion-tareas" class="area-tareas pl-5 pr-5" style="display:none;">
+      <div id="tareas">
+          <hr>
+          <h4 class="h4">Sube tus tareas aqui</h4>
+          <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
+          <form id="subir-tareas" class="form-control d-inline-flex col-lg-10">
+            <div class="custom-file col-lg-10">
+              <input type="file" name = "Fimagen" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
+              <input type="hidden" name="archivo" value="3">
+              <input class="actuali-homework" type="hidden" name="tarea">
+              <input class="bloque-archivo" type="hidden" name="bloque-tarea">
+            </div>
+            <div class="col-lg-4">
+              <button class="btn btn-primary" type="submit">Subir</button>
+            </div>
+          </form>
+
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th>Usuarios</th>
+                  <th>Descargar tarea</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <p class="ml-3 h3">Tu tarea del bloque</p>
+              <tbody class="bg-light cuerpo-tb-user">
+
+              </tbody>
+            </table>
+          </div>
+          
+      </div>
     <h4 class="h4">
       Sección de tareas
     </h4>

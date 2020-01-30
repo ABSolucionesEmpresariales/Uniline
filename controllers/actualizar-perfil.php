@@ -60,8 +60,6 @@ if(isset($_POST['updatePass'])){
         }
         return $resultado; 
     }
-
-
     $encriptado = "";
     $archivo = $_SESSION['imagen_perfil'];
     if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {

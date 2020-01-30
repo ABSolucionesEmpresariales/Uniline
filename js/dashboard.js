@@ -3,6 +3,27 @@ $(document).ready(function () {
     lista();
     let id_actual_base = "";
     let id_control_direccionamiento = "";
+    let cont_examen_preguntas = 0;
+    let id_examen = "";
+    let id_tarea = "";
+    let id_bloque = "";
+    obtenerProgresoDelCurso();
+    
+
+        /* MOSTRAR AREA DE TAREAS   */
+        $(document).on('click','.mostrar-tareas',function(e){
+            atributo = $(this).attr('href');
+            id_tarea = $(this).data("idtareabase");
+            id_bloque = $(this).data("idbloque");
+            console.log(id_bloque);
+            pintarTablaTareaBloque(id_bloque);
+            console.log(id_tarea);
+            $(atributo).slideDown("slow");
+            console.log(atributo);
+            $("html, body").animate({ scrollTop: $(atributo).offset().top },1000);
+            e.preventDefault();
+        });
+
 
         /* RESPONSIVE DE CONTENIDOS ESPECIFICOS*/
 
@@ -58,6 +79,41 @@ $(document).ready(function () {
         });
     }
 
+    function pintarTablaTareaBloque(bloque){
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:"tabla-bloque="+bloque,
+
+            success: function(response){
+                datos = JSON.parse(response);
+                console.log(datos);
+                template = ``;
+                $.each(datos,function(i,item){
+                    console.log(bloque);
+                    template +=`            
+                    <tr>
+                        <td class="text-nowrap text-center">
+                            <img src='${item[0]}' alt="perfil" class="course_author_image" width="30%">
+                        </td>
+                        <td class="text-nowrap text-center" >
+                            <a href="${item[1]}" download="tarea">
+                                <img src="../img/descargar.png" alt="descargar-archivo" width="8%">
+                            </a>
+                        </td>
+                        <td class="text-nowrap text-center">
+                            <td style="width: 5rem;">
+                                <div><button id="btn-calificar-tabla" class="btn btn-danger eliminar-tarea" data-idtarea="${item[2]}" type="button">Eliminar</button></div>
+                            </td>
+                        </td>
+                    </tr>`;
+                    
+                });
+                $('.cuerpo-tb-user').html(template);
+            }
+        });
+    }
+
 
     $(document).on('click', '.spam', function () {
         controlId = $(this).attr("id");
@@ -99,6 +155,8 @@ $(document).ready(function () {
                 control_video = "";
                 control_del_chequeo = "";
                 checkeo_final = ``;
+                examen = "";
+                bloque_tarea = "";
                 for(i = 0; i < datos.length; i++){
                     for(y = 0; y < datos[i].length; y++){
                          if(y == 0){
@@ -107,15 +165,22 @@ $(document).ready(function () {
                              if(datos[i][0][4] == 1){
                                 control_seleccion = "checked";
                                 control_del_chequeo = "temas_vistos";
+                                examen = "realizado";
+                                checkeo_final = "span-"+(i+1)+"-0";
                              }else{
                                 control_del_chequeo = "";
                                 control_seleccion = "disabled";
+                                examen = "";
+                                bloque_tarea = "d-none";
+                             }
+                             if(datos[0][0][4] != 1){
+                                id_examen = "1--"+1;
                              }
                             template += `
                                 <div class="demo row contenedor flex align-items-center cont-actividades">
                                     <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
                                     <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
-                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades">+${datos[i][0][1]}</a>
+                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">+${datos[i][0][1]}</a>
                                 </div>`;
                         }else if(y == 1){
                             template += `
@@ -133,7 +198,7 @@ $(document).ready(function () {
                                         //guardo el link del video para mostrarlo
                                         control_video = datos[i][3][z][3];
                                         //guardo el id con el que se lleva el control del cambio de la infomacion del tema
-                                        id_control_direccionamiento = (i+1)+"-"+(z+1);
+                                        id_control_direccionamiento = (i+1)+"-"+(z+1); 
                                         cont++;
                                     }
                                     if(datos[i][3][z][5] == 1){
@@ -158,16 +223,17 @@ $(document).ready(function () {
                         }else if(y == 4){
                             for(z = 0; z< datos[i][4].length; z++){
                                 template += `
-                                        <div class="tarea-${(i+1)+"--"+1}">
-                                            <a data-idtareabase="${datos[i][4][0][0]}" data-idtarea="${y + 1}" id="mostrar-tareas" class="mostrar-tareas" href="#seccion-tareas">
-                                                <h4 class="h5">Tareas del bloque</h4>
+                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea}">
+                                        <a data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="h5 mostrar-tareas" href="#seccion-tareas">Subir mi tarea</a>
+                                        <h4 ></h4>
+                                            <a data-idtarea="${y + 1}">
                                                 <div class="ml-5">`;
                                                 datdoles = "";
                                                 tema = "";
                                                 if(datos[i][4][0][3]){
                                                     datos_dow = datos[i][4][0][3].split("/");
                                                     datdoles = datos_dow[2];
-                                                    tema = "Descargar el archivo"
+                                                    tema = "Descargar Tarea"
                                                 }else{
                                                     tema = "No hay archivo disponible";
                                                     datdoles = "";
@@ -186,10 +252,34 @@ $(document).ready(function () {
                 }
                // console.log(template);
                 $('.lista-curso-aside').html(template);
-                obtenerMostrarDatosTema(id_actual_base);
-                $("#tema-"+id_control_direccionamiento).next().addClass("text-info");
+                if(id_actual_base != ""){
+                    obtenerMostrarDatosTema(id_actual_base);
+                    $("#"+checkeo_final).click();
+                    console.log(checkeo_final);
+                    $("#tema-"+id_control_direccionamiento).next().addClass("text-info");
+                }else{
+                    console.log(id_examen);
+                    $("#"+id_examen).click();
+                    $('.lista-curso-aside').addClass("d-none");
+                }
             }
         });
+    }
+
+    function obtenerProgresoDelCurso(){
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:"progresoDelCurso=progresoDelCurso",
+
+            success: function(response){
+                progreso = "."+response;
+                $('.loader').attr('data-perc',progreso);
+                $('.loader').data("perc",progreso);
+                console.log(progreso);
+                console.log( $('.loader'));
+            }
+        })
     }
 
     function obtenerMostrarDatosTema(id_de_base){
@@ -239,46 +329,158 @@ $(document).ready(function () {
 
           // MOSTRAR EXAMEN AL HACER CLIC EN EL ENLACE
           $(document).on("click",".mostrar-examen", function () {
-            idExamen_seleccionado = $(this).attr("id");
-            $('#'+idExamen_seleccionado).prev('label').prev('input').attr('checked','true');
-            $("#cambio-examen-video").addClass("d-none");
-            $("#contenido-examen").removeClass("d-none");
-            $.ajax({
-                url:"../controllers/dashboard.php",
-                type:"POST",
-                data:"examenBLoques="+$(this).data("idexamenbase"),
 
-                success: function(response){
-                    console.log(response);
-                    datos = JSON.parse(response);
-                    console.log(datos);
-                    templete2 = `
-                    <br>
-                    <h3 class="h3">${datos[0][0]}</h3>
-                    <hr>`;
-                    $.each(datos, function (i, item) {
-                        templete2 += `
-                            <div class="pregresp flex justify-content-center d-inline-block">
-                                <div class="pregunta">
-                                    ${item[2]}<br />
-                                </div>
-                                <div class="respuestas d-inline-flex flex justify-content-between">`;
-                                respuestas = item[3].split(',');
-                                for(y = 0; y < respuestas.length; y++){
-                                    nueva = respuestas[y].split('L904');
-                                    if(nueva[0] == 'L904'){
-                                 templete2 += `<li class="list-inline p-2"><input type="radio" name="preg1" value="${item[4]}">${nueva[1]}</li>`; 
-                                    }else{
-                                 templete2 += `<li class="list-inline p-2"><input type="radio" name="preg1" value="0">${respuestas[y]}</li>`; 
+            if($(this).hasClass('realizado') == false){
+                idExamen_seleccionado = $(this).attr("id");
+                //$('#'+idExamen_seleccionado).prev('label').prev('input').attr('checked','true');
+                $("#cambio-examen-video").addClass("d-none");
+                $("#contenido-examen").removeClass("d-none");
+                $.ajax({
+                    url:"../controllers/dashboard.php",
+                    type:"POST",
+                    data:"examenBLoques="+$(this).data("idexamenbase"),
+    
+                    success: function(response){
+                        console.log(response);
+                        datos = JSON.parse(response);
+                        console.log(datos);
+                        templete2 = `
+                        <br>
+                        <h3 class="h3">${datos[0][0]}</h3>
+                        <hr>`;
+                        $.each(datos, function (i, item) {
+                            templete2 += `
+                                <div class="pregresp flex justify-content-center d-inline-block">
+                                    <div class="pregunta">
+                                        ${item[2]}<br />
+                                    </div>
+                                    <div class="respuestas d-inline-flex flex justify-content-between">`;
+                                    respuestas = item[3].split(',');
+                                    cont_examen_preguntas ++;
+                                    for(y = 0; y < respuestas.length; y++){
+                                        nueva = respuestas[y].split('#');
+                                        console.log(nueva);
+                                        if(nueva[0] == ''){
+                                     templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="${item[4]}"><span>${nueva[1]}</span></li>`; 
+                                        }else{
+                                     templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="0"><span>${respuestas[y]}</span></li>`; 
+                                        }
                                     }
-                                }
-                        templete2 +=`</div></div><hr>`;
-                    });
-                    templete2 +=`<button class="ir-actividad">Enviar respuestas</button>`;
-                    $("#contenido-examen").html(templete2); 
-                    console.log(templete2);
+                            templete2 +=`</div></div><hr>`;
+                        });
+                        templete2 +=`
+                        <div class="alert alert-dark d-none alerta-examen" role="alert"></div>
+                        <button class="ir-actividad">Enviar respuestas</button>`;
+                        $("#contenido-examen").html(templete2); 
+                    }
+                });
+            }
+    });
+
+    $(document).on('click','.examen',function(){
+        console.log($(this).attr("id"));
+        preguntas = $(this).attr("id").split("-");
+       for(i=1; i<=4; i++){
+            $("#sal-"+preguntas[1]+"-"+i).removeClass("selected-user");
+        } 
+        $(this).addClass("selected-user");
+    });
+    
+    $(document).on('click','.ir-actividad',function(){
+        preguntas_id = "";
+        calificacion = 0;
+        respuestas_examen = "";
+        for(y=0; y < $('.selected-user').length; y++){
+            preguntas_id += "$" + $(".selected-user").eq(y).data("idpregunta");
+            respuestas_examen += "$" + $(".selected-user").eq(y).next("span").text();
+            if($('.selected-user').eq(y).val() != '0'){
+                calificacion++;
+            }
+        }
+        console.log(preguntas_id);
+        console.log(respuestas_examen);
+        porsentaje = 100 / parseInt(cont_examen_preguntas);
+        puntaje_alumno = porsentaje * parseFloat(calificacion);
+        const postada = {
+            respuestaExamen:"preguntas",
+            preguntas_id:preguntas_id,
+            respuestas_examen:respuestas_examen,
+            puntaje_alumno:puntaje_alumno
+        };
+         $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:postada,
+            success: function(response){
+                console.log(response);
+                $('.alerta-examen').removeClass("d-none");
+                $('.ir-actividad').addClass("d-none");
+                if(response != 0){
+                    $('.alerta-examen').html("<p class='h3'>Tu califuacion es: <span>"+ puntaje_alumno +"</span><br><input class='seguir-curso btn btn-primary' value='seguir' type='button'></p>");       
+                }else{
+                    $('.alerta-examen').html("<p class='h3'>Tu califuacion es: <span>"+ puntaje_alumno +"</span><br><input class='seguir-curso btn btn-primary' value='seguir' type='button'></p>");
                 }
-            });
+            }
+        }); 
+    });
+
+    $(document).on('click','.seguir-curso',function(){
+        location.reload();
+    });
+
+    $("#subir-tareas").submit(function(e){
+        $(".actuali-homework").val(id_tarea);
+        $(".bloque-archivo").val(id_bloque);
+        console.log($(".bloque-archivo").val());
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            url: "../controllers/dashboard.php",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            
+            success: function (response) {
+                console.log(response);
+                $("#alertas").addClass('alert-danger');
+                $("#alertas").removeClass('alert-success');
+                if(response == 1){
+                    $("#alertas").removeClass('alert-danger');
+                    $("#alertas").addClass('alert-success');
+                    $("#alertas").html('<i class="fas fa-check-circle m-2"></i>Registro Exitoso');
+                    $("#alertas").slideDown("slow");
+                    setTimeout(function(){
+                        $("#alertas").slideUp("slow");
+                      }, 3000);
+                    $("#subir-tareas").trigger("reset");
+                    pintarTablaTareaBloque(id_bloque);
+                }else if(response == "tareaExist"){
+                    $("#alertas").html('<i class="fas fa-times-circle m-2"></i></i>Ya existe una tarea en el bloque');
+                    $("#alertas").slideDown("slow");
+                    setTimeout(function(){
+                        $("#alertas").slideUp("slow");
+                      }, 3000);
+                }else{
+                    $("#alertas").html('<i class="fas fa-exclamation-triangle m-2"></i>Ups, algo salio mal,Por favor intentalo de nuevo');
+                    $("#alertas").slideDown("slow");
+                    setTimeout(function(){
+                      $("#alertas").slideUp("slow");
+                    }, 3000);
+                }
+                console.log(response);
+            }
+          });
+    });
+
+
+
+    // MOSTRAR ACTIVIDAD AL COMPLETAR EL EXAMEN
+
+
+    $(document).on('click',".nada",function(){
+        $("#cambio-examen-video").removeClass("d-none");
+        setTimeout(function() {$("#contenido-examen").html("");$("#contenido-examen").addClass("d-none");},200);
     });
 
     $(window).resize(function () {
@@ -360,18 +562,6 @@ $(document).ready(function () {
 
 
 
-    /* MOSTRAR AREA DE TAREAS   */
-    $('#seccion-tareas').hide();
-
-    $(".mostrar-tareas").on("click", function () {
-        $('#seccion-tareas').slideToggle();
-    });
-
-    $('.mostrar-tareas').on('click', function (e) {
-        e.preventDefault();
-        $("html, body").animate({ scrollTop: $('#seccion-tareas').offset().top }, 1000);
-    });
-
     /* VERIFICAR SI ESTA MARCADA EL CHECKBOX  */
 
     
@@ -437,15 +627,6 @@ $(document).ready(function () {
             $("#contenido-examen").html("");
             $("#contenido-examen").addClass("d-none");
             $("#cambio-examen-video").removeClass("d-none");
-            
         }
-    });
-
-    // MOSTRAR ACTIVIDAD AL COMPLETAR EL EXAMEN
-
-    $(document).on("click",".ir-actividad", function () {
-        $("#cambio-examen-video").removeClass("d-none");
-        setTimeout(function() {$("#contenido-examen").html("");$("#contenido-examen").addClass("d-none");},200);
-               
     });
 });

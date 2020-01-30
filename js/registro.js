@@ -96,7 +96,7 @@ $(document).ready(function () {
               sessionId: response
             }).then(function (response) {
             
-              swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
+                swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
                //imprimir mensaje ocurrio un problema
               // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
            

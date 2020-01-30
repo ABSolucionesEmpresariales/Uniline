@@ -27,11 +27,11 @@
         }else{
             $temp = explode(".", $_FILES[$nombre]["name"]);
             $newfilename = round(microtime(true)) . '.' . end($temp);
-            $imagen2 = $_SERVER['DOCUMENT_ROOT']."/"."archivos/".$newfilename."";
-            if(move_uploaded_file($_FILES[$nombre]["tmp_name"],"archivos/".$newfilename)){
-                return $imagen2;
+            $imagen2 = $_SERVER['DOCUMENT_ROOT']."/Uniline"."/"."archivos/"."Users/".$newfilename."";
+            if(move_uploaded_file($_FILES[$nombre]["tmp_name"],$imagen2)){
+                return "../archivos/Users/".$newfilename."";
             }else{
-                return 0;
+                return "error";
             }
         }
             
