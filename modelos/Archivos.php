@@ -29,7 +29,7 @@
             $newfilename = round(microtime(true)) . '.' . end($temp);
             $imagen2 = $_SERVER['DOCUMENT_ROOT']."/Uniline"."/"."archivos/"."Users/".$newfilename."";
             if(move_uploaded_file($_FILES[$nombre]["tmp_name"],$imagen2)){
-                return "../img/Users/".$newfilename."";
+                return "../archivos/Users/".$newfilename."";
             }else{
                 return "error";
             }

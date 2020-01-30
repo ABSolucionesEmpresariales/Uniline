@@ -111,16 +111,41 @@ if(isset($_POST['respuestaExamen'])){
 
 if(isset($_POST['archivo'])){
     $conexion = New Modelos\Conexion();
-    echo $_POST['tarea'];
-    if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
-       $archivo = subir_archivo('Fimagen',2);
-       if($archivo != "error"){
-            $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
-            $nada = "";
-            $datos = array($nada,$_POST['tarea'],$_SESSION['idusuario'],$archivo);
-            echo $conexion->consultaPreparada($datos,$consulta,1,"iiis",false,null);
-       }else{
-            echo 0;
-       }
+    $consulta_verificacion = "SELECT tm.id FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
+    INNER JOIN bloque b ON b.idbloque = t.bloque WHERE tm.usuario = ? AND b.idbloque = ?";
+    $datos_verificacion = array($_SESSION['idusuario'],$_POST['bloque-tarea']);
+    $result = json_encode($conexion->consultaPreparada($datos_verificacion,$consulta_verificacion,2,"ii",false,null));
+    if($result == "[]"){
+        if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
+            $archivo = subir_archivo('Fimagen',2);
+            if($archivo != "error"){
+                 $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
+                 $nada = "";
+                 $datos = array($nada,$_POST['tarea'],$_SESSION['idusuario'],$archivo);
+                 echo $conexion->consultaPreparada($datos,$consulta,1,"iiis",false,null);
+            }else{
+                 echo 0;
+            }
+         }
+    }else{
+        echo "tareaExist";
     }
+}
+
+if(isset($_POST['tabla-bloque'])){
+    $conexion = New Modelos\Conexion();
+    $consulta="SELECT u.imagen,tm.archivo,tm.id FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
+    INNER JOIN usuario u ON u.idusuario = tm.usuario 
+    WHERE tm.usuario = ? AND t.bloque = ?";
+    $datos_verificacion = array($_SESSION['idusuario'],$_POST['tabla-bloque']);
+    echo json_encode($conexion->consultaPreparada($datos_verificacion,$consulta,2,"ii",false,null));
+}
+
+if(isset($_POST['tabla_tareas_bloque'])){
+/*     $consulta = "SELECT c.calificacion FROM comentarios c 
+    INNER JOIN tarea_completada tm ON tm.id = c.id_relacion WHERE tm.usuario = 1"; */
+    $consulta = "SELECT u.imagen,tm.archivo,SUM(c.calificacion)/COUNT(c.calificacion) AS calificacion,tm.id 
+    FROM tarea_completada tm INNER JOIN comentarios c ON c.id_relacion = tm.id
+    INNER JOIN tarea t ON t.idtarea = tm.tarea INNER JOIN usuario u ON u.idusuario = tm.usuario 
+    WHERE tm.usuario = ? AND t.bloque = ?"
 }

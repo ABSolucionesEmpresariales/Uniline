@@ -57,6 +57,9 @@ $_SESSION['idcurso'] = 1;
 
 <body>
 
+  <div id="alertas" class="alert alert-danger fixed-top text-center" style="max-height:85px;display: none;">
+  </div>
+
   <div class="modal fade" id="examenModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -282,12 +285,29 @@ $_SESSION['idcurso'] = 1;
               <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
               <input type="hidden" name="archivo" value="3">
               <input class="actuali-homework" type="hidden" name="tarea">
+              <input class="bloque-archivo" type="hidden" name="bloque-tarea">
             </div>
             <div class="col-lg-4">
               <button class="btn btn-primary" type="submit">Subir</button>
             </div>
-
           </form>
+
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th>Usuarios</th>
+                  <th>Descargar tarea</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <p class="ml-3 h3">Tu tarea del bloque</p>
+              <tbody class="bg-light cuerpo-tb-user">
+
+              </tbody>
+            </table>
+          </div>
+          
       </div>
     <h4 class="h4">
       Sección de tareas
