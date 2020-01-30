@@ -1,5 +1,5 @@
 <?php 
-include '../Modelos/Archivos.php';
+require_once '../Modelos/Archivos.php';
 require_once '../Modelos/Conexion.php';
 
 session_start();
@@ -89,45 +89,4 @@ if(isset($_POST['updatePass'])){
         echo actualizar($imagen);
     }
 }
-
-/*
-
-function subirImagen($estado_imagen,$accion){
- 
-        $conexion = new Modelos\Conexion();
-        $estado_imagen;
-            
-
-        if($accion == 1){
-            $consulta_guardar_imagen = "INSERT INTO usuario (fotografia) VALUES (?)";
-            $tipos_de_datos = "s";
-            $respuesta = $conexion->consultaPreparada($estado_imagen, $consulta_guardar_imagen,1, $tipos_de_datos, false,null);
-            return $respuesta;
-        }else{
-            $consulta_editar_imagen = "UPDATE usuario SET fotografia = ? WHERE idusuario = ?";
-            $tipos_de_datos = "si";
-            $respuesta = $conexion->consultaPreparada($estado_imagen, $consulta_editar_imagen,1, $tipos_de_datos, true,null);
-            return $respuesta;
-
-        }
-
-    }
-
- if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
-    $archivo = subir_archivo('Fimagen',1);
-    if ($archivo == "Error") {
-        echo $archivo;
-    } else if ($archivo == "imagenNoValida") {
-        echo $archivo;
-    } else if ($archivo == "imagenGrande") {
-        echo $archivo;
-    } else {
-        $respuesta = subirImagen($archivo,1);
-        
-    }
-} else {
-    $respuesta = subirImagen("",1);
-    
-}
-*/
 ?>

@@ -22,10 +22,16 @@ include '../controllers/sesion.php'
   <title>Escuela Al Revés</title>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
   <!--
     CSS
     ============================================= -->
 
+  <link rel="stylesheet" href="../css/linearicons.css">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/magnific-popup.css">
@@ -38,8 +44,9 @@ include '../controllers/sesion.php'
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/styles/login.css">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/icons/all.css">
   <link rel="stylesheet" href="../css/stylo.css">
+  <link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
+  <link rel="stylesheet" href="../css/icons/all.css">
 
   <!--
     JS
@@ -52,19 +59,29 @@ include '../controllers/sesion.php'
 </head>
 
 <body>
-  <header id="header" id="home">
+  <header id="header">
     <div class="header-top">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
-            <div id="logo">
-              <a href="mainpage.php"><img src="../img/uniline2.png" width="20%" alt="" title="" /></a>
-            </div>
+        <div class="row justify-content-between">
+          <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
+            <a href="mainpage.php"><img src="../img/uniline2.png" width="40%" alt="" title="" /></a>
           </div>
-          <div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-            <a class="text-center" href="editProfile.php"><img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a>
-            <a class="btn btn-sm" href="editProfile.php"><span></span>Mi perfil</a>
-            <a class="btn btn-sm" style="color: white;" href="../controllers/sesion-destroy.php">Cerrar sesion</a>
+          <div class="float-right">
+            <nav id="nav-menu-container">
+              <ul class="nav-menu">
+                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
+                <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
+                <img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image">
+                </a>
+                <div class="dropdown-menu opciones-perfil">
+                  <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                </div>
+              </ul>
+            </nav><!-- #nav-menu-container -->
           </div>
         </div>
       </div>
@@ -73,30 +90,30 @@ include '../controllers/sesion.php'
 
   <!-- Popular -->
 
-  <div class="popular page_section" style="max-height: 50rem; height: 50rem;">
+  <div class="popular page_section" style="max-height: 70rem; height: 70rem;">
     <div class="container">
       <div class="section_title text-center">
         <h2 id="hay-cursos" class="h1"></h2>
       </div>
-        <hr>
+      <hr>
 
-        <div class="table-responsive-sm">
-          <table class="table table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th colspan="2">Cusro</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Progreso</th>
-              </tr>
-            </thead>
-            <tbody id="lista-tabla-cursos">
-              <!-- carga de la lista de cursos de bd -->
-            </tbody>
-          </table>
-        </div>
-
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th colspan="2">Cusro</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Progreso</th>
+            </tr>
+          </thead>
+          <tbody id="lista-tabla-cursos">
+            <!-- carga de la lista de cursos de bd -->
+          </tbody>
+        </table>
       </div>
+
     </div>
+  </div>
   </div>
 
 
