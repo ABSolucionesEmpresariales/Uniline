@@ -446,7 +446,6 @@ $(document).ready(function () {
     $(document).on("click",".ir-actividad", function () {
         $("#cambio-examen-video").removeClass("d-none");
         setTimeout(function() {$("#contenido-examen").html("");$("#contenido-examen").addClass("d-none");},200);
-        
-        
+               
     });
 });

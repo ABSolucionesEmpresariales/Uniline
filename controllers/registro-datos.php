@@ -1,16 +1,23 @@
 <?php
 include '../Modelos/Archivos.php';
 require_once '../Modelos/Conexion.php';
-$conexion = new Modelos\Conexion();
 
-$consulta = "SELECT nombre FROM curso";
-$resultado = json_encode($conexion->obtenerDatosDeTabla($consulta));
+if(isset($_POST['info-cursos'])){
+    $conexion = new Modelos\Conexion();
 
-foreach($resultado as $opciones);
+    $consulta = "SELECT idcurso, nombre FROM curso";
+    $resultado = json_encode($conexion->obtenerDatosDeTabla($consulta));
+
+    echo $resultado;
+
+}
 
 
-echo '<option value="'.$valores[id].'">'.$valores[paises].'</option>';
+if(isset($_POST['array'])){
+    $data = json_decode($_POST['array']);
+    var_dump($data);
 
+}
 
      
 

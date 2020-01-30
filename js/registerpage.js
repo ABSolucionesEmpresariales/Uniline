@@ -1,32 +1,42 @@
 $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   datosUsuario();
+  traerDatosCurso();
 
-  $.ajax({
-    url: "../controllers/registro-datos.php",
-    type: "POST",
-    data: {'peticion':'cargar_listas'},
+  ////////LLENAR COMBO CURSO//////////////
+  function traerDatosCurso(){
+    $.ajax({
+        url: "../controllers/registro-datos.php",
+        type: "POST",
+        data: 'info-cursos=cursos',
 
-    success: function (response) {
-      datos=JSON.parse(response);
-      $('#select_curso_tema').html(datos);
-      
-        console.log(datos);
-     
-      
-    }
-});
+        success: function (response) {
+          datos=JSON.parse(response);
+          template = '';
+          for (i = 0; i < datos.length; i++){
+            template +=
+                                `
+                  <option value="${datos[i][0]}">${datos[i][1]}</option>
 
+                        `;
+          }     
+            $('#select-curso-tema').append(template);     
+        }
+    });
+  }
 
   function datosUsuario() {
-
+    
+///////////////////AGREGAR A LA TABLA ANTES DE ENVIAR////////////////////////////
     $(document).on('click','#btn-bloque-añadir', function(){
-      var cantidad = $('#nombre-bloque').val();
+      var nombre = $('#nombre-bloque').val();
+      var curso = $('#select-curso-tema').val();
       template = '';
       template +=
         `
         <tr class="del">
-        <th scope="row">${cantidad}</th>
+        <th scope="row" class="idcurso">${curso}</th>
+        <th scope="row" class="nombrecurso">${nombre}</th>
         <td>
         <button id="borrar-bloque">borrar</button>
         </td>
@@ -38,21 +48,35 @@ $(document).ready(function () {
 
     });
 
-    $(document).on('click','#borrar-bloque', function(){
+    $(document).on('click','#borrar-bloque', function(){//BORRA CONTENIDO ANTES DE ENVIAR
       $(this).parent().parent().remove();
     });
 
-    $(document).on('click','#btn-bloque', function(){
+    $(document).on('click','#btn-bloque', function(){//RESTABLECE VALORES A NULL AL AGREGAR A LA TABLA
       var valores="";
 
-        $('#datos-bloque').find("th").each(function(){
-            valores+=$(this).html()+"\n";
-        });
+    $('#datos-bloque').find("th").each(function(){
+      valores+=$(this).html()+"\n";
+    });
+
+    ////////////MANDAR ARRAY A BACK(PHP)//////////////
+
+    let arrayCursos = [];
+
+    document.querySelectorAll('#tabla tbody tr').forEach(function(e){
+      let fila = {
+        idcurso: e.querySelector('.idcurso').innerText,
+        nombrecurso: e.querySelector('.nombrecurso').innerText,
+      };
+      arrayCursos.push(fila);
+    });
+
+console.log(arrayCursos);
 
       $.ajax({
             url: "../controllers/registro-datos.php",
             type: "POST",
-            data: 'valores='+valores,
+            data: {'array': JSON.stringify(arrayCursos)},
 
             success: function (response) {
               if(response){
