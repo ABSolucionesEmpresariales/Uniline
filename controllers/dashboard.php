@@ -1,11 +1,14 @@
 <?php
 require_once '../Modelos/Conexion.php';
+include '../Modelos/Archivos.php';
+$_SESSION['idusuario'] = 1;
+$_SESSION['idcurso'] = 1;
 
 if(isset($_POST['datos_lista'])){
     $conexion = New Modelos\Conexion();
     // consulta que trae los bloques del curso  
     $consulta_bloque_curso = "SELECT b.idbloque,b.nombre FROM bloque b WHERE b.curso = ?";
-    $datos_bloques = array(1);
+    $datos_bloques = array($_SESSION['idcurso']);
     $datos_consulta_bloque = $conexion->consultaPreparada($datos_bloques,$consulta_bloque_curso,2,"i",false,null);
 
     $array_datos_examen = array();
@@ -19,12 +22,12 @@ if(isset($_POST['datos_lista'])){
         $consulta_examen_bloque = "SELECT a.idexamen,a.nombre,a.descripcion,b.calificacion,case when b.examen is null then 0 else 1 end as examenes_realizados 
         FROM examen a LEFT JOIN (SELECT * FROM examen_completado tm WHERE tm.usuario = ?) b on a.idexamen = b.examen INNER JOIN bloque c ON c.idbloque = a.bloque 
         WHERE c.curso = ? AND a.bloque = ?";
-        $datos_examen = array(1,1,$datos_consulta_bloque[$i][0]);
+        $datos_examen = array($_SESSION['idusuario'],$_SESSION['idcurso'],$datos_consulta_bloque[$i][0]);
         $array_temporales_examen = $conexion->consultaPreparada($datos_examen,$consulta_examen_bloque,2,"iis",false,null);
         //echo json_encode($array_temporales_examen); 
 
     // <<< consulta que trae los temas del curso del usuario  >>> 
-        $datos_consulta_temas = array(1,$datos_consulta_bloque[$i][0],1);
+        $datos_consulta_temas = array($_SESSION['idusuario'],$datos_consulta_bloque[$i][0],$_SESSION['idcurso']);
         $consulta_temas_bloque = "SELECT a.idtema,a.nombre,a.descripcion,a.video,a.archivo,case when b.tema is null then 0 else 1 end as temas_vistos 
         FROM tema a LEFT JOIN (SELECT * FROM tema_completado tm WHERE tm.usuario = ?) b on a.idtema = b.tema 
         INNER JOIN bloque c ON c.idbloque = a.bloque
@@ -81,3 +84,43 @@ if(isset($_POST['temaCompleto'])){
     $consulta = "INSERT INTO tema_completado (tema,usuario) VALUES (?,?)";
     echo $conexion->consultaPreparada($datos_tema,$consulta,1,"ii",false,null);
 }  
+
+if(isset($_POST['respuestaExamen'])){
+    $conexion = New Modelos\Conexion();
+    //echo $_POST['respuestaExamen'];
+    $respuestas_usuario = explode("$",$_POST['respuestas_examen']);
+    $id_preguntas = explode("$",$_POST['preguntas_id']);
+    //var_dump($id_preguntas);
+    $consulta = "INSERT INTO respuesta_usuario (idpregunta,usuario,respuesta) VALUES (?,?,?)";
+    for($i = 1; $i < count($respuestas_usuario); $i++){
+        $datos = array($id_preguntas[$i],$_SESSION['idusuario'],$respuestas_usuario[$i]);
+        $result = $conexion->consultaPreparada($datos,$consulta,1,"iis",false,null);
+    }
+    if($result == 1){
+        $dato = array($id_preguntas[1]);
+        $consulta_extraer_idexamen = "SELECT examen FROM pregunta WHERE idpregunta = ?";
+        $result2 = $conexion->consultaPreparada($dato,$consulta_extraer_idexamen,2,"i",false,null);
+        if($result2[0][0] != ''){
+            $consulta_insert_examen = "INSERT INTO examen_completado (examen,usuario,calificacion) VALUES(?,?,?)";
+            $datos = array($result2[0][0],$_SESSION['idusuario'],$_POST['puntaje_alumno']);
+            $result = $conexion->consultaPreparada($datos,$consulta_insert_examen,1,"iii",false,null);
+        }
+    }
+    echo  $result;
+}
+
+if(isset($_POST['archivo'])){
+    $conexion = New Modelos\Conexion();
+    echo $_POST['tarea'];
+    if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
+       $archivo = subir_archivo('Fimagen',2);
+       if($archivo != "error"){
+            $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
+            $nada = "";
+            $datos = array($nada,$_POST['tarea'],$_SESSION['idusuario'],$archivo);
+            echo $conexion->consultaPreparada($datos,$consulta,1,"iiis",false,null);
+       }else{
+            echo 0;
+       }
+    }
+}
