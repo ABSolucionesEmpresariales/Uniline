@@ -1,5 +1,6 @@
 <?php
 require_once '../Modelos/Conexion.php';
+session_start();
 
 if (!empty($_POST['accion'])) {
     $conexion = new Modelos\Conexion();
