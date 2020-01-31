@@ -2,10 +2,9 @@
 session_start();
 require_once '../Modelos/Conexion.php';
 
-if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque']) && !empty($_POST['accion'])) {
+if (!empty($_POST['accion'])) {
 
     $conexion = new Modelos\Conexion();
-    $datos = [$_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['SBloque']];
 
     switch ($_POST['accion']) {
 
@@ -18,9 +17,9 @@ if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TAD
                 false,
                 null
             );
-            if (empty($resultado)) {
+            if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque']) && !empty($_POST['accion']) && empty($resultado)) {
                 $conexion->consultaPreparada(
-                    $datos,
+                    array($_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['SBloque']),
                     "INSERT INTO examen (idexamen,nombre,descripcioon,bloque) VALUES (?,?,?,?)",
                     1,
                     "ssss",
@@ -28,19 +27,23 @@ if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TAD
                     null
                 );
             } else {
-                echo "El bloque ya contine un examen";
+                echo "El bloque ya contine un examen o los post no estan llegando correctamente";
             }
             break;
 
         case "editar":
-            $conexion->consultaPreparada(
-                $datos,
-                "UPDATE examen SET nombre = ?, descripcion = ?, curso = ? WHERE idbloque = ? ",
-                1,
-                "ssss",
-                true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
-                null
-            );
+            if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque']) && !empty($_POST['accion']) && empty($resultado)) {
+                $conexion->consultaPreparada(
+                    array($_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['SBloque']),
+                    "UPDATE examen SET nombre = ?, descripcion = ?, curso = ? WHERE idbloque = ? ",
+                    1,
+                    "ssss",
+                    true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
+                    null
+                );
+            } else {
+                echo "los post no estan llegando correctamente";
+            }
             break;
 
         case "items":
@@ -58,7 +61,7 @@ if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TAD
             echo json_encode($conexion->consultaPreparada(
                 array($_SESSION['idcurso']),
                 "SELECT idexamen,examen.nombre,examen.descripcion,bloque,bloque.nombre FROM examen INNER JOIN bloque 
-                ON examen.bloque = idbloque INNER JOIN curso ON bloque.curso = idcurso WHERE curso = ? ORDER BY idexamen ASC",
+                ON examen.bloque = idbloque INNER JOIN curso ON bloque.curso = idcurso WHERE curso = ? ORDER BY idbloque ASC",
                 2,
                 "s",
                 false,

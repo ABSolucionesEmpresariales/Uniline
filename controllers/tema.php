@@ -1,46 +1,47 @@
 <?php
 session_start();
 require_once '../Modelos/Conexion.php';
+require_once '../Modelos/Archivos.php';
 
-if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque']) && !empty($_POST['accion'])) {
+if (!empty($_POST['accion'])) {
 
+    if (!empty($_FILES['FArchivo']['tmp_name'])) {
+        $ruta = subir_archivo('FArchivo', 2);
+    } else {
+        $ruta = '';
+    }
     $conexion = new Modelos\Conexion();
-    $datos = [$_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['SBloque']];
 
     switch ($_POST['accion']) {
 
         case "insertar":
-            $resultado =  $conexion->consultaPreparada(
-                array($_POST['SBloque']),
-                "SELECT idexamen FROM examen WHERE bloque = ?",
-                2,
-                "s",
-                false,
-                null
-            );
-            if (empty($resultado)) {
+            if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
                 $conexion->consultaPreparada(
-                    $datos,
-                    "INSERT INTO examen (idexamen,nombre,descripcioon,bloque) VALUES (?,?,?,?)",
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['TVideo'], $ruta, $_POST['SBloque']),
+                    "INSERT INTO tema (idtema,nombre,descripcion,video,archivo, bloque) VALUES (?,?,?,?,?,?)",
                     1,
                     "ssss",
                     false,
                     null
                 );
             } else {
-                echo "El bloque ya contine un examen";
+                echo "los post no estan llegando correctamente";
             }
             break;
 
         case "editar":
-            $conexion->consultaPreparada(
-                $datos,
-                "UPDATE examen SET nombre = ?, descripcion = ?, curso = ? WHERE idbloque = ? ",
-                1,
-                "ssss",
-                true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
-                null
-            );
+            if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
+                $conexion->consultaPreparada(
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['TVideo'], $ruta, $_POST['SBloque']),
+                    "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo , bloque WHERE idtema = ? ",
+                    1,
+                    "ssss",
+                    true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
+                    null
+                );
+            } else {
+                echo "los post no estan llegando correctamente";
+            }
             break;
 
         case "items":
@@ -57,8 +58,8 @@ if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TAD
         case 'tabla':
             echo json_encode($conexion->consultaPreparada(
                 array($_SESSION['idcurso']),
-                "SELECT idexamen,examen.nombre,examen.descripcion,bloque,bloque.nombre FROM examen INNER JOIN bloque 
-                ON examen.bloque = idbloque INNER JOIN curso ON bloque.curso = idcurso WHERE curso = ? ORDER BY idexamen ASC",
+                "SELECT idtema,tema.nombre,tema.descripcion,video,archivo,bloque,bloque.nombre FROM tema INNER JOIN bloque 
+                ON tema.bloque = idbloque INNER JOIN curso ON bloque.curso = idcurso WHERE curso = ? ORDER BY idbloque ASC",
                 2,
                 "s",
                 false,
