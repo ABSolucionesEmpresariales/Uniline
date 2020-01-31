@@ -1,40 +1,33 @@
 <?php
 require_once '../Modelos/Conexion.php';
 
-if (!empty($_POST['accion'])) {
-    $conexion = new Modelos\Conexion();
+if (isset($_POST['idbloque']) && !empty($_POST['TNombre']) && !empty($_POST['SCurso']) && !empty($_POST['accion'])) {
+
+$conexion = new Modelos\Conexion();
+$datos = [$_POST['idbloque'],$_POST['TNombre'],$_POST['SCurso']];
+
     switch ($_POST['accion']) {
 
         case "insertar":
-            $tabla =  json_decode($_POST['JSON']);
-            for ($fila = 0; $fila < sizeof($tabla); $fila++) {
-                if (!empty($nombre = $tabla[$fila][$columna = 1]) && !empty($curso = $tabla[$fila][$columna = 2])) {
                     echo $conexion->consultaPreparada(
-                        $tabla[$fila],
+                        $datos,
                         "INSERT INTO bloque (idbloque,nombre,curso) VALUES (?,?,?)",
                         1,
                         "sss",
                         false,
                         null
                     );
-                }
-            }
             break;
 
         case "editar":
-            $tabla =  json_decode($_POST['JSON']);
-            for ($fila = 0; $fila < sizeof($tabla); $fila++) {
-                if (!empty($nombre = $tabla[$fila][$columna = 1]) && !empty($curso = $tabla[$fila][$columna = 2])) {
                     echo $conexion->consultaPreparada(
-                        $tabla[$fila],
+                        $datos,
                         "UPDATE bloque SET nombre = ?, curso = ? WHERE idbloque = ? ",
                         1,
                         "sss",
                         true,
                         null
                     );
-                }
-            }
             break;
 
         case "items":
@@ -46,6 +39,17 @@ if (!empty($_POST['accion'])) {
                 false,
                 null
             ));
+            break;
+
+            case 'tabla':
+                echo json_encode($conexion->consultaPreparada(
+                    array($_SESSION['idcurso']),
+                    "SELECT idbloque,bloque.nombre,curso,curso.nombre FROM bloque INNER JOIN curso ON curso = idcurso WHERE idcurso = ?",
+                    2,
+                    "s",
+                    false,
+                    null
+                ));
             break;
 
         default:

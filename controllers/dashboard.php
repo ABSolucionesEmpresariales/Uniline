@@ -4,148 +4,148 @@ include '../Modelos/Archivos.php';
 $_SESSION['idusuario'] = 1;
 $_SESSION['idcurso'] = 1;
 
-if(isset($_POST['datos_lista'])){
-    $conexion = New Modelos\Conexion();
+if (isset($_POST['datos_lista'])) {
+    $conexion = new Modelos\Conexion();
     // consulta que trae los bloques del curso  
     $consulta_bloque_curso = "SELECT b.idbloque,b.nombre FROM bloque b WHERE b.curso = ?";
     $datos_bloques = array($_SESSION['idcurso']);
-    $datos_consulta_bloque = $conexion->consultaPreparada($datos_bloques,$consulta_bloque_curso,2,"i",false,null);
+    $datos_consulta_bloque = $conexion->consultaPreparada($datos_bloques, $consulta_bloque_curso, 2, "i", false, null);
 
     $array_datos_examen = array();
     $array_datos_temas = array();
     $array_datos_tarea = array();
     $array_datos_total_examen_curso = array();
-    
-     for($i = 0; $i < count($datos_consulta_bloque); $i++){
 
-    // <<< consulta que trae los Examenenes del curso y si el usuario ya lo contesto  >>> 
+    for ($i = 0; $i < count($datos_consulta_bloque); $i++) {
+
+        // <<< consulta que trae los Examenenes del curso y si el usuario ya lo contesto  >>> 
         $consulta_examen_bloque = "SELECT a.idexamen,a.nombre,a.descripcion,b.calificacion,case when b.examen is null then 0 else 1 end as examenes_realizados 
         FROM examen a LEFT JOIN (SELECT * FROM examen_completado tm WHERE tm.usuario = ?) b on a.idexamen = b.examen INNER JOIN bloque c ON c.idbloque = a.bloque 
         WHERE c.curso = ? AND a.bloque = ?";
-        $datos_examen = array($_SESSION['idusuario'],$_SESSION['idcurso'],$datos_consulta_bloque[$i][0]);
-        $array_temporales_examen = $conexion->consultaPreparada($datos_examen,$consulta_examen_bloque,2,"iis",false,null);
+        $datos_examen = array($_SESSION['idusuario'], $_SESSION['idcurso'], $datos_consulta_bloque[$i][0]);
+        $array_temporales_examen = $conexion->consultaPreparada($datos_examen, $consulta_examen_bloque, 2, "iis", false, null);
         //echo json_encode($array_temporales_examen); 
 
-    // <<< consulta que trae los temas del curso del usuario  >>> 
-        $datos_consulta_temas = array($_SESSION['idusuario'],$datos_consulta_bloque[$i][0],$_SESSION['idcurso']);
+        // <<< consulta que trae los temas del curso del usuario  >>> 
+        $datos_consulta_temas = array($_SESSION['idusuario'], $datos_consulta_bloque[$i][0], $_SESSION['idcurso']);
         $consulta_temas_bloque = "SELECT a.idtema,a.nombre,a.descripcion,a.video,a.archivo,case when b.tema is null then 0 else 1 end as temas_vistos 
         FROM tema a LEFT JOIN (SELECT * FROM tema_completado tm WHERE tm.usuario = ?) b on a.idtema = b.tema 
         INNER JOIN bloque c ON c.idbloque = a.bloque
         WHERE a.bloque = ? AND c.curso = ?";
-        $array_temporales_temas = $conexion->consultaPreparada($datos_consulta_temas,$consulta_temas_bloque,2,"isi",false,null);
+        $array_temporales_temas = $conexion->consultaPreparada($datos_consulta_temas, $consulta_temas_bloque, 2, "isi", false, null);
 
-    // <<< consulta que trae las tareas del curso>>> 
+        // <<< consulta que trae las tareas del curso>>> 
         $consulta_tarea_curso = "SELECT * FROM tarea WHERE bloque = ?";
         $bloque_actual = array($datos_consulta_bloque[$i][0]);
-        $array_datos_tarea = $conexion->consultaPreparada($bloque_actual,$consulta_tarea_curso,2,"i",false,null);
-         
-       // echo count($datos_consulta_bloque[$i])+2;
-       // Funcion que restructur el arreglo final donde llevara toda oa infomacion
-         for($y = 0; $y < count($datos_consulta_bloque[$i]) + 3; $y++){
-            if($y == 0){
+        $array_datos_tarea = $conexion->consultaPreparada($bloque_actual, $consulta_tarea_curso, 2, "i", false, null);
+
+        // echo count($datos_consulta_bloque[$i])+2;
+        // Funcion que restructur el arreglo final donde llevara toda oa infomacion
+        for ($y = 0; $y < count($datos_consulta_bloque[$i]) + 3; $y++) {
+            if ($y == 0) {
                 //Metemos el examen en la pocicion 0
                 $array_datos_exame[$y] = $array_temporales_examen[$y];
-            }else if($y == count($datos_consulta_bloque[$i]) + 1){
+            } else if ($y == count($datos_consulta_bloque[$i]) + 1) {
                 //Metemos los temas del examen en la penultima posicion del arreglo
                 $array_datos_exame[$y] = $array_temporales_temas;
-            }else if($y == count($datos_consulta_bloque[$i]) + 2){
+            } else if ($y == count($datos_consulta_bloque[$i]) + 2) {
                 //Metemos las tareas en la ultima posicion del arreglo
                 $array_datos_exame[$y] = $array_datos_tarea;
-            }else{
+            } else {
                 //Metemos la demas infomacion del bloque
-                $array_datos_exame[$y] = $datos_consulta_bloque[$i][$y-1];
+                $array_datos_exame[$y] = $datos_consulta_bloque[$i][$y - 1];
             }
         }
         //Le damos a un array global que llevara el bloque ya estructurado para mostrar en el frente
-        $array_datos_total_examen_curso[$i] = $array_datos_exame; 
-    } 
+        $array_datos_total_examen_curso[$i] = $array_datos_exame;
+    }
     //Imprimimos el array con los bloques estructurados
-    echo json_encode($array_datos_total_examen_curso); 
+    echo json_encode($array_datos_total_examen_curso);
 }
 
-if(isset($_POST['examenBLoques'])){
-    $conexion = New Modelos\Conexion();
+if (isset($_POST['examenBLoques'])) {
+    $conexion = new Modelos\Conexion();
     $datos_examen = array($_POST['examenBLoques']);
     $consulta_examen_bloque = "SELECT e.descripcion,p.idpregunta,p.pregunta,p.respuestas,p.respuesta_correcta 
     FROM pregunta p INNER JOIN examen e ON e.idexamen = p.examen WHERE p.examen = ?";
-    echo json_encode($conexion->consultaPreparada($datos_examen,$consulta_examen_bloque,2,"i",false,null));
+    echo json_encode($conexion->consultaPreparada($datos_examen, $consulta_examen_bloque, 2, "i", false, null));
 }
 
-if(isset($_POST['DatosTemaAcutual'])){
-    $conexion = New Modelos\Conexion();
+if (isset($_POST['DatosTemaAcutual'])) {
+    $conexion = new Modelos\Conexion();
     $datos_tema = array($_POST['DatosTemaAcutual']);
     $consulta = "SELECT t.video,t.nombre,t.descripcion,t.archivo FROM tema t WHERE t.idtema = ?";
-    echo json_encode($conexion->consultaPreparada($datos_tema,$consulta,2,"i",false,null));
+    echo json_encode($conexion->consultaPreparada($datos_tema, $consulta, 2, "i", false, null));
 }
 
-if(isset($_POST['temaCompleto'])){
-    $conexion = New Modelos\Conexion();
-    $datos_tema = array($_POST['temaCompleto'],1);
+if (isset($_POST['temaCompleto'])) {
+    $conexion = new Modelos\Conexion();
+    $datos_tema = array($_POST['temaCompleto'], 1);
     $consulta = "INSERT INTO tema_completado (tema,usuario) VALUES (?,?)";
-    echo $conexion->consultaPreparada($datos_tema,$consulta,1,"ii",false,null);
-}  
+    echo $conexion->consultaPreparada($datos_tema, $consulta, 1, "ii", false, null);
+}
 
-if(isset($_POST['respuestaExamen'])){
-    $conexion = New Modelos\Conexion();
+if (isset($_POST['respuestaExamen'])) {
+    $conexion = new Modelos\Conexion();
     //echo $_POST['respuestaExamen'];
-    $respuestas_usuario = explode("$",$_POST['respuestas_examen']);
-    $id_preguntas = explode("$",$_POST['preguntas_id']);
+    $respuestas_usuario = explode("$", $_POST['respuestas_examen']);
+    $id_preguntas = explode("$", $_POST['preguntas_id']);
     //var_dump($id_preguntas);
     $consulta = "INSERT INTO respuesta_usuario (idpregunta,usuario,respuesta) VALUES (?,?,?)";
-    for($i = 1; $i < count($respuestas_usuario); $i++){
-        $datos = array($id_preguntas[$i],$_SESSION['idusuario'],$respuestas_usuario[$i]);
-        $result = $conexion->consultaPreparada($datos,$consulta,1,"iis",false,null);
+    for ($i = 1; $i < count($respuestas_usuario); $i++) {
+        $datos = array($id_preguntas[$i], $_SESSION['idusuario'], $respuestas_usuario[$i]);
+        $result = $conexion->consultaPreparada($datos, $consulta, 1, "iis", false, null);
     }
-    if($result == 1){
+    if ($result == 1) {
         $dato = array($id_preguntas[1]);
         $consulta_extraer_idexamen = "SELECT examen FROM pregunta WHERE idpregunta = ?";
-        $result2 = $conexion->consultaPreparada($dato,$consulta_extraer_idexamen,2,"i",false,null);
-        if($result2[0][0] != ''){
+        $result2 = $conexion->consultaPreparada($dato, $consulta_extraer_idexamen, 2, "i", false, null);
+        if ($result2[0][0] != '') {
             $consulta_insert_examen = "INSERT INTO examen_completado (examen,usuario,calificacion) VALUES(?,?,?)";
-            $datos = array($result2[0][0],$_SESSION['idusuario'],$_POST['puntaje_alumno']);
-            $result = $conexion->consultaPreparada($datos,$consulta_insert_examen,1,"iii",false,null);
+            $datos = array($result2[0][0], $_SESSION['idusuario'], $_POST['puntaje_alumno']);
+            $result = $conexion->consultaPreparada($datos, $consulta_insert_examen, 1, "iii", false, null);
         }
     }
     echo  $result;
 }
 
-if(isset($_POST['archivo'])){
-    $conexion = New Modelos\Conexion();
+if (isset($_POST['archivo'])) {
+    $conexion = new Modelos\Conexion();
     $consulta_verificacion = "SELECT tm.id FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
     INNER JOIN bloque b ON b.idbloque = t.bloque WHERE tm.usuario = ? AND b.idbloque = ?";
-    $datos_verificacion = array($_SESSION['idusuario'],$_POST['bloque-tarea']);
-    $result = json_encode($conexion->consultaPreparada($datos_verificacion,$consulta_verificacion,2,"ii",false,null));
-    if($result == "[]"){
-        if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
-            $archivo = subir_archivo('Fimagen',2);
-            if($archivo != "error"){
-                 $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
-                 $nada = "";
-                 $datos = array($nada,$_POST['tarea'],$_SESSION['idusuario'],$archivo);
-                 echo $conexion->consultaPreparada($datos,$consulta,1,"iiis",false,null);
-            }else{
-                 echo 0;
+    $datos_verificacion = array($_SESSION['idusuario'], $_POST['bloque-tarea']);
+    $result = json_encode($conexion->consultaPreparada($datos_verificacion, $consulta_verificacion, 2, "ii", false, null));
+    if ($result == "[]") {
+        if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
+            $archivo = subir_archivo('Fimagen', 2);
+            if ($archivo != "error") {
+                $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
+                $nada = "";
+                $datos = array($nada, $_POST['tarea'], $_SESSION['idusuario'], $archivo);
+                echo $conexion->consultaPreparada($datos, $consulta, 1, "iiis", false, null);
+            } else {
+                echo 0;
             }
-         }
-    }else{
+        }
+    } else {
         echo "tareaExist";
     }
 }
 
-if(isset($_POST['tabla-bloque'])){
-    $conexion = New Modelos\Conexion();
-    $consulta="SELECT u.imagen,tm.archivo,tm.id FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
+if (isset($_POST['tabla-bloque'])) {
+    $conexion = new Modelos\Conexion();
+    $consulta = "SELECT u.imagen,tm.archivo,tm.id FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
     INNER JOIN usuario u ON u.idusuario = tm.usuario 
     WHERE tm.usuario = ? AND t.bloque = ?";
-    $datos_verificacion = array($_SESSION['idusuario'],$_POST['tabla-bloque']);
-    echo json_encode($conexion->consultaPreparada($datos_verificacion,$consulta,2,"ii",false,null));
+    $datos_verificacion = array($_SESSION['idusuario'], $_POST['tabla-bloque']);
+    echo json_encode($conexion->consultaPreparada($datos_verificacion, $consulta, 2, "ii", false, null));
 }
 
-if(isset($_POST['tabla_tareas_bloque'])){
-/*     $consulta = "SELECT c.calificacion FROM comentarios c 
+if (isset($_POST['tabla_tareas_bloque'])) {
+    /*     $consulta = "SELECT c.calificacion FROM comentarios c 
     INNER JOIN tarea_completada tm ON tm.id = c.id_relacion WHERE tm.usuario = 1"; */
     $consulta = "SELECT u.imagen,tm.archivo,SUM(c.calificacion)/COUNT(c.calificacion) AS calificacion,tm.id 
     FROM tarea_completada tm INNER JOIN comentarios c ON c.id_relacion = tm.id
     INNER JOIN tarea t ON t.idtarea = tm.tarea INNER JOIN usuario u ON u.idusuario = tm.usuario 
-    WHERE tm.usuario = ? AND t.bloque = ?"
+    WHERE tm.usuario = ? AND t.bloque = ?";
 }
