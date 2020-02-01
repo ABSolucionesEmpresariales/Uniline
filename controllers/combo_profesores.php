@@ -25,13 +25,13 @@ if(isset($_POST['SCurso'])){
 
 }
 
-if(isset($_POST['info-examen'])){
+/*if(isset($_POST['info-examen'])){
     $conexion = new Modelos\Conexion();
     $consulta = "SELECT e.idexamen, e.nombre, e.descripcion, b.nombre FROM examen e LEFT JOIN bloque b ON e.bloque = b.idbloque";
     $resultado = json_encode($conexion->obtenerDatosDeTabla($consulta));
     echo $resultado;
 
-}
+}*/
 if(isset($_POST['info-profesores'])){
     $conexion = new Modelos\Conexion();
     $consulta = "SELECT * FROM usuario";

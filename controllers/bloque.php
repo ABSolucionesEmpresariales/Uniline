@@ -1,37 +1,43 @@
 <?php
-require_once '../Modelos/Conexion.php';
 session_start();
+require_once '../Modelos/Conexion.php';
 
-if (isset($_POST['idbloque']) && !empty($_POST['TNombre']) && !empty($_POST['SCurso']) && !empty($_POST['accion'])) {
+if (!empty($_POST['accion'])) {
 
 $conexion = new Modelos\Conexion();
-$datos = [$_POST['idbloque'],$_POST['TNombre'],$_POST['SCurso']];
+
 
     switch ($_POST['accion']) {
+        
 
-        case "insertar":
+        case "insertar":    
+           if(isset($_POST['idbloque']) && !empty($_POST['TNombre']) && !empty($_POST['SCurso'])){
                     echo $conexion->consultaPreparada(
-                        $datos,
+                        array($_POST['idbloque'],$_POST['TNombre'],$_POST['SCurso']),
                         "INSERT INTO bloque (idbloque,nombre,curso) VALUES (?,?,?)",
                         1,
                         "sss",
                         false,
                         null
                     );
+                }
             break;
 
         case "editar":
-                    echo $conexion->consultaPreparada(
-                        $datos,
+            if(isset($_POST['idbloque']) && !empty($_POST['TNombre']) && !empty($_POST['SCurso'])){
+                echo $conexion->consultaPreparada(
+                        array($_POST['idbloque'],$_POST['TNombre'],$_POST['SCurso']),
                         "UPDATE bloque SET nombre = ?, curso = ? WHERE idbloque = ? ",
                         1,
                         "sss",
                         true,
                         null
                     );
+                }
             break;
 
         case "items":
+            
             echo json_encode($conexion->consultaPreparada(
                 array($_SESSION['idusuario']),
                 "SELECT idcurso, nombre FROM curso WHERE profesor = ?",
@@ -57,4 +63,5 @@ $datos = [$_POST['idbloque'],$_POST['TNombre'],$_POST['SCurso']];
             echo "El tipo de accion no existe";
             break;
     }
+    
 }
