@@ -17,8 +17,10 @@ if (!empty($_POST['accion'])) {
 
         case "insertar":
             if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
+                $video = 'https://player.vimeo.com/video/';
+                $video .= end(explode('/', $_POST['TVideo']));
                 $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['TVideo'], $ruta, $_POST['SBloque']),
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_POST['SBloque']),
                     "INSERT INTO tema (idtema,nombre,descripcion,video,archivo, bloque) VALUES (?,?,?,?,?,?)",
                     1,
                     "ssss",
@@ -41,18 +43,15 @@ if (!empty($_POST['accion'])) {
             );
             if (!empty($respuesta) && empty($ruta)) {
                 $ruta = $respuesta[0][0];
+            } else if (!empty($respuesta) && !empty($ruta)) {
+                $ruta = $respuesta[0][0];
+                unlink($ruta);
             }
-            json_encode($conexion->consultaPreparada(
-                array($_SESSION['idusuario']),
-                "SELECT idbloque,bloque.nombre FROM bloque INNER JOIN curso ON bloque.curso = curso.idcurso WHERE profesor = ? ",
-                2,
-                "s",
-                false,
-                null
-            ));
-            if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
+            if (!empty($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
+                $video = 'https://player.vimeo.com/video/';
+                $video .= end(explode('/', $_POST['TVideo']));
                 $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['TVideo'], $ruta, $_POST['SBloque']),
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_POST['SBloque']),
                     "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo , bloque WHERE idtema = ? ",
                     1,
                     "ssss",
