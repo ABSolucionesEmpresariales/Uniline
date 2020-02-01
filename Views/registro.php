@@ -61,8 +61,7 @@
                                 <form class="form-wrap" id="registro-bloques">
                                     <input type="text" id="nombre-bloque" class="form-control" name="TBloques" placeholder="Nombre del Bloque">
                                     <br>
-                                    <button id="btn-bloque-añadir" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">añadir</button>
-                                    <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Enviar datos</button>
+                                    <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Añadir</button>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
