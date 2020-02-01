@@ -1,9 +1,12 @@
 $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
-  traerDatosCurso();  //pinta el combo con los cursos segun la sesion
+  
   llevarSelectSession(); //lleva a session lo que esta en ese momento en el select
   insertarBloques(); //inserta bloques a la BD
+  insertarTemas(); //inserta temas a la BD
+  
+  
 
 
   function pintar_Estados_Mexico(comboBox) {
@@ -44,9 +47,9 @@ $(document).ready(function () {
     });
   }
   ////////PINTAR COMBO CURSO//////////////
-  function traerDatosCurso() {
+  function traerDatosCombo(controllers,selector) {
     $.ajax({
-      url: "../controllers/bloque.php",
+      url: "../controllers/"+controllers,
       type: "POST",
       data: {'accion' : 'items' },
 
@@ -59,10 +62,10 @@ $(document).ready(function () {
           for (i = 0; i < datos.length; i++) {
             template += `<option value="${datos[i][0]}">${datos[i][1]}</option> `;
           }
-          $('#select-curso-tema').append(template);
+          $('#'+selector).html(template);
         }
         else {
-          $('#select-curso-tema').html('<option value="0">Selecciona un curso</option>');
+          $('#'+selector).html('<option value="0">Selecciona uno</option>');
         }
 
       }
@@ -71,7 +74,7 @@ $(document).ready(function () {
 
   ////////LLEVAR SELECT PARA METER A SESSION//////////////
   function llevarSelectSession() {
-    $(document).on('change', '#select-profe-tema', function () {
+    $(document).on('change', '#select-profe-tema', function () {//session al profe
       $.ajax({
         url: "../controllers/combo_profesores.php",
         type: "POST",
@@ -80,12 +83,13 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           if (response != '') {
-            traerDatosCurso();
+            traerDatosCombo('bloque.php','select-curso');  
+            
           }
         }
       });
     });
-    $(document).on('change', '#select-curso-tema', function () {
+    $(document).on('change', '#select-curso', function () { //session al curso
       $.ajax({
         url: "../controllers/combo_profesores.php",
         type: "POST",
@@ -94,7 +98,27 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           if (response != '') {
+            traerDatosCombo('tema.php','select-bloque');  
             datosBloques();
+            datosTemas();
+            
+          }
+        }
+      });
+    });
+    $(document).on('change', '#select-curso', function () { //session al bloque
+      $.ajax({
+        url: "../controllers/combo_profesores.php",
+        type: "POST",
+        data: 'SCurso=' + $(this).val(),
+
+        success: function (response) {
+          console.log(response);
+          if (response != '') {
+            traerDatosCombo('examen.php','select-examen');  //pinta el combo con los cursos segun la sesion
+            datosBloques();
+            datosTemas();
+            
           }
         }
       });
@@ -119,9 +143,9 @@ $(document).ready(function () {
           template +=
             `
             <tr class="examen">
-            <td scope="row" class="idbloque" style="display: none;">${datos[i][0]}</td>
-            <td scope="row" class="nombreBloque">${datos[i][1]}</td>
-            <td scope="row" class="CursoBloque">${datos[i][3]}</td>
+              <td scope="row" class="idbloque" style="display: none;">${datos[i][0]}</td>
+              <td scope="row" class="nombreBloque">${datos[i][1]}</td>
+              <td scope="row" class="CursoBloque">${datos[i][3]}</td>
             </tr>
             `;
         }
@@ -150,17 +174,65 @@ $(document).ready(function () {
           } else {
             alert("datos no enviados, hubo un error");
           }
-
-
         }
       });
-
     });
-
   }
 
-  //                                                     ### REGISTRO DE TEMAS START ##
+  ///////////////////////////////////////////////////////### REGISTRO DE TEMAS START ##/////////////////////////////
 
+  function datosTemas() {//PINTAR TABLA BLOQUES
+    $.ajax({
+      url: "../controllers/tema.php",
+      type: "POST",
+      data: {'accion': 'tabla'},
+      
+      success: function (response) {
+        template = '';
+        datos = JSON.parse(response);
+        console.log(datos);
+        for (i = 0; i < datos.length; i++) {
+          template +=
+            `
+            <tr class="tema">
+              <td scope="row" class="idtema" style="display: none;">${datos[i][0]}</td>
+              <td scope="row" class="nombreTema">${datos[i][1]}</td>
+              <td scope="row" class="DescripcionTema">${datos[i][2]}</td>
+              <td scope="row" class="videoTema">${datos[i][3]}</td>
+              <td scope="row" class="ArchivoTema">${datos[i][4]}</td>
+              <td scope="row" class="BloqueTema">${datos[i][6]}</td>
+            </tr>
+            `;
+        }
+        $('#datos-tema').html(template);
+      }
+    });
+  }
+  function insertarTemas() { //INSERTA DATOS A LA BD
+
+    $(document).on('click', '#btn-bloque', function () {
+      var idbloque = '';
+      var nombre = $('#nombre-bloque').val();
+      var curso = $('#select-curso-tema').val();
+      $.ajax({
+        url: "../controllers/bloque.php",
+        type: "POST",
+        data: {'idbloque': idbloque, 'TNombre': nombre, 'SCurso': curso,
+        'accion': 'insertar'},
+        
+        success: function (response) {
+          console.log(response);
+
+          if (response == 1) {
+            datosTemas();
+            $('#nombre-bloque').val("");
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
+        }
+      });
+    });
+  }
   //                                                     ### REGISTRO DE EXAMEN START ##
 
   
