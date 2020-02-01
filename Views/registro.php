@@ -21,17 +21,27 @@
         <div class="contenedor-registro">
             <h2>Registro a la Base de Datos</h2>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Profesores</a></li>
                         <li><a data-toggle="tab" href="#menu1">Cursos</a></li>
-                        <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>
-                        
+                        <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>                       
                         <li class="col-2" style="margin-right: 1rem;">
                             <select id="select-profe-tema" name="SProfesor" class="form-control m-1" style="height: 35px!important">
                                 <option value="0">Selecciona profesor</option>
                             </select>
                         </li>
+                        <li class="col-2" style="margin-right: 1rem;">
+                            <select id="select-curso" name="SCurso" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
+                                <option value="0">Selecciona un curso</option>
+                            </select>
+                        </li>
+                        <li class="col-2" style="margin-right: 1rem;">
+                        <select id="select-bloque" name="SBloque" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
+                                <option value="0">Selecciona bloque</option>
+                            </select>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -39,11 +49,6 @@
                 <div id="mas" class="tab-pane fade">
                     <div class="col-lg-12">
                         <ul class="nav nav-tabs">
-                            <li class="col-2" style="margin-right: 1rem;">
-                                <select id="select-curso-tema" name="SCurso" class="form-control m-1" style="height: 35px!important">
-                                    <option value="0">Selecciona un curso</option>
-                                </select>
-                            </li>
                             <li><a data-toggle="tab" href="#menu2">Bloques</a></li>
                             <li><a data-toggle="tab" href="#menu3">Temas</a></li>
                             <li><a data-toggle="tab" href="#menu4">Examen</a></li>
@@ -55,7 +60,7 @@
                     <div class="tab-content">
                         <div id="menu2" class="tab-pane fade">
                             <!-- REGISTRO DE BLOQUES -->
-                            <h3>Registro de Bloques</h3>
+                            <h3 style="margin-left: 1rem;">Registro de Bloques</h3>
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-bloques">
@@ -86,13 +91,14 @@
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-temas">
-                                    <input type="text" id="nombre-tema" class="form-control" name="TTema" placeholder="Nombre del tema">
-                                    <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TDescripcion-tema" placeholder="Descripcion del tema"></textarea>
+                                    <input type="hidden" value="insertar" name="accion">
+                                    <input type="hidden" value="" name="idtema">
+                                    <input type="text" id="nombre-tema" class="form-control" name="TNombre" placeholder="Nombre del tema">
+                                    <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TADescripcion" placeholder="Descripcion del tema"></textarea>
                                     <input type="text" id="video-tema" class="form-control" name="TVideo" placeholder="URL video"></<input>
-                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control" name="TArchivo"></div>
+                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control" name="FArchivo"></div>
                                     <br>
-                                    <button id="btn-tema-añadir" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">añadir</button>
-                                    <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Enviar datos</button>
+                                    <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir tema</button>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
@@ -101,8 +107,8 @@
                                         <tr>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Descripcion</th>
-                                            <th scope="col">video</th>
-                                            <th scope="col">archivo</th>
+                                            <th scope="col">Video</th>
+                                            <th scope="col">Archivo</th>
                                         </tr>
                                     </thead>
                                     <tbody id="datos-tema">

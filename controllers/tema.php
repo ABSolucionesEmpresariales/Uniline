@@ -4,7 +4,7 @@ require_once '../Modelos/Conexion.php';
 require_once '../Modelos/Archivos.php';
 
 if (!empty($_POST['accion'])) {
-
+   
     if (!empty($_FILES['FArchivo']['tmp_name'])) {
         $ruta = subir_archivo('FArchivo', 2);
     } else {
@@ -15,14 +15,16 @@ if (!empty($_POST['accion'])) {
     switch ($_POST['accion']) {
 
         case "insertar":
-            if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
+            var_dump($_POST['idtema'],$_POST['TNombre'],$_POST['TADescripcion'],$_POST['TVideo'],$_SESSION['idbloque'], $ruta);
+            if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_SESSION['idbloque'])) {
                 $video = 'https://player.vimeo.com/video/';
-                $video .= end(explode('/', $_POST['TVideo']));
-                $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_POST['SBloque']),
+                $idvideo = explode('/', $_POST['TVideo']);
+                $video .= end($idvideo);
+               echo $conexion->consultaPreparada(
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_SESSION['idbloque']),
                     "INSERT INTO tema (idtema,nombre,descripcion,video,archivo, bloque) VALUES (?,?,?,?,?,?)",
                     1,
-                    "ssss",
+                    "ssssss",
                     false,
                     null
                 );
