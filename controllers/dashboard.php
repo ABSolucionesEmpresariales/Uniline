@@ -148,8 +148,4 @@ if (isset($_POST['tabla_tareas_bloque'])) {
     FROM tarea_completada tm INNER JOIN comentarios c ON c.id_relacion = tm.id
     INNER JOIN tarea t ON t.idtarea = tm.tarea INNER JOIN usuario u ON u.idusuario = tm.usuario 
     WHERE tm.usuario = ? AND t.bloque = ?";
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> PerfilUsuario
