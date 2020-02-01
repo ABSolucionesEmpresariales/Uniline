@@ -9,6 +9,7 @@ $(document).ready(function () {
     let id_bloque = "";
     let calificacion_comentario = 0;
     let id_calificar_tarea = 0;
+    mostrarComentariosCurso();
 
        // VALORACION DE ESTRELLAS PARA CALIFICAR
        $(".clasificacion").find("input").change(function(){
@@ -21,6 +22,51 @@ $(document).ready(function () {
         })
         calificacion_comentario = $(this).val();
       });
+
+      $(document).on('click','#enviar',function(e){
+          e.preventDefault();
+         if($(".comment-curso").val() != ""){
+             $.ajax({
+                url:"../controllers/dashboard.php",
+                type:"POST",
+                data:"registro-coment="+$(".comment-curso").val(),
+
+                success: function(response){
+                    console.log(response);
+                    if(response == 1){
+                        mostrarComentariosCurso();
+                        $(".comment-curso").val("");
+                        $("section,div").animate({ scrollTop: $("#comentarios-7").offset().top },1000);
+                    }
+                }
+             });
+         }
+      });
+
+      function mostrarComentariosCurso(){
+            $.ajax({
+                url:"../controllers/dashboard.php",
+                type:"POST",
+                data:"comentariosCurso=comentariosCurso",
+
+                success: function(response){
+                    console.log(response);
+                    datos = JSON.parse(response);
+                    console.log(datos);
+                    templete_comentarios = ``;
+                    $.each(datos,function(i,item){
+                        templete_comentarios += `
+                        <div id="comentarios-${i+1}" class="border" style="height:7rem;">
+                            <li id="userComment" class="list-group list-group-action">${item[0]}</li>
+                            <li id="comment" class="list-group pl-5 pt-3 text-bold">${item[1]}</li>
+                            <li id="date" class="float-right list-group">${item[2]} ${item[3]}</li>
+                        </div>
+                        `; 
+                    });
+                    $("#area-comentarios").html(templete_comentarios);
+                }
+            });
+      }
 
       $(document).on('click','#btn-cali',function(){
         console.log($(".activo").eq(parseInt($('.activo').length - 1)).val());
@@ -37,12 +83,15 @@ $(document).ready(function () {
             type:"POST",
             data:form,
             success: function(response){
-                obtenerTareasBloque(bloque);
+                obtenerTareasBloque(id_bloque);
+                $("#coment-user").val("");
+                $('.calificar-tarea').removeClass("activo");
             }
         });
       });
 
       $(document).on('click','.btn-calificar-tabla',function(){
+          $('.mostrar-comentario').html("");
         id_calificar_tarea = $(this).data("idtarearealizada");
         $('.mostrar-comentario').addClass("d-none");
         $('.hide-calific').removeClass("d-none");
@@ -516,7 +565,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                                         nueva = respuestas[y].split('#');
                                         console.log(nueva);
                                         if(nueva[0] == ''){
-                                     templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="${item[4]}"><span>${nueva[1]}</span></li>`; 
+                                     templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span>${nueva[1]}</span></li>`; 
                                         }else{
                                      templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="0"><span>${respuestas[y]}</span></li>`; 
                                         }
