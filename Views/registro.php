@@ -91,10 +91,12 @@
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-temas">
-                                    <input type="text" id="nombre-tema" class="form-control" name="TTema" placeholder="Nombre del tema">
-                                    <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TDescripcion-tema" placeholder="Descripcion del tema"></textarea>
+                                    <input type="hidden" value="insertar" name="accion">
+                                    <input type="hidden" value="" name="idtema">
+                                    <input type="text" id="nombre-tema" class="form-control" name="TNombre" placeholder="Nombre del tema">
+                                    <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TADescripcion" placeholder="Descripcion del tema"></textarea>
                                     <input type="text" id="video-tema" class="form-control" name="TVideo" placeholder="URL video"></<input>
-                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control" name="TArchivo"></div>
+                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control" name="FArchivo"></div>
                                     <br>
                                     <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir tema</button>
                                 </form>

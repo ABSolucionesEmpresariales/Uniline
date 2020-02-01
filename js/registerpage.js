@@ -4,11 +4,7 @@ $(document).ready(function () {
   
   llevarSelectSession(); //lleva a session lo que esta en ese momento en el select
   insertarBloques(); //inserta bloques a la BD
-  insertarTemas(); //inserta temas a la BD
-  
-  
-
-
+ 
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];
     var i = 0;
@@ -94,9 +90,7 @@ $(document).ready(function () {
           console.log(response);
           if (response != '') {
             traerDatosCombo('tema.php','select-bloque');  
-            datosBloques();
-            datosTemas();
-            
+            datosBloques();           
           }
         }
       });
@@ -111,7 +105,6 @@ $(document).ready(function () {
           console.log(response);
           if (response != '') {
             traerDatosCombo('examen.php','select-examen');  //pinta el combo con los cursos segun la sesion
-            datosBloques();
             datosTemas();
             
           }
@@ -150,15 +143,15 @@ $(document).ready(function () {
   }
   function insertarBloques() { //INSERTA DATOS A LA BD
 
-    $('#registro-temas').submit(function (e) {
-      e.preventDefault();
-      var formData = new FormData(this);
+    $(document).on('click', '#btn-bloque', function () {
+      var idbloque = '';
+      var nombre = $('#nombre-bloque').val();
+      var curso = $('#select-curso-tema').val();
       $.ajax({
         url: "../controllers/bloque.php",
         type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
+        data: {'idbloque': idbloque, 'TNombre': nombre, 'SCurso': curso,
+        'accion': 'insertar'},
         
         success: function (response) {
           console.log(response);
@@ -202,20 +195,17 @@ $(document).ready(function () {
       }
     });
   }
-  function insertarTemas() { //INSERTA DATOS A LA BD
+  
 
-    $(document).on('click', '#btn-bloque', function () {
-      var idbloque = '';
-      var nombre = $('#nombre-tema').val();
-      var nombre = $('#descripcion-tema').val();
-      var curso = $('#video-tema').val();
-      var curso = $('#archivo-tema').val();
-
+    $("#registro-temas").submit(function(e) {
+      e.preventDefault();
+      var formData = new FormData(this);
       $.ajax({
-        url: "../controllers/bloque.php",
+        url: "../controllers/tema.php",
         type: "POST",
-        data: {'idbloque': idbloque, 'TNombre': nombre, 'SCurso': curso,
-        'accion': 'insertar'},
+        data: formData,
+        contentType: false,
+        processData: false,
         
         success: function (response) {
           console.log(response);
@@ -229,7 +219,7 @@ $(document).ready(function () {
         }
       });
     });
-  }
+  
   //                                                     ### REGISTRO DE EXAMEN START ##
 
   
