@@ -4,8 +4,18 @@ include '../Modelos/Archivos.php';
 $_SESSION['idusuario'] = 1;
 $_SESSION['idcurso'] = 1;
 
-if (isset($_POST['datos_lista'])) {
-    $conexion = new Modelos\Conexion();
+
+if(isset($_POST["id_cometario"])){
+    $conexion = New Modelos\Conexion();
+    $consulta_comentario = "SELECT u.imagen,u.nombre,c.comentario FROM comentarios c 
+    INNER JOIN usuario u ON u.idusuario = c.usuario
+    WHERE c.idComentario = ?";
+    $datos_camentario = array($_POST["id_cometario"]);
+    echo json_encode($conexion->consultaPreparada($datos_camentario,$consulta_comentario,2,"i",false,null));
+}
+
+if(isset($_POST['datos_lista'])){
+    $conexion = New Modelos\Conexion();
     // consulta que trae los bloques del curso  
     $consulta_bloque_curso = "SELECT b.idbloque,b.nombre FROM bloque b WHERE b.curso = ?";
     $datos_bloques = array($_SESSION['idcurso']);
@@ -109,26 +119,41 @@ if (isset($_POST['respuestaExamen'])) {
     echo  $result;
 }
 
-if (isset($_POST['archivo'])) {
-    $conexion = new Modelos\Conexion();
-    $consulta_verificacion = "SELECT tm.id FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
+if(isset($_POST['archivo'])){
+    $conexion = New Modelos\Conexion();
+    $datos_verificacion = array($_SESSION['idusuario'],$_POST['bloque-tarea']);
+    $consulta_verificacion = "SELECT tm.id,tm.archivo FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
     INNER JOIN bloque b ON b.idbloque = t.bloque WHERE tm.usuario = ? AND b.idbloque = ?";
-    $datos_verificacion = array($_SESSION['idusuario'], $_POST['bloque-tarea']);
-    $result = json_encode($conexion->consultaPreparada($datos_verificacion, $consulta_verificacion, 2, "ii", false, null));
-    if ($result == "[]") {
-        if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
-            $archivo = subir_archivo('Fimagen', 2);
-            if ($archivo != "error") {
-                $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
-                $nada = "";
-                $datos = array($nada, $_POST['tarea'], $_SESSION['idusuario'], $archivo);
-                echo $conexion->consultaPreparada($datos, $consulta, 1, "iiis", false, null);
-            } else {
-                echo 0;
+    $result = json_encode($conexion->consultaPreparada($datos_verificacion,$consulta_verificacion,2,"ii",false,null));
+
+    if($result == "[]"){
+        if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
+            $archivo = subir_archivo('Fimagen',2);
+            if($archivo != "error"){
+                 $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
+                 $nada = "";
+                 $datos = array($nada,$_POST['tarea'],$_SESSION['idusuario'],$archivo);
+                 echo $conexion->consultaPreparada($datos,$consulta,1,"iiis",false,null);
+            }else{
+                 echo 0;
             }
-        }
-    } else {
-        echo "tareaExist";
+         }
+    }else{     
+        $archivo = subir_archivo('Fimagen',2);
+        if($archivo != "error"){
+            $nomas = json_decode($result);
+            $datos = array($nomas[0][0],$archivo);
+            $consulta_update = "UPDATE tarea_completada SET archivo = ? WHERE id = ?";
+            $very = $conexion->consultaPreparada($datos,$consulta_update,1,"is",true,null);
+            if($very != 1){
+                echo 0;
+            }else{
+                unlink($nomas[0][1]);
+                echo $very;
+            }
+       }else{
+            echo 0;
+       }
     }
 }
 
@@ -144,8 +169,51 @@ if (isset($_POST['tabla-bloque'])) {
 if (isset($_POST['tabla_tareas_bloque'])) {
     /*     $consulta = "SELECT c.calificacion FROM comentarios c 
     INNER JOIN tarea_completada tm ON tm.id = c.id_relacion WHERE tm.usuario = 1"; */
-    $consulta = "SELECT u.imagen,tm.archivo,SUM(c.calificacion)/COUNT(c.calificacion) AS calificacion,tm.id 
-    FROM tarea_completada tm INNER JOIN comentarios c ON c.id_relacion = tm.id
-    INNER JOIN tarea t ON t.idtarea = tm.tarea INNER JOIN usuario u ON u.idusuario = tm.usuario 
+    $conexion = New Modelos\Conexion();
+    $consulta_temas = "SELECT u.idusuario,u.imagen,tm.archivo,tm.id FROM tarea_completada tm INNER JOIN tarea t ON t.idtarea = tm.tarea
+    INNER JOIN usuario u ON u.idusuario = tm.usuario WHERE t.bloque = ?";
+    $datos = array($_POST['tabla_tareas_bloque']);
+    $tareas_bloque = $conexion->consultaPreparada($datos,$consulta_temas,2,"i",false,null);
+
+    $consulta_calificacion = "SELECT SUM(c.calificacion) / COUNT(c.calificacion) AS calificacion FROM comentarios c 
+    INNER JOIN tarea_completada tm ON tm.id = c.id_relacion INNER JOIN tarea t ON t.idtarea = tm.tarea
     WHERE tm.usuario = ? AND t.bloque = ?";
+
+    $calificacion_total = "SELECT c.calificacion,c.idComentario AS calificacion FROM comentarios c 
+    INNER JOIN tarea_completada tm ON tm.id = c.id_relacion
+    INNER JOIN tarea t ON t.idtarea = tm.tarea 
+    WHERE tm.usuario = ? AND t.bloque = ?";
+
+    $cali_temporal = 0;
+    $array_final_1 = array();
+    $array_final_2 = array();
+    //echo json_encode($tareas_bloque);
+ 
+    for($i = 0; $i < count($tareas_bloque); $i++){
+        $datos_calificacion_bloque = array($tareas_bloque[$i][0],$_POST['tabla_tareas_bloque']);
+        $calificaion = $conexion->consultaPreparada($datos_calificacion_bloque,$consulta_calificacion,2,"ii",false,null);
+        $cali_temporal = round($calificaion[0][0]);
+        $cali_total = $conexion->consultaPreparada($datos_calificacion_bloque,$calificacion_total,2,"ii",false,null);
+
+        for($y = 1; $y < count($tareas_bloque[$i])+3; $y++){
+                if($y == 4){
+                    $array_final_1[$y-1] = $cali_total;
+                }else if($y == 5){
+                    $array_final_1[$y-1] = $cali_temporal;
+                }else if($y < 5){
+                    $array_final_1[$y-1] = $tareas_bloque[$i][$y-1];
+                }else if($y > 5){
+                    $array_final_1[$y-1] = $tareas_bloque[$i][$y-3];
+                }
+        } 
+        $array_final_2[$i] = $array_final_1;
+    } 
+    echo json_encode($array_final_2);
+}
+
+if(isset($_POST['id_calificar_tarea'])){
+    $conexion = New Modelos\Conexion();
+    $datos = array(NULL,$_POST['id_calificar_tarea'],$_SESSION['idusuario'],$_POST['comentario'],$_POST['valor_estrellas']);
+    $consulta = "INSERT INTO comentarios (idComentario,id_relacion,usuario,comentario,calificacion) VALUES(?,?,?,?,?)";
+    echo $conexion->consultaPreparada($datos,$consulta,1,"iiisi",false,null);
 }

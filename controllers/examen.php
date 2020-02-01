@@ -48,8 +48,8 @@ if (!empty($_POST['accion'])) {
 
         case "items":
             echo json_encode($conexion->consultaPreparada(
-                array($_SESSION['idusuario']),
-                "SELECT idbloque,bloque.nombre FROM bloque INNER JOIN curso ON bloque.curso = curso.idcurso WHERE profesor = ? ",
+                array($_SESSION['idcurso']),
+                "SELECT idbloque,bloque.nombre FROM bloque WHERE curso = ?",
                 2,
                 "s",
                 false,
@@ -59,9 +59,8 @@ if (!empty($_POST['accion'])) {
 
         case 'tabla':
             echo json_encode($conexion->consultaPreparada(
-                array($_SESSION['idcurso']),
-                "SELECT idexamen,examen.nombre,examen.descripcion,bloque,bloque.nombre FROM examen INNER JOIN bloque 
-                ON examen.bloque = idbloque INNER JOIN curso ON bloque.curso = idcurso WHERE curso = ? ORDER BY idbloque ASC",
+                array($_SESSION['idbloque']),
+                "SELECT idexamen,examen.nombre,examen.descripcion FROM examen WHERE bloque = ? ",
                 2,
                 "s",
                 false,
