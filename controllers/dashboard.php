@@ -1,6 +1,7 @@
 <?php
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
+include '../Modelos/Fecha.php';
 $_SESSION['idusuario'] = 1;
 $_SESSION['idcurso'] = 1;
 
@@ -138,22 +139,24 @@ if(isset($_POST['archivo'])){
                  echo 0;
             }
          }
-    }else{     
-        $archivo = subir_archivo('Fimagen',2);
-        if($archivo != "error"){
-            $nomas = json_decode($result);
-            $datos = array($nomas[0][0],$archivo);
-            $consulta_update = "UPDATE tarea_completada SET archivo = ? WHERE id = ?";
-            $very = $conexion->consultaPreparada($datos,$consulta_update,1,"is",true,null);
-            if($very != 1){
-                echo 0;
+    }else{    
+        if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
+            $archivo = subir_archivo('Fimagen',2);
+            if($archivo != "error"){
+                $nomas = json_decode($result);
+                $datos = array($archivo,$nomas[0][0]);
+                $consulta_update = "UPDATE tarea_completada SET archivo = ? WHERE id = ?";
+                $very = $conexion->consultaPreparada($datos,$consulta_update,1,"si",false,null);
+                if($very == 1){
+                    unlink($nomas[0][1]);
+                    echo $very;
+                }else{
+                    echo 0;
+                }
             }else{
-                unlink($nomas[0][1]);
-                echo $very;
+                echo 0;
             }
-       }else{
-            echo 0;
-       }
+         }
     }
 }
 
@@ -216,4 +219,20 @@ if(isset($_POST['id_calificar_tarea'])){
     $datos = array(NULL,$_POST['id_calificar_tarea'],$_SESSION['idusuario'],$_POST['comentario'],$_POST['valor_estrellas']);
     $consulta = "INSERT INTO comentarios (idComentario,id_relacion,usuario,comentario,calificacion) VALUES(?,?,?,?,?)";
     echo $conexion->consultaPreparada($datos,$consulta,1,"iiisi",false,null);
+}
+
+if(isset($_POST['registro-coment'])){
+    $conexion = New Modelos\Conexion();
+    $fecha = New Modelos\Fecha();
+    $consulta = "INSERT INTO comentarios (idComentario,id_relacion,usuario,comentario,fecha,hora) VALUES(?,?,?,?,?,?)";
+    $datos = array(null,$_SESSION['idcurso'],$_SESSION['idusuario'],$_POST['registro-coment'],$fecha->getFecha(),$fecha->getHora());
+    echo $conexion->consultaPreparada($datos,$consulta,1,"iiisss",false,null);
+}
+
+if(isset($_POST['comentariosCurso'])){
+    $conexion = New Modelos\Conexion();
+    $consulta = "SELECT u.nombre,c.comentario,c.hora,c.fecha FROM comentarios c 
+    INNER JOIN usuario u ON u.idusuario = c.usuario WHERE c.id_relacion = ?";
+    $datos = array($_SESSION['idcurso']);
+    echo json_encode($conexion->consultaPreparada($datos,$consulta,2,"i",false,null));
 }

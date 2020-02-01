@@ -10,7 +10,7 @@ if (isset($_SESSION['acceso'])){
     $usuario = $_SESSION['acceso'];
 }else{
 header('Location: ../views/mainpage.php');//Aqui lo redireccionas al lugar que quieras.
- die() ;
+ die();
 
 }
 

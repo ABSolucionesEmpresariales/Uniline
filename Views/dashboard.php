@@ -250,7 +250,7 @@ $_SESSION['idcurso'] = 1;
                 <section id="area-agregar-comentario" class="container flex justify-content-center">
                   <div class="row d-inline-flex" style="width: 100%">
                     <form action="" style="width: 100%;">
-                      <input class="col-lg-9 col-md-8 col-sm-7 input-field" type="text" placeholder="escribe un comentario..">
+                      <input class="col-lg-9 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
                       <input class="col-lg-2 col-md-3 col-sm-2 btn" type="submit" name="enviar" id="enviar" value="Enviar">
                     </form>
                   </div>
