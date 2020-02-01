@@ -5,6 +5,7 @@ require_once '../Modelos/Archivos.php';
 
 if (!empty($_POST['accion'])) {
 
+
     if (!empty($_FILES['FArchivo']['tmp_name'])) {
         $ruta = subir_archivo('FArchivo', 2);
     } else {

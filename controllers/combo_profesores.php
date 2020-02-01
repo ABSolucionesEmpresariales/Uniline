@@ -9,20 +9,19 @@ if(isset($_POST['info-cursos'])){
 
     $consulta = "SELECT * FROM usuario";
     echo json_encode($conexion->obtenerDatosDeTabla($consulta));
-
- 
-
 }
 
 if(isset($_POST['SProfesor'])){
     $_SESSION['idusuario'] = $_POST['SProfesor'];
     echo $_SESSION['idusuario'];
-
 }
 if(isset($_POST['SCurso'])){
     $_SESSION['idcurso'] = $_POST['SCurso'];
     echo $_SESSION['idcurso'];
-
+}
+if(isset($_POST['SBloque'])){
+    $_SESSION['idbloque'] = $_POST['SBloque'];
+    echo $_SESSION['idbloque'];
 }
 
 /*if(isset($_POST['info-examen'])){

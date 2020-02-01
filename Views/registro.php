@@ -96,7 +96,7 @@
                                     <input type="text" id="video-tema" class="form-control" name="TVideo" placeholder="URL video"></<input>
                                     <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control" name="TArchivo"></div>
                                     <br>
-                                    <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Añadir tema</button>
+                                    <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir tema</button>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
@@ -107,7 +107,6 @@
                                             <th scope="col">Descripcion</th>
                                             <th scope="col">Video</th>
                                             <th scope="col">Archivo</th>
-                                            <th scope="col">Bloque</th>
                                         </tr>
                                     </thead>
                                     <tbody id="datos-tema">

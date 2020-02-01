@@ -56,18 +56,13 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         datos = JSON.parse(response);
+        template = '<option value="0">Selecciona uno</option>';
         if (datos != '') {
-
-          template = '';
           for (i = 0; i < datos.length; i++) {
             template += `<option value="${datos[i][0]}">${datos[i][1]}</option> `;
           }
           $('#'+selector).html(template);
         }
-        else {
-          $('#'+selector).html('<option value="0">Selecciona uno</option>');
-        }
-
       }
     });
   }
@@ -106,11 +101,11 @@ $(document).ready(function () {
         }
       });
     });
-    $(document).on('change', '#select-curso', function () { //session al bloque
+    $(document).on('change', '#select-bloque', function () { //session al bloque
       $.ajax({
         url: "../controllers/combo_profesores.php",
         type: "POST",
-        data: 'SCurso=' + $(this).val(),
+        data: 'SBloque=' + $(this).val(),
 
         success: function (response) {
           console.log(response);
@@ -155,15 +150,15 @@ $(document).ready(function () {
   }
   function insertarBloques() { //INSERTA DATOS A LA BD
 
-    $(document).on('click', '#btn-bloque', function () {
-      var idbloque = '';
-      var nombre = $('#nombre-bloque').val();
-      var curso = $('#select-curso-tema').val();
+    $('#registro-temas').submit(function (e) {
+      e.preventDefault();
+      var formData = new FormData(this);
       $.ajax({
         url: "../controllers/bloque.php",
         type: "POST",
-        data: {'idbloque': idbloque, 'TNombre': nombre, 'SCurso': curso,
-        'accion': 'insertar'},
+        data: formData,
+        contentType: false,
+        processData: false,
         
         success: function (response) {
           console.log(response);
@@ -181,7 +176,7 @@ $(document).ready(function () {
 
   ///////////////////////////////////////////////////////### REGISTRO DE TEMAS START ##/////////////////////////////
 
-  function datosTemas() {//PINTAR TABLA BLOQUES
+  function datosTemas() {//PINTAR TABLA TEMAS
     $.ajax({
       url: "../controllers/tema.php",
       type: "POST",
@@ -200,7 +195,6 @@ $(document).ready(function () {
               <td scope="row" class="DescripcionTema">${datos[i][2]}</td>
               <td scope="row" class="videoTema">${datos[i][3]}</td>
               <td scope="row" class="ArchivoTema">${datos[i][4]}</td>
-              <td scope="row" class="BloqueTema">${datos[i][6]}</td>
             </tr>
             `;
         }
@@ -212,8 +206,11 @@ $(document).ready(function () {
 
     $(document).on('click', '#btn-bloque', function () {
       var idbloque = '';
-      var nombre = $('#nombre-bloque').val();
-      var curso = $('#select-curso-tema').val();
+      var nombre = $('#nombre-tema').val();
+      var nombre = $('#descripcion-tema').val();
+      var curso = $('#video-tema').val();
+      var curso = $('#archivo-tema').val();
+
       $.ajax({
         url: "../controllers/bloque.php",
         type: "POST",
