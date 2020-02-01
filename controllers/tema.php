@@ -30,6 +30,25 @@ if (!empty($_POST['accion'])) {
             break;
 
         case "editar":
+            $respuesta =  $conexion->consultaPreparada(
+                array($_POST['idtema']),
+                "SELECT archivo FROM tema WHERE idtema  = ?",
+                2,
+                "s",
+                false,
+                null
+            );
+            if (!empty($respuesta) && empty($ruta)) {
+                $ruta = $respuesta[0][0];
+            }
+            json_encode($conexion->consultaPreparada(
+                array($_SESSION['idusuario']),
+                "SELECT idbloque,bloque.nombre FROM bloque INNER JOIN curso ON bloque.curso = curso.idcurso WHERE profesor = ? ",
+                2,
+                "s",
+                false,
+                null
+            ));
             if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
                 $conexion->consultaPreparada(
                     array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['TVideo'], $ruta, $_POST['SBloque']),
