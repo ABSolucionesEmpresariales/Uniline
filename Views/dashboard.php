@@ -198,10 +198,10 @@ $_SESSION['idcurso'] = 1;
                             <h6 class="mb-15 h3">Calidad del curso</h6>
                             <div class="d-flex flex reviews justify-content-xl-around">
                               <span>Regular</span>
-                              <div class="star" style="color: yellow">
-                                <i id="1" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                                <i id="2" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                                <i id="3" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                              <div class="star" style="color: gray">
+                                <i id="1" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
+                                <i id="2" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
+                                <i id="3" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
                                 <i id="4" class="fa fa-star start estrella" style="cursor: pointer;"></i>
                                 <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
                               </div>
@@ -292,19 +292,17 @@ $_SESSION['idcurso'] = 1;
             </div>
           </form>
 
-          <div class="table-responsive">
+          <div class="table-responsive" style="width:960px;">
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr>
                   <th>Usuarios</th>
                   <th>Descargar tarea</th>
-                  <th>Eliminar</th>
                 </tr>
               </thead>
               <p class="ml-3 h3">Tu tarea del bloque</p>
-              <tbody class="bg-light cuerpo-tb-user">
-
-              </tbody>
+                <tbody class="bg-light cuerpo-tb-user">
+                </tbody>
             </table>
           </div>
           
@@ -319,48 +317,14 @@ $_SESSION['idcurso'] = 1;
       <table class="table table-hover">
         <thead class="thead-light">
           <tr>
-            <th>usuarios</th>
-            <th>tarea</th>
-            <th>calificaciones</th>
-            <th>calificar</th>
+            <th>Usuarios</th>
+            <th>Tarea</th>
+            <th>Calificaciones recividas</th>
+            <th>Calificacion</th>
+            <th>Calificar</th>
           </tr>
         </thead>
-        <tbody class="bg-light">
-          <tr>
-            <td style="width: 3rem;">
-              <img src="../img/users/perfil.png" alt="perfil" class="course_author_image">
-            </td>
-            <td style="width: 4rem;">
-              <a href="../img/users/1579284226.jpg" download="tarea-">
-                <img src="../img/descargar.png" alt="descargar-archivo" width="100%">
-              </a>
-            </td>
-            <td id="cali" class="d-inline-flex">
-              <div class="calificaciones mr-1">5</div>
-              <div class="calificaciones">3</div>
-            </td>
-            <td style="width: 5rem;">
-            <div><button id="btn-calificar-tabla" class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal">Calificar</button></div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src="../img/users/perfil.png" alt="perfil" class="course_author_image">
-            </td>
-            <td>
-              <a href="../img/users/1579284226.jpg" download="tarea-">
-                <img src="../img/descargar.png" alt="descargar-archivo" width="100%">
-              </a>
-            </td>
-            <td>
-              <div>
-                <div id="counter" class="calificaciones">0</div>
-              </div>
-            </td>
-            <td>
-              <div><button class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal">Calificar</button></div>
-            </td>
-          </tr>
+        <tbody class="bg-light tabla-tareas-completadas">
         </tbody>
       </table>
       <!-- Modal -->
@@ -370,25 +334,43 @@ $_SESSION['idcurso'] = 1;
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title h4">Califica esta tarea</h4>
+              <div class="text-center">
+                <h4 class="modal-title h4 ">Califica esta tarea</h4>
+              </div>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body text-center no-padding">
-              <p class="clasificacion">
-                <input id="radio1" type="radio" name="estrellas" value="1">
-                <label for="radio1">★</label>
-                <input id="radio2" type="radio" name="estrellas" value="2">
-                <label for="radio2">★</label>
-                <input id="radio3" type="radio" name="estrellas" value="3">
-                <label for="radio3">★</label>
-                <input id="radio4" type="radio" name="estrellas" value="4">
-                <label for="radio4">★</label>
-                <input id="radio5" type="radio" name="estrellas" value="5">
-                <label for="radio5">★</label>               
-              </p>
+            <div class="modal-body no-padding">
+              <div class="hide-calific text-center">
+                <div class="calificar">
+                  <p class="clasificacion">
+                    <input class="calificar-tarea" id="radio1" type="radio" name="estrellas" value="1">
+                    <label for="radio1">★</label>
+                    <input class="calificar-tarea" id="radio2" type="radio" name="estrellas" value="2">
+                    <label for="radio2">★</label>
+                    <input class="calificar-tarea" id="radio3" type="radio" name="estrellas" value="3">
+                    <label for="radio3">★</label>
+                    <input class="calificar-tarea" id="radio4" type="radio" name="estrellas" value="4">
+                    <label for="radio4">★</label>
+                    <input class="calificar-tarea" id="radio5" type="radio" name="estrellas" value="5">
+                    <label for="radio5">★</label>               
+                  </p>
+                </div>
+
+                <div class="cometario p-3">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                    <textarea id="coment-user" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                </div>
+
+              </div>
+              <div class="mostrar-comentario m-3">
+
+              </div>
             </div>
+
             <div class="modal-footer">
-              <button id="btn-cali" type="button" class="btn btn-default" data-dismiss="modal">Listo</button>
+              <button id="btn-cali" type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
             </div>
           </div>
 
