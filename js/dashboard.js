@@ -7,22 +7,180 @@ $(document).ready(function () {
     let id_examen = "";
     let id_tarea = "";
     let id_bloque = "";
-    obtenerProgresoDelCurso();
+    let calificacion_comentario = 0;
+    let id_calificar_tarea = 0;
+
+       // VALORACION DE ESTRELLAS PARA CALIFICAR
+       $(".clasificacion").find("input").change(function(){
+        var valor = $(this).val()
+        $(".clasificacion").find("input").removeClass("activo")
+        $(".clasificacion").find("input").each(function(index){
+           if(index+1<=valor){
+            $(this).addClass("activo");
+           }          
+        })
+        calificacion_comentario = $(this).val();
+      });
+
+      $(document).on('click','#btn-cali',function(){
+        console.log($(".activo").eq(parseInt($('.activo').length - 1)).val());
+        valor_estrellas = $(".activo").eq(parseInt($('.activo').length - 1)).val();
+        comentario = $("#coment-user").val();
+        console.log(comentario);
+        const form = {
+            id_calificar_tarea:id_calificar_tarea,
+            valor_estrellas:valor_estrellas,
+            comentario:comentario
+        };
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:form,
+            success: function(response){
+                obtenerTareasBloque(bloque);
+            }
+        });
+      });
+
+      $(document).on('click','.btn-calificar-tabla',function(){
+        id_calificar_tarea = $(this).data("idtarearealizada");
+        $('.mostrar-comentario').addClass("d-none");
+        $('.hide-calific').removeClass("d-none");
+        $('#btn-cali').removeClass('d-none');
+      });
+
+      $(document).on('click','.calificaciones',function(){
+        $('.mostrar-comentario').removeClass("d-none");
+        $('.hide-calific').addClass("d-none");
+        $('#btn-cali').addClass('d-none');
+        console.log($(this).data("idcomentario"));
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:"id_cometario="+$(this).data("idcomentario"),
+
+            success: function(response_2){
+                template_cometarios = ``;
+                datos = JSON.parse(response_2);
+template_cometarios =`<div>`;
+                    if(datos[0][0] == ""){
+template_cometarios =`  <img src="../img/Users/perfil.png" alt="Esta imagen no esta disponible">`;
+                    }else{
+template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="course_author_image">`;    
+                    }
+template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="course_author_image">
+                        <label class="ml-2">${datos[0][1]}</label>
+                    </div>
+                    <div>
+                        <p class="h4 mt-2">Comentario</p>
+                        <p>${datos[0][2]}</p>
+                    </div>
+                    `; 
+                    $(".mostrar-comentario").html(template_cometarios);
+            }
+        });
+
+      });
+
+      
+      $(".clasificacion").find("label").mouseover(function(){
+        var valor = $(this).prev("input").val()
+        $(".clasificacion").find("input").removeClass("activo")
+        $(".clasificacion").find("input").each(function(index){
+           if(index+1<=valor){
+            $(this).addClass("activo");
+           }
+        });
+      });
+
+    // MOSTRAR ACTIVIDAD AL HACER CLIC EN EL ENLACE
+    $(document).on("click",".mostrar-actividad", function () {
+        console.log($(this).data("idactividad"));
+        if($(this).data("idactividad") == 1){
+            $("#contenido-examen").html("");
+            $("#contenido-examen").addClass("d-none");
+            $("#cambio-examen-video").removeClass("d-none");
+        }
+    });
+
+
+    function obtenerTareasBloque(bloque){
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:"tabla_tareas_bloque="+bloque,
+
+            success: function(response){
+                console.log(response);
+                datos = JSON.parse(response);
+                console.log(datos);
+                templete_tarea = ``;
+                imagen = "";
+                $.each(datos,function(i,item){
+                    templete_tarea += `
+                    <tr>
+                        <td class="d-none">${item[0]}</td>
+                        <td style="width: 3rem;">`;
+                        if(item[1] == ""){
+         templete_tarea +=` <img src="../img/Users/perfil.png" alt="perfil" class="course_author_image">`;
+                        }else{
+         templete_tarea +=` <img src="${item[1]}" alt="perfil" class="course_author_image">`;
+                        }
+                        
+      templete_tarea +=`</td>
+                        <td style="width: 4rem;">
+                            <a href="${item[2]}" download="tarea-">
+                            <i class="fas fa-file-download text-dark" style="font-size:3rem;"></i>
+                        </a>
+                        </td>
+                        <td class="d-inline-flex">`;
+                        console.log(item[3].length);
+                        if(item[3].length == 0){
+                                templete_tarea +=`<div class="mr-1 cometario">Esta persona no a recibido calificaciones</div>`;
+                        }else{
+                            for(y=0; y < item[3].length; y++){
+                                templete_tarea +=`<div style="cursor:pointer;" data-toggle="modal" data-target="#myModal" data-idcomentario="${item[3][y][1]}" class="calificaciones mr-1 cometario">${item[3][y][0]}</div>`;
+                            }
+                        }
+      templete_tarea +=`</td>
+                        <td>
+                            <div class="star" style="color: gray">`;
+                            for(z=0; z < 5; z++){
+                                if(item[4] > z){
+            templete_tarea +=` <i class="fa fa-star start checked-2" style="cursor: pointer;"></i>`;
+                                }else{
+            templete_tarea +=` <i class="fa fa-star start" style="cursor: pointer;"></i>`;
+                                }
+                            }
+          templete_tarea +=`</div>
+                        </td>
+                        <td style="width: 5rem;">
+                            <div><button class="btn btn-info btn-calificar-tabla" data-idtarearealizada="${item[5]}" type="button" data-toggle="modal" data-target="#myModal">Calificar</button></div>
+                        </td>
+                    </tr>
+                    `;  
+                });
+
+                $(".tabla-tareas-completadas").html(templete_tarea);
+            }
+        });
+    }
     
 
-        /* MOSTRAR AREA DE TAREAS   */
-        $(document).on('click','.mostrar-tareas',function(e){
-            atributo = $(this).attr('href');
-            id_tarea = $(this).data("idtareabase");
-            id_bloque = $(this).data("idbloque");
-            console.log(id_bloque);
-            pintarTablaTareaBloque(id_bloque);
-            console.log(id_tarea);
-            $(atributo).slideDown("slow");
-            console.log(atributo);
-            $("html, body").animate({ scrollTop: $(atributo).offset().top },1000);
-            e.preventDefault();
-        });
+    /* MOSTRAR AREA DE TAREAS   */
+    $(document).on('click','.mostrar-tareas',function(e){
+        atributo = $(this).attr('href');
+        id_tarea = $(this).data("idtareabase");
+        id_bloque = $(this).data("idbloque");
+        console.log(id_bloque);
+        pintarTablaTareaBloque(id_bloque);
+        obtenerTareasBloque(id_bloque);
+        console.log(id_tarea);
+        $(atributo).slideDown("slow");
+        console.log(atributo);
+        $("html, body").animate({ scrollTop: $(atributo).offset().top },1000);
+        e.preventDefault();
+    });
 
 
         /* RESPONSIVE DE CONTENIDOS ESPECIFICOS*/
@@ -38,7 +196,7 @@ $(document).ready(function () {
         </li>
             `;
 
-    //Funcion que escucha cuando el video esta por terminar
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Funcion que escucha cuando el video esta por terminar >>>>>>>>>>>>>>>>>>>>>>>>>>>
     $("#video").on('ended', function () {
         //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
         datos_redirect = id_control_direccionamiento.split("-");
@@ -48,11 +206,13 @@ $(document).ready(function () {
         if($("#tema-"+id_redirecionado).length > 0){
             //checkeamos el tema actual
             $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+            //Se remueve la clase que lo identifica como activo
             $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
             //Realizar registro del tema
             registrarTemaCompletado(id_actual_base);
             //obtenemos los datos del nuevo tema para pintarlos
             obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
+            //Le agregamos la clase para indentificarlo activo
             $("#tema-"+id_redirecionado).next().addClass("text-info");
             //igualamos la variable global a el tema actual
             id_control_direccionamiento = id_redirecionado;
@@ -93,18 +253,13 @@ $(document).ready(function () {
                     console.log(bloque);
                     template +=`            
                     <tr>
-                        <td class="text-nowrap text-center">
+                        <td class="text-nowrap">
                             <img src='${item[0]}' alt="perfil" class="course_author_image" width="30%">
                         </td>
-                        <td class="text-nowrap text-center" >
+                        <td class="text-nowrap" style="width: 4rem;">
                             <a href="${item[1]}" download="tarea">
-                                <img src="../img/descargar.png" alt="descargar-archivo" width="8%">
-                            </a>
-                        </td>
-                        <td class="text-nowrap text-center">
-                            <td style="width: 5rem;">
-                                <div><button id="btn-calificar-tabla" class="btn btn-danger eliminar-tarea" data-idtarea="${item[2]}" type="button">Eliminar</button></div>
-                            </td>
+                            <i class="fas fa-file-download text-dark" style="font-size:3rem;"></i>
+                        </a>
                         </td>
                     </tr>`;
                     
@@ -125,14 +280,14 @@ $(document).ready(function () {
 
     $(document).on('click', '.estrella', function () {
         controlStart = $(this).attr("id");
-        if (controlStart == 1 && $('#' + controlStart).hasClass("checked") == true && $('#2').hasClass("checked") == false) {
-            $('#' + controlStart).removeClass('checked');
+        if (controlStart == 1 && $('#' + controlStart).hasClass("checked-2") == true && $('#2').hasClass("checked-2") == false) {
+            $('#' + controlStart).removeClass('checked-2');
         } else {
             for (i = 1; i <= 5; i++) {
                 if (i <= controlStart) {
-                    $('#' + i).addClass('checked');
+                    $('#' + i).addClass('checked-2');
                 } else {
-                    $('#' + i).removeClass('checked');
+                    $('#' + i).removeClass('checked-2');
                 }
             }
         }
@@ -266,7 +421,7 @@ $(document).ready(function () {
         });
     }
 
-    function obtenerProgresoDelCurso(){
+/*     function obtenerProgresoDelCurso(){
         $.ajax({
             url:"../controllers/dashboard.php",
             type:"POST",
@@ -280,7 +435,7 @@ $(document).ready(function () {
                 console.log( $('.loader'));
             }
         })
-    }
+    } */
 
     function obtenerMostrarDatosTema(id_de_base){
         $.ajax({
@@ -468,7 +623,6 @@ $(document).ready(function () {
                       $("#alertas").slideUp("slow");
                     }, 3000);
                 }
-                console.log(response);
             }
           });
     });
@@ -589,44 +743,4 @@ $(document).ready(function () {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    // VALORACION DE ESTRELLAS PARA CALIFICAR
-
-    $(".clasificacion").find("input").change(function(){
-        var valor = $(this).val()
-        $(".clasificacion").find("input").removeClass("activo")
-        $(".clasificacion").find("input").each(function(index){
-           if(index+1<=valor){
-            $(this).addClass("activo");
-           }          
-        })
-        $("#btn-cali").on("click", function () {
-            calificacion = `
-            <div class="calificaciones mr-1">${valor}</div>`;
-            $(calificacion).appendTo("#cali");
-            $('#btn-calificar-tabla').attr("disabled", true);
-            $('#btn-calificar-tabla').text("Calificado");
-        });
-      })
-      
-      $(".clasificacion").find("label").mouseover(function(){
-        var valor = $(this).prev("input").val()
-        $(".clasificacion").find("input").removeClass("activo")
-        $(".clasificacion").find("input").each(function(index){
-           if(index+1<=valor){
-            $(this).addClass("activo")
-           }
-           
-        })
-      })
-
-    // MOSTRAR ACTIVIDAD AL HACER CLIC EN EL ENLACE
-
-    $(document).on("click",".mostrar-actividad", function () {
-        console.log($(this).data("idactividad"));
-        if($(this).data("idactividad") == 1){
-            $("#contenido-examen").html("");
-            $("#contenido-examen").addClass("d-none");
-            $("#cambio-examen-video").removeClass("d-none");
-        }
-    });
 });
