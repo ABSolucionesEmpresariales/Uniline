@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,15 +17,21 @@
 
 <body>
 
-    <div class="container">
+    <div class="cont">
         <div class="contenedor-registro">
             <h2>Registro a la Base de Datos</h2>
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Profesores</a></li>
                         <li><a data-toggle="tab" href="#menu1">Cursos</a></li>
                         <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>
+                        
+                        <li class="col-2" style="margin-right: 1rem;">
+                            <select id="select-profe-tema" name="SProfesor" class="form-control m-1" style="height: 35px!important">
+                                <option value="0">Selecciona profesor</option>
+                            </select>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -33,23 +40,15 @@
                     <div class="col-lg-12">
                         <ul class="nav nav-tabs">
                             <li class="col-2" style="margin-right: 1rem;">
-                                <p>selecciona el curso</p>
-                                <select id="select-curso-tema" name="SCcurso" class="form-control m-1" style="height: 35px!important">
+                                <select id="select-curso-tema" name="SCurso" class="form-control m-1" style="height: 35px!important">
                                     <option value="0">Selecciona un curso</option>
                                 </select>
                             </li>
-                            <li class="col-2" style="margin-right: 1rem;">
-                                <p>selecciona el bloque</p>
-                                <select id="select-bloque-tema" name="SBloque" class="form-control m-1" style="height: 35px!important">
-                                    <option value="0">Selecciona un bloque</option>
-                                </select>
-                            </li>
-
-
                             <li><a data-toggle="tab" href="#menu2">Bloques</a></li>
                             <li><a data-toggle="tab" href="#menu3">Temas</a></li>
-                            <li><a data-toggle="tab" href="#menu4">Examenes</a></li>
-                            <li><a data-toggle="tab" href="#menu5">Tareas</a></li>
+                            <li><a data-toggle="tab" href="#menu4">Examen</a></li>
+                            <li><a data-toggle="tab" href="#menu5">Preguntas examen</a></li>
+                            <li><a data-toggle="tab" href="#menu6">Tareas</a></li>
                         </ul>
 
                     </div>
@@ -62,15 +61,14 @@
                                 <form class="form-wrap" id="registro-bloques">
                                     <input type="text" id="nombre-bloque" class="form-control" name="TBloques" placeholder="Nombre del Bloque">
                                     <br>
-
                                     <button id="btn-bloque-añadir" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">añadir</button>
+                                    <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Enviar datos</button>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
                                 <table id="tabla" class="table">
                                     <thead class="thead-light">
                                         <tr>
-                                            
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Curso</th>
                                             <th scope="col">Opcion</th>
@@ -80,7 +78,7 @@
 
                                     </tbody>
                                 </table>
-                                <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Enviar datos</button>
+                                
                             </div>
                         </div>
                         <div id="menu3" class="tab-pane fade">
@@ -92,25 +90,24 @@
                                     <input type="text" id="nombre-tema" class="form-control" name="TTema" placeholder="Nombre del tema">
                                     <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TDescripcion-tema" placeholder="Descripcion del tema"></textarea>
                                     <input type="text" id="video-tema" class="form-control" name="TVideo" placeholder="URL video"></<input>
-                                    <div>archivo<input type="file" id="archivo-tema" class="form-control" name="TArchivo"></div>
-                                    <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control" name="TArchivo"></div>
+                                    <br>
+                                    <button id="btn-tema-añadir" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">añadir</button>
+                                    <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Enviar datos</button>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
                                 <table class="table">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Descripcion</th>
                                             <th scope="col">video</th>
                                             <th scope="col">archivo</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="datos-tema">
 
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -121,9 +118,37 @@
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-examen">
+                                    <input type="text" id="nombre-examen" class="form-control" name="TNombre-examen" placeholder="escribe el nombre del examen">
+                                    <textarea rows="5" cols="50" id="descripcion-examen" class="form-control" name="TNombre-examen" placeholder="escribe una descripcion de este examen"></textarea>
+                                    <br>
+                                    <button id="btn-examen" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Enviar datos</button>
+                                </form>
+                                <hr>
+                            </div>
+                            <div class="form col-lg-7">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Bloque</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="datos-examen">
+   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="menu5" class="tab-pane fade">
+                            <!-- REGISTRO DE PREGUNTAS EXAMENEN -->
+                            <h3>Registro de Examenes</h3>
+                            <hr>
+                            <div class="form col-lg-5">
+                                <form class="form-wrap" id="registro-preguntas-examen">
 
                                     <p>nombre del examen</p>
-                                    <input type="text" id="nombre-examen" class="form-control" name="TNombre-examen" placeholder="escribe el nombre del examen">
+                                    <input type="text" id="preguntas-examen" class="form-control" name="TNombre-examen" placeholder="escribe el nombre del examen">
                                     <br>
                                     <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Guardar</button>
                                 </form>
@@ -178,7 +203,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="menu5" class="tab-pane fade">
+                        <div id="menu6" class="tab-pane fade">
                             <!-- REGISTRO DE TAREAS -->
                             <h3>Registro de tareas</h3>
                             <hr>
@@ -224,8 +249,14 @@
                     <!-- REGISTRO DE PROFESORES -->
                     <h3>Registro de Profesores</h3>
                     <hr>
-                    <div class="form col-lg-5">
+                    <div class="form col-lg-3">
                         <form class="form-wrap" id="registro-profesor">
+                            <div class="imagen flex">
+                                <div class="text-center">
+                                    <img id="foto-perfil" class="rounded-circle" width="70" height="70" src="../img/users/perfil.png" alt="foto de profesor">    
+                                    <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                </div>
+                            </div>
                             <input type="text" id="registrar-nombre" class="form-control" name="TNombre" placeholder="Nombre">
                             <input type="text" id="registrar-edad" class="form-control" name="TEdad" placeholder="Edad">
                             <select id="registrar-grado" name="TGrado" class="form-control m-1" style="height: 35px!important">
@@ -245,37 +276,69 @@
                             <br>
                             <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                         </form>
+                        
                     </div>
-                    <div class="col-7">
-                        <div class="imagen text-center">
-                            <img id="foto-perfil" class="rounded-circle" width="260" height="260" src="../img/users/perfil.png" alt="foto de profesor">
-                            <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                        </div>
+                    <div class="form col-lg-9">
+                        <table id="tabla-profesores" class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">Escolaridad</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Municipio</th>
+                                    <th scope="col">Trabajo</th>
+                                 </tr>
+                            </thead>
+                            <tbody id="datos-profesores">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div id="menu1" class="tab-pane fade">
                     <!-- REGISTRO DE CURSOS -->
                     <h3>Registro de Cursos</h3>
                     <hr>
-                    <div class="form col-lg-5">
+                    <div class="form col-lg-3">
                         <form class="form-wrap" id="registro-curso">
+                            <div class="imagen flex">
+                                <div class="text-center">
+                                    <img id="foto-curso" class="rounded-circle" width="70" height="70" src="../img/anadir.png" alt="foto de profesor">
+                                    <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
+                                </div>
+                            </div>
                             <input type="text" id="nombre-curso" class="form-control" name="TCurso" placeholder="Nombre del curso">
                             <textarea rows="5" cols="50" id="descripcion-curso" class="form-control" name="TADescripcion" placeholder="Descripcion del curso"></textarea>
                             <input type="text" id="horas-curso" class="form-control" name="THoras" placeholder="Horas del curso">
-                            <select id="selec-profesor" name="TProfesor" class="form-control m-1" style="height: 35px!important">
-                            </select>
                             <input type="text" id="costo-curso" class="form-control" name="TCosto" placeholder="Costo del curso">
                             <br>
-                            <div>selecciona un video de introduccion para el curso<input type="file" id="video-curso" class="form-control" name="TVideo" placeholder="video"></div>
+                            <input type="text" id="video-curso" class="form-control" name="TVideo" placeholder="URL video"></<input>
                             <br>
                             <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                         </form>
                     </div>
-                    <div class="col-5">
-                        <div class="imagen">
-                            <img id="foto-curso" class="rounded-circle" width="260" height="260" src="../img/anadir.png" alt="foto de profesor">
-                            <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
-                        </div>
+                    <div class="form col-lg-9">
+                        <table id="tabla-profesores" class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">URL Video</th>
+                                    <th scope="col">Horas</th>
+                                    <th scope="col">Calificacio</th>
+                                    <th scope="col">Profesor</th>
+                                    <th scope="col">Costo</th>
+                                 </tr>
+                            </thead>
+                            <tbody id="datos-cursos">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

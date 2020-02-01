@@ -1,5 +1,6 @@
 <?php
 require_once '../Modelos/Conexion.php';
+session_start();
 
 if (isset($_POST['idbloque']) && !empty($_POST['TNombre']) && !empty($_POST['SCurso']) && !empty($_POST['accion'])) {
 
