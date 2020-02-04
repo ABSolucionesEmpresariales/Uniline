@@ -1,0 +1,89 @@
+<?php
+session_start();
+require_once '../Modelos/Conexion.php';
+require_once '../Modelos/Archivos.php';
+
+if (!empty($_POST['accion'])) {
+   
+    if (!empty($_FILES['FArchivo']['tmp_name'])) {
+        $ruta = subir_archivo('FArchivo', 2);
+    } else {
+        $ruta = '';
+    }
+    $conexion = new Modelos\Conexion();
+
+    switch ($_POST['accion']) {
+
+        case "insertar":
+            if (isset($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque'])) {
+               echo $conexion->consultaPreparada(
+                    array($_POST['idtarea'], $_POST['TNombre'], $_POST['TADescripcion'], $ruta, $_SESSION['idbloque']),
+                    "INSERT INTO tarea (idtarea,nombre,descripcion,archivo_bajada, bloque) VALUES (?,?,?,?,?)",
+                    1,
+                    "sssss",
+                    false,
+                    null
+                );
+            } else {
+                echo "los post no estan llegando correctamente";
+            }
+            break;
+
+        case "editar":
+            $respuesta =  $conexion->consultaPreparada(
+                array($_POST['idtema']),
+                "SELECT archivo FROM tema WHERE idtema  = ?",
+                2,
+                "s",
+                false,
+                null
+            );
+            if (!empty($respuesta) && empty($ruta)) {
+                $ruta = $respuesta[0][0];
+            } else if (!empty($respuesta) && !empty($ruta)) {
+                $ruta = $respuesta[0][0];
+                unlink($ruta);
+            }
+            if (!empty($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
+                $video = 'https://player.vimeo.com/video/';
+                $video .= end(explode('/', $_POST['TVideo']));
+                $conexion->consultaPreparada(
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_POST['SBloque']),
+                    "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo , bloque WHERE idtema = ? ",
+                    1,
+                    "ssss",
+                    true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
+                    null
+                );
+            } else {
+                echo "los post no estan llegando correctamente";
+            }
+            break;
+
+        case "items":
+            echo json_encode($conexion->consultaPreparada(
+                array($_SESSION['idcurso']),
+                "SELECT idbloque,bloque.nombre FROM bloque WHERE curso =  ? ",
+                2,
+                "s",
+                false,
+                null
+            ));
+            break;
+
+        case 'tabla':
+            echo json_encode($conexion->consultaPreparada(
+                array($_SESSION['idbloque']),
+                "SELECT idtema,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY idtema ASC",
+                2,
+                "s",
+                false,
+                null
+            ));
+            break;
+
+        default:
+            echo "El tipo de accion no existe";
+            break;
+    }
+}
