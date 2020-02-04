@@ -18,7 +18,7 @@ if (!empty($_POST['accion'])) {
             if (isset($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque'])) {
                echo $conexion->consultaPreparada(
                     array($_POST['idtarea'], $_POST['TNombre'], $_POST['TADescripcion'], $ruta, $_SESSION['idbloque']),
-                    "INSERT INTO tarea (idtarea,nombre,descripcion,archivo_bajada, bloque) VALUES (?,?,?,?,?)",
+                    "INSERT INTO tarea (idtarea,nombre,descripcion,archivo_bajada,bloque) VALUES (?,?,?,?,?)",
                     1,
                     "sssss",
                     false,
@@ -31,27 +31,25 @@ if (!empty($_POST['accion'])) {
 
         case "editar":
             $respuesta =  $conexion->consultaPreparada(
-                array($_POST['idtema']),
-                "SELECT archivo FROM tema WHERE idtema  = ?",
+                array($_POST['idtarea']),
+                "SELECT archivo_bajada FROM tarea WHERE idtarea  = ?",
                 2,
                 "s",
                 false,
                 null
             );
             if (!empty($respuesta) && empty($ruta)) {
-                $ruta = $respuesta[0][0];
+                $ruta = $respuesta[0][0]; //si hay una archivo registrado en el sistema y si no hay una carga nueva de archivo optene el archivo existente registrado
             } else if (!empty($respuesta) && !empty($ruta)) {
-                $ruta = $respuesta[0][0];
+                $ruta = $respuesta[0][0]; //si hay un archivo registrado y hay una nueva carga de archivo borra el anterior y registra el nuevo en la base de datos 
                 unlink($ruta);
             }
-            if (!empty($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
-                $video = 'https://player.vimeo.com/video/';
-                $video .= end(explode('/', $_POST['TVideo']));
-                $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_POST['SBloque']),
-                    "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo , bloque WHERE idtema = ? ",
+            if (!empty($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque'])) {
+                    $conexion->consultaPreparada(
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $ruta, $_POST['SBloque']),
+                    "UPDATE terea SET nombre = ?, descripcion = ?, archivo_bajada = ? , bloque = ? WHERE idtarea = ? ",
                     1,
-                    "ssss",
+                    "sssss",
                     true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
                     null
                 );
@@ -74,7 +72,7 @@ if (!empty($_POST['accion'])) {
         case 'tabla':
             echo json_encode($conexion->consultaPreparada(
                 array($_SESSION['idbloque']),
-                "SELECT idtema,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY idtema ASC",
+                "SELECT idtarea,nombre,descripcion,archivo_bajada FROM tarea WHERE bloque = ? ORDER BY idtarea ASC",
                 2,
                 "s",
                 false,

@@ -52,9 +52,9 @@ if (!empty($_POST['accion'])) {
                 $video .= end(explode('/', $_POST['TVideo']));
                 $conexion->consultaPreparada(
                     array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_POST['SBloque']),
-                    "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo , bloque WHERE idtema = ? ",
+                    "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo = ? , bloque = ? WHERE idtema = ? ",
                     1,
-                    "ssss",
+                    "ssssss",
                     true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
                     null
                 );
