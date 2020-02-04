@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +25,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Profesores</a></li>
                         <li><a data-toggle="tab" href="#menu1">Cursos</a></li>
-                        <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>                       
+                        <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>
                         <li class="col-2" style="margin-right: 1rem;">
                             <select id="select-profe-tema" name="SProfesor" class="form-control m-1" style="height: 35px!important">
                                 <option value="0">Selecciona profesor</option>
@@ -37,11 +37,11 @@
                             </select>
                         </li>
                         <li class="col-2" style="margin-right: 1rem;">
-                        <select id="select-bloque" name="SBloque" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
+                            <select id="select-bloque" name="SBloque" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
                                 <option value="0">Selecciona bloque</option>
                             </select>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -82,7 +82,7 @@
 
                                     </tbody>
                                 </table>
-                                
+
                             </div>
                         </div>
                         <div id="menu3" class="tab-pane fade">
@@ -139,52 +139,38 @@
                                         </tr>
                                     </thead>
                                     <tbody id="datos-examen">
-   
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div id="menu5" class="tab-pane fade">
                             <!-- REGISTRO DE PREGUNTAS EXAMENEN -->
-                            <h3>Registro de Examenes</h3>
+                            <h3>Registro de preguntas</h3>
+                            <h2 id="labelexamen">
+                            <select id="select-examen" name="SExamen" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
+                                
+                            </select>
+                            </h2>
                             <hr>
                             <div class="form col-lg-5">
-                                <form class="form-wrap" id="registro-preguntas-examen">
-
-                                    <p>nombre del examen</p>
-                                    <input type="text" id="preguntas-examen" class="form-control" name="TNombre-examen" placeholder="escribe el nombre del examen">
-                                    <br>
-                                    <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Guardar</button>
-                                </form>
                                 <form class="form-wrap" id="registro-preguntas">
                                     <hr>
-                                    <p>selecciona cual de tus respuestas es la correcta</p>
-                                    <div>
-                                        <input type="text" id="pregunta" class="form-control" name="TPregunta" placeholder="pregunta">
-                                        <div class="col-lg-6">
-                                            <div>
-                                                <input type="radio" id="resp1" name="RResp">
-                                                <label for="resp1"><input type="text" id="respuesta1" class="form-control" name="TRespuesta1" placeholder="respuesta 1"></label>
-                                            </div>
-                                            <div>
-                                                <input type="radio" id="resp2" name="RResp">
-                                                <label for="resp2"><input type="text" id="respuesta2" class="form-control" name="TRespuesta2" placeholder="respuesta 2"></label>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div>
-                                                <input type="radio" id="resp3" name="RResp">
-                                                <label for="resp3"><input type="text" id="respuesta3" class="form-control" name="TRespuesta3" placeholder="respuesta 3"></label>
-                                            </div>
-                                            <div>
-                                                <input type="radio" id="resp4" name="RResp">
-                                                <label for="resp4"><input type="text" id="respuesta4" class="form-control" name="TRespuesta4" placeholder="respuesta 4"></label>
-                                            </div>
-                                        </div>
+                                    <p>Escribe la pregunta y selecciona cual de tus respuestas es la correcta</p>
+                                    <div class="col-lg-6">
+                                        <input type="text" id="pregunta" class="form-control" name="TPregunta" placeholder="pregunta"> <br>
 
-                                        <input type="number" id="valor-respuesta-${i}" class="form-control" name="TValor-respuesta-${i}" placeholder="Valor de la respuesta ">
+                                        <input type="radio" id="resp1" name="TRespuesta">
+                                        <input for="resp1" type="text" id="respuesta1" class="form-control" name="TRespuesta1" placeholder="respuesta 1">
+                                        <input type="radio" id="resp2" name="TRespuesta">
+                                        <input for="resp2" type="text" id="respuesta2" class="form-control" name="TRespuesta2" placeholder="respuesta 2">
+                                        <input type="radio" id="resp3" name="TRespuesta">
+                                        <input for="resp3" type="text" id="respuesta3" class="form-control" name="TRespuesta3" placeholder="respuesta 3">
+                                        <input type="radio" id="resp4" name="TRespuesta">
+                                        <input for="resp4" type="text" id="respuesta4" class="form-control" name="TRespuesta4" placeholder="respuesta 4">
+                                        <input type="number" id="valor-respuesta" class="form-control" name="TValor-respuesta" placeholder="Valor de la respuesta" style="width: 20rem;">
+                                        <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                     </div>
-                                    <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                 </form>
                                 <hr>
                             </div>
@@ -192,17 +178,14 @@
                                 <table class="table">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">examen</th>
                                             <th scope="col">Pregunta</th>
-                                            <th scope="col">Respuesta</th>
+                                            <th scope="col">Respuestas</th>
+                                            <th scope="col">Respuesta Correcta</th>
                                             <th scope="col">valor respuesta</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="datos-preguntas">
 
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -257,7 +240,7 @@
                         <form class="form-wrap" id="registro-profesor">
                             <div class="imagen flex">
                                 <div class="text-center">
-                                    <img id="foto-perfil" class="rounded-circle" width="70" height="70" src="../img/users/perfil.png" alt="foto de profesor">    
+                                    <img id="foto-perfil" class="rounded-circle" width="70" height="70" src="../img/users/perfil.png" alt="foto de profesor">
                                     <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
@@ -270,7 +253,7 @@
                                 <option value="Universidad">Universidad</option>
                                 <option value="Superior">Superior</option>
                             </select>
-                            <input type="phone" id="registrar-tel" class="form-control" name="TTel" placeholder="Telefono">
+                            <input type="phone" id="registrar-tel" class="form-control" name="TTelefono" placeholder="Telefono">
                             <input type="email" id="registrar-email" class="form-control" name="TEmail" placeholder="Email">
                             <input type="password" id="registrar-pass" class="form-control" name="TPass" placeholder="Password">
                             <select id="registrar-estado2" name="TEstado" class="form-control m-1" style="height: 35px!important">
@@ -280,7 +263,7 @@
                             <br>
                             <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                         </form>
-                        
+
                     </div>
                     <div class="form col-lg-9">
                         <table id="tabla-profesores" class="table">
@@ -295,7 +278,7 @@
                                     <th scope="col">Estado</th>
                                     <th scope="col">Municipio</th>
                                     <th scope="col">Trabajo</th>
-                                 </tr>
+                                </tr>
                             </thead>
                             <tbody id="datos-profesores">
 
@@ -337,7 +320,7 @@
                                     <th scope="col">Calificacio</th>
                                     <th scope="col">Profesor</th>
                                     <th scope="col">Costo</th>
-                                 </tr>
+                                </tr>
                             </thead>
                             <tbody id="datos-cursos">
 
