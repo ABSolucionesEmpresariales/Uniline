@@ -105,6 +105,7 @@ $(document).ready(function () {
             traerDatosCombo('pregunta.php', 'select-examen');
             datosTemas();
             datosExamen();
+            datosTareas();
           }
         }
       });
@@ -228,6 +229,31 @@ $(document).ready(function () {
       }
     });
   }
+  function datosTareas() {//PINTAR TABLA TAREAS
+    $.ajax({
+      url: "../controllers/tarea.php",
+      type: "POST",
+      data: { 'accion': 'tabla' },
+
+      success: function (response) {
+        template = '';
+        datos = JSON.parse(response);
+        console.log(datos);
+        for (i = 0; i < datos.length; i++) {
+          template +=
+            `
+            <tr class="tema">
+              <td scope="row" class="idtarea" style="display: none;">${datos[i][0]}</td>
+              <td scope="row" class="nombreTarea">${datos[i][1]}</td>
+              <td scope="row" class="DescripcionTarea">${datos[i][2]}</td>
+              <td scope="row" class="ArchivoTarea">${datos[i][3]}</td>
+            </tr>
+            `;
+        }
+        $('#datos-tarea').html(template);
+      }
+    });
+  }
 
   //////////////////////////////////////////////////////////### INSERTAR DATOS ##///////////////////////////////////////////
 
@@ -309,19 +335,23 @@ $(document).ready(function () {
   });
   $("#registro-preguntas").submit(function (e) {//INSERTAR PREGUNTAS A LA BASE DE DATOS
     e.preventDefault();
-    if( $("#registro-preguntas input[name='TRespuesta']:radio").is(':checked')) {  
-      alert("Bien!!!, la edad seleccionada es: " + $('input:radio[name=TRespuesta]:checked').val());
-      $("#formulario").submit();  
-      } 
+    if ($("#registro-preguntas input[name='TCorrecta']:radio").is(':checked')) {
+      $('input:radio[name=TCorrecta]:checked').next().addClass('correcta');
+      
+        correcta = $('.correcta').val('###');
+        console.log(correcta);
+  
+    }
     var idpregunta = '';
     var pregunta = $('#pregunta').val();
-    var respuestas = $('#descripcion-examen').val();
-    var examen = $('#select-bloque').val();
+    var respuestas = $("#respuesta1").val() + $("#respuesta2").val() + $("#respuesta3").val() + $("#respuesta4").val() ;
+    var examen = $('#select-examen').val();
+    
     $.ajax({
       url: "../controllers/examen.php",
       type: "POST",
       data: {
-        'idexamen': idexamen, 'TNombre': nombre, 'TADescripcion': descripcion, 'SBloque': bloque,
+        'idpregunta': idpregunta, 'TPregunta': pregunta, 'respuestas': respuestas, 'SExamen': examen,
         'accion': 'insertar'
       },
 
@@ -329,13 +359,15 @@ $(document).ready(function () {
         console.log(response);
 
         if (response == 1) {
-          datosExamen();
-          $('#nombre-examen').val("");
-          $('#descripcion-examen').val("");
+          datosPreguntas();
+          $('#pregunta').val("");
+          $('input[name=TRespuesta]').val("");
+          $('#valor-respuesta').val("");
         } else {
           alert("datos no enviados, hubo un error");
         }
       }
     });
+
   });
 });

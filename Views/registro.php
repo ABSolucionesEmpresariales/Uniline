@@ -148,9 +148,9 @@
                             <!-- REGISTRO DE PREGUNTAS EXAMENEN -->
                             <h3>Registro de preguntas</h3>
                             <h2 id="labelexamen">
-                            <select id="select-examen" name="SExamen" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
-                                
-                            </select>
+                                <select id="select-examen" name="SExamen" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
+
+                                </select>
                             </h2>
                             <hr>
                             <div class="form col-lg-5">
@@ -160,14 +160,22 @@
                                     <div class="col-lg-6">
                                         <input type="text" id="pregunta" class="form-control" name="TPregunta" placeholder="pregunta"> <br>
 
-                                        <input type="radio" id="resp1" name="TRespuesta">
-                                        <input for="resp1" type="text" id="respuesta1" class="form-control" name="TRespuesta1" placeholder="respuesta 1">
-                                        <input type="radio" id="resp2" name="TRespuesta">
-                                        <input for="resp2" type="text" id="respuesta2" class="form-control" name="TRespuesta2" placeholder="respuesta 2">
-                                        <input type="radio" id="resp3" name="TRespuesta">
-                                        <input for="resp3" type="text" id="respuesta3" class="form-control" name="TRespuesta3" placeholder="respuesta 3">
-                                        <input type="radio" id="resp4" name="TRespuesta">
-                                        <input for="resp4" type="text" id="respuesta4" class="form-control" name="TRespuesta4" placeholder="respuesta 4">
+                                        <div>
+                                            <input type="radio" id="resp1" name="TCorrecta" value="1">
+                                            <input type="text" id="respuesta1" class="form-control" name="TRespuesta" placeholder="respuesta 1">
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="resp2" name="TCorrecta" value="2">
+                                            <input type="text" id="respuesta2" class="form-control" name="TRespuesta" placeholder="respuesta 2">
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="resp3" name="TCorrecta" value="3">
+                                            <input type="text" id="respuesta3" class="form-control" name="TRespuesta" placeholder="respuesta 3">
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="resp4" name="TCorrecta" value="4">
+                                            <input type="text" id="respuesta4" class="form-control" name="TRespuesta" placeholder="respuesta 4">
+                                        </div>
                                         <input type="number" id="valor-respuesta" class="form-control" name="TValor-respuesta" placeholder="Valor de la respuesta" style="width: 20rem;">
                                         <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                     </div>
@@ -195,15 +203,8 @@
                             <h3>Registro de tareas</h3>
                             <hr>
                             <div class="form col-lg-5">
-                                <p>Selecciona el bloque y tema en el que quieres registrar una tarea</p>
+
                                 <form class="form-wrap" id="registro-tarea">
-                                    <!--<p>selecciona el curso</p>
-                        <select id="selec-curso-tarea" name="SCurso" class="form-control m-1" style="height: 35px!important">
-                        </select >-->
-                                    <p>selecciona el bloque</p>
-                                    <select id="select-bloque-tarea" name="SBloque" class="form-control m-1" style="height: 35px!important">
-                                    </select>
-                                    <br>
                                     <input type="text" id="nombre-tarea" class="form-control" name="TTarea" placeholder="Tarea">
                                     <textarea rows="5" cols="50" id="descripcion-tarea" class="form-control" name="TDescripcion-tarea" placeholder="Descripcion de la tarea"></textarea>
                                     <div>archivo<input type="file" id="archivo-tarea" class="form-control" name="TArchivo-tarea"></div>
@@ -215,16 +216,13 @@
                                 <table class="table">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Descripcion</th>
                                             <th scope="col">archivo</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="datos-tarea">
 
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
