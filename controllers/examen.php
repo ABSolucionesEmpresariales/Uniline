@@ -18,9 +18,9 @@ if (!empty($_POST['accion'])) {
                 null
             );
             if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque']) && !empty($_POST['accion']) && empty($resultado)) {
-                $conexion->consultaPreparada(
+                echo $conexion->consultaPreparada(
                     array($_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['SBloque']),
-                    "INSERT INTO examen (idexamen,nombre,descripcioon,bloque) VALUES (?,?,?,?)",
+                    "INSERT INTO examen (idexamen,nombre,descripcion,bloque) VALUES (?,?,?,?)",
                     1,
                     "ssss",
                     false,

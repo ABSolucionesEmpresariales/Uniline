@@ -15,7 +15,6 @@ if (!empty($_POST['accion'])) {
     switch ($_POST['accion']) {
 
         case "insertar":
-            var_dump($_POST['idtema'],$_POST['TNombre'],$_POST['TADescripcion'],$_POST['TVideo'],$_SESSION['idbloque'], $ruta);
             if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_SESSION['idbloque'])) {
                 $video = 'https://player.vimeo.com/video/';
                 $idvideo = explode('/', $_POST['TVideo']);
