@@ -66,7 +66,7 @@
                                 <form class="form-wrap" id="registro-bloques">
                                     <input type="text" id="nombre-bloque" class="form-control" name="TBloques" placeholder="Nombre del Bloque">
                                     <br>
-                                    <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Añadir</button>
+                                    <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir</button>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
@@ -123,10 +123,10 @@
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-examen">
-                                    <input type="text" id="nombre-examen" class="form-control" name="TNombre-examen" placeholder="escribe el nombre del examen">
-                                    <textarea rows="5" cols="50" id="descripcion-examen" class="form-control" name="TNombre-examen" placeholder="escribe una descripcion de este examen"></textarea>
+                                    <input type="text" id="nombre-examen" class="form-control" name="TNombre" placeholder="escribe el nombre del examen">
+                                    <textarea rows="5" cols="50" id="descripcion-examen" class="form-control" name="TADescripcion" placeholder="escribe una descripcion de este examen"></textarea>
                                     <br>
-                                    <button id="btn-examen" class="btn btn-primary primary-btn text-uppercase" type="button" name="submit">Enviar datos</button>
+                                    <button id="btn-examen" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Enviar datos</button>
                                 </form>
                                 <hr>
                             </div>
@@ -136,7 +136,6 @@
                                         <tr>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Descripción</th>
-                                            <th scope="col">Bloque</th>
                                         </tr>
                                     </thead>
                                     <tbody id="datos-examen">
