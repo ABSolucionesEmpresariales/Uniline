@@ -129,22 +129,14 @@ if(isset($_POST['archivo'])){
 
     if($result == "[]"){
         if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
-            $archivo = subir_archivo('Fimagen',1);
-            if ($archivo == "Error"){
-                echo $archivo;
-            } else if ($archivo == "imagenNoValida"){
-                echo $archivo;
-            } else if ($archivo == "imagenGrande"){
-                echo $archivo;
-            } else {
-                if($_SESSION['imagen_perfil'] != "../img/Users/perfil.png"){
-                    unlink($_SESSION['imagen_perfil']);
-                }
-                if(actualizar($archivo) == 1){
-                    echo 1;
-                }else{
-                    echo 0;
-                }
+            $archivo = subir_archivo('Fimagen',2);
+            if($archivo != "error"){
+                 $consulta = "INSERT INTO tarea_completada(id,tarea,usuario,archivo) VALUES (?,?,?,?)";
+                 $nada = "";
+                 $datos = array($nada,$_POST['tarea'],$_SESSION['idusuario'],$archivo);
+                 echo $conexion->consultaPreparada($datos,$consulta,1,"iiis",false,null);
+            }else{
+                 echo 0;
             }
          }
     }else{    
