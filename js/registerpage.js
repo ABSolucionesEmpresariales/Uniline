@@ -1,9 +1,7 @@
 $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
-  
   llevarSelectSession(); //lleva a session lo que esta en ese momento en el select
-  insertarBloques(); //inserta bloques a la BD
  
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];
@@ -106,14 +104,14 @@ $(document).ready(function () {
           if (response != '') {
             traerDatosCombo('examen.php','select-examen');  //pinta el combo con los cursos segun la sesion
             datosTemas();
-            
+            datosExamen();           
           }
         }
       });
     });
   }
 
-  //////////////////////////////////////////////////////////### REGISTRO DE BLOQUES START ##/////////////////////////
+  //////////////////////////////////////////////////////////### PINTAR TABLAS ##/////////////////////////
 
   
 
@@ -141,9 +139,8 @@ $(document).ready(function () {
       }
     });
   }
-  function insertarBloques() { //INSERTA DATOS A LA BD
 
-    $(document).on('click', '#btn-bloque', function () {
+  $("#registro-bloques").submit(function(e) {//INSERTA DATOS A LA BD
       var idbloque = '';
       var nombre = $('#nombre-bloque').val();
       var curso = $('#select-curso-tema').val();
@@ -165,7 +162,6 @@ $(document).ready(function () {
         }
       });
     });
-  }
 
   ///////////////////////////////////////////////////////### REGISTRO DE TEMAS START ##/////////////////////////////
 
@@ -222,5 +218,56 @@ $(document).ready(function () {
   
   //                                                     ### REGISTRO DE EXAMEN START ##
 
+  function datosExamen() {//PINTAR TABLA EXAMEN
+    $.ajax({
+      url: "../controllers/examen.php",
+      type: "POST",
+      data: {'accion': 'tabla'},
+      
+      success: function (response) {
+        template = '';
+        datos = JSON.parse(response);
+        console.log(datos);
+        for (i = 0; i < datos.length; i++) {
+          template +=
+            `
+            <tr class="tema">
+              <td scope="row" class="idexamen" style="display: none;">${datos[i][0]}</td>
+              <td scope="row" class="nombreExamen">${datos[i][1]}</td>
+              <td scope="row" class="DescripcionExamen">${datos[i][2]}</td>
+              <td scope="row" class="bloqueExamen">${datos[i][3]}</td>
+            </tr>
+            `;
+        }
+        $('#datos-examen').html(template);
+      }
+    });
+  }
   
+
+    $("#registro-examen").submit(function(e) {
+      e.preventDefault();
+      var idexamen = '';
+      var nombre = $('#nombre-examen').val();
+      var descripcion = $('#descripcion-examen').val();
+      var bloque = $('#select-bloque').val();
+      $.ajax({
+        url: "../controllers/examen.php",
+        type: "POST",
+        data: {'idexamen': idexamen, 'TNombre': nombre, 'TADescripcion': descripcion, 'SBloque': bloque,
+        'accion': 'insertar'},
+        
+        success: function (response) {
+          console.log(response);
+
+          if (response == 1) {
+            datosExamen();
+            $('#nombre-examen').val("");
+            $('#descripcion-examen').val("");
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
+        }
+      });
+    });
 });
