@@ -246,35 +246,42 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
             `;
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Funcion que escucha cuando el video esta por terminar >>>>>>>>>>>>>>>>>>>>>>>>>>>
-    $("#video").on('ended', function () {
-        //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
-        datos_redirect = id_control_direccionamiento.split("-");
-        //Lo formamos el siguiente tema
-        id_redirecionado = datos_redirect[0]+"-"+(parseInt(datos_redirect[1])+1);
-        //verificaos si el tema existe
-        if($("#tema-"+id_redirecionado).length > 0){
-            //checkeamos el tema actual
-            $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
-            //Se remueve la clase que lo identifica como activo
-            $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
-            //Realizar registro del tema
-            registrarTemaCompletado(id_actual_base);
-            //obtenemos los datos del nuevo tema para pintarlos
-            obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
-            //Le agregamos la clase para indentificarlo activo
-            $("#tema-"+id_redirecionado).next().addClass("text-info");
-            //igualamos la variable global a el tema actual
-            id_control_direccionamiento = id_redirecionado;
-            //tomamos el id de la base del tema actual
-            id_actual_base = $("#tema-"+id_redirecionado).data("idtemabase");
-        }else{
-            //si el id siguiente no existe se brincara al examen
-            $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
-            registrarTemaCompletado(id_actual_base);
-            id_examen = (parseInt(datos_redirect[0])+1)+"--1";
-            $("#"+id_examen).click();
-        }
+
+    var iframe = $('#iframeContainer iframe');
+    var player = new Vimeo.Player(iframe);
+
+    player.on('ended', function() {
+                //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
+                datos_redirect = id_control_direccionamiento.split("-");
+                //Lo formamos el siguiente tema
+                id_redirecionado = datos_redirect[0]+"-"+(parseInt(datos_redirect[1])+1);
+                //verificaos si el tema existe
+                if($("#tema-"+id_redirecionado).length > 0){
+                    //checkeamos el tema actual
+                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+                    //Se remueve la clase que lo identifica como activo
+                    $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
+                    //Realizar registro del tema
+                    registrarTemaCompletado(id_actual_base);
+                    //obtenemos los datos del nuevo tema para pintarlos
+                    obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
+                    //Le agregamos la clase para indentificarlo activo
+                    $("#tema-"+id_redirecionado).next().addClass("text-info");
+                    //igualamos la variable global a el tema actual
+                    id_control_direccionamiento = id_redirecionado;
+                    //tomamos el id de la base del tema actual
+                    id_actual_base = $("#tema-"+id_redirecionado).data("idtemabase");
+                }else{
+                    //si el id siguiente no existe se brincara al examen
+                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+                    registrarTemaCompletado(id_actual_base);
+                    id_examen = (parseInt(datos_redirect[0])+1)+"--1";
+                    $("#"+id_examen).click();
+                }
     });
+/*     $("#video").on('ended', function () {
+
+    }); */
 
     function registrarTemaCompletado(tema){
         $.ajax({

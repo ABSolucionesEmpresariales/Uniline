@@ -78,6 +78,8 @@ $_SESSION['idcurso'] = 1;
     </div>
   </div>
 
+  
+
   <header id="header" id="home">
     <div class="header-top">
       <div class="container">
@@ -111,8 +113,9 @@ $_SESSION['idcurso'] = 1;
           <div id="contenido-examen" class="container p-5 d-none" style="height: 100%;">
           </div>
             <div id="cambio-examen-video">
-              <div class="flex bg-color justify-content-center">
-                  <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video>
+              <div id="iframeContainer" class="flex bg-color justify-content-center">
+                  <!-- <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video> -->
+                  <iframe src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
               </div>
             
 
@@ -458,6 +461,7 @@ $_SESSION['idcurso'] = 1;
   <script src="../plugins/scrollTo/jquery.scrollTo.min.js"></script>
   <script src="../plugins/easing/easing.js"></script>
   <script src="../js/elements_custom.js"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="../js/dashboard.js"></script>
 
 </body>
