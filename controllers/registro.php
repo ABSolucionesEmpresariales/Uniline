@@ -15,10 +15,10 @@ $encriptado = trim(password_hash($password,PASSWORD_DEFAULT));
 
 if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
     $conexion = new Modelos\Conexion();
-
     $consulta_verificar = "SELECT * FROM usuario WHERE email = ?";
     $datos_verificar = array($_POST['TEmail']);
     $resultado = json_encode($conexion->consultaPreparada($datos_verificar,$consulta_verificar,2,'s', false, null));
+
     if($resultado != '[]'){
         echo 'Existe';
     }else{

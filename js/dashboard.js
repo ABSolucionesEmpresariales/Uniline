@@ -566,10 +566,10 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                                         ${item[2]}<br />
                                     </div>
                                     <div class="respuestas d-inline-flex flex justify-content-between">`;
-                                    respuestas = item[3].split(',');
+                                    respuestas = item[3].split('-*3');
                                     cont_examen_preguntas ++;
                                     for(y = 0; y < respuestas.length; y++){
-                                        nueva = respuestas[y].split('#');
+                                        nueva = respuestas[y].split('###');
                                         console.log(nueva);
                                         if(nueva[0] == ''){
                                      templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span>${nueva[1]}</span></li>`; 
