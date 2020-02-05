@@ -333,6 +333,7 @@ $(document).ready(function () {
       }
     });
   });
+
   $("#registro-preguntas").submit(function (e) {//INSERTAR PREGUNTAS A LA BASE DE DATOS
     e.preventDefault();
     if ($("#registro-preguntas input[name='TCorrecta']:radio").is(':checked')) {
@@ -368,6 +369,30 @@ $(document).ready(function () {
         }
       }
     });
+  });
 
+  $("#registro-tarea").submit(function (e) {//INSERTAR TAREAS A LA BASE DE DATOS
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+      url: "../controllers/tarea.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+
+      success: function (response) {
+        console.log(response);
+
+        if (response == 1) {
+          datosTareas();
+          $('#nombre-tarea').val("");
+          $('#descripcion-tarea').val("");
+          $('#archivo-tarea').val("");
+        } else {
+          alert("datos no enviados, hubo un error");
+        }
+      }
+    });
   });
 });

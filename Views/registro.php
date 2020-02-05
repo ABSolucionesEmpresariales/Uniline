@@ -205,9 +205,11 @@
                             <div class="form col-lg-5">
 
                                 <form class="form-wrap" id="registro-tarea">
-                                    <input type="text" id="nombre-tarea" class="form-control" name="TTarea" placeholder="Tarea">
-                                    <textarea rows="5" cols="50" id="descripcion-tarea" class="form-control" name="TDescripcion-tarea" placeholder="Descripcion de la tarea"></textarea>
-                                    <div>archivo<input type="file" id="archivo-tarea" class="form-control" name="TArchivo-tarea"></div>
+                                    <input type="hidden" value="insertar" name="accion">
+                                    <input type="hidden" value="" name="idtarea">
+                                    <input type="text" id="nombre-tarea" class="form-control" name="TNombre" placeholder="Tarea">
+                                    <textarea rows="5" cols="50" id="descripcion-tarea" class="form-control" name="TADescripcion" placeholder="Descripcion de la tarea"></textarea>
+                                    <div>archivo<input type="file" id="archivo-tarea" class="form-control" name="FArchivo"></div>
                                     <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                 </form>
                                 <hr>
