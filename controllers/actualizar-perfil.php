@@ -45,10 +45,10 @@ if(isset($_POST['updatePass'])){
         }
 
         $trabajo = $_POST['TPuesto'].'###'.$_POST['TDescripcion'];
-
         $consultaUP = "UPDATE usuario SET nombre = ?, edad = ?, escolaridad = ?, telefono = ?, email = ?, password = ?, imagen = ?, estado = ?, municipio = ?, trabajo = ? WHERE idusuario = ?";
-        $datos = array($_POST['TNombre'],$_POST['TEdad'],$_POST['TGrado'], $_POST['TTelefono'], $_POST['TEmail'],$encriptado,$archivo,$_POST['TEstado'],$_POST['TMunicipio'],$trabajo,$_SESSION['idusuario']);
-        
+        $datos = array($_POST['TNombre'],$_POST['TEdad'],$_POST['TGrado'], $_POST['TTelefono'], $_POST['TEmail'],
+        $encriptado,$archivo,$_POST['TEstado'],$_POST['TMunicipio'],$trabajo,$_SESSION['idusuario']);
+
         $resultado = $conexion->consultaPreparada($datos,$consultaUP,1,'sssssssssss',false,5);
         if($resultado != 0){
             if($archivo == ""){
@@ -56,10 +56,10 @@ if(isset($_POST['updatePass'])){
             }else{
                 $_SESSION['imagen_perfil'] = $archivo;
             }
-            
         }
         return $resultado; 
     }
+
     $encriptado = "";
     $archivo = $_SESSION['imagen_perfil'];
     if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {

@@ -298,7 +298,7 @@
                                     <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
-                            <input type="text" id="nombre-curso" class="form-control" name="TCurso" placeholder="Nombre del curso">
+                            <input type="text" id="nombre-curso" class="form-control" name="TNombre" placeholder="Nombre del curso">
                             <textarea rows="5" cols="50" id="descripcion-curso" class="form-control" name="TADescripcion" placeholder="Descripcion del curso"></textarea>
                             <input type="text" id="horas-curso" class="form-control" name="THoras" placeholder="Horas del curso">
                             <input type="text" id="costo-curso" class="form-control" name="TCosto" placeholder="Costo del curso">
