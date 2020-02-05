@@ -11,13 +11,13 @@ if (!empty($_POST['accion'])) {
         case "insertar":
 
             if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_POST['SExamen'])) {
-                $conexion->consultaPreparada(
+                    echo $conexion->consultaPreparada(
                     array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_POST['SExamen']),
                     "INSERT INTO pregunta (idpregunta,pregunta,respuestas,examen) VALUES (?,?,?,?)",
                     1,
                     "ssss",
                     false,
-                    null
+                    2
                 );
             } else {
                 echo "los post no estan llegando correctamente";

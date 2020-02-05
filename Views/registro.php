@@ -70,7 +70,7 @@
                                 </form>
                             </div>
                             <div class="form col-lg-7">
-                                <table id="tabla" class="table">
+                                <table id="tabla-bloques" class="table">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">Nombre</th>
@@ -91,8 +91,8 @@
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-temas">
-                                    <input type="hidden" value="insertar" name="accion">
-                                    <input type="hidden" value="" name="idtema">
+                                    <input id="accion-tema" type="hidden" value="insertar" name="accion">
+                                    <input id='idtema' type="hidden" value="" name="idtema">
                                     <input type="text" id="nombre-tema" class="form-control" name="TNombre" placeholder="Nombre del tema">
                                     <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TADescripcion" placeholder="Descripcion del tema"></textarea>
                                     <input type="text" id="video-tema" class="form-control" name="TVideo" placeholder="URL video"></<input>
@@ -102,7 +102,7 @@
                                 </form>
                             </div>
                             <div class="form col-lg-7">
-                                <table class="table">
+                                <table class="table" id="tabla-temas">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">Nombre</th>
@@ -131,7 +131,7 @@
                                 <hr>
                             </div>
                             <div class="form col-lg-7">
-                                <table class="table">
+                                <table class="table" id="tabla-examen">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">Nombre</th>
@@ -161,29 +161,28 @@
                                         <input type="text" id="pregunta" class="form-control" name="TPregunta" placeholder="pregunta"> <br>
 
                                         <div>
-                                            <input type="radio" id="resp1" name="TCorrecta" value="1">
-                                            <input type="text" id="respuesta1" class="form-control" name="TRespuesta" placeholder="respuesta 1">
+                                            <input class="radio-in" type="radio" id="resp1" name="TCorrecta" data-correcta = "1">
+                                            <label><input type="text" id="respuesta1" class="form-control" name="TRespuesta" placeholder="respuesta 1"></label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="resp2" name="TCorrecta" value="2">
-                                            <input type="text" id="respuesta2" class="form-control" name="TRespuesta" placeholder="respuesta 2">
+                                            <input class="radio-in" type="radio" id="resp2" name="TCorrecta" data-correcta ="2">
+                                            <label><input type="text" id="respuesta2" class="form-control" name="TRespuesta" placeholder="respuesta 2"></label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="resp3" name="TCorrecta" value="3">
-                                            <input type="text" id="respuesta3" class="form-control" name="TRespuesta" placeholder="respuesta 3">
+                                            <input class="radio-in" type="radio" id="resp3" name="TCorrecta" data-correcta ="3">
+                                            <label><input type="text" id="respuesta3" class="form-control" name="TRespuesta" placeholder="respuesta 3"></label>
                                         </div>
                                         <div>
-                                            <input type="radio" id="resp4" name="TCorrecta" value="4">
-                                            <input type="text" id="respuesta4" class="form-control" name="TRespuesta" placeholder="respuesta 4">
+                                            <input class="radio-in" type="radio" id="resp4" name="TCorrecta" data-correcta ="4">
+                                            <label><input type="text" id="respuesta4" class="form-control" name="TRespuesta" placeholder="respuesta 4"></label>
                                         </div>
-                                        <input type="number" id="valor-respuesta" class="form-control" name="TValor-respuesta" placeholder="Valor de la respuesta" style="width: 20rem;">
                                         <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                     </div>
                                 </form>
                                 <hr>
                             </div>
                             <div class="form col-lg-7">
-                                <table class="table">
+                                <table class="table" id="tabla-preguntas">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">Pregunta</th>
@@ -205,8 +204,8 @@
                             <div class="form col-lg-5">
 
                                 <form class="form-wrap" id="registro-tarea">
-                                    <input type="hidden" value="insertar" name="accion">
-                                    <input type="hidden" value="" name="idtarea">
+                                    <input id="accion-tarea" type="hidden" value="insertar" name="accion">
+                                    <input id="idtarea" type="hidden" value="" name="idtarea">
                                     <input type="text" id="nombre-tarea" class="form-control" name="TNombre" placeholder="Tarea">
                                     <textarea rows="5" cols="50" id="descripcion-tarea" class="form-control" name="TADescripcion" placeholder="Descripcion de la tarea"></textarea>
                                     <div>archivo<input type="file" id="archivo-tarea" class="form-control" name="FArchivo"></div>
@@ -215,7 +214,7 @@
                                 <hr>
                             </div>
                             <div class="form col-lg-7">
-                                <table class="table">
+                                <table class="table" id="tabla-tareas">
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">Nombre</th>
@@ -272,7 +271,6 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Edad</th>
                                     <th scope="col">Escolaridad</th>
-                                    <th scope="col">Imagen</th>
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Estado</th>
@@ -298,7 +296,7 @@
                                     <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
-                            <input type="text" id="nombre-curso" class="form-control" name="TCurso" placeholder="Nombre del curso">
+                            <input type="text" id="nombre-curso" class="form-control" name="TNombre" placeholder="Nombre del curso">
                             <textarea rows="5" cols="50" id="descripcion-curso" class="form-control" name="TADescripcion" placeholder="Descripcion del curso"></textarea>
                             <input type="text" id="horas-curso" class="form-control" name="THoras" placeholder="Horas del curso">
                             <input type="text" id="costo-curso" class="form-control" name="TCosto" placeholder="Costo del curso">
@@ -309,7 +307,7 @@
                         </form>
                     </div>
                     <div class="form col-lg-9">
-                        <table id="tabla-profesores" class="table">
+                        <table id="tabla-cursos" class="table">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Nombre</th>

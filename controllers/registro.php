@@ -38,20 +38,21 @@ if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
               if($resultado == 1){
                 $enviar = $emailClass->enviarEmailConfirmacion();
                 echo $resultado;
+              }else{
+                echo "error";
               }
-              echo "error";
           }
        }
       }else{
-        $consulta_registro = "INSERT INTO usuario (nombre, telefono, email, password, vkey, verificado) VALUES (?, ?, ?, ?, ?, ?)";
-        $datos_registro = array($nombre, $telefono, $email, $encriptado, $vkey, $verificado);
-        $resultado = $conexion->consultaPreparada($datos_registro,$consulta_registro,1,'sssssi', false, 3);
+        $consulta_registro = "INSERT INTO usuario (nombre, telefono, email, password, vkey, verificado,tipo) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $datos_registro = array($nombre, $telefono, $email, $encriptado, $vkey, $verificado, 'Estudiante');
+        $resultado = $conexion->consultaPreparada($datos_registro,$consulta_registro,1,'sssssis', false, 3);
         if($resultado == 1){
           echo $resultado;
           $enviar = $emailClass->enviarEmailConfirmacion();
+        }else{
+          echo 'error';  
         }
-        echo 'error';     
-        
       }
     }
     

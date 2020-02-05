@@ -6,8 +6,7 @@ session_start();
 
 if(isset($_POST['info-cursos'])){
     $conexion = new Modelos\Conexion();
-
-    $consulta = "SELECT * FROM usuario";
+    $consulta = "SELECT * FROM usuario WHERE tipo = 'Maestro'";
     echo json_encode($conexion->obtenerDatosDeTabla($consulta));
 }
 
