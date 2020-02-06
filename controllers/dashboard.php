@@ -2,8 +2,7 @@
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
 include '../Modelos/Fecha.php';
-$_SESSION['idusuario'] = 1;
-$_SESSION['idcurso'] = 1;
+
 
 
 if(isset($_POST["id_cometario"])){

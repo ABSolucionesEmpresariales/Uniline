@@ -3,11 +3,11 @@ $(document).ready(function () {
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
   llevarSelectSession(); //lleva a session lo que esta en ese momento en el select
 
-  let accion = '';
+  let accion = 'insertar';
   let correcta = '';
-  let idbloque = '';
-  let idexamen = '';
-  let idpregunta = '';
+  let idbloque = 'insertar';
+  let idexamen = 'insertar';
+  let idpregunta = 'insertar';
 
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];
@@ -110,9 +110,10 @@ $(document).ready(function () {
       data: 'info-cursos=cursos',
 
       success: function (response) {
+        console.log(response);
         datos = JSON.parse(response);
         template_tabla = '';
-        template_combo = '';
+        template_combo = '<option value="0">Selecciona profesor</option>';
         for (i = 0; i < datos.length; i++) {
           template_tabla +=
             `
@@ -134,8 +135,8 @@ $(document).ready(function () {
               <option value="${datos[i][0]}">${datos[i][1]}</option>
             `;
         }
-        $('#select-profe-tema').append(template_combo);
-        $('#datos-profesores').append(template_tabla);
+        $('#select-profe-tema').html(template_combo);
+        $('#datos-profesores').html(template_tabla);
 
       }
     });

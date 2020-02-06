@@ -28,17 +28,17 @@ class Email
             //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'smtp.sendgrid.net';                    // Set the SMTP server to send through
+            $mail->Host       = 'smtp.hostinger.mx';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'apikey';               // SMTP username
-            $mail->Password   = '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';                         // SMTP password
+            $mail->Username   = 'soporte@cafionline.com';               // SMTP username
+            $mail->Password   = '4!]oK5=]';                         // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
             $mail->Port       = 587;                                    // TCP port to connect to
 
             //Recipients
             $mail->setFrom('soporte@cafionline.com', 'Equipo de soporte CAFI');
             $mail->addAddress($this->email);     // Add a recipient
-            $mail->addReplyTo('soportw@cafionline.com', 'Equipo de soporte CAFI');
+            $mail->addReplyTo('soporte@cafionline.com', 'Equipo de soporte CAFI');
 
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML

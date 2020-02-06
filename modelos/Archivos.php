@@ -11,8 +11,8 @@
                 if ($tipo_imagen == "image/jpg" || $tipo_imagen == 'image/jpeg' || $tipo_imagen == 'image/png') {
                             $temp = explode(".", $_FILES[$nombre]["name"]);
                             $newfilename = round(microtime(true)) . '.' . end($temp);
-                            $imagen2 = $_SERVER['DOCUMENT_ROOT']."/Uniline"."/"."img/"."Users/".$newfilename."";
-                            $imagen3 = "http://localhost/Uniline"."/"."img/"."Users/".$newfilename."";
+                            $imagen2 = $_SERVER['DOCUMENT_ROOT']."/"."img/"."Users/".$newfilename."";
+                            $imagen3 = "https://www.cafionline.com/"."img/"."Users/".$newfilename."";
                             if(move_uploaded_file($_FILES[$nombre]["tmp_name"],$imagen2)){
                                 return "../img/Users/".$newfilename."";
                             }else{
@@ -27,7 +27,7 @@
         }else{
             $temp = explode(".", $_FILES[$nombre]["name"]);
             $newfilename = round(microtime(true)) . '.' . end($temp);
-            $imagen2 = $_SERVER['DOCUMENT_ROOT']."/Uniline"."/"."archivos/"."".$newfilename."";
+            $imagen2 = "https://www.cafionline.com/"."img/"."Users/".$newfilename."";
             if(move_uploaded_file($_FILES[$nombre]["tmp_name"],$imagen2)){
                 return "../archivos/".$newfilename."";
             }else{

@@ -7,7 +7,7 @@ require_once '../Modelos/Fecha.php';
 \Stripe\Stripe::setApiKey('sk_test_iGQnM1YBaSBwLfboFr2dEWpQ00diPgMkUi');
 
 // secreto de firma : es la generada despues de crear en el webhook del dashboart
-$endpoint_secret = 'whsec_i283at5HeECYmziwoyObjrllL07LUiAE';
+$endpoint_secret = 'whsec_BmsUhdyyHKAkVMHBXhyJ1OQMrAnuLojh';
 
 
 $payload = @file_get_contents('php://input');
