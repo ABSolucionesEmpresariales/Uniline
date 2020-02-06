@@ -83,27 +83,58 @@ $(document).ready(function () {
     });
 
  /* <--------------------- Generar checkout de pago de stripe -----------------------> */
-    $(document).on('click', '.compras', function (event) {
-        let idcurso = $(this).val();
-        $.post("../controllers/checkout.php", { idcurso: idcurso}, function (response) {
-       
-          if (response == "pagado") {
-            window.location.replace('../Views/dashboard.php?idcurso='+idcurso);
-          } else {
-            console.log(response);
-            var stripe = Stripe('pk_test_OTcbgHS4tbxZaWVcZ1IjcUt900jFHDsOdd');
-            stripe.redirectToCheckout({
-              sessionId: response
-            }).then(function (response) {
-            
-                swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
-               //imprimir mensaje ocurrio un problema
-              // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
-           
-            });
-          }
+    $(document).on('click','.compras', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "../controllers/registro.php",
+            type: "POST",
+            datos: "sesion=sesion",
+
+            success: function(response){
+                console.log(response);
+                if(response != ""){
+                    let idcurso = $(this).val();
+                    $.post("../controllers/checkout.php", { idcurso: idcurso}, function (response) {
+                   
+                      if (response == "pagado") {
+                        window.location.replace('../views/dashboard.php?idcurso='+idcurso);
+                      } else {
+                        console.log(response);
+                        var stripe = Stripe('pk_test_OTcbgHS4tbxZaWVcZ1IjcUt900jFHDsOdd');
+                        stripe.redirectToCheckout({
+                          sessionId: response
+                        }).then(function (response) {
+                        
+                            swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
+                           //imprimir mensaje ocurrio un problema
+                          // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
+                       
+                        });
+                      }
+                    });
+                }else{
+/*                     $("#alertas-registro").html('<i class="fas fa-exclamation-triangle m-2"></i>Para comprar un curso es necesario registrarse');
+                    $("#alertas-registro").slideDown("slow");
+                    setTimeout(function(){
+                      $("#alertas-registro").slideUp("slow");
+                    }, 2000); */
+                    setTimeout(function(){
+                        $('#registro-user').click();
+                      }, 1000); 
+/*                       $('#modal').modal('toggle');
+                      setTimeout(function(){
+                        $('#modal-registro').modal('toggle');
+                      }, 1000);  */     
+                }
+            }
         });
       });
+
+      function CierraPopup() {
+        $("#modal-cursos").modal('hide');//ocultamos el modal
+        $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+      }
 
     /* <---------------------Desplegar el contenido del curso e imprime los temas -----------------------> */
     $(document).on('click','.cursos-slide',function(){
@@ -259,7 +290,6 @@ $(document).ready(function () {
                 data: $('#registro').serialize(),
 
                 success: function (response) {
-                    
                     if (response == "Existe"){
                         console.log(response);
                         $("#alertas").removeClass('alert-success');

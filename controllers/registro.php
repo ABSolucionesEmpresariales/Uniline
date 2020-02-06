@@ -1,19 +1,34 @@
 <?php  
+session_start();
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Email.php';
 include '../Modelos/Archivos.php';
 
-$emailClass = new Modelos\Email();
+if(isset($_POST['sesion'])){
+  if(isset($_SESSION['idusuario'])){
+    echo $_SESSION['idusuario'];
+  }else{
+    echo "";
+  }
+}
 
-$email = $_POST['TEmail'];
-$password = $_POST['TPass'];
-$nombre = $_POST['TNombre'];
-$telefono = $_POST['TTelefono'];
-$vkey = $emailClass->setEmail($email);
-$verificado = 0;
-$encriptado = trim(password_hash($password,PASSWORD_DEFAULT));
+/* if(isset($_POST['agregar-sesion'])){
+  $_SESSION['idcurso'] = $_POST['agregar-sesion'];
+  echo $_SESSION['idcurso'];
+} */
 
-if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
+
+if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre']) && !empty($_POST['TTelefono'])){
+    $emailClass = new Modelos\Email();
+
+    $email = $_POST['TEmail'];
+    $password = $_POST['TPass'];
+    $nombre = $_POST['TNombre'];
+    $telefono = $_POST['TTelefono'];
+    $vkey = $emailClass->setEmail($email);
+    $verificado = 0;
+    $encriptado = trim(password_hash($password,PASSWORD_DEFAULT));
+
     $conexion = new Modelos\Conexion();
     $consulta_verificar = "SELECT * FROM usuario WHERE email = ?";
     $datos_verificar = array($_POST['TEmail']);
@@ -55,7 +70,6 @@ if(isset($email) && !empty($password) && !empty($nombre) && !empty($telefono)){
         }
       }
     }
-    
 }
 
 ?>
