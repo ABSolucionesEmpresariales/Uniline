@@ -11,13 +11,13 @@ if (!empty($_POST['accion'])) {
         case "insertar":
 
             if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_POST['SExamen'])) {
-                $conexion->consultaPreparada(
+                    echo $conexion->consultaPreparada(
                     array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_POST['SExamen']),
                     "INSERT INTO pregunta (idpregunta,pregunta,respuestas,examen) VALUES (?,?,?,?)",
                     1,
                     "ssss",
                     false,
-                    null
+                    2
                 );
             } else {
                 echo "los post no estan llegando correctamente";
@@ -26,7 +26,7 @@ if (!empty($_POST['accion'])) {
 
         case "editar":
             if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_POST['SExamen'])) {
-                $conexion->consultaPreparada(
+               echo $conexion->consultaPreparada(
                     array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_POST['SExamen']),
                     "UPDATE pregunta SET pregunta = ?, respuestas = ?, examen = ? WHERE idpregunta = ? ",
                     1,
@@ -41,8 +41,8 @@ if (!empty($_POST['accion'])) {
 
         case "items":
             echo json_encode($conexion->consultaPreparada(
-                array($_SESSION['idcurso']),
-                "SELECT idexamen,examen.nombre FROM examen INNER JOIN bloque ON bloque = idbloque WHERE curso = ?",
+                array($_SESSION['idbloque']),
+                "SELECT idexamen,examen.nombre FROM examen INNER JOIN bloque ON bloque = idbloque WHERE bloque = ?",
                 2,
                 "s",
                 false,
@@ -52,9 +52,9 @@ if (!empty($_POST['accion'])) {
 
         case 'tabla':
             echo json_encode($conexion->consultaPreparada(
-                array($_SESSION['idcurso']),
+                array($_SESSION['idexamen']),
                 "SELECT idpregunta,pregunta,respuestas,examen,examen.nombre FROM pregunta INNER JOIN examen 
-                ON examen = idexamen INNER JOIN bloque ON bloque = idbloque WHERE curso = ? ORDER BY examen ASC",
+                ON examen = idexamen INNER JOIN bloque ON bloque = idbloque WHERE examen = ? ORDER BY examen ASC",
                 2,
                 "s",
                 false,

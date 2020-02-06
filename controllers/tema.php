@@ -44,14 +44,14 @@ if (!empty($_POST['accion'])) {
             if (!empty($respuesta) && empty($ruta)) {
                 $ruta = $respuesta[0][0];
             } else if (!empty($respuesta) && !empty($ruta)) {
-                $ruta = $respuesta[0][0];
                 unlink($ruta);
             }
-            if (!empty($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_POST['SBloque'])) {
+            if (!empty($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_SESSION['idbloque'])) {
                 $video = 'https://player.vimeo.com/video/';
-                $video .= end(explode('/', $_POST['TVideo']));
-                $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_POST['SBloque']),
+                $idvideo = explode('/', $_POST['TVideo']);
+                $video .= end($idvideo);
+                echo $conexion->consultaPreparada(
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_SESSION['idbloque']),
                     "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo = ? , bloque = ? WHERE idtema = ? ",
                     1,
                     "ssssss",

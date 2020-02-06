@@ -32,10 +32,10 @@ if (!empty($_POST['accion'])) {
             break;
 
         case "editar":
-            if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque']) && !empty($_POST['accion']) && empty($resultado)) {
-                $conexion->consultaPreparada(
-                    array($_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['SBloque']),
-                    "UPDATE examen SET nombre = ?, descripcion = ?, curso = ? WHERE idbloque = ? ",
+            if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque']) && !empty($_POST['accion']) && empty($resultado)) {
+               echo $conexion->consultaPreparada(
+                    array($_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_SESSION['idbloque']),
+                    "UPDATE examen SET nombre = ?, descripcion = ?, bloque = ? WHERE idexamen = ? ",
                     1,
                     "ssss",
                     true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
