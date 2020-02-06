@@ -469,9 +469,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                     console.log(checkeo_final);
                     $("#tema-"+id_control_direccionamiento).next().addClass("text-info");
                 }else{
-                    console.log(id_examen);
-                    $("#"+id_examen).click();
-                    $('.lista-curso-aside').addClass("d-none");
+
                 }
             }
         });

@@ -43,8 +43,8 @@ class Email
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Verificacion de correo CAFI';
-            $mail->Body    = "<a href='http://localhost/uniline/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
-            $mail->AltBody = "<a href='http://localhost/uniline/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
+            $mail->Body    = "<a href='https://www.cafionline.com/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
+            $mail->AltBody = "<a href='https://www.cafionline.com/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
 
             $mail->send();
 
