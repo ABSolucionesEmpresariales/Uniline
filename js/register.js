@@ -3,11 +3,11 @@ $(document).ready(function () {
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
   llevarSelectSession(); //lleva a session lo que esta en ese momento en el select
 
-  let accion = '';
+  let accion = 'insertar';
   let correcta = '';
-  let idbloque = '';
-  let idexamen = '';
-  let idpregunta = '';
+  let idbloque = 'insertar';
+  let idexamen = 'insertar';
+  let idpregunta = 'insertar';
 
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];
