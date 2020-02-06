@@ -41,13 +41,12 @@ if (!empty($_POST['accion'])) {
             if (!empty($respuesta) && empty($ruta)) {
                 $ruta = $respuesta[0][0]; //si hay una archivo registrado en el sistema y si no hay una carga nueva de archivo optene el archivo existente registrado
             } else if (!empty($respuesta) && !empty($ruta)) {
-                $ruta = $respuesta[0][0]; //si hay un archivo registrado y hay una nueva carga de archivo borra el anterior y registra el nuevo en la base de datos 
                 unlink($ruta);
             }
-            if (!empty($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque'])) {
-                    $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $ruta, $_POST['SBloque']),
-                    "UPDATE terea SET nombre = ?, descripcion = ?, archivo_bajada = ? , bloque = ? WHERE idtarea = ? ",
+            if (!empty($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque'])) {
+                   echo $conexion->consultaPreparada(
+                    array($_POST['idtarea'], $_POST['TNombre'], $_POST['TADescripcion'], $ruta, $_SESSION['idbloque']),
+                    "UPDATE tarea SET nombre = ?, descripcion = ?, archivo_bajada = ? , bloque = ? WHERE idtarea = ? ",
                     1,
                     "sssss",
                     true, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida

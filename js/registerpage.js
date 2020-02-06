@@ -3,6 +3,12 @@ $(document).ready(function () {
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
   llevarSelectSession(); //lleva a session lo que esta en ese momento en el select
 
+  let accion = '';
+  let correcta = '';
+  let idbloque = '';
+  let idexamen = '';
+  let idpregunta = '';
+
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];
     var i = 0;
@@ -42,10 +48,17 @@ $(document).ready(function () {
           
           
         }else if(idtabla == 'tabla-cursos'){
-
+          $('#nombre-curso').val(valor[1]);
+          $('#descripcion-curso').val(valor[2]);
+          $('#horas-curso').val(valor[5]);
+          $('#costo-curso').val(valor[8]);
+          $('#video-curso').val(valor[4]);
+          $('#idcurso').val(valor[0]);
+          $('#accion').val('editar');
         }else if(idtabla == 'tabla-bloques'){
           $('#nombre-bloque').val(valor[1]); 
-          accion = 'editar';         
+          accion = 'editar';
+          idbloque = valor[0];         
         }else if(idtabla == 'tabla-temas'){
           $('#nombre-tema').val(valor[1]);
           $('#descripcion-tema').val(valor[2]);
@@ -56,14 +69,17 @@ $(document).ready(function () {
           $('#nombre-examen').val(valor[1]);
           $('#descripcion-examen').val(valor[2]);
           accion = 'editar';
+          idexamen = valor[0];
         }else if(idtabla == 'tabla-preguntas'){
           resp = valor[2].split('-*3');
           console.log(resp);
+          idpregunta = valor[0];
           $('#pregunta').val(valor[1]);
           for(i = 0; i<4; i++){
             resp_correcta = resp[i].split('###');
             console.log(resp_correcta);
             if(resp_correcta[0] == ''){
+              correcta = i;
               $('#respuesta'+(parseInt(i)+1)).val(resp_correcta[1]);
               $('#respuesta'+(parseInt(i)+1)).parent().prev().attr('checked', true);
             }else{
@@ -158,7 +174,7 @@ $(document).ready(function () {
           console.log(response);
           if (response != '') {
             traerDatosCombo('bloque.php', 'select-curso');
-
+            datosCursos();
           }
         }
       });
@@ -212,7 +228,35 @@ $(document).ready(function () {
   }
 
   //////////////////////////////////////////////////////////### PINTAR TABLAS ##//////////////////////////////////////////////
+  function datosCursos() {//PINTAR TABLA BLOQUES
+    $.ajax({
+      url: "../controllers/cursos.php",
+      type: "POST",
+      data: { 'cursos': 'cursos' },
 
+      success: function (response) {
+        template = '';
+        datos = JSON.parse(response);
+        for (i = 0; i < datos.length; i++) {
+          template +=
+            `
+            <tr class="examen">
+              <td scope="row" style="display: none;">${datos[i][0]}</td>
+              <td scope="row">${datos[i][1]}</td>
+              <td scope="row">${datos[i][2]}</td>
+              <td scope="row"><img width="50%" src="${datos[i][3]}"></td>
+              <td scope="row">${datos[i][4]}</td>
+              <td scope="row">${datos[i][5]}</td>
+              <td scope="row">${datos[i][6]}</td>
+              <td scope="row">${datos[i][7]}</td>
+              <td scope="row">${datos[i][8]}</td>
+            </tr>
+            `;
+        }
+        $('#datos-cursos').html(template);
+      }
+    });
+  }
 
 
   function datosBloques() {//PINTAR TABLA BLOQUES
@@ -391,17 +435,40 @@ $(document).ready(function () {
     });
   });
 
+  $("#registro-curso").submit(function (e) {//INSERTAR CURSOS A LA BASE DE DATOS
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+      url: "../controllers/cursos.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+
+      success: function (response) {
+        console.log(response);
+
+        if (response == 1) {
+          datosCursos();
+          $('#registro-curso').trigger('reset');
+        } else {
+          alert("datos no enviados, hubo un error");
+        }
+      }
+    });
+  });
+
   $("#registro-bloques").submit(function (e) {//INSERTAR BLOQUES A LA BASE DE DATOS
     e.preventDefault();
-    var idbloque = '';
     var nombre = $('#nombre-bloque').val();
     var curso = $('#select-curso').val();
+    console.log(accion);
     $.ajax({
       url: "../controllers/bloque.php",
       type: "POST",
       data: {
         'idbloque': idbloque, 'TNombre': nombre, 'SCurso': curso,
-        'accion': 'insertar'
+        'accion': accion
       },
 
       success: function (response) {
@@ -410,6 +477,8 @@ $(document).ready(function () {
         if (response == 1) {
           datosBloques();
           $('#nombre-bloque').val("");
+          accion = 'insertar';
+          idbloque = '';
         } else {
           alert("datos no enviados, hubo un error");
         }
@@ -432,7 +501,7 @@ $(document).ready(function () {
 
         if (response == 1) {
           datosTemas();
-          $('#nombre-bloque').val("");
+          $('#registro-temas').trigger('reset');
         } else {
           alert("datos no enviados, hubo un error");
         }
@@ -442,7 +511,6 @@ $(document).ready(function () {
 
   $("#registro-examen").submit(function (e) {//INSERTAR EXAMENES A LA BASE DE DATOS
     e.preventDefault();
-    var idexamen = '';
     var nombre = $('#nombre-examen').val();
     var descripcion = $('#descripcion-examen').val();
     var bloque = $('#select-bloque').val();
@@ -450,8 +518,8 @@ $(document).ready(function () {
       url: "../controllers/examen.php",
       type: "POST",
       data: {
-        'idexamen': idexamen, 'TNombre': nombre, 'TADescripcion': descripcion, 'SBloque': bloque,
-        'accion': 'insertar'
+        'idexamen': idexamen, 'TNombre': nombre, 'TADescripcion': descripcion,
+        'accion': accion
       },
 
       success: function (response) {
@@ -468,8 +536,6 @@ $(document).ready(function () {
     });
   });
 
-  let accion = '';
-  let correcta = '';
   $(document).on('click', '.radio-in', function () {
     correcta = $(this).data('correcta');
     console.log(correcta);
@@ -491,10 +557,9 @@ $(document).ready(function () {
       }
     }
 
-    var idpregunta = '';
+
     var pregunta = $('#pregunta').val();
     var examen = $('#select-examen').val();
-    accion = 'insertar';
 
     $.ajax({
       url: "../controllers/pregunta.php",
@@ -512,6 +577,9 @@ $(document).ready(function () {
           datosPreguntas();
           $('#pregunta').val("");
           $('input[name=TRespuesta]').val("");
+          idpregunta = '';
+          accion = 'insertar';
+          $('input:radio[name=TCorrecta]').prop('checked', false);
         } else {
           alert("datos no enviados, hubo un error");
         }
@@ -534,9 +602,7 @@ $(document).ready(function () {
 
         if (response == 1) {
           datosTareas();
-          $('#nombre-tarea').val("");
-          $('#descripcion-tarea').val("");
-          $('#archivo-tarea').val("");
+          $('#registro-tarea').trigger('reset');
         } else {
           alert("datos no enviados, hubo un error");
         }

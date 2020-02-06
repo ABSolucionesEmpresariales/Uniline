@@ -290,6 +290,8 @@
                     <hr>
                     <div class="form col-lg-3">
                         <form class="form-wrap" id="registro-curso">
+                        <input type="hidden" id="idcurso" name="idcurso" value="">
+                        <input type="hidden" id="accion" name="accion" value="insertar">
                             <div class="imagen flex">
                                 <div class="text-center">
                                     <img id="foto-curso" class="rounded-circle" width="70" height="70" src="../img/anadir.png" alt="foto de profesor">

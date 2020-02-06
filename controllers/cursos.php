@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
 include '../Modelos/Fecha.php';
@@ -22,7 +23,7 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
                     array($_POST['TNombre'],$_POST['TADescripcion'],$archivo,$_POST['TVideo'],$_POST['THoras'],$_SESSION['idusuario'],$_POST['TCosto']), 
                     "INSERT INTO curso (nombre,descripcion,imagen,video,horas,profesor,costo)VALUES(?,?,?,?,?,?,?)", 
                     1, 
-                    "sssssiid", 
+                    "ssssiid", 
                     false, 
                     null);
             }
@@ -31,11 +32,11 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
         function editar_curso($imagen,$conexion){
             return $conexion->
             consultaPreparada(
-            array($_POST['TNombre'],$_POST['TADescripcion'],$imagen,$_POST['TVideo'],$_POST['THoras'],$_SESSION['idusuario'],$_POST['TCosto'],$_POST['idcurso']), 
-            "UPDATE curso SET nombre =?,descripcion=?,imagen=?,video=?,horas=?,profesor=?,costo=? WHERE idcurso = ?", 
+            array($_POST['idcurso'],$_POST['TNombre'],$_POST['TADescripcion'],$imagen,$_POST['TVideo'],$_POST['THoras'],$_SESSION['idusuario'],$_POST['TCosto']), 
+            "UPDATE curso SET nombre = ?,descripcion = ?,imagen = ?,video = ?,horas = ?,profesor = ?,costo = ? WHERE idcurso = ?", 
             1, 
-            "sssssiidi", 
-            false, 
+            "ssssssis", 
+            true, 
             null);
         }
         if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
@@ -59,7 +60,7 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
             false, 
             null);
             if($imagen != ""){
-               echo editar_curso($imagen,$conexion);
+               echo editar_curso($imagen[0][0],$conexion);
             }
         }
     }
@@ -67,5 +68,5 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
 
 if(isset($_POST['cursos'])){
     $conexion = New Modelos\Conexion();
-    echo $conexion->obtenerDatosDeTabla("SELECT * FROM curso ");
+    echo json_encode($conexion->obtenerDatosDeTabla("SELECT * FROM curso"));
 }

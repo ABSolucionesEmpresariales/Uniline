@@ -26,7 +26,7 @@ if (!empty($_POST['accion'])) {
 
         case "editar":
             if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_POST['SExamen'])) {
-                $conexion->consultaPreparada(
+               echo $conexion->consultaPreparada(
                     array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_POST['SExamen']),
                     "UPDATE pregunta SET pregunta = ?, respuestas = ?, examen = ? WHERE idpregunta = ? ",
                     1,
