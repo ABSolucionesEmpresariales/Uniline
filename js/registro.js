@@ -91,7 +91,7 @@ $(document).ready(function () {
             window.location.replace('../Views/dashboard.php?idcurso='+idcurso);
           } else {
             console.log(response);
-            var stripe = Stripe('pk_test_OTcbgHS4tbxZaWVcZ1IjcUt900jFHDsOdd');
+            var stripe = Stripe('pk_test_6C9unGyhPbJEznLeqCYQKXiP00xVhaHNVf');
             stripe.redirectToCheckout({
               sessionId: response
             }).then(function (response) {

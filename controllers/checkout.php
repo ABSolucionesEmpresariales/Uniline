@@ -30,7 +30,7 @@ if (!empty($_POST['idcurso'])) {
         $imagen = $imagen[1];
         $costo =  $respuesta[0][2];
 
-        \Stripe\Stripe::setApiKey('sk_test_iGQnM1YBaSBwLfboFr2dEWpQ00diPgMkUi');
+        \Stripe\Stripe::setApiKey('sk_test_ouqOIWGA1Agl8jlSjso3EHnf00SWc42bpT');
 
         $session = \Stripe\Checkout\Session::create([
             'client_reference_id' => $_SESSION['idusuario'],

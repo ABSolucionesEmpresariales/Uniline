@@ -4,7 +4,7 @@ require_once '../Modelos/Conexion.php';
 require_once '../Modelos/Fecha.php';
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-\Stripe\Stripe::setApiKey('sk_test_iGQnM1YBaSBwLfboFr2dEWpQ00diPgMkUi');
+\Stripe\Stripe::setApiKey('sk_test_ouqOIWGA1Agl8jlSjso3EHnf00SWc42bpT');
 
 // secreto de firma : es la generada despues de crear en el webhook del dashboart
 $endpoint_secret = 'whsec_BmsUhdyyHKAkVMHBXhyJ1OQMrAnuLojh';
