@@ -239,7 +239,7 @@
                         <form class="form-wrap" id="registro-profesor">
                             <div class="imagen flex">
                                 <div class="text-center">
-                                    <img id="foto-perfil" class="rounded-circle" width="70" height="70" src="../img/users/perfil.png" alt="foto de profesor">
+                                    <img id="foto-perfil" class="rounded-circle" width="70" height="70" src="../img/Users/perfil.png" alt="foto de profesor">
                                     <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
@@ -335,7 +335,7 @@
         </div>
     </div>
 
-    <script src="../js/registerpage.js"></script>
+    <script src="../js/register.js"></script>
 
 </body>
 

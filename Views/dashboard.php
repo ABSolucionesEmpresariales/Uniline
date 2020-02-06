@@ -1,8 +1,7 @@
 <?php
 session_start();
 require_once '../Modelos/Conexion.php';
-$_SESSION['idusuario'] = 1;
-$_SESSION['idcurso'] = 1;
+$_SESSION['idcurso'] = $_GET['idcurso'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
