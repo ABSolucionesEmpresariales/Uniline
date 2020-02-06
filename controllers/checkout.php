@@ -44,8 +44,8 @@ if (!empty($_POST['idcurso'])) {
                 'quantity' => 1,
             ]],
             'metadata' => ['idcurso' => $_POST['idcurso']], //poner el id del curso
-            'success_url' => 'https://www.cafionline.com/views/success.php?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => 'https://www.cafionline.com/views/failure.php',
+            'success_url' => 'https://www.cafionline.com/Views/success.php?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'https://www.cafionline.com/Views/failure.php',
         ]);
         echo $session->id;
     } else {
