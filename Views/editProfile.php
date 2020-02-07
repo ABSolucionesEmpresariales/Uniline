@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../controllers/sesion.php'
 ?>
 <!DOCTYPE html>

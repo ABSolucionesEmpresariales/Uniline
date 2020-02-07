@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     $(document).on('click','.go-to-curso',function(){
         if($(this).data("idcurso") != ""){
-            window.location.replace('../Views/dashboard.php?idcurso=' + $(this).data("idcurso"));
+            window.location.replace('../views/dashboard.php?idcurso=' + $(this).data("idcurso"));
         }
     });
 });
