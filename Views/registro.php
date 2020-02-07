@@ -158,19 +158,19 @@ include '../controllers/sessionCEO.php';
                                         <input type="text" id="pregunta" class="form-control inden-preguntas" name="TPregunta" placeholder="pregunta"> <br>
 
                                         <div>
-                                            <input class="radio-in" type="radio" id="resp1" name="TCorrecta" data-correcta = "1">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp1" name="TCorrecta" data-correcta = "1">
                                             <label><input type="text" id="respuesta1" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 1"></label>
                                         </div>
                                         <div>
-                                            <input class="radio-in" type="radio" id="resp2" name="TCorrecta" data-correcta ="2">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp2" name="TCorrecta" data-correcta ="2">
                                             <label><input type="text" id="respuesta2" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 2"></label>
                                         </div>
                                         <div>
-                                            <input class="radio-in" type="radio" id="resp3" name="TCorrecta" data-correcta ="3">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp3" name="TCorrecta" data-correcta ="3">
                                             <label><input type="text" id="respuesta3" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 3"></label>
                                         </div>
                                         <div>
-                                            <input class="radio-in" type="radio" id="resp4" name="TCorrecta" data-correcta ="4">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp4" name="TCorrecta" data-correcta ="4">
                                             <label><input type="text" id="respuesta4" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 4"></label>
                                         </div>
                                         <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
@@ -202,9 +202,9 @@ include '../controllers/sessionCEO.php';
                                 <form class="form-wrap" id="registro-tarea">
                                     <input id="accion-tarea" type="hidden" value="insertar" name="accion">
                                     <input id="idtarea" type="hidden" value="" name="idtarea">
-                                    <input type="text" id="nombre-tarea" class="form-control" name="TNombre" placeholder="Tarea">
-                                    <textarea rows="5" cols="50" id="descripcion-tarea" class="form-control" name="TADescripcion" placeholder="Descripcion de la tarea"></textarea>
-                                    <div>archivo<input type="file" id="archivo-tarea" class="form-control" name="FArchivo"></div>
+                                    <input type="text" id="nombre-tarea" class="form-control inden-tareas" name="TNombre" placeholder="Tarea">
+                                    <textarea rows="5" cols="50" id="descripcion-tarea" class="form-control inden-tareas" name="TADescripcion" placeholder="Descripcion de la tarea"></textarea>
+                                    <div>archivo<input type="file" id="archivo-tarea" class="form-control inden-tareas" name="FArchivo"></div>
                                     <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                 </form>
                                 <hr>
