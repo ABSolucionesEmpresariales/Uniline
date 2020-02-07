@@ -34,7 +34,11 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
     $datos_verificar = array($_POST['TEmail']);
     $resultado = json_encode($conexion->consultaPreparada($datos_verificar,$consulta_verificar,2,'s', false, null));
 
-    if($resultado != '[]'){
+    $consulta_verificar_2 = "SELECT * FROM usuario WHERE nombre = ?";
+    $datos_verificar_2 = array($_POST['TNombre']);
+    $resultado_2 = json_encode($conexion->consultaPreparada($datos_verificar_2,$consulta_verificar_2,2,'s',false, null));
+
+    if($resultado != '[]' || $resultado_2 != '[]'){
         echo 'Existe';
     }else{
       if(isset($_FILES['Fimagen'])){
@@ -47,8 +51,9 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
           } else if ($archivo == "imagenGrande"){
               echo $archivo;
           } else {
+              $profecion = $_POST['TProfesion']."###";
               $consulta_registro_maestros= "INSERT INTO usuario (nombre,edad,escolaridad,imagen,telefono,email,password,vkey,verificado,tipo,estado,municipio,trabajo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-              $datos_registro_maestro = array($nombre,$_POST['TEdad'],$_POST['TGrado'],$archivo,$telefono,$email,$encriptado,$vkey,$verificado,"Maestro",$_POST['TEstado'],$_POST['TMunicipio'],$_POST['TProfesion']);
+              $datos_registro_maestro = array($nombre,$_POST['TEdad'],$_POST['TGrado'],$archivo,$telefono,$email,$encriptado,$vkey,$verificado,"Maestro",$_POST['TEstado'],$_POST['TMunicipio'],$profecion);
               $resultado = $conexion->consultaPreparada($datos_registro_maestro,$consulta_registro_maestros,1,'sissssssissss',false,6);
               if($resultado == 1){
                 $enviar = $emailClass->enviarEmailConfirmacion();

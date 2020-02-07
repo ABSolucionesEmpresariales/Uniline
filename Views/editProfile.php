@@ -93,7 +93,12 @@ include '../controllers/sesion.php'
             <!-- Editar foto de perfil -->
             <div class="col-lg-3 course_box load-picture">
               <div class="card">
-                <img id="FotoPerfil" class="rounded-circle" width="260" height="260" src=<?php echo $_SESSION['imagen_perfil']?> alt="foto de perfil">    
+                <div id="preview">
+                
+                </div>
+                <div id="preview-final">
+                  <img id="FotoPerfil" class="rounded-circle" width="260" height="260" src=<?php echo $_SESSION['imagen_perfil']?> alt="foto de perfil">   
+                </div>
                 <div id="cargaFoto" class="custom-file">
                   <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01">
@@ -140,7 +145,6 @@ include '../controllers/sesion.php'
                       <select id="verifi-trabajo" class="form-control m-1" style="height: 35px!important">
                         <option value="">Trabajo</option>
                         <option value="1">Si</option>
-                        <option value="0">No</option>
                       </select >
                     <div class="show-date" style="display: none;">
                       <div class="input-group m-1">
@@ -167,7 +171,7 @@ include '../controllers/sesion.php'
                       </div>
                       </div>
                     
-                    <button id="actualizar" class="btn-primary primary-btn text-uppercase btn-sm-block" type="submit" name="submit">Actualizar perfil</button>
+                    <button id="actualizar" class="btn-primary primary-btn text-uppercase btn-sm-block" type="submit" name="submit">Guardar cambios</button>
                 </div>
               </div>
             </div>
