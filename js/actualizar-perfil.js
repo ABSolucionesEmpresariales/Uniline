@@ -18,6 +18,8 @@ $(document).ready(function () {
             $("#alertas").addClass('alert-danger');
             $("#alertas").removeClass('alert-success');
             if (response == "1") {
+              $('#preview-final').show();
+              $('#preview').hide();
               datosUsuario();
               $("#alertas").removeClass('alert-danger');
               $("#alertas").addClass('alert-success');
@@ -63,6 +65,7 @@ $(document).ready(function () {
 
             success: function (response) {
                 let datos = JSON.parse(response);
+                console.log(datos);
                 $('#numero').val(datos[0][0]);
                 $('#registrar-nombre').val(datos[0][1]);
                 $('#registrar-tel').val(datos[0][5]);
@@ -83,14 +86,14 @@ $(document).ready(function () {
                 }
                   $('#registrar-estado').val(datos[0][11]);
                   $('#registrar-municipio').val(datos[0][12]);
-                if(datos[0][13] != "###"){
+                if(datos[0][13] == null || datos[0][13] == ""){
+                  $('#verifi-trabajo').val("");
+                }else{
                   $('#verifi-trabajo').val("1");
                   separar = datos[0][13].split('###');
                   $('#registrar-puesto').val(separar[0]);
                   $('#registrar-Descripcion').val(separar[1]);
                   $('.show-date').slideDown("slow");
-                }else{
-                  $('#verifi-trabajo').val("0");
                 }
                   
             }
@@ -140,3 +143,26 @@ $(document).ready(function () {
       });
 
   });
+
+  document.getElementById("inputGroupFile01").onchange = function(e) {
+    // Creamos el objeto de la clase FileReader
+    let reader = new FileReader();
+  
+    // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+    reader.readAsDataURL(e.target.files[0]);
+  
+    // Le decimos que cuando este listo ejecute el código interno
+    reader.onload = function(){
+      let preview = document.getElementById('preview'),
+              image = document.createElement('img');
+  
+      image.src = reader.result;
+      image.width = "260";
+      image.height="260";
+  
+      preview.innerHTML = '';
+      preview.append(image);
+      $('#preview-final').hide();
+      $('#preview img').addClass("rounded-circle");
+    };
+  }
