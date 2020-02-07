@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
 include '../Modelos/Fecha.php';
