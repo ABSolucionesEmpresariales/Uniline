@@ -11,10 +11,14 @@ $(document).ready(function () {
             data: $('#myLogin').serialize(),
 
             success: function (response) {
+              console.log(response);
                 if (response == 1) {
                     window.location.replace('../views/mainpage.php');
-                    console.log("ingresado")
+                    console.log("ingresado");
                     
+                }else if(response == 'ceo'){
+                  window.location.replace('../views/registro.php');
+                  console.log("ingresado como CEO");
                 }else if(response == "NoVerificado"){
                   $('.alerta-login').html('<h2 class="alert alert-danger">*Cuenta no verificada</h2>')
                 }else if(response == "passwordIncorrecta"){

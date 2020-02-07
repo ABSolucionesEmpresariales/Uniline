@@ -1,6 +1,13 @@
 $(document).ready(function(){
+    $("#ventana-alerta").removeClass('d-none');
+    $("#ventana-alerta").hide();
     $("#mostrar").hide();
-    $("#mostrar").toggle(700);
+    setTimeout(function(){
+        $("#ventana-alerta").show(700)
+      }, 700);
+      setTimeout(function(){
+        $("#mostrar").show(700)
+      }, 1200);
 });
 
 $(window).resize(function () {
