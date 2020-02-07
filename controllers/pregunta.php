@@ -9,10 +9,9 @@ if (!empty($_POST['accion'])) {
     switch ($_POST['accion']) {
 
         case "insertar":
-
-            if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_POST['SExamen'])) {
+            if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_SESSION['idexamen'])) {
                     echo $conexion->consultaPreparada(
-                    array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_POST['SExamen']),
+                    array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_SESSION['idexamen']),
                     "INSERT INTO pregunta (idpregunta,pregunta,respuestas,examen) VALUES (?,?,?,?)",
                     1,
                     "ssss",
@@ -25,9 +24,9 @@ if (!empty($_POST['accion'])) {
             break;
 
         case "editar":
-            if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_POST['SExamen'])) {
+            if (isset($_POST['idpregunta']) && !empty($_POST['TPregunta']) && !empty($_POST['respuestas']) && !empty($_SESSION['idexamen'])) {
                echo $conexion->consultaPreparada(
-                    array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_POST['SExamen']),
+                    array($_POST['idpregunta'], $_POST['TPregunta'], $_POST['respuestas'], $_SESSION['idexamen']),
                     "UPDATE pregunta SET pregunta = ?, respuestas = ?, examen = ? WHERE idpregunta = ? ",
                     1,
                     "ssss",
@@ -52,14 +51,23 @@ if (!empty($_POST['accion'])) {
 
         case 'tabla':
             echo json_encode($conexion->consultaPreparada(
-                array($_SESSION['idexamen']),
-                "SELECT idpregunta,pregunta,respuestas,examen,examen.nombre FROM pregunta INNER JOIN examen 
-                ON examen = idexamen INNER JOIN bloque ON bloque = idbloque WHERE examen = ? ORDER BY examen ASC",
+                array($_SESSION['idbloque']),
+                "SELECT idpregunta,pregunta,respuestas,examen FROM pregunta p 
+                INNER JOIN examen e ON e.idexamen = p.examen WHERE e.bloque = ?",
                 2,
                 "s",
                 false,
                 null
             ));
+
+            $datos = $conexion->consultaPreparada(array($_SESSION['idbloque']),
+            "SELECT idexamen FROM examen INNER JOIN bloque ON bloque = idbloque WHERE bloque = ?",
+            2,
+            "s",
+            false,
+            null
+            );
+            $_SESSION['idexamen'] = $datos[0][0];
             break;
 
         default:

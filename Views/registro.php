@@ -77,11 +77,9 @@ include '../controllers/sesion.php';
                                         <tr>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Curso</th>
-                                            <th scope="col">Opcion</th>
                                         </tr>
                                     </thead>
                                     <tbody id="datos-bloque">
-
                                     </tbody>
                                 </table>
 
@@ -150,9 +148,6 @@ include '../controllers/sesion.php';
                             <!-- REGISTRO DE PREGUNTAS EXAMENEN -->
                             <h3>Registro de preguntas</h3>
                             <h2 id="labelexamen">
-                                <select id="select-examen" name="SExamen" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
-
-                                </select>
                             </h2>
                             <hr>
                             <div class="form col-lg-5">
@@ -189,7 +184,6 @@ include '../controllers/sesion.php';
                                         <tr>
                                             <th scope="col">Pregunta</th>
                                             <th scope="col">Respuestas</th>
-                                            <th scope="col">Respuesta Correcta</th>
                                             <th scope="col">valor respuesta</th>
                                         </tr>
                                     </thead>

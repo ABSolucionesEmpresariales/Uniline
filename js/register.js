@@ -1,13 +1,13 @@
 $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
-  llevarSelectSession(); //lleva a session lo que esta en ese momento en el select
 
   let accion = 'insertar';
   let correcta = '';
   let idbloque = 'insertar';
   let idexamen = 'insertar';
   let idpregunta = 'insertar';
+  let val = "";
 
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];
@@ -115,6 +115,13 @@ $(document).ready(function () {
         template_tabla = '';
         template_combo = '<option value="0">Selecciona profesor</option>';
         for (i = 0; i < datos.length; i++) {
+          for(var j = 0; j <= datos[i].length; j++){
+            if(datos[i][j] == 'null' || datos[i][j] === null){
+              datos[i][j] = "";
+            }
+          }
+        }
+        for (i = 0; i < datos.length; i++) {
           template_tabla +=
             `
           <tr class="profes">
@@ -164,7 +171,6 @@ $(document).ready(function () {
   }
 
   ////////METER A SESSION LOS SELECT//////////////
-  function llevarSelectSession() {
     $(document).on('change', '#select-profe-tema', function () {//session al profe
       $.ajax({
         url: "../controllers/combo_profesores.php",
@@ -180,6 +186,7 @@ $(document).ready(function () {
         }
       });
     });
+
     $(document).on('change', '#select-curso', function () { //session al curso
       $.ajax({
         url: "../controllers/combo_profesores.php",
@@ -189,12 +196,13 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           if (response != '') {
-            traerDatosCombo('tema.php', 'select-bloque');
+            traerDatosCombo('tema.php','select-bloque');
             datosBloques();
           }
         }
       });
     });
+
     $(document).on('change', '#select-bloque', function () { //session al bloque
       $.ajax({
         url: "../controllers/combo_profesores.php",
@@ -204,7 +212,7 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           if (response != '') {
-            traerDatosCombo('pregunta.php', 'select-examen');
+            datosPreguntas();
             datosTemas();
             datosExamen();
             datosTareas();
@@ -226,10 +234,9 @@ $(document).ready(function () {
         }
       });
     });
-  }
 
   //////////////////////////////////////////////////////////### PINTAR TABLAS ##//////////////////////////////////////////////
-  function datosCursos() {//PINTAR TABLA BLOQUES
+  function datosCursos() {//PINTAR TABLA CURSO
     $.ajax({
       url: "../controllers/cursos.php",
       type: "POST",
@@ -238,21 +245,35 @@ $(document).ready(function () {
       success: function (response) {
         template = '';
         datos = JSON.parse(response);
+        dat = "";
+        console.log(datos.length);
+
         for (i = 0; i < datos.length; i++) {
-          template +=
-            `
+          for(var j = 0; j <= datos[i].length; j++){
+            if(datos[i][j] == 'null' || datos[i][j] === null){
+              datos[i][j] = "";
+            }
+          }
+        }
+
+        for (i = 0; i < datos.length; i++) {
+          template +=`
             <tr class="examen">
               <td scope="row" style="display: none;">${datos[i][0]}</td>
               <td scope="row">${datos[i][1]}</td>
               <td scope="row">${datos[i][2]}</td>
               <td scope="row"><img width="50%" src="${datos[i][3]}"></td>
               <td scope="row">${datos[i][4]}</td>
-              <td scope="row">${datos[i][5]}</td>
-              <td scope="row">${datos[i][6]}</td>
+              <td scope="row">${datos[i][5]}</td>`;
+/*               if(datos[i][6] == "null" || datos[i][6] == null) {
+              template +=` <td scope="row">${dat}</td>`;
+              }else{
+              template +=` <td scope="row">${datos[i][6]}</td>`;
+              } */
+ template +=`<td scope="row">${datos[i][6]}</td>
               <td scope="row">${datos[i][7]}</td>
               <td scope="row">${datos[i][8]}</td>
-            </tr>
-            `;
+            </tr>`;
         }
         $('#datos-cursos').html(template);
       }
@@ -295,6 +316,13 @@ $(document).ready(function () {
         template = '';
         datos = JSON.parse(response);
         console.log(datos);
+        for (i = 0; i < datos.length; i++) {
+          for(var j = 0; j <= datos[i].length; j++){
+            if(datos[i][j] == 'null' || datos[i][j] === null){
+              datos[i][j] = "";
+            }
+          }
+        }
         for (i = 0; i < datos.length; i++) {
           template +=
             `
@@ -371,6 +399,13 @@ $(document).ready(function () {
         template = '';
         datos = JSON.parse(response);
         console.log(datos);
+        for (i = 0; i < datos.length; i++) {
+          for(var j = 0; j <= datos[i].length; j++){
+            if(datos[i][j] == 'null' || datos[i][j] === null){
+              datos[i][j] = "";
+            }
+          }
+        }
         for (i = 0; i < datos.length; i++) {
           template +=
             `
@@ -474,9 +509,12 @@ $(document).ready(function () {
 
       success: function (response) {
         console.log(response);
-
-        if (response == 1) {
+        if (response == 1) {  
+          val = $('#select-bloque').val();
+          console.log(val);
           datosBloques();
+          traerDatosCombo('tema.php','select-bloque');    
+          
           $('#nombre-bloque').val("");
           accion = 'insertar';
           idbloque = '';
@@ -485,6 +523,10 @@ $(document).ready(function () {
         }
       }
     });
+  });
+
+  $(document).on('chenge','#select-bloque',function(){
+    $(this).val(val);
   });
 
   $("#registro-temas").submit(function (e) {//INSERTAR TEMAS A LA BASE DE DATOS
