@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../Modelos/Conexion.php';
+include '../controllers/sesion.php';
 $_SESSION['idcurso'] = $_GET['idcurso'];
 ?>
 <!DOCTYPE html>
@@ -26,6 +27,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <!--
     CSS
     ============================================= -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="../css/linearicons.css">
@@ -79,27 +81,35 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
   
 
-  <header id="header" id="home">
+  <header id="header">
     <div class="header-top">
       <div class="container">
-        <div class="row">
-          <div id="logo-res" class="col-lg-2 col-md-2 col-1 header-top-left no-padding">
-            <a href="mainpage.php"><img class="logo-responsive" src="../img/uniline2.png" alt="" title="" /></a>
+        <div class="row justify-content-between">
+          <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
+            <a href="mainpage.php"><img src="../img/uniline2.png" width="40%" alt="" title="" /></a>
           </div>
-          <div class="col-xl-7 col-lg-6 col-md-5 col-6 header-top-left no-padding">
-            <a class="btn btn-sm text-center" href="#">Nombre del curso</a>
+          <div class="float-right">
+            <nav id="nav-menu-container">
+              <ul class="nav-menu">
+                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
+                <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
+                <img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image">
+                </a>
+                <div class="dropdown-menu opciones-perfil">
+                  <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                </div>
+              </ul>
+            </nav><!-- #nav-menu-container -->
           </div>
-          <nav id="nav-menu-container">
-            <ul id="navdash" class="nav-menu d-inline-flex col-2 header-top-right no-padding flex align-items-center">
-              <li><a class="btn btn-sm text-center" href="mainpage.php">Inicio</a></li>
-              <li><a class="btn btn-sm text-center" href="misCursos.php"><span></span>Mis cursos</a></li>
-              <li><a class="text-center" href="editProfile.php"><img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image"></a></li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>
   </header><!-- #header -->
+
 
   <br><br>
 
@@ -421,8 +431,8 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
-  <script src="../js/popper.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/stellar.js"></script>
   <script src="../vendors/nice-select/js/jquery.nice-select.min.js"></script>

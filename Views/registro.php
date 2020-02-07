@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+include '../controllers/sessionCEO.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,7 +66,7 @@
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-bloques">
-                                    <input type="text" id="nombre-bloque" class="form-control" name="TBloques" placeholder="Nombre del Bloque">
+                                    <input type="text" id="nombre-bloque" class="form-control inden-bloque" name="TBloques" placeholder="Nombre del Bloque">
                                     <br>
                                     <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir</button>
                                 </form>
@@ -75,11 +77,9 @@
                                         <tr>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Curso</th>
-                                            <th scope="col">Opcion</th>
                                         </tr>
                                     </thead>
                                     <tbody id="datos-bloque">
-
                                     </tbody>
                                 </table>
 
@@ -93,10 +93,10 @@
                                 <form class="form-wrap" id="registro-temas">
                                     <input id="accion-tema" type="hidden" value="insertar" name="accion">
                                     <input id='idtema' type="hidden" value="" name="idtema">
-                                    <input type="text" id="nombre-tema" class="form-control" name="TNombre" placeholder="Nombre del tema">
-                                    <textarea rows="5" cols="50" id="descripcion-tema" class="form-control" name="TADescripcion" placeholder="Descripcion del tema"></textarea>
-                                    <input type="text" id="video-tema" class="form-control" name="TVideo" placeholder="URL video"></<input>
-                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control" name="FArchivo"></div>
+                                    <input type="text" id="nombre-tema" class="form-control inden-tema" name="TNombre" placeholder="Nombre del tema">
+                                    <textarea rows="5" cols="50" id="descripcion-tema" class="form-control inden-tema" name="TADescripcion" placeholder="Descripcion del tema"></textarea>
+                                    <input type="text" id="video-tema" class="form-control inden-tema" name="TVideo" placeholder="URL video"></<input>
+                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control inden-tema" name="FArchivo"></div>
                                     <br>
                                     <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir tema</button>
                                 </form>
@@ -123,8 +123,8 @@
                             <hr>
                             <div class="form col-lg-5">
                                 <form class="form-wrap" id="registro-examen">
-                                    <input type="text" id="nombre-examen" class="form-control" name="TNombre" placeholder="escribe el nombre del examen">
-                                    <textarea rows="5" cols="50" id="descripcion-examen" class="form-control" name="TADescripcion" placeholder="escribe una descripcion de este examen"></textarea>
+                                    <input type="text" id="nombre-examen" class="form-control inden-examen" name="TNombre" placeholder="escribe el nombre del examen">
+                                    <textarea rows="5" cols="50" id="descripcion-examen" class="form-control inden-examen" name="TADescripcion" placeholder="escribe una descripcion de este examen"></textarea>
                                     <br>
                                     <button id="btn-examen" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Enviar datos</button>
                                 </form>
@@ -148,9 +148,6 @@
                             <!-- REGISTRO DE PREGUNTAS EXAMENEN -->
                             <h3>Registro de preguntas</h3>
                             <h2 id="labelexamen">
-                                <select id="select-examen" name="SExamen" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
-
-                                </select>
                             </h2>
                             <hr>
                             <div class="form col-lg-5">
@@ -158,23 +155,23 @@
                                     <hr>
                                     <p>Escribe la pregunta y selecciona cual de tus respuestas es la correcta</p>
                                     <div class="col-lg-6">
-                                        <input type="text" id="pregunta" class="form-control" name="TPregunta" placeholder="pregunta"> <br>
+                                        <input type="text" id="pregunta" class="form-control inden-preguntas" name="TPregunta" placeholder="pregunta"> <br>
 
                                         <div>
                                             <input class="radio-in" type="radio" id="resp1" name="TCorrecta" data-correcta = "1">
-                                            <label><input type="text" id="respuesta1" class="form-control" name="TRespuesta" placeholder="respuesta 1"></label>
+                                            <label><input type="text" id="respuesta1" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 1"></label>
                                         </div>
                                         <div>
                                             <input class="radio-in" type="radio" id="resp2" name="TCorrecta" data-correcta ="2">
-                                            <label><input type="text" id="respuesta2" class="form-control" name="TRespuesta" placeholder="respuesta 2"></label>
+                                            <label><input type="text" id="respuesta2" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 2"></label>
                                         </div>
                                         <div>
                                             <input class="radio-in" type="radio" id="resp3" name="TCorrecta" data-correcta ="3">
-                                            <label><input type="text" id="respuesta3" class="form-control" name="TRespuesta" placeholder="respuesta 3"></label>
+                                            <label><input type="text" id="respuesta3" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 3"></label>
                                         </div>
                                         <div>
                                             <input class="radio-in" type="radio" id="resp4" name="TCorrecta" data-correcta ="4">
-                                            <label><input type="text" id="respuesta4" class="form-control" name="TRespuesta" placeholder="respuesta 4"></label>
+                                            <label><input type="text" id="respuesta4" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 4"></label>
                                         </div>
                                         <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                                     </div>
@@ -187,7 +184,6 @@
                                         <tr>
                                             <th scope="col">Pregunta</th>
                                             <th scope="col">Respuestas</th>
-                                            <th scope="col">Respuesta Correcta</th>
                                             <th scope="col">valor respuesta</th>
                                         </tr>
                                     </thead>
@@ -240,25 +236,25 @@
                             <div class="imagen flex">
                                 <div class="text-center">
                                     <img id="foto-perfil" class="rounded-circle" width="70" height="70" src="../img/Users/perfil.png" alt="foto de profesor">
-                                    <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                    <input type="file" name="Fimagen" class="custom-file-input inden-profesores" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
-                            <input type="text" id="registrar-nombre" class="form-control" name="TNombre" placeholder="Nombre">
-                            <input type="text" id="registrar-edad" class="form-control" name="TEdad" placeholder="Edad">
-                            <select id="registrar-grado" name="TGrado" class="form-control m-1" style="height: 35px!important">
+                            <input type="text" id="registrar-nombre" class="form-control inden-profesores" name="TNombre" placeholder="Nombre">
+                            <input type="text" id="registrar-edad" class="form-control inden-profesores" name="TEdad" placeholder="Edad">
+                            <select id="registrar-grado" name="TGrado" class="form-control m-1 inden-profesores" style="height: 35px!important">
                                 <option value="">Selecciona grado de estudios</option>
                                 <option value="Secundaria">Secundaria</option>
                                 <option value="Bachillerato">Bachillerato</option>
                                 <option value="Universidad">Universidad</option>
                                 <option value="Superior">Superior</option>
                             </select>
-                            <input type="phone" id="registrar-tel" class="form-control" name="TTelefono" placeholder="Telefono">
-                            <input type="email" id="registrar-email" class="form-control" name="TEmail" placeholder="Email">
-                            <input type="password" id="registrar-pass" class="form-control" name="TPass" placeholder="Password">
-                            <select id="registrar-estado2" name="TEstado" class="form-control m-1" style="height: 35px!important">
+                            <input type="phone" id="registrar-tel" class="form-control inden-profesores" name="TTelefono" placeholder="Telefono">
+                            <input type="email" id="registrar-email" class="form-control inden-profesores" name="TEmail" placeholder="Email">
+                            <input type="password" id="registrar-pass" class="form-control inden-profesores" name="TPass" placeholder="Password">
+                            <select id="registrar-estado2" name="TEstado" class="form-control m-1 inden-profesores" style="height: 35px!important">
                             </select>
-                            <input type="text" id="registrar-municipio" class="form-control" name="TMunicipio" placeholder="Municipio">
-                            <input type="text" id="registrar-profesion" class="form-control" name="TProfesion" placeholder="Profesion">
+                            <input type="text" id="registrar-municipio" class="form-control inden-profesores" name="TMunicipio" placeholder="Municipio">
+                            <input type="text" id="registrar-profesion" class="form-control inden-profesores" name="TProfesion" placeholder="Profesion">
                             <br>
                             <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                         </form>
@@ -295,15 +291,15 @@
                             <div class="imagen flex">
                                 <div class="text-center">
                                     <img id="foto-curso" class="rounded-circle" width="70" height="70" src="../img/anadir.png" alt="foto de profesor">
-                                    <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
+                                    <input type="file" name="Fimagen" class="custom-file-input inden-curso" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
-                            <input type="text" id="nombre-curso" class="form-control" name="TNombre" placeholder="Nombre del curso">
-                            <textarea rows="5" cols="50" id="descripcion-curso" class="form-control" name="TADescripcion" placeholder="Descripcion del curso"></textarea>
-                            <input type="text" id="horas-curso" class="form-control" name="THoras" placeholder="Horas del curso">
-                            <input type="text" id="costo-curso" class="form-control" name="TCosto" placeholder="Costo del curso">
+                            <input type="text" id="nombre-curso" class="form-control inden-curso" name="TNombre" placeholder="Nombre del curso">
+                            <textarea rows="5" cols="50" id="descripcion-curso" class="form-control inden-curso" name="TADescripcion" placeholder="Descripcion del curso"></textarea>
+                            <input type="text" id="horas-curso" class="form-control inden-curso" name="THoras" placeholder="Horas del curso">
+                            <input type="text" id="costo-curso" class="form-control inden-curso" name="TCosto" placeholder="Costo del curso">
                             <br>
-                            <input type="text" id="video-curso" class="form-control" name="TVideo" placeholder="URL video"></<input>
+                            <input type="text" id="video-curso" class="form-control inden-curso" name="TVideo" placeholder="URL video"></<input>
                             <br>
                             <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
                         </form>

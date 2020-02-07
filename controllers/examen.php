@@ -10,16 +10,16 @@ if (!empty($_POST['accion'])) {
 
         case "insertar":
             $resultado =  $conexion->consultaPreparada(
-                array($_POST['SBloque']),
+                array($_SESSION['idbloque']),
                 "SELECT idexamen FROM examen WHERE bloque = ?",
                 2,
                 "s",
                 false,
                 null
             );
-            if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['SBloque']) && !empty($_POST['accion']) && empty($resultado)) {
+            if (isset($_POST['idexamen']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque']) && !empty($_POST['accion']) && empty($resultado)) {
                 echo $conexion->consultaPreparada(
-                    array($_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_POST['SBloque']),
+                    array($_POST['idexamen'], $_POST['TNombre'], $_POST['TADescripcion'], $_SESSION['idbloque']),
                     "INSERT INTO examen (idexamen,nombre,descripcion,bloque) VALUES (?,?,?,?)",
                     1,
                     "ssss",

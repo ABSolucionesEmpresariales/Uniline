@@ -65,6 +65,9 @@ session_start();
 
 <body>
 
+<div id="alertas-registro" class="alert alert-danger fixed-top text-center" style="max-height:54px; display: none;">
+</div>
+
   <!-- Start Registro Area -->
   <div class="modal fade" id="modal-registro">
     <div class="modal-dialog">
@@ -74,7 +77,7 @@ session_start();
         <div class="overlay-bg">
           <!-- confirmacion area -->
 
-          <div id="alertas" class="alert alert-success fixed-top text-center" style="max-height:54px; display: none;"></div>
+          
 
 
           <div class="modal-body row justify-content-center align-items-center">
@@ -91,8 +94,11 @@ session_start();
                 <input type="email" id="registrar-correo" class="form-control text-dark" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'">
                 <input type="password" id="registrar-pass" class="form-control text-dark" name="TPass" placeholder="Constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña'">
 
-                <button class="btn-registrar btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                <button id="registrar" class="btn-registrar btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                
               </form>
+              <br>
+              <div id="alertas" class="alert alert-success text-center" style="max-height:54px; width:83%; display: none; margin-left: 40px;"></div>
 
             </div>
           </div>
@@ -151,7 +157,7 @@ session_start();
               ?>
                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="#" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
-                <li class="mt-3"><a data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
+                <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
                 <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Login</a></li>
               <?php

@@ -19,17 +19,22 @@ $result = json_decode($resultado);
 
 if ($resultado != "[]") {
     if (password_verify($password, $result[0][7])) {
-        if($result[0][9] == 1){
+        if($result[0][9] == 1 && $result[0][10] != 'CEO') {
             echo '1';
             $_SESSION['acceso'] = $usuario;
             $_SESSION['idusuario'] = $result[0][0];
             $_SESSION['emailusuario'] = $result[0][6];
+            $_SESSION['verificado'] = $result[0][9];
+            $_SESSION['CEO'] = '';
             if($result[0][4] != ""){
                 $_SESSION['imagen_perfil'] = $result[0][4];
             }else{
                 $_SESSION['imagen_perfil'] = "../img/Users/perfil.png";
             }
             
+        }else if($result[0][10] == 'CEO'){
+            echo 'ceo';
+            $_SESSION['CEO'] = $result[0][10];         
         }else{
             echo "NoVerificado";
         }

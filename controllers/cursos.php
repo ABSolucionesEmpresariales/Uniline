@@ -18,9 +18,12 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
             } else if ($archivo == "imagenGrande"){
                 echo $archivo;
             } else {
+                $video = 'https://player.vimeo.com/video/';
+                $idvideo = explode('/', $_POST['TVideo']);
+                $video .= end($idvideo);
                 echo  $conexion->
                     consultaPreparada(
-                    array($_POST['TNombre'],$_POST['TADescripcion'],$archivo,$_POST['TVideo'],$_POST['THoras'],$_SESSION['idusuario'],$_POST['TCosto']), 
+                    array($_POST['TNombre'],$_POST['TADescripcion'],$archivo,$video,$_POST['THoras'],$_SESSION['idusuario'],$_POST['TCosto']), 
                     "INSERT INTO curso (nombre,descripcion,imagen,video,horas,profesor,costo)VALUES(?,?,?,?,?,?,?)", 
                     1, 
                     "ssssiid", 
@@ -68,5 +71,5 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
 
 if(isset($_POST['cursos'])){
     $conexion = New Modelos\Conexion();
-    echo json_encode($conexion->obtenerDatosDeTabla("SELECT * FROM curso"));
+    echo json_encode($conexion->consultaPreparada(array($_SESSION['idusuario']),"SELECT * FROM curso WHERE profesor = ?",2,"s",false,null));
 }

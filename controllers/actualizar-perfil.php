@@ -43,8 +43,10 @@ if(isset($_POST['updatePass'])){
             $resultado = $conexion->consultaPreparada($datos,$consulta,2,'i', false, null);
             $encriptado = $resultado[0][0];
         }
-
-        $trabajo = $_POST['TPuesto'].'###'.$_POST['TDescripcion'];
+        $trabajo = null;
+        if($_POST['TPuesto'] != "" || $_POST['TDescripcion'] != ""){
+            $trabajo = $_POST['TPuesto'].'###'.$_POST['TDescripcion'];
+        }
         $consultaUP = "UPDATE usuario SET nombre = ?, edad = ?, escolaridad = ?, telefono = ?, email = ?, password = ?, imagen = ?, estado = ?, municipio = ?, trabajo = ? WHERE idusuario = ?";
         $datos = array($_POST['TNombre'],$_POST['TEdad'],$_POST['TGrado'], $_POST['TTelefono'], $_POST['TEmail'],
         $encriptado,$archivo,$_POST['TEstado'],$_POST['TMunicipio'],$trabajo,$_SESSION['idusuario']);

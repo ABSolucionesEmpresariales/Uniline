@@ -28,8 +28,8 @@ $(document).ready(function () {
                 console.log(datos);
                 $.each(datos, function (i, item) {
                     templete += `
-                    <div class="row mt-0" style="width: 765px">
-                        <video class="responsive-video" src="${item[8]}" controls preload="auto" autoplay width="765px" height="330px controlslist="nodownload"></video> 
+                    <div class="row mt-0" style="width: 765px"> 
+                        <iframe class="responsive-video" src="${item[8]}" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
                     </div>
                     <div class="row border-bottom mb-2 title-responsive"  style="width: 765px">
                         <div class="col-lg-9 col-sm-12 ml-0">
@@ -104,6 +104,12 @@ $(document).ready(function () {
             }
         });
     });
+
+      function CierraPopup() {
+        $("#modal-cursos").modal('hide');//ocultamos el modal
+        $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+      }
 
     /* <---------------------Desplegar el contenido del curso e imprime los temas -----------------------> */
     $(document).on('click', '.cursos-slide', function () {
@@ -264,7 +270,7 @@ $(document).ready(function () {
                         console.log(response);
                         $("#alertas").removeClass('alert-success');
                         $("#alertas").addClass('alert-danger');
-                        $("#alertas").html('<h4>Este correo ya esta registrado</h4>');
+                        $("#alertas").html('<h4>Este usuario ya esta registrado</h4>');
                         $("#alertas").slideDown("slow");
                         setTimeout(function () {
                             $("#alertas").slideUp("slow");
