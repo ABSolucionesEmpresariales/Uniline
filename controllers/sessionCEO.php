@@ -7,12 +7,11 @@ header("Pragma: no-cache");
 session_start();
 //Si existe la sesión "cliente"..., la guardamos en una variable.
 
-if (!empty($_SESSION['acceso']) && !empty($_SESSION['verificado']) && !empty($_SESSION['idusuario'])){
-
+if (!empty($_SESSION['CEO']) && $_SESSION['CEO'] == 'CEO'){
+ 
 }else{
 header('Location: ../views/mainpage.php');//Aqui lo redireccionas al lugar que quieras.
  die();
-
 }
 
 ?>

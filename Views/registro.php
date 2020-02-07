@@ -1,5 +1,5 @@
 <?php
-include '../controllers/sesion.php';
+include '../controllers/sessionCEO.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
