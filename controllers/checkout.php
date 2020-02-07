@@ -30,7 +30,7 @@ if (!empty($_POST['idcurso'])) {
         $imagen = $imagen[1];
         $costo =  $respuesta[0][2];
 
-        \Stripe\Stripe::setApiKey('sk_test_ouqOIWGA1Agl8jlSjso3EHnf00SWc42bpT');
+        \Stripe\Stripe::setApiKey('sk_test_Y6RKrzhKN7rrZZ7MsL7PQ6lC00JsFcaSLw');
 
         $session = \Stripe\Checkout\Session::create([
             'client_reference_id' => $_SESSION['idusuario'],
@@ -38,7 +38,7 @@ if (!empty($_POST['idcurso'])) {
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'name' => $nombre_curso,
-                'images' => ['https://www.cafionline.com/'.$imagen],
+                'images' => ['https://www.cafionline.com/' . $imagen],
                 'amount' => $costo * 100,
                 'currency' => 'mxn',
                 'quantity' => 1,
