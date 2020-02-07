@@ -30,7 +30,7 @@ if (!empty($_POST['idcurso'])) {
         $imagen = $imagen[1];
         $costo =  $respuesta[0][2];
 
-        \Stripe\Stripe::setApiKey('sk_test_iGQnM1YBaSBwLfboFr2dEWpQ00diPgMkUi');
+        \Stripe\Stripe::setApiKey('sk_test_Y6RKrzhKN7rrZZ7MsL7PQ6lC00JsFcaSLw');
 
         $session = \Stripe\Checkout\Session::create([
             'client_reference_id' => $_SESSION['idusuario'],
@@ -38,14 +38,14 @@ if (!empty($_POST['idcurso'])) {
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'name' => $nombre_curso,
-                'images' => ['https://www.cafionline.com/'.$imagen],
+                'images' => ['https://www.cafionline.com/' . $imagen],
                 'amount' => $costo * 100,
                 'currency' => 'mxn',
                 'quantity' => 1,
             ]],
             'metadata' => ['idcurso' => $_POST['idcurso']], //poner el id del curso
-            'success_url' => 'https://www.cafionline.com/views/success.php?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => 'https://www.cafionline.com/views/failure.php',
+            'success_url' => 'https://www.cafionline.com/Views/success.php?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'https://www.cafionline.com/Views/failure.php',
         ]);
         echo $session->id;
     } else {

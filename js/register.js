@@ -7,7 +7,6 @@ $(document).ready(function () {
   let idbloque = 'insertar';
   let idexamen = 'insertar';
   let idpregunta = 'insertar';
-  let val = "";
 
   function pintar_Estados_Mexico(comboBox) {
     var datos_estado_mexico = [];
