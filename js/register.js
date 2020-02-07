@@ -45,9 +45,9 @@ $(document).ready(function () {
         valor = valores.split('?');
         console.log(valor);
         if (idtabla == 'tabla-profesores') {
-          
-          
-        }else if(idtabla == 'tabla-cursos'){
+
+
+        } else if (idtabla == 'tabla-cursos') {
           $('#nombre-curso').val(valor[1]);
           $('#descripcion-curso').val(valor[2]);
           $('#horas-curso').val(valor[5]);
@@ -55,46 +55,46 @@ $(document).ready(function () {
           $('#video-curso').val(valor[4]);
           $('#idcurso').val(valor[0]);
           $('#accion').val('editar');
-        }else if(idtabla == 'tabla-bloques'){
-          $('#nombre-bloque').val(valor[1]); 
+        } else if (idtabla == 'tabla-bloques') {
+          $('#nombre-bloque').val(valor[1]);
           accion = 'editar';
-          idbloque = valor[0];         
-        }else if(idtabla == 'tabla-temas'){
+          idbloque = valor[0];
+        } else if (idtabla == 'tabla-temas') {
           $('#nombre-tema').val(valor[1]);
           $('#descripcion-tema').val(valor[2]);
           $('#video-tema').val(valor[3]);
           $('#accion-tema').val('editar');
           $('#idtema').val(valor[0]);
-        }else if(idtabla == 'tabla-examen'){
+        } else if (idtabla == 'tabla-examen') {
           $('#nombre-examen').val(valor[1]);
           $('#descripcion-examen').val(valor[2]);
           accion = 'editar';
           idexamen = valor[0];
-        }else if(idtabla == 'tabla-preguntas'){
+        } else if (idtabla == 'tabla-preguntas') {
           resp = valor[2].split('-*3');
           console.log(resp);
           idpregunta = valor[0];
           $('#pregunta').val(valor[1]);
-          for(i = 0; i<4; i++){
+          for (i = 0; i < 4; i++) {
             resp_correcta = resp[i].split('###');
             console.log(resp_correcta);
-            if(resp_correcta[0] == ''){
+            if (resp_correcta[0] == '') {
               correcta = i;
-              $('#respuesta'+(parseInt(i)+1)).val(resp_correcta[1]);
-              $('#respuesta'+(parseInt(i)+1)).parent().prev().attr('checked', true);
-            }else{
-              $('#respuesta'+(parseInt(i)+1)).val(resp_correcta[0]);
+              $('#respuesta' + (parseInt(i) + 1)).val(resp_correcta[1]);
+              $('#respuesta' + (parseInt(i) + 1)).parent().prev().attr('checked', true);
+            } else {
+              $('#respuesta' + (parseInt(i) + 1)).val(resp_correcta[0]);
             }
           }
           accion = 'editar';
 
-        }else if(idtabla == 'tabla-tareas'){
+        } else if (idtabla == 'tabla-tareas') {
           $('#nombre-tarea').val(valor[1]);
           $('#descripcion-tarea').val(valor[2]);
           $('#accion-tarea').val('editar');
           $('#idtarea').val(valor[0]);
         }
-        
+
       } else {
         // not a double click so set as a new first click
         touchtime = new Date().getTime();
@@ -115,8 +115,8 @@ $(document).ready(function () {
         template_tabla = '';
         template_combo = '<option value="0">Selecciona profesor</option>';
         for (i = 0; i < datos.length; i++) {
-          for(var j = 0; j <= datos[i].length; j++){
-            if(datos[i][j] == 'null' || datos[i][j] === null){
+          for (var j = 0; j <= datos[i].length; j++) {
+            if (datos[i][j] == 'null' || datos[i][j] === null) {
               datos[i][j] = "";
             }
           }
@@ -171,69 +171,69 @@ $(document).ready(function () {
   }
 
   ////////METER A SESSION LOS SELECT//////////////
-    $(document).on('change', '#select-profe-tema', function () {//session al profe
-      $.ajax({
-        url: "../controllers/combo_profesores.php",
-        type: "POST",
-        data: 'SProfesor=' + $(this).val(),
+  $(document).on('change', '#select-profe-tema', function () {//session al profe
+    $.ajax({
+      url: "../controllers/combo_profesores.php",
+      type: "POST",
+      data: 'SProfesor=' + $(this).val(),
 
-        success: function (response) {
-          console.log(response);
-          if (response != '') {
-            traerDatosCombo('bloque.php', 'select-curso');
-            datosCursos();
-          }
+      success: function (response) {
+        console.log(response);
+        if (response != '') {
+          traerDatosCombo('bloque.php', 'select-curso');
+          datosCursos();
         }
-      });
+      }
     });
+  });
 
-    $(document).on('change', '#select-curso', function () { //session al curso
-      $.ajax({
-        url: "../controllers/combo_profesores.php",
-        type: "POST",
-        data: 'SCurso=' + $(this).val(),
+  $(document).on('change', '#select-curso', function () { //session al curso
+    $.ajax({
+      url: "../controllers/combo_profesores.php",
+      type: "POST",
+      data: 'SCurso=' + $(this).val(),
 
-        success: function (response) {
-          console.log(response);
-          if (response != '') {
-            traerDatosCombo('tema.php','select-bloque');
-            datosBloques();
-          }
+      success: function (response) {
+        console.log(response);
+        if (response != '') {
+          traerDatosCombo('tema.php', 'select-bloque');
+          datosBloques();
         }
-      });
+      }
     });
+  });
 
-    $(document).on('change', '#select-bloque', function () { //session al bloque
-      $.ajax({
-        url: "../controllers/combo_profesores.php",
-        type: "POST",
-        data: 'SBloque=' + $(this).val(),
+  $(document).on('change', '#select-bloque', function () { //session al bloque
+    $.ajax({
+      url: "../controllers/combo_profesores.php",
+      type: "POST",
+      data: 'SBloque=' + $(this).val(),
 
-        success: function (response) {
-          console.log(response);
-          if (response != '') {
-            datosPreguntas();
-            datosTemas();
-            datosExamen();
-            datosTareas();
-          }
+      success: function (response) {
+        console.log(response);
+        if (response != '') {
+          datosPreguntas();
+          datosTemas();
+          datosExamen();
+          datosTareas();
         }
-      });
+      }
     });
-    $(document).on('change', '#select-examen', function () { //session al examen
-      $.ajax({
-        url: "../controllers/combo_profesores.php",
-        type: "POST",
-        data: 'SExamen=' + $(this).val(),
+  });
+  $(document).on('change', '#select-examen', function () { //session al examen
+    $.ajax({
+      url: "../controllers/combo_profesores.php",
+      type: "POST",
+      data: 'SExamen=' + $(this).val(),
 
-        success: function (response) {
-          console.log(response);
-          if (response != '') {
-            datosPreguntas();
-          }
+      success: function (response) {
+        console.log(response);
+        if (response != '') {
+          datosPreguntas();
         }
-      });
+      }
     });
+  });
 
   //////////////////////////////////////////////////////////### PINTAR TABLAS ##//////////////////////////////////////////////
   function datosCursos() {//PINTAR TABLA CURSO
@@ -249,15 +249,15 @@ $(document).ready(function () {
         console.log(datos.length);
 
         for (i = 0; i < datos.length; i++) {
-          for(var j = 0; j <= datos[i].length; j++){
-            if(datos[i][j] == 'null' || datos[i][j] === null){
+          for (var j = 0; j <= datos[i].length; j++) {
+            if (datos[i][j] == 'null' || datos[i][j] === null) {
               datos[i][j] = "";
             }
           }
         }
 
         for (i = 0; i < datos.length; i++) {
-          template +=`
+          template += `
             <tr class="examen">
               <td scope="row" style="display: none;">${datos[i][0]}</td>
               <td scope="row">${datos[i][1]}</td>
@@ -265,12 +265,12 @@ $(document).ready(function () {
               <td scope="row"><img width="50%" src="${datos[i][3]}"></td>
               <td scope="row">${datos[i][4]}</td>
               <td scope="row">${datos[i][5]}</td>`;
-/*               if(datos[i][6] == "null" || datos[i][6] == null) {
-              template +=` <td scope="row">${dat}</td>`;
-              }else{
-              template +=` <td scope="row">${datos[i][6]}</td>`;
-              } */
- template +=`<td scope="row">${datos[i][6]}</td>
+          /*               if(datos[i][6] == "null" || datos[i][6] == null) {
+                        template +=` <td scope="row">${dat}</td>`;
+                        }else{
+                        template +=` <td scope="row">${datos[i][6]}</td>`;
+                        } */
+          template += `<td scope="row">${datos[i][6]}</td>
               <td scope="row">${datos[i][7]}</td>
               <td scope="row">${datos[i][8]}</td>
             </tr>`;
@@ -317,8 +317,8 @@ $(document).ready(function () {
         datos = JSON.parse(response);
         console.log(datos);
         for (i = 0; i < datos.length; i++) {
-          for(var j = 0; j <= datos[i].length; j++){
-            if(datos[i][j] == 'null' || datos[i][j] === null){
+          for (var j = 0; j <= datos[i].length; j++) {
+            if (datos[i][j] == 'null' || datos[i][j] === null) {
               datos[i][j] = "";
             }
           }
@@ -400,8 +400,8 @@ $(document).ready(function () {
         datos = JSON.parse(response);
         console.log(datos);
         for (i = 0; i < datos.length; i++) {
-          for(var j = 0; j <= datos[i].length; j++){
-            if(datos[i][j] == 'null' || datos[i][j] === null){
+          for (var j = 0; j <= datos[i].length; j++) {
+            if (datos[i][j] == 'null' || datos[i][j] === null) {
               datos[i][j] = "";
             }
           }
@@ -421,162 +421,204 @@ $(document).ready(function () {
       }
     });
   }
+  //////////////////////////////////////////////////////////### VERIFICAR SI LOS CAMPOS ESTAN VACIOS ##///////////////////////////////////////////
+  function verificar_campos(clase) {
+    for (i = 0; i < $('.inden-' + clase).length; i++) {
+      if ($('.inden-' + clase).eq(i).val() == '') {
+        return 'campo-vacio';
+      }
+    }
+    return 'campos-llenos';
+  }
 
   //////////////////////////////////////////////////////////### INSERTAR DATOS ##///////////////////////////////////////////
 
   $('#registro-profesor').submit(function (e) { //INSERTAR PROFESORES
-    e.preventDefault();
-    var formData = new FormData(this);
-    $.ajax({
-      url: "../controllers/registro.php",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
+    if (verificar_campos('profesores') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+      e.preventDefault();
+    } else {
+      var formData = new FormData(this);
+      $.ajax({
+        url: "../controllers/registro.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
 
-      success: function (response) {
-        if (response == "Existe") {
-          console.log(response);
-          $("#alertas").removeClass('alert-success');
-          $("#alertas").addClass('alert-danger');
-          $("#alertas").html('<h4>Este correo ya esta registrado</h4>');
-          $("#alertas").slideDown("slow");
-          setTimeout(function () {
-            $("#alertas").slideUp("slow");
-          }, 3000);
-
-        } else if (response == 'error') {
-          console.log(response);
-          $("#alertas").removeClass('alert-success');
-          $("#alertas").addClass('alert-danger');
-          $("#alertas").html('<h4>Ups! hubo un error, intentelo de nuevo</h4>');
-          $("#alertas").slideDown("slow");
-          setTimeout(function () {
-            $("#alertas").slideUp("slow");
-          }, 3000);
-
-        } else {
-          console.log(response);
-          traerDatosProfe();
-          /* $("#alertas").removeClass('alert-danger');
-          $("#alertas").addClass('alert-success');                       
-          $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
-          $("#alertas").slideDown("slow");
-          setTimeout(function(){
+        success: function (response) {
+          if (response == "Existe") {
+            console.log(response);
+            $("#alertas").removeClass('alert-success');
+            $("#alertas").addClass('alert-danger');
+            $("#alertas").html('<h4>Este correo ya esta registrado</h4>');
+            $("#alertas").slideDown("slow");
+            setTimeout(function () {
               $("#alertas").slideUp("slow");
-          }, 3000); */
+            }, 3000);
 
+          } else if (response == 'error') {
+            console.log(response);
+            $("#alertas").removeClass('alert-success');
+            $("#alertas").addClass('alert-danger');
+            $("#alertas").html('<h4>Ups! hubo un error, intentelo de nuevo</h4>');
+            $("#alertas").slideDown("slow");
+            setTimeout(function () {
+              $("#alertas").slideUp("slow");
+            }, 3000);
+
+          } else {
+            console.log(response);
+            traerDatosProfe();
+            /* $("#alertas").removeClass('alert-danger');
+            $("#alertas").addClass('alert-success');                       
+            $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
+            $("#alertas").slideDown("slow");
+            setTimeout(function(){
+                $("#alertas").slideUp("slow");
+            }, 3000); */
+
+          }
         }
-      }
-    });
+      });
+      e.preventDefault();
+    }
   });
 
-  $("#registro-curso").submit(function (e) {//INSERTAR CURSOS A LA BASE DE DATOS
+  $("#registro-curso").submit(function (e) {//INSERTAR CURSOS A LA BASE DE DATOS 
     e.preventDefault();
-    var formData = new FormData(this);
-    $.ajax({
-      url: "../controllers/cursos.php",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
+    if ($('#select-profe-tema').val() == '0') {
+      alert('Por favor seleccione un profesor');
+    } else if (verificar_campos('curso') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+    } else {
+      var formData = new FormData(this);
+      $.ajax({
+        url: "../controllers/cursos.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
 
-      success: function (response) {
-        console.log(response);
+        success: function (response) {
+          console.log(response);
 
-        if (response == 1) {
-          datosCursos();
-          $('#registro-curso').trigger('reset');
-        } else {
-          alert("datos no enviados, hubo un error");
+          if (response == 1) {
+            datosCursos();
+            $('#registro-curso').trigger('reset');
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
         }
-      }
-    });
+      });
+    }
+
   });
 
   $("#registro-bloques").submit(function (e) {//INSERTAR BLOQUES A LA BASE DE DATOS
     e.preventDefault();
-    var nombre = $('#nombre-bloque').val();
-    var curso = $('#select-curso').val();
-    console.log(accion);
-    $.ajax({
-      url: "../controllers/bloque.php",
-      type: "POST",
-      data: {
-        'idbloque': idbloque, 'TNombre': nombre, 'SCurso': curso,
-        'accion': accion
-      },
+    if ($('#select-curso').val() == '0') {
+      alert('Por favor seleccione un profesor y un curso');
+    } else if (verificar_campos('bloque') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+    } else {
+      var nombre = $('#nombre-bloque').val();
+      var curso = $('#select-curso').val();
+      console.log(accion);
+      $.ajax({
+        url: "../controllers/bloque.php",
+        type: "POST",
+        data: {
+          'idbloque': idbloque, 'TNombre': nombre, 'SCurso': curso,
+          'accion': accion
+        },
 
-      success: function (response) {
-        console.log(response);
-        if (response == 1) {  
-          val = $('#select-bloque').val();
-          console.log(val);
-          datosBloques();
-          traerDatosCombo('tema.php','select-bloque');    
-          
-          $('#nombre-bloque').val("");
-          accion = 'insertar';
-          idbloque = '';
-        } else {
-          alert("datos no enviados, hubo un error");
+        success: function (response) {
+          console.log(response);
+          if (response == 1) {
+            val = $('#select-bloque').val();
+            console.log(val);
+            datosBloques();
+            traerDatosCombo('tema.php', 'select-bloque');
+
+            $('#nombre-bloque').val("");
+            accion = 'insertar';
+            idbloque = '';
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
         }
-      }
-    });
+      });
+    }
+
   });
 
-  $(document).on('chenge','#select-bloque',function(){
+  $(document).on('chenge', '#select-bloque', function () {
     $(this).val(val);
   });
 
   $("#registro-temas").submit(function (e) {//INSERTAR TEMAS A LA BASE DE DATOS
     e.preventDefault();
-    var formData = new FormData(this);
-    $.ajax({
-      url: "../controllers/tema.php",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
+    if ($('#select-bloque').val() == '0') {
+      alert('Por favor seleccione un profesor, un curso y un bloque');
+    } else if (verificar_campos('tema') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+    } else {
+      var formData = new FormData(this);
+      $.ajax({
+        url: "../controllers/tema.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
 
-      success: function (response) {
-        console.log(response);
+        success: function (response) {
+          console.log(response);
 
-        if (response == 1) {
-          datosTemas();
-          $('#registro-temas').trigger('reset');
-        } else {
-          alert("datos no enviados, hubo un error");
+          if (response == 1) {
+            datosTemas();
+            $('#registro-temas').trigger('reset');
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
         }
-      }
-    });
+      });
+    }
+
   });
 
   $("#registro-examen").submit(function (e) {//INSERTAR EXAMENES A LA BASE DE DATOS
     e.preventDefault();
-    var nombre = $('#nombre-examen').val();
-    var descripcion = $('#descripcion-examen').val();
-    var bloque = $('#select-bloque').val();
-    $.ajax({
-      url: "../controllers/examen.php",
-      type: "POST",
-      data: {
-        'idexamen': idexamen, 'TNombre': nombre, 'TADescripcion': descripcion,
-        'accion': accion
-      },
+    if ($('#select-bloque').val() == '0') {
+      alert('Por favor seleccione un profesor, un curso y un bloque');
+    } else if (verificar_campos('examen') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+    } else {
+      var nombre = $('#nombre-examen').val();
+      var descripcion = $('#descripcion-examen').val();
+      var bloque = $('#select-bloque').val();
+      $.ajax({
+        url: "../controllers/examen.php",
+        type: "POST",
+        data: {
+          'idexamen': idexamen, 'TNombre': nombre, 'TADescripcion': descripcion,
+          'accion': accion
+        },
 
-      success: function (response) {
-        console.log(response);
+        success: function (response) {
+          console.log(response);
 
-        if (response == 1) {
-          datosExamen();
-          $('#nombre-examen').val("");
-          $('#descripcion-examen').val("");
-        } else {
-          alert("datos no enviados, hubo un error");
+          if (response == 1) {
+            datosExamen();
+            $('#nombre-examen').val("");
+            $('#descripcion-examen').val("");
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
         }
-      }
-    });
+      });
+    }
+
   });
 
   $(document).on('click', '.radio-in', function () {
@@ -587,47 +629,56 @@ $(document).ready(function () {
 
   $("#registro-preguntas").submit(function (e) {//INSERTAR PREGUNTAS A LA BASE DE DATOS
     e.preventDefault();
-    let respuestas = '';
-    for (i = 1; i <= 4; i++) {
-      if (i == correcta && i == 4) {
-        respuestas += '###' + $('#respuesta' + i).val();
-      } else if (i == 4) {
-        respuestas += $('#respuesta' + i).val();
-      } else if (i == correcta) {
-        respuestas += '###' + $('#respuesta' + i).val() + '-*3';
-      } else {
-        respuestas += $('#respuesta' + i).val() + '-*3';
-      }
-    }
-
-
-    var pregunta = $('#pregunta').val();
-    var examen = $('#select-examen').val();
-
-    $.ajax({
-      url: "../controllers/pregunta.php",
-      type: "POST",
-      data: {
-        'idpregunta': idpregunta, 'TPregunta': pregunta, 'respuestas': respuestas,
-        'SExamen': examen,
-        'accion': accion
-      },
-
-      success: function (response) {
-        console.log(response);
-
-        if (response == 1) {
-          datosPreguntas();
-          $('#pregunta').val("");
-          $('input[name=TRespuesta]').val("");
-          idpregunta = '';
-          accion = 'insertar';
-          $('input:radio[name=TCorrecta]').prop('checked', false);
+    if ($('#select-bloque').val() == '0') {
+      alert('Por favor seleccione un profesor, un curso y un bloque');
+    } else if (verificar_campos('preguntas') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+    } else if($('.radio-in').is('checked', false)){
+      alert('Por favor seleccione cual sera la respuesta correcta');
+    }else{
+      let respuestas = '';
+      for (i = 1; i <= 4; i++) {
+        if (i == correcta && i == 4) {
+          respuestas += '###' + $('#respuesta' + i).val();
+        } else if (i == 4) {
+          respuestas += $('#respuesta' + i).val();
+        } else if (i == correcta) {
+          respuestas += '###' + $('#respuesta' + i).val() + '-*3';
         } else {
-          alert("datos no enviados, hubo un error");
+          respuestas += $('#respuesta' + i).val() + '-*3';
         }
       }
-    });
+
+
+      var pregunta = $('#pregunta').val();
+      var examen = $('#select-examen').val();
+
+      $.ajax({
+        url: "../controllers/pregunta.php",
+        type: "POST",
+        data: {
+          'idpregunta': idpregunta, 'TPregunta': pregunta, 'respuestas': respuestas,
+          'SExamen': examen,
+          'accion': accion
+        },
+
+        success: function (response) {
+          console.log(response);
+
+          if (response == 1) {
+            datosPreguntas();
+            $('#pregunta').val("");
+            $('input[name=TRespuesta]').val("");
+            idpregunta = '';
+            accion = 'insertar';
+            $('input:radio[name=TCorrecta]').prop('checked', false);
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
+        }
+      });
+    }
+
   });
 
   $("#registro-tarea").submit(function (e) {//INSERTAR TAREAS A LA BASE DE DATOS
