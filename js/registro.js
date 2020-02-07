@@ -9,21 +9,21 @@ $(document).ready(function () {
         $('#login').modal('hide');
     });
 
-    $(document).on('click', '#idprueba', function(){
+    $(document).on('click', '#idprueba', function () {
         $('#autobtn').click();
     });
     $('#confirmar').hide("slow");
 
     /* <---------------------Pintar el body del modal y los loques del curso-----------------------> */
-    $(document).on('click','.curso',function(){
+    $(document).on('click', '.curso', function () {
         curso = $(this).data("curso");
         templete = "";
         $.ajax({
-            url:"../controllers/contenido_index.php",
-            type:"POST",
-            data:"cursos-modal="+curso,
+            url: "../controllers/contenido_index.php",
+            type: "POST",
+            data: "cursos-modal=" + curso,
 
-            success: function(response){
+            success: function (response) {
                 let datos = JSON.parse(response);
                 console.log(datos);
                 $.each(datos, function (i, item) {
@@ -54,13 +54,13 @@ $(document).ready(function () {
                     `;
                 });
                 $.ajax({
-                    url:"../controllers/contenido_index.php",type:"POST",data:"cursos-contenido="+curso,success: function(response){
+                    url: "../controllers/contenido_index.php", type: "POST", data: "cursos-contenido=" + curso, success: function (response) {
                         let datos = JSON.parse(response);
-                        templete +=`                    
+                        templete += `                    
                         <div class="row title-responsive" style="width: 765px">
                             <p class="h3 p-2 text-white cont-curso-responsive" style="margin-left: 280px;">Contenido del curso</p>`;
                         $.each(datos, function (i, item) {
-                            templete +=`
+                            templete += `
                                 <div class="col-12 border-bottom">
                                     <div class="row">
                                         <div class="col-12">
@@ -72,63 +72,38 @@ $(document).ready(function () {
                                 </div>
                             `;
                         });
-            templete +=`</div>`;
+                        templete += `</div>`;
                         $('.view-curso').html(templete);
                         $('.boton-footer').html(`<button type="button" value="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive compras" data-dismiss="modal">Comprar</button>`);
-                        $('#date-modal').click(); 
+                        $('#date-modal').click();
                     }
                 });
             }
         });
     });
 
- /* <--------------------- Generar checkout de pago de stripe -----------------------> */
-    $(document).on('click','.compras', function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: "../controllers/registro.php",
-            type: "POST",
-            datos: "sesion=sesion",
+    /* <--------------------- Generar checkout de pago de stripe -----------------------> */
+    $(document).on('click', '.compras', function (event) {
+        let idcurso = $(this).val();
+        $.post("../controllers/checkout.php", { idcurso: idcurso }, function (response) {
 
-            success: function(response){
+            if (response == "pagado") {
+                window.location.replace('../Views/dashboard.php?idcurso=' + idcurso);
+            } else {
                 console.log(response);
-                if(response != ""){
-                    let idcurso = $(this).val();
-                    $.post("../controllers/checkout.php", { idcurso: idcurso}, function (response) {
-                   
-                      if (response == "pagado") {
-                        window.location.replace('../views/dashboard.php?idcurso='+idcurso);
-                      } else {
-                        console.log(response);
-                        var stripe = Stripe('pk_test_OTcbgHS4tbxZaWVcZ1IjcUt900jFHDsOdd');
-                        stripe.redirectToCheckout({
-                          sessionId: response
-                        }).then(function (response) {
-                        
-                            swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
-                           //imprimir mensaje ocurrio un problema
-                          // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
-                       
-                        });
-                      }
-                    });
-                }else{
-/*                     $("#alertas-registro").html('<i class="fas fa-exclamation-triangle m-2"></i>Para comprar un curso es necesario registrarse');
-                    $("#alertas-registro").slideDown("slow");
-                    setTimeout(function(){
-                      $("#alertas-registro").slideUp("slow");
-                    }, 2000); */
-                    setTimeout(function(){
-                        $('#registro-user').click();
-                      }, 1000); 
-/*                       $('#modal').modal('toggle');
-                      setTimeout(function(){
-                        $('#modal-registro').modal('toggle');
-                      }, 1000);  */     
-                }
+                var stripe = Stripe('pk_test_E6v1YWAS84dvDDlDeDkywm6y00gd15Xrmm');
+                stripe.redirectToCheckout({
+                    sessionId: response
+                }).then(function (response) {
+
+                    swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
+                    //imprimir mensaje ocurrio un problema
+                    // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
+
+                });
             }
         });
-      });
+    });
 
       function CierraPopup() {
         $("#modal-cursos").modal('hide');//ocultamos el modal
@@ -137,38 +112,38 @@ $(document).ready(function () {
       }
 
     /* <---------------------Desplegar el contenido del curso e imprime los temas -----------------------> */
-    $(document).on('click','.cursos-slide',function(){
+    $(document).on('click', '.cursos-slide', function () {
         contenido = $(this).data("bloque");
-        temas = $('.'+contenido).data("temas");
+        temas = $('.' + contenido).data("temas");
         datos_tema = temas.split("-");
-            $.ajax({
-            url:"../controllers/contenido_index.php",type:"POST",data:"temas-bloque="+datos_tema[2],success: function(response){
-                        let datos2 = JSON.parse(response);
-                        templete2 = "";
-                        $.each(datos2, function (y, item2) {
-                            templete2 +=`     
+        $.ajax({
+            url: "../controllers/contenido_index.php", type: "POST", data: "temas-bloque=" + datos_tema[2], success: function (response) {
+                let datos2 = JSON.parse(response);
+                templete2 = "";
+                $.each(datos2, function (y, item2) {
+                    templete2 += `     
                             <div class="col-12 temas-curso-responsive">
                                 <p class="h5 text-justify text-light font-italic ml-2 text-center text-lg-left margin-responsive">- ${item2[1]}</p>
                             </div>
                             `;
-                        });
-                        $('.'+contenido).html(templete2);
-                    }
-            }); 
-            setTimeout(function(){$('.'+contenido).slideToggle("slow");},150);
-        
+                });
+                $('.' + contenido).html(templete2);
+            }
+        });
+        setTimeout(function () { $('.' + contenido).slideToggle("slow"); }, 150);
+
     });
     /* <---------------------Mostrar el div seleccionado del curso-----------------------> */
-    $(document).on('click','.mostrar',function(e){
+    $(document).on('click', '.mostrar', function (e) {
         e.preventDefault();
         controlId = $(this).attr("id");
         $('.page-activo').addClass('d-none');
         $('.row').removeClass('page-activo');
-        $('.'+controlId).addClass("page-activo");
-        $('.'+controlId).removeClass("d-none");
+        $('.' + controlId).addClass("page-activo");
+        $('.' + controlId).removeClass("d-none");
     });
     /* <---------------------Pintar los cursos-----------------------> */
-    function obtener_Cursos(){
+    function obtener_Cursos() {
         $.ajax({
             url: "../controllers/contenido_index.php",
             type: "POST",
@@ -178,31 +153,31 @@ $(document).ready(function () {
                 let datos = JSON.parse(response);
                 console.log(datos);
                 let templete = ``;
-                ocultar ="";
+                ocultar = "";
                 contdador_page = 0;
                 cont = 0;
                 total = 0;
                 totaldatos = datos.length;
                 console.log(totaldatos);
-                if(datos.length % 4 == 0){
+                if (datos.length % 4 == 0) {
                     total = Math.round(datos.length / 4);
-                }else{
+                } else {
                     total = Math.round((datos.length + 1) / 4);
                 }
                 console.log(total);
 
-                for(i = 0; i < datos.length; i++){
+                for (i = 0; i < datos.length; i++) {
                     cont++;
-                    if(i != 0){
+                    if (i != 0) {
                         ocultar = "d-none";
                     }
                     console.log(i);
-                    if(i % 4 == 0){
-                        contdador_page ++;
-                        templete +=`<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
-                        console.log('llego'+contdador_page);
+                    if (i % 4 == 0) {
+                        contdador_page++;
+                        templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
+                        console.log('llego' + contdador_page);
                     }
-                                    templete += `
+                    templete += `
                                         <div class="col-lg-3 course_box bor-responsive">
                                             <div class="card">
                                                 <img class="responsive-image"  width="250px" height="200px"  src="${datos[i][3]}" alt="Imagen del curso ${datos[i][1]}">
@@ -238,23 +213,23 @@ $(document).ready(function () {
                                             </div>
                                         </div>
                                         `;
-                    if(cont % 4 == 0 || totaldatos == cont){
-                        templete +=`</div>`;
+                    if (cont % 4 == 0 || totaldatos == cont) {
+                        templete += `</div>`;
                     }
                 }
                 console.log(cont);
-                templete +=  `                
+                templete += `                
                 <div class="row m-5">
                     <div class="col-12 text-center">
                     << `;
-                for(y=0; y < contdador_page; y++){
-                    if(y == 0){
-                        templete +=  `<a id="page-${y+1}" class="m-2 mostrar h4 estado-activo" href="#">${y+1}</a>`;
-                    }else{
-                        templete +=  `<a id="page-${y+1}" class="m-2 mostrar h4" href="#">${y+1}</a>`;
+                for (y = 0; y < contdador_page; y++) {
+                    if (y == 0) {
+                        templete += `<a id="page-${y + 1}" class="m-2 mostrar h4 estado-activo" href="#">${y + 1}</a>`;
+                    } else {
+                        templete += `<a id="page-${y + 1}" class="m-2 mostrar h4" href="#">${y + 1}</a>`;
                     }
                 }
-                templete +=  ` >>
+                templete += ` >>
                     </div>
                 </div>`;
 
@@ -264,12 +239,12 @@ $(document).ready(function () {
     }
 
     //// animacion para todos los enlaces que te lleven a un div dentro de la misma pagina
-    $(document).on('click','.cambiarContacto',function(e){
-		e.preventDefault();		//evitar el eventos del enlace normal
-		var strAncla = $(this).attr('href'); //id del ancla
-			$('body,html,header').stop(true,true).animate({				
-				scrollTop: $(strAncla).offset().top
-			},300);
+    $(document).on('click', '.cambiarContacto', function (e) {
+        e.preventDefault();		//evitar el eventos del enlace normal
+        var strAncla = $(this).attr('href'); //id del ancla
+        $('body,html,header').stop(true, true).animate({
+            scrollTop: $(strAncla).offset().top
+        }, 300);
     });
 
     $('#registro').submit(function (e) {
@@ -279,9 +254,9 @@ $(document).ready(function () {
             $("#alertas").addClass('alert-danger');
             $("#alertas").html('<h4>Por favor llene todos los campos</>');
             $("#alertas").slideDown("slow");
-                    setTimeout(function(){
-                    $("#alertas").slideUp("slow");
-                    }, 3000);
+            setTimeout(function () {
+                $("#alertas").slideUp("slow");
+            }, 3000);
             e.preventDefault();
         } else {
             $.ajax({
@@ -290,36 +265,37 @@ $(document).ready(function () {
                 data: $('#registro').serialize(),
 
                 success: function (response) {
-                    if (response == "Existe"){
+
+                    if (response == "Existe") {
                         console.log(response);
                         $("#alertas").removeClass('alert-success');
                         $("#alertas").addClass('alert-danger');
                         $("#alertas").html('<h4>Este usuario ya esta registrado</h4>');
                         $("#alertas").slideDown("slow");
-                        setTimeout(function(){
+                        setTimeout(function () {
                             $("#alertas").slideUp("slow");
                         }, 3000);
-         
-                    }else if(response == 'error') {
+
+                    } else if (response == 'error') {
                         console.log(response);
                         $("#alertas").removeClass('alert-success');
                         $("#alertas").addClass('alert-danger');
                         $("#alertas").html('<h4>Ups! hubo un error, intentelo de nuevo</h4>');
                         $("#alertas").slideDown("slow");
-                        setTimeout(function(){
+                        setTimeout(function () {
                             $("#alertas").slideUp("slow");
                         }, 3000);
-                        
-                    }else {
+
+                    } else {
                         console.log(response);
                         $("#alertas").removeClass('alert-danger');
-                        $("#alertas").addClass('alert-success');                       
+                        $("#alertas").addClass('alert-success');
                         $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
                         $("#alertas").slideDown("slow");
-                        setTimeout(function(){
+                        setTimeout(function () {
                             $("#alertas").slideUp("slow");
                         }, 3000);
-                        
+
                     }
                 }
             });
@@ -327,5 +303,5 @@ $(document).ready(function () {
         }
     });
 
-    
+
 });

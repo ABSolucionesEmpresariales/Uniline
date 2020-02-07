@@ -4,10 +4,10 @@ require_once '../Modelos/Conexion.php';
 require_once '../Modelos/Fecha.php';
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-\Stripe\Stripe::setApiKey('sk_test_iGQnM1YBaSBwLfboFr2dEWpQ00diPgMkUi');
+\Stripe\Stripe::setApiKey('sk_test_Y6RKrzhKN7rrZZ7MsL7PQ6lC00JsFcaSLw');
 
 // secreto de firma : es la generada despues de crear en el webhook del dashboart
-$endpoint_secret = 'whsec_BmsUhdyyHKAkVMHBXhyJ1OQMrAnuLojh';
+$endpoint_secret = 'whsec_PEfIZAFpCVmO3VTqOUVOVh5Mf9xzvipI';
 
 
 $payload = @file_get_contents('php://input');
@@ -33,11 +33,11 @@ try {
 // Handle the checkout.session.completed event aqui puede ir la logica del pago
 if ($event->type == 'checkout.session.completed') {
     $session = $event->data->object;
-    
-     $conexion = new Modelos\Conexion();
+
+    $conexion = new Modelos\Conexion();
     $fecha = new Modelos\Fecha();
     $conexion->consultaPreparada(
-        array(null,$session->id, $session->payment_intent ,$session->metadata->idcurso,$session->client_reference_id,$session->customer_email,$fecha->getFecha(),$fecha->getHora()),
+        array(null, $session->id, $session->payment_intent, $session->metadata->idcurso, $session->client_reference_id, $session->customer_email, $fecha->getFecha(), $fecha->getHora()),
         "INSERT INTO pago (idpago,id_objeto_sesion_stripe,intento_pago,curso,usuario,email_comprador,fecha,hora) VALUES(?,?,?,?,?,?,?,?)",
         1,
         "ssssssss",
@@ -45,10 +45,7 @@ if ($event->type == 'checkout.session.completed') {
         null
     );
     // Fulfill the purchase...
-    handle_checkout_session($session); //encargarse de revisar la sesion
+    //handle_checkout_session($session); //encargarse de revisar la sesion
 }
 
 http_response_code(200);
-
-
-
