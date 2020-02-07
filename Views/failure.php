@@ -31,7 +31,7 @@
 <body class="dash-area">
     <div class="overlay-bg">
         <div class="container fullscreen flex align-items-center justify-content-center">
-            <div id="ventana-alerta" class="align-items-center justify-content-center bg-light alertaspago">                
+            <div id="ventana-alerta" class="align-items-center justify-content-center bg-light alertaspago d-none">                
                     <div id="mostrar">
                         <div class="imagen text-center">
                             <span style="font-size: 250px;"><i class="fas fa-exclamation-triangle text-danger"></i></span>
@@ -81,6 +81,6 @@
   <script src="../js/owl.carousel.min.js"></script>
   <script src="../js/mail-script.js"></script>
   <script src="../js/main.js"></script>
-  <script src="../js/success.js"></script>
+  <script src="../js/animacion_pago.js"></script>
 </body>
 </html>
