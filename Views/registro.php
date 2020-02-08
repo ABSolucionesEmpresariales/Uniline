@@ -10,6 +10,7 @@ include '../controllers/sessionCEO.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registrar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -158,19 +159,19 @@ include '../controllers/sessionCEO.php';
                                         <input type="text" id="pregunta" class="form-control inden-preguntas" name="TPregunta" placeholder="pregunta"> <br>
 
                                         <div>
-                                            <input class="radio-in radio-preguntas" type="radio" id="resp1" name="TCorrecta" data-correcta = "1">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp1" name="TCorrecta" data-correcta="1">
                                             <label><input type="text" id="respuesta1" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 1"></label>
                                         </div>
                                         <div>
-                                            <input class="radio-in radio-preguntas" type="radio" id="resp2" name="TCorrecta" data-correcta ="2">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp2" name="TCorrecta" data-correcta="2">
                                             <label><input type="text" id="respuesta2" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 2"></label>
                                         </div>
                                         <div>
-                                            <input class="radio-in radio-preguntas" type="radio" id="resp3" name="TCorrecta" data-correcta ="3">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp3" name="TCorrecta" data-correcta="3">
                                             <label><input type="text" id="respuesta3" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 3"></label>
                                         </div>
                                         <div>
-                                            <input class="radio-in radio-preguntas" type="radio" id="resp4" name="TCorrecta" data-correcta ="4">
+                                            <input class="radio-in radio-preguntas" type="radio" id="resp4" name="TCorrecta" data-correcta="4">
                                             <label><input type="text" id="respuesta4" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 4"></label>
                                         </div>
                                         <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
@@ -234,10 +235,13 @@ include '../controllers/sessionCEO.php';
                     <div class="form col-lg-3">
                         <form class="form-wrap" id="registro-profesor">
                             <div class="imagen flex">
-                                <div class="text-center">
-                                    <img id="foto-perfil" class="rounded-circle" width="70" height="70" src="../img/Users/perfil.png" alt="foto de profesor">
-                                    <input type="file" name="Fimagen" class="custom-file-input inden-profesores" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <div id="preview" class="text-center">
+
                                 </div>
+                                <div id="preview-final" class="text-center">
+                                    <img id="foto-perfil" class="rounded-circle" width="200" height="200" src="../img/Users/perfil.png" alt="foto de profesor">
+                                </div>
+                                <input type="file" name="Fimagen" class="custom-file-input inden-profesores" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                             </div>
                             <input type="text" id="registrar-nombre" class="form-control inden-profesores" name="TNombre" placeholder="Nombre">
                             <input type="text" id="registrar-edad" class="form-control inden-profesores" name="TEdad" placeholder="Edad">
@@ -286,13 +290,16 @@ include '../controllers/sessionCEO.php';
                     <hr>
                     <div class="form col-lg-3">
                         <form class="form-wrap" id="registro-curso">
-                        <input type="hidden" id="idcurso" name="idcurso" value="">
-                        <input type="hidden" id="accion" name="accion" value="insertar">
+                            <input type="hidden" id="idcurso" name="idcurso" value="">
+                            <input type="hidden" id="accion" name="accion" value="insertar">
                             <div class="imagen flex">
-                                <div class="text-center">
-                                    <img id="foto-curso" class="rounded-circle" width="70" height="70" src="../img/anadir.png" alt="foto de profesor">
-                                    <input type="file" name="Fimagen" class="custom-file-input inden-curso" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
+                                 <div id="preview2" class="text-center">
+
                                 </div>
+                                <div id="preview-final2" class="text-center">
+                                    <img id="foto-curso" class="rounded-circle" width="200" height="200" src="../img/anadir.png" alt="foto de profesor">
+                                </div>
+                                <input type="file" name="Fimagen" class="custom-file-input inden-curso" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
                             </div>
                             <input type="text" id="nombre-curso" class="form-control inden-curso" name="TNombre" placeholder="Nombre del curso">
                             <textarea rows="5" cols="50" id="descripcion-curso" class="form-control inden-curso" name="TADescripcion" placeholder="Descripcion del curso"></textarea>

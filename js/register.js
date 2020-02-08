@@ -439,6 +439,7 @@ $(document).ready(function () {
   }
 
   //////////////////////////////////////////////////////////### INSERTAR DATOS ##///////////////////////////////////////////
+  
 
   $('#registro-profesor').submit(function (e) { //INSERTAR PROFESORES
     if (verificar_campos('profesores') == 'campo-vacio') {
@@ -718,3 +719,48 @@ $(document).ready(function () {
 
   });
 });
+
+document.getElementById("inputGroupFile01").onchange = function (e) {
+  // Creamos el objeto de la clase FileReader
+  let reader = new FileReader();
+
+  // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+  reader.readAsDataURL(e.target.files[0]);
+
+  // Le decimos que cuando este listo ejecute el código interno
+  reader.onload = function () {
+    let preview = document.getElementById('preview'),
+      image = document.createElement('img');
+
+    image.src = reader.result;
+    image.width = "200";
+    image.height = "200";
+
+    preview.innerHTML = '';
+    preview.append(image);
+    $('#preview-final').hide();
+    $('#preview img').css("border-radius", "100%");
+  };
+}
+document.getElementById("inputGroupFile02").onchange = function (e) {
+  // Creamos el objeto de la clase FileReader
+  let reader = new FileReader();
+
+  // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+  reader.readAsDataURL(e.target.files[0]);
+
+  // Le decimos que cuando este listo ejecute el código interno
+  reader.onload = function () {
+    let preview = document.getElementById('preview2'),
+      image = document.createElement('img');
+
+    image.src = reader.result;
+    image.width = "300";
+    image.height = "200";
+
+    preview.innerHTML = '';
+    preview.append(image);
+    $('#preview-final2').hide();
+   // $('#preview2 img').css("border-radius", "100%");
+  };
+}
