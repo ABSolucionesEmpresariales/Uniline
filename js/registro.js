@@ -88,7 +88,7 @@ $(document).ready(function () {
         $.post("../controllers/checkout.php", { idcurso: idcurso }, function (response) {
 
             if (response == "pagado") {
-                window.location.replace('../Views/dashboard.php?idcurso=' + idcurso);
+                window.location.replace('../views/dashboard.php?idcurso=' + idcurso);
             } else {
                 console.log(response);
                 var stripe = Stripe('pk_test_E6v1YWAS84dvDDlDeDkywm6y00gd15Xrmm');

@@ -5,11 +5,6 @@ require_once '../Modelos/Archivos.php';
 
 if (!empty($_POST['accion'])) {
    
-    if (!empty($_FILES['FArchivo']['tmp_name'])) {
-        $ruta = subir_archivo('FArchivo', 2);
-    } else {
-        $ruta = '';
-    }
     $conexion = new Modelos\Conexion();
 
     switch ($_POST['accion']) {
@@ -20,7 +15,7 @@ if (!empty($_POST['accion'])) {
                 $idvideo = explode('/', $_POST['TVideo']);
                 $video .= end($idvideo);
                echo $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, $ruta, $_SESSION['idbloque']),
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo') , $_SESSION['idbloque']),
                     "INSERT INTO tema (idtema,nombre,descripcion,video,archivo, bloque) VALUES (?,?,?,?,?,?)",
                     1,
                     "ssssss",
@@ -41,6 +36,7 @@ if (!empty($_POST['accion'])) {
                 false,
                 null
             );
+            $ruta =  subir_archivo('FArchivo');
             if (!empty($respuesta) && empty($ruta)) {
                 $ruta = $respuesta[0][0];
             } else if (!empty($respuesta) && !empty($ruta)) {
