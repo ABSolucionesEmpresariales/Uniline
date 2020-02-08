@@ -259,14 +259,17 @@ $(document).ready(function () {
             }, 3000);
             e.preventDefault();
         } else {
+            $("#hope").removeClass("d-none");
+           
             $.ajax({
                 url: "../controllers/registro.php",
                 type: "POST",
                 data: $('#registro').serialize(),
 
                 success: function (response) {
-
+                    $("#hope").addClass("d-none");
                     if (response == "Existe") {
+                        $('#registro').trigger("reset");
                         console.log(response);
                         $("#alertas").removeClass('alert-success');
                         $("#alertas").addClass('alert-danger');

@@ -94,7 +94,12 @@ session_start();
                 <input type="email" id="registrar-correo" class="form-control text-dark" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'">
                 <input type="password" id="registrar-pass" class="form-control text-dark" name="TPass" placeholder="Constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña'">
 
-                <button id="registrar" class="btn-registrar btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                <button id="registrar" class="btn-registrar btn-primary primary-btn text-uppercase" type="submit" name="submit">
+                  Registrar
+                  <div id="hope" class="spinner-border ml-5 d-none" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </button>
                 
               </form>
               <br>
@@ -108,6 +113,7 @@ session_start();
     </div>
   </div>
   <!-- End search-course Area -->
+
 
   <!-- Modal Contenido del curso-->
   <div class="modal fade" id="modal-cursos" role="dialog">
