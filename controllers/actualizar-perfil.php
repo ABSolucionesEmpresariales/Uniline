@@ -66,12 +66,10 @@ if(isset($_POST['updatePass'])){
     $archivo = $_SESSION['imagen_perfil'];
     if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
         $archivo = subir_archivo('Fimagen',1);
-        if ($archivo == "Error"){
-            echo $archivo;
-        } else if ($archivo == "imagenNoValida"){
-            echo $archivo;
-        } else if ($archivo == "imagenGrande"){
-            echo $archivo;
+        if ($archivo == "error al subir"){
+            echo "Error";
+        } else if ($archivo == "img no valida"){
+            echo "imagenNoValida";
         } else {
             if($_SESSION['imagen_perfil'] != "../img/Users/perfil.png"){
                 unlink($_SESSION['imagen_perfil']);
