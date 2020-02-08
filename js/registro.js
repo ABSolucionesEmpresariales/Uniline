@@ -134,7 +134,7 @@ $(document).ready(function () {
 
     });
     /* <---------------------Mostrar el div seleccionado del curso-----------------------> */
-    $(document).on('click', '.mostrar', function (e) {
+    $(document).on('click','.mostrar', function (e) {
         e.preventDefault();
         controlId = $(this).attr("id");
         $('.page-activo').addClass('d-none');
@@ -248,6 +248,7 @@ $(document).ready(function () {
     });
 
     $('#registro').submit(function (e) {
+        e.preventDefault();
         if ($('#registrar-nombre').val() == '' || $('#registrar-tel').val() == '' || $('#registrar-correo').val() == '' || $('#registrar-pass').val() == '') {
             console.log('si llego');
             $("#alertas").removeClass('alert-success');
@@ -260,7 +261,8 @@ $(document).ready(function () {
             e.preventDefault();
         } else {
             $("#hope").removeClass("d-none");
-           
+            console.log($(".registrar_boton").attr("disabled",true));
+            $("#btnSubmit").attr("disabled", true);
             $.ajax({
                 url: "../controllers/registro.php",
                 type: "POST",
@@ -269,7 +271,6 @@ $(document).ready(function () {
                 success: function (response) {
                     $("#hope").addClass("d-none");
                     if (response == "Existe") {
-                        $('#registro').trigger("reset");
                         console.log(response);
                         $("#alertas").removeClass('alert-success');
                         $("#alertas").addClass('alert-danger');
@@ -290,6 +291,7 @@ $(document).ready(function () {
                         }, 3000);
 
                     } else {
+                        $('#registro').trigger("reset");
                         console.log(response);
                         $("#alertas").removeClass('alert-danger');
                         $("#alertas").addClass('alert-success');
@@ -302,7 +304,8 @@ $(document).ready(function () {
                     }
                 }
             });
-            e.preventDefault();
+            $('#btnSubmit').removeAttr("disabled");
+            
         }
     });
 
