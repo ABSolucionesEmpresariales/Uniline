@@ -97,7 +97,7 @@ include '../controllers/sessionCEO.php';
                                     <input type="text" id="nombre-tema" class="form-control inden-tema" name="TNombre" placeholder="Nombre del tema">
                                     <textarea rows="5" cols="50" id="descripcion-tema" class="form-control inden-tema" name="TADescripcion" placeholder="Descripcion del tema"></textarea>
                                     <input type="text" id="video-tema" class="form-control inden-tema" name="TVideo" placeholder="URL video"></<input>
-                                    <div>Tarea *opcional<input type="file" id="archivo-tema" class="form-control inden-tema" name="FArchivo"></div>
+                                    <div>Archivo *opcional<input type="file" id="archivo-tema" class="form-control" name="FArchivo"></div>
                                     <br>
                                     <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir tema</button>
                                 </form>

@@ -246,9 +246,10 @@ $(document).ready(function () {
             scrollTop: $(strAncla).offset().top
         }, 300);
     });
-
+    
     $('#registro').submit(function (e) {
         e.preventDefault();
+        $('#btnSubmit').attr('disabled', true);
         if ($('#registrar-nombre').val() == '' || $('#registrar-tel').val() == '' || $('#registrar-correo').val() == '' || $('#registrar-pass').val() == '') {
             console.log('si llego');
             $("#alertas").removeClass('alert-success');
@@ -258,11 +259,8 @@ $(document).ready(function () {
             setTimeout(function () {
                 $("#alertas").slideUp("slow");
             }, 3000);
-            e.preventDefault();
         } else {
-            $("#hope").removeClass("d-none");
-            console.log($(".registrar_boton").attr("disabled",true));
-            $("#btnSubmit").attr("disabled", true);
+            $("#hope").removeClass("d-none");           
             $.ajax({
                 url: "../controllers/registro.php",
                 type: "POST",
@@ -300,11 +298,11 @@ $(document).ready(function () {
                         setTimeout(function () {
                             $("#alertas").slideUp("slow");
                         }, 3000);
-
+                        
                     }
+                    $('#btnSubmit').attr('disabled', false);
                 }
             });
-            $('#btnSubmit').removeAttr("disabled");
             
         }
     });
