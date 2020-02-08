@@ -68,17 +68,13 @@ session_start();
 </div>
 
   <!-- Start Registro Area -->
-  <div class="modal fade" id="modal-registro">
+  <div class="modal fade" id="modal-registro"  style="height: 60rem;">
     <div class="modal-dialog">
 
       <!-- Modal content-->
       <div class="modal-content  search-course-area">
         <div class="overlay-bg">
           <!-- confirmacion area -->
-
-          
-
-
           <div class="modal-body row justify-content-center align-items-center">
             <div class="header-top">
               <i class="fas fa-times text-white close" style="font-size: 30px;" data-dismiss="modal"></i>
@@ -164,7 +160,7 @@ session_start();
                 <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
                 <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
-                <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Login</a></li>
+                <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Iniciar sesion</a></li>
               <?php
               }
               ?>
@@ -235,7 +231,7 @@ session_start();
             <p class="pt-10 pb-10">
               Estamos en la era de la información; prepárate, actualízate y crece a través de nuestros cursos en línea, estamos donde tú estés
             </p>
-            <a id="idprueba" href="#" class="cambiarRegistro btn btn-primary text-uppercase">Comienza ya</a>
+            
           </div>
         <?php
         } else {
@@ -248,7 +244,7 @@ session_start();
             <p class="pt-10 pb-10">
               Estamos en la era de la información; prepárate, actualízate y crece a través de nuestros cursos en línea, estamos donde tú estés
             </p>
-            <a id="idprueba" href="#" class="cambiarRegistro btn btn-primary text-uppercase">Comienza ya</a>
+            <a   href="#" data-toggle="modal" data-target="#modal-registro" class="btn btn-primary text-uppercase">Comienza ya</a>
           </div>
           <div class="col-lg-4 col-md-12" style="background-color: rgba(255, 255, 255, 0.15)">
             <h2 class="text-white">
@@ -264,6 +260,7 @@ session_start();
                   <h4>Instructores expertos</h4>
                 </a>
                 <p>
+
                   Cursos impartidos por instructores experimentados en su área.
                 </p>
               </div>

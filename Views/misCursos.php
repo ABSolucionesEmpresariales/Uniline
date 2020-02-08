@@ -91,7 +91,7 @@ include '../controllers/sesion.php'
 
   <!-- Popular -->
 
-  <div class="popular page_section" style="max-height: 70rem; height: 70rem;">
+  <div class="popular page_section" style="min-height: 80rem;">
     <div class="container">
       <div class="section_title text-center">
         <h2 id="hay-cursos" class="h1"></h2>
@@ -104,7 +104,6 @@ include '../controllers/sesion.php'
             <tr>
               <th colspan="2">Cusro</th>
               <th scope="col">Descripción</th>
-              <th scope="col">Progreso</th>
             </tr>
           </thead>
           <tbody id="lista-tabla-cursos">
