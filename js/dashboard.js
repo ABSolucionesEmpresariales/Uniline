@@ -360,122 +360,135 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
             data: "datos_lista=datos_lista",
 
             success: function (response) {
-                console.log(response);
-                if(response != "[]"){
-                   datos = JSON.parse(response)
-                    console.log(datos);
-                    template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
-                    control_seleccion = "";
-                    control_video = "";
-                    control_del_chequeo = "";
-                    checkeo_final = ``;
-                    examen = "";
-                    bloque_tarea = "";
-                    for(i = 0; i < datos.length; i++){
-                        for(y = 0; y < datos[i].length; y++){
-                            if(y == 0){
-                                //Verifico si el examen ya se realizo (si es 1 agrega atributo checked si es 0 el disabled)
-                                //la clase temas vistos es para poder checkear los temas a voluntad por el usuario (Solo si el examen esta realizado)
-                                if(datos[i][0][4] == 1){
-                                    control_seleccion = "checked";
-                                    control_del_chequeo = "temas_vistos";
-                                    examen = "realizado";
-                                    checkeo_final = "span-"+(i+1)+"-0";
-                                }else{
-                                    control_del_chequeo = "";
-                                    control_seleccion = "disabled";
-                                    examen = "";
-                                    bloque_tarea = "d-none";
-                                }
-                                if(datos[0][0][4] != 1){
-                                    id_examen = "1--"+1;
-                                }
-                                template += `
-                                    <div class="demo row contenedor flex align-items-center cont-actividades">
-                                        <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
-                                        <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
-                                        <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">+${datos[i][0][1]}</a>
-                                    </div>`;
-                            }else if(y == 1){
-                                template += `
+                //console.log(response);
+                datos = JSON.parse(response)
+                console.log(datos);
+                template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
+                control_seleccion = "";
+                control_video = "";
+                control_del_chequeo = "";
+                checkeo_final = ``;
+                examen = "";
+                bloque_tarea = "";
+                for(i = 0; i < datos.length; i++){
+                    for(y = 0; y < datos[i].length; y++){
+                         if(y == 0){
+                             //Verifico si el examen ya se realizo (si es 1 agrega atributo checked si es 0 el disabled)
+                             //la clase temas vistos es para poder checkear los temas a voluntad por el usuario (Solo si el examen esta realizado)
+                             if(datos[i][0][4] == 1){
+                                control_seleccion = "checked";
+                                control_del_chequeo = "temas_vistos";
+                                examen = "realizado";
+                                checkeo_final = "span-"+(i+1)+"-0";
+                             }else{
+                                control_del_chequeo = "";
+                                control_seleccion = "disabled";
+                                examen = "";
+                                bloque_tarea = "d-none";
+                             }
+                             if(datos[0][0][4] != 1){
+                                id_examen = "1--"+1;
+                             }
+                            template += `
                                 <div class="demo row contenedor flex align-items-center cont-actividades">
-                                        <input type="checkbox" id="customCheck-bloque-${(i+1)+"-"+(y-1)}" name="example1" ${control_seleccion}>
-                                        <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center"><span class="registro_tema"></span></label>
-                                        <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">-${datos[i][2]}</a>
-                                    <div class="span-${(i+1)+"-"+(y-1)}" style="display: none;">`;
-                                    cont = 0;
-                                for(z = 0; z< datos[i][3].length; z++){
-                                        if(control_seleccion == 'checked' && datos[i][3][0][5] == 0 && cont == 0){
-                                            control_seleccion = "checked";
+                                    <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
+                                    <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
+                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">+${datos[i][0][1]}</a>
+                                </div>`;
+                        }else if(y == 1){
+                            template += `
+                            <div class="demo row contenedor flex align-items-center cont-actividades">
+                                    <input type="checkbox" id="customCheck-bloque-${(i+1)+"-"+(y-1)}" name="example1" ${control_seleccion}>
+                                    <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center"><span class="registro_tema"></span></label>
+                                    <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">-${datos[i][2]}</a>
+                                <div class="span-${(i+1)+"-"+(y-1)}" style="display: none;">`;
+                                cont = 0;
+                            for(z = 0; z< datos[i][3].length; z++){
+                                    if(control_seleccion == 'checked' && datos[i][3][0][5] == 0 && cont == 0){
+                                        control_seleccion = "checked";
+                                        //guardo el id proviniente de la base de datos del tema
+                                        id_actual_base = datos[i][3][z][0];
+                                        //guardo el link del video para mostrarlo
+                                        control_video = datos[i][3][z][3];
+                                        //guardo el id con el que se lleva el control del cambio de la infomacion del tema
+                                        id_control_direccionamiento = (i+1)+"-"+(z+1); 
+                                        cont++;
+                                    }
+                                    if(datos[i][3][z][5] == 1){
                                             //guardo el id proviniente de la base de datos del tema
                                             id_actual_base = datos[i][3][z][0];
+                                            control_seleccion = "checked";
                                             //guardo el link del video para mostrarlo
                                             control_video = datos[i][3][z][3];
                                             //guardo el id con el que se lleva el control del cambio de la infomacion del tema
-                                            id_control_direccionamiento = (i+1)+"-"+(z+1); 
+                                            id_control_direccionamiento = (i+1)+"-"+(z+1);
                                             cont++;
-                                        }
-                                        if(datos[i][3][z][5] == 1){
-                                                //guardo el id proviniente de la base de datos del tema
-                                                id_actual_base = datos[i][3][z][0];
-                                                control_seleccion = "checked";
-                                                //guardo el link del video para mostrarlo
-                                                control_video = datos[i][3][z][3];
-                                                //guardo el id con el que se lleva el control del cambio de la infomacion del tema
-                                                id_control_direccionamiento = (i+1)+"-"+(z+1);
-                                                cont++;
-                                        }else{
-                                            control_seleccion = "disabled";
-                                        }
-                                        template +=
-                                        `<div class="demo row pt-1 m-0 flex align-items-center">
-                                            <input class="" type="checkbox" id="customCheck-${(i+1)+"-"+(z+1)}" name="example1" ${control_seleccion}>
-                                            <label data-idtemabase="${datos[i][3][z][0]}" id="tema-${(i+1)+"-"+(z+1)}" for="customCheck-${(i+1)+"-"+(z+1)}" class="${control_del_chequeo} col-3 text-justify desbloqueo-${i} pl-4 flex align-items-center"><span class="registro_tema"></span></label>
-                                            <a id="${(i+1) +"-"+(z+1)}" class="col-9 mostrar-tema" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
-                                        </div>`;  
-                                }
-                            }else if(y == 4){
-                                for(z = 0; z< datos[i][4].length; z++){
-                                    template += `
-                                            <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea}">
-                                            <a data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="h5 mostrar-tareas" href="#seccion-tareas">Subir mi tarea</a>
-                                            <h4 ></h4>
-                                                <a data-idtarea="${y + 1}">
-                                                    <div class="ml-5">`;
+                                    }else{
+                                        control_seleccion = "disabled";
+                                    }
+                                    template +=
+                                    `<div class="demo row pt-1 m-0 flex align-items-center">
+                                        <input class="" type="checkbox" id="customCheck-${(i+1)+"-"+(z+1)}" name="example1" ${control_seleccion}>
+                                        <label data-idtemabase="${datos[i][3][z][0]}" id="tema-${(i+1)+"-"+(z+1)}" for="customCheck-${(i+1)+"-"+(z+1)}" class="${control_del_chequeo} col-3 text-justify desbloqueo-${i} pl-4 flex align-items-center"><span class="registro_tema"></span></label>
+                                        <a id="${(i+1) +"-"+(z+1)}" class="col-9 mostrar-tema" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
+                                     </div>`;  
+                            }
+                        }else if(y == 4){
+                            for(z = 0; z< datos[i][4].length; z++){
+                                template += `
+                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea}">
+                                        <a data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="h5 mostrar-tareas" href="#seccion-tareas">Subir mi tarea</a>
+                                        <h4 ></h4>
+                                            <a data-idtarea="${y + 1}">
+                                                <div class="ml-5">`;
+                                                datdoles = "";
+                                                tema = "";
+                                                if(datos[i][4][0][3]){
+                                                    datos_dow = datos[i][4][0][3].split("/");
+                                                    datdoles = datos_dow[2];
+                                                    tema = "Descargar Tarea"
+                                                }else{
+                                                    tema = "No hay archivo disponible";
                                                     datdoles = "";
-                                                    tema = "";
-                                                    if(datos[i][4][0][3]){
-                                                        datos_dow = datos[i][4][0][3].split("/");
-                                                        datdoles = datos_dow[2];
-                                                        tema = "Descargar Tarea"
-                                                    }else{
-                                                        tema = "No hay archivo disponible";
-                                                        datdoles = "";
-                                                    }
-                                            template += ` <a href="${datos[i][4][0][3]}" download="${datdoles}">${tema}</a>
-                                            </div>
-                                                </a>
-                                            </div>
+                                                }
+                                                template += ` <a href="${datos[i][4][0][3]}" download="${datdoles}">${tema}</a>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                    `;
-                                }                          
-                            } 
-                        }   
-                    }
-                // console.log(template);
-                    $('.lista-curso-aside').html(template);
-                    if(id_actual_base != ""){
-                        obtenerMostrarDatosTema(id_actual_base);
-                        $("#"+checkeo_final).click();
-                        console.log(checkeo_final);
-                        $("#tema-"+id_control_direccionamiento).next().addClass("text-info");
-                    }else{
-
-                    }
+                            </div>
+                                `;
+                            }                          
+                        } 
+                    }   
                 }
+               // console.log(template);
+                $('.lista-curso-aside').html(template);
+                if(id_actual_base != ""){
+                    obtenerMostrarDatosTema(id_actual_base);
+                    $("#"+checkeo_final).click();
+                    console.log(checkeo_final);
+                    $("#tema-"+id_control_direccionamiento).next().addClass("text-info");
+                }else{
+                    console.log("esntro");
+                    mostrarInfoCurso();
+                }
+            }
+        });
+    }
 
+    function mostrarInfoCurso(){
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:"mostrarCursos=mostrarCursos",
+
+            success: function(response){
+                console.log(response + "llego");
+                datos_curso = JSON.parse(response);
+                $("#video").attr('src',datos_curso[0][4]);
+                $(".descripcion-tema").html(datos_curso[0][2]);
             }
         });
     }

@@ -15,6 +15,13 @@ if(isset($_POST["id_cometario"])){
     echo json_encode($conexion->consultaPreparada($datos_camentario,$consulta_comentario,2,"i",false,null));
 }
 
+if(isset($_POST['mostrarCursos'])){
+    $conexion = New Modelos\Conexion();
+    $consulta = "SELECT * FROM curso WHERE idcurso = ?";
+    $datos = array($_SESSION['idcurso']);
+    echo json_encode($conexion->consultaPreparada($datos,$consulta,2,"i",false,null));
+}
+
 if(isset($_POST['datos_lista'])){
     $conexion = New Modelos\Conexion();
     // consulta que trae los bloques del curso  
@@ -236,3 +243,4 @@ if(isset($_POST['comentariosCurso'])){
     $datos = array($_SESSION['idcurso']);
     echo json_encode($conexion->consultaPreparada($datos,$consulta,2,"i",false,null));
 }
+
