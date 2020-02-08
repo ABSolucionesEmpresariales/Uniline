@@ -8,7 +8,6 @@ session_start();
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon-->
-  <link rel="shortcut icon" href="../img/fav.png">
   <!-- Author Meta -->
   <meta name="author" content="colorlib">
   <!-- Meta Description -->
@@ -94,7 +93,12 @@ session_start();
                 <input type="email" id="registrar-correo" class="form-control text-dark" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'">
                 <input type="password" id="registrar-pass" class="form-control text-dark" name="TPass" placeholder="Constraseña" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña'">
 
-                <button id="registrar" class="btn-registrar btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                <button id="registrar" class="btn-registrar btn-primary primary-btn text-uppercase" type="submit" name="submit">
+                  Registrar
+                  <div id="hope" class="spinner-border ml-5 d-none" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </button>
                 
               </form>
               <br>
@@ -108,6 +112,7 @@ session_start();
     </div>
   </div>
   <!-- End search-course Area -->
+
 
   <!-- Modal Contenido del curso-->
   <div class="modal fade" id="modal-cursos" role="dialog">
@@ -156,7 +161,7 @@ session_start();
               } else {
               ?>
                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                <li class="mt-3"><a class="text-center" href="#" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
                 <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Login</a></li>
@@ -505,7 +510,7 @@ session_start();
     <!-- styles course -->
     <script src="../js/popper.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/custom.js"></script>
+ 
 
 </body>
 

@@ -429,8 +429,17 @@ $(document).ready(function () {
     }
     return 'campos-llenos';
   }
+  function verificar_radios(clase_radio) {
+    for (i = 0; i < $('.radio-' + clase_radio).length; i++) {
+      if ($('.radio-' + clase_radio).eq(i).is(':checked')) {
+        return 'radio-checked';
+      }
+    }
+    return 'radio-uncheck';
+  }
 
   //////////////////////////////////////////////////////////### INSERTAR DATOS ##///////////////////////////////////////////
+  
 
   $('#registro-profesor').submit(function (e) { //INSERTAR PROFESORES
     if (verificar_campos('profesores') == 'campo-vacio') {
@@ -632,9 +641,9 @@ $(document).ready(function () {
       alert('Por favor seleccione un profesor, un curso y un bloque');
     } else if (verificar_campos('preguntas') == 'campo-vacio') {
       alert('Por favor llene todos los campos');
-    } else if($('.radio-in').is('checked', false)){
+    } else if (verificar_radios('preguntas') == 'radio-uncheck') {
       alert('Por favor seleccione cual sera la respuesta correcta');
-    }else{
+    } else {
       let respuestas = '';
       for (i = 1; i <= 4; i++) {
         if (i == correcta && i == 4) {
@@ -682,24 +691,76 @@ $(document).ready(function () {
 
   $("#registro-tarea").submit(function (e) {//INSERTAR TAREAS A LA BASE DE DATOS
     e.preventDefault();
-    var formData = new FormData(this);
-    $.ajax({
-      url: "../controllers/tarea.php",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
+    if ($('#select-bloque').val() == '0') {
+      alert('Por favor seleccione un profesor, un curso y un bloque');
+    } else if (verificar_campos('tareas') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+    } else {
+      var formData = new FormData(this);
+      $.ajax({
+        url: "../controllers/tarea.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
 
-      success: function (response) {
-        console.log(response);
+        success: function (response) {
+          console.log(response);
 
-        if (response == 1) {
-          datosTareas();
-          $('#registro-tarea').trigger('reset');
-        } else {
-          alert("datos no enviados, hubo un error");
+          if (response == 1) {
+            datosTareas();
+            $('#registro-tarea').trigger('reset');
+          } else {
+            alert("datos no enviados, hubo un error");
+          }
         }
-      }
-    });
+      });
+    }
+
   });
 });
+
+document.getElementById("inputGroupFile01").onchange = function (e) {
+  // Creamos el objeto de la clase FileReader
+  let reader = new FileReader();
+
+  // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+  reader.readAsDataURL(e.target.files[0]);
+
+  // Le decimos que cuando este listo ejecute el código interno
+  reader.onload = function () {
+    let preview = document.getElementById('preview'),
+      image = document.createElement('img');
+
+    image.src = reader.result;
+    image.width = "200";
+    image.height = "200";
+
+    preview.innerHTML = '';
+    preview.append(image);
+    $('#preview-final').hide();
+    $('#preview img').css("border-radius", "100%");
+  };
+}
+document.getElementById("inputGroupFile02").onchange = function (e) {
+  // Creamos el objeto de la clase FileReader
+  let reader = new FileReader();
+
+  // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+  reader.readAsDataURL(e.target.files[0]);
+
+  // Le decimos que cuando este listo ejecute el código interno
+  reader.onload = function () {
+    let preview = document.getElementById('preview2'),
+      image = document.createElement('img');
+
+    image.src = reader.result;
+    image.width = "300";
+    image.height = "200";
+
+    preview.innerHTML = '';
+    preview.append(image);
+    $('#preview-final2').hide();
+   // $('#preview2 img').css("border-radius", "100%");
+  };
+}

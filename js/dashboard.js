@@ -51,19 +51,21 @@ $(document).ready(function () {
 
                 success: function(response){
                     console.log(response);
-                    datos = JSON.parse(response);
-                    console.log(datos);
-                    templete_comentarios = ``;
-                    $.each(datos,function(i,item){
-                        templete_comentarios += `
-                        <div id="comentarios-${i+1}" class="border" style="height:7rem;">
-                            <li id="userComment" class="list-group list-group-action">${item[0]}</li>
-                            <li id="comment" class="list-group pl-5 pt-3 text-bold">${item[1]}</li>
-                            <li id="date" class="float-right list-group">${item[2]} ${item[3]}</li>
-                        </div>
-                        `; 
-                    });
-                    $("#area-comentarios").html(templete_comentarios);
+                    if(response != "[]"){
+                        datos = JSON.parse(response);
+                        console.log(datos);
+                        templete_comentarios = ``;
+                        $.each(datos,function(i,item){
+                            templete_comentarios += `
+                            <div id="comentarios-${i+1}" class="border" style="height:7rem;">
+                                <li id="userComment" class="list-group list-group-action">${item[0]}</li>
+                                <li id="comment" class="list-group pl-5 pt-3 text-bold">${item[1]}</li>
+                                <li id="date" class="float-right list-group">${item[2]} ${item[3]}</li>
+                            </div>
+                            `; 
+                        });
+                        $("#area-comentarios").html(templete_comentarios);
+                    }
                 }
             });
       }
@@ -449,8 +451,8 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                                                     tema = "No hay archivo disponible";
                                                     datdoles = "";
                                                 }
-                                        template += ` <a href="${datos[i][4][0][3]}" download="${datdoles}">${tema}</a>
-                                        </div>
+                                                template += ` <a href="${datos[i][4][0][3]}" download="${datdoles}">${tema}</a>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -469,8 +471,24 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                     console.log(checkeo_final);
                     $("#tema-"+id_control_direccionamiento).next().addClass("text-info");
                 }else{
-
+                    console.log("esntro");
+                    mostrarInfoCurso();
                 }
+            }
+        });
+    }
+
+    function mostrarInfoCurso(){
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data:"mostrarCursos=mostrarCursos",
+
+            success: function(response){
+                console.log(response + "llego");
+                datos_curso = JSON.parse(response);
+                $("#video").attr('src',datos_curso[0][4]);
+                $(".descripcion-tema").html(datos_curso[0][2]);
             }
         });
     }

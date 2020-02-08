@@ -200,8 +200,8 @@ $(document).ready(function () {
                                                     <a class="curso text-primary h4 more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Ver mas</a>
                                                 </div>
                                                 <div class="price_box d-flex flex-row align-items-center">
-                                                    <div class="course_author_image">
-                                                        <img src="${datos[i][7]}"  alt="Imagen del profesor ${datos[i][6]}">
+                                                    <div>
+                                                        <img src="${datos[i][7]}" class="course_author_image"  alt="Imagen del profesor ${datos[i][6]}">
                                                     </div>
                                                     <div class="course_author_name">
                                                         <span>${datos[i][6]}</span>
@@ -259,14 +259,17 @@ $(document).ready(function () {
             }, 3000);
             e.preventDefault();
         } else {
+            $("#hope").removeClass("d-none");
+           
             $.ajax({
                 url: "../controllers/registro.php",
                 type: "POST",
                 data: $('#registro').serialize(),
 
                 success: function (response) {
-
+                    $("#hope").addClass("d-none");
                     if (response == "Existe") {
+                        $('#registro').trigger("reset");
                         console.log(response);
                         $("#alertas").removeClass('alert-success');
                         $("#alertas").addClass('alert-danger');
