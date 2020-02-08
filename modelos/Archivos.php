@@ -97,10 +97,10 @@ function subir_archivo($nombre)
             if (move_uploaded_file($_FILES[$nombre]["tmp_name"], $archivo)) {
                 return "../archivos/" . $newfilename . "";
             } else {
-                echo "error al subir";
+                die("error al subir");
             }
         } else {
-            echo "archivo no soportado";
+                die("archivo no soportado");
         }
     } else {
         return NULL;

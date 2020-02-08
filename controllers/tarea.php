@@ -4,20 +4,15 @@ require_once '../Modelos/Conexion.php';
 require_once '../Modelos/Archivos.php';
 
 if (!empty($_POST['accion'])) {
-   
-    if (!empty($_FILES['FArchivo']['tmp_name'])) {
-        $ruta = subir_archivo('FArchivo', 2);
-    } else {
-        $ruta = '';
-    }
+
     $conexion = new Modelos\Conexion();
 
     switch ($_POST['accion']) {
 
         case "insertar":
             if (isset($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque'])) {
-               echo $conexion->consultaPreparada(
-                    array($_POST['idtarea'], $_POST['TNombre'], $_POST['TADescripcion'], $ruta, $_SESSION['idbloque']),
+                echo $conexion->consultaPreparada(
+                    array($_POST['idtarea'], $_POST['TNombre'], $_POST['TADescripcion'], subir_archivo('FArchivo'), $_SESSION['idbloque']),
                     "INSERT INTO tarea (idtarea,nombre,descripcion,archivo_bajada,bloque) VALUES (?,?,?,?,?)",
                     1,
                     "sssss",
@@ -38,13 +33,14 @@ if (!empty($_POST['accion'])) {
                 false,
                 null
             );
+            $ruta = subir_archivo('FArchivo');
             if (!empty($respuesta) && empty($ruta)) {
                 $ruta = $respuesta[0][0]; //si hay una archivo registrado en el sistema y si no hay una carga nueva de archivo optene el archivo existente registrado
             } else if (!empty($respuesta) && !empty($ruta)) {
                 unlink($ruta);
             }
             if (!empty($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque'])) {
-                   echo $conexion->consultaPreparada(
+                echo $conexion->consultaPreparada(
                     array($_POST['idtarea'], $_POST['TNombre'], $_POST['TADescripcion'], $ruta, $_SESSION['idbloque']),
                     "UPDATE tarea SET nombre = ?, descripcion = ?, archivo_bajada = ? , bloque = ? WHERE idtarea = ? ",
                     1,
