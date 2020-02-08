@@ -1,7 +1,5 @@
 <?php
-
 use Modelos\Conexion;
-
 session_start();
 require_once '../Modelos/Conexion.php';
 
