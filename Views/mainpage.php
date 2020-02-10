@@ -146,7 +146,11 @@ session_start();
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
                 <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
-                <img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image">
+                <?php 
+                  $exlpode = explode("/",$_SESSION['imagen_perfil']);
+                  $url = "../".$exlpode[4]."/min_".$exlpode[5];
+                ?>
+                <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
                 </a>
                 <div id="drop" class="dropdown-menu opciones-perfil">
                   <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>

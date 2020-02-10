@@ -71,7 +71,11 @@ include '../controllers/sesion.php'
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
                 <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
-                <img src=<?php echo $_SESSION['imagen_perfil'] ?> alt="perfil" class="course_author_image">
+                <?php 
+                $exlpode = explode("/",$_SESSION['imagen_perfil']);
+                $url = "../".$exlpode[4]."/min_".$exlpode[5];
+                ?>
+                <img src=<?php echo $url; ?> alt="perfil" class="course_author_image">
                 </a>
                 <div class="dropdown-menu opciones-perfil">
                   <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
@@ -95,10 +99,13 @@ include '../controllers/sesion.php'
             <div class="col-lg-3 course_box load-picture">
               <div class="card">
                 <div id="preview">
-                
+                <?php 
+                  $exlpode2 = explode("/",$_SESSION['imagen_perfil']);
+                  $url_2 = "../".$exlpode2[4]."/res_".$exlpode2[5];
+                ?>
                 </div>
                 <div id="preview-final">
-                  <img id="FotoPerfil" class="rounded-circle" width="260" height="260" src=<?php echo $_SESSION['imagen_perfil']?> alt="foto de perfil">   
+                  <img id="FotoPerfil" class="rounded-circle" width="260" height="260" src=<?php echo $url_2; ?> alt="foto de perfil">   
                 </div>
                 <div id="cargaFoto" class="custom-file">
                   <input type="file" name="Fimagen" class="custom-file-input" id="inputGroupFile01"
