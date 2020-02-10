@@ -65,7 +65,7 @@ if(isset($_POST['updatePass'])){
     $encriptado = "";
     $archivo = $_SESSION['imagen_perfil'];
     if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
-        $archivo = subir_archivo('Fimagen',1);
+        $archivo = subir_imagen('Fimagen',1);
         if ($archivo == "error al subir"){
             echo "Error";
         } else if ($archivo == "img no valida"){

@@ -10,7 +10,7 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
     $archivo = "";
     if($_POST['accion'] == "insertar"){
         if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
-            $archivo = subir_archivo('Fimagen',1);
+            $archivo = subir_imagen('Fimagen',1);
             if ($archivo == "error al subir"){
                 echo "Error";
             } else if ($archivo == "img no valida"){
