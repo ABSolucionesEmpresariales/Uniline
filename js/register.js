@@ -477,7 +477,9 @@ $(document).ready(function () {
 
           } else {
             console.log(response);
+            alert(response);
             traerDatosProfe();
+            $('#registro-profesor').trigger('reset');
             /* $("#alertas").removeClass('alert-danger');
             $("#alertas").addClass('alert-success');                       
             $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
@@ -548,8 +550,7 @@ $(document).ready(function () {
             console.log(val);
             datosBloques();
             traerDatosCombo('tema.php', 'select-bloque');
-
-            $('#nombre-bloque').val("");
+            $('#registro-bloques').trigger('reset');
             accion = 'insertar';
             idbloque = '';
           } else {
@@ -604,7 +605,6 @@ $(document).ready(function () {
     } else {
       var nombre = $('#nombre-examen').val();
       var descripcion = $('#descripcion-examen').val();
-      var bloque = $('#select-bloque').val();
       $.ajax({
         url: "../controllers/examen.php",
         type: "POST",
@@ -618,10 +618,9 @@ $(document).ready(function () {
 
           if (response == 1) {
             datosExamen();
-            $('#nombre-examen').val("");
-            $('#descripcion-examen').val("");
+            $('#registro-examen').trigger('reset');
           } else {
-            alert("datos no enviados, hubo un error");
+            alert("El bloque ya contine un examen o los post no estan llegando correctamente");
           }
         }
       });
@@ -675,8 +674,7 @@ $(document).ready(function () {
 
           if (response == 1) {
             datosPreguntas();
-            $('#pregunta').val("");
-            $('input[name=TRespuesta]').val("");
+            $('#registro-preguntas').trigger('reset');
             idpregunta = '';
             accion = 'insertar';
             $('input:radio[name=TCorrecta]').prop('checked', false);
