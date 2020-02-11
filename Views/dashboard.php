@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require_once '../Modelos/Conexion.php';
 include '../controllers/sesion.php';
@@ -11,8 +11,6 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 <head>
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Favicon-->
-  <link rel="shortcut icon" href="../img/fav.png">
   <!-- Author Meta -->
   <meta name="author" content="colorlib">
   <!-- Meta Description -->
@@ -52,7 +50,6 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
     ============================================= -->
 
   <script src="../js/jquery.js"></script>
-  <script src="../js/jquery-3.2.1.min.js"></script>
 
 
 </head>
@@ -80,7 +77,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
     </div>
   </div>
 
-  
+
 
   <header id="header">
     <div class="header-top">
@@ -97,16 +94,16 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
                 <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
-                <?php 
-                $url = "";
-                if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
-                  $exlpode = explode("/",$_SESSION['imagen_perfil']);
-                  $url = "../".$exlpode[1]."/min_".$exlpode[2];
-                }else{
-                  $url = $_SESSION['imagen_perfil'];
-                }
-                ?>
-                <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
+                  <?php
+                  $url = "";
+                  if ($_SESSION['imagen_perfil'] != "../img/perfil.png") {
+                    $exlpode = explode("/", $_SESSION['imagen_perfil']);
+                    $url = "../" . $exlpode[1] . "/min_" . $exlpode[2];
+                  } else {
+                    $url = $_SESSION['imagen_perfil'];
+                  }
+                  ?>
+                  <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
                 </a>
                 <div class="dropdown-menu opciones-perfil">
                   <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
@@ -121,6 +118,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   </header><!-- #header -->
 
 
+
   <br><br>
 
   <div class="device-container">
@@ -129,14 +127,14 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
         <div id="div-original" class="row">
 
           <div id="cambiar-a-examen" class="col-lg-9 col-md-7 col-sm-12 no-padding">
-          <div id="contenido-examen" class="container p-5 d-none" style="height: 100%;">
-          </div>
+            <div id="contenido-examen" class="container p-5 d-none" style="min-height: 100rem;">
+            </div>
             <div id="cambio-examen-video">
               <div id="iframeContainer" class="flex bg-color justify-content-center">
-                  <!-- <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video> -->
-                  <iframe src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <!-- <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video> -->
+                <iframe src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
               </div>
-            
+
 
               <div class="col details-content no-padding" style="max-height: 35rem;">
                 <div class="jq-tab-wrapper no-padding" id="horizontalTab">
@@ -191,27 +189,27 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                           <div class="loaders m-0 flex justify-content-center">
                             <div class="row elements_loaders_container col-lg-8">
                               <!-- Loader -->
-                              <?php 
-                                  $conexion = New Modelos\Conexion();
-                                  $datos_tema = array($_SESSION['idcurso']);
-                                  $cosulta_temas_curso = "SELECT COUNT(idtema) AS cantidadTemas FROM tema t 
+                              <?php
+                              $conexion = new Modelos\Conexion();
+                              $datos_tema = array($_SESSION['idcurso']);
+                              $cosulta_temas_curso = "SELECT COUNT(idtema) AS cantidadTemas FROM tema t 
                                   INNER JOIN bloque b ON t.bloque = b.idbloque WHERE b.curso = ?";
-                                  $result = $conexion->consultaPreparada($datos_tema,$cosulta_temas_curso,2,"i",false,null);
-                              
-                                  $temas_curso = $result[0][0];
-                              
-                                  $consulta_temas_alumno = "SELECT COUNT(tema) FROM tema_completado tm 
+                              $result = $conexion->consultaPreparada($datos_tema, $cosulta_temas_curso, 2, "i", false, null);
+
+                              $temas_curso = $result[0][0];
+
+                              $consulta_temas_alumno = "SELECT COUNT(tema) FROM tema_completado tm 
                                   INNER JOIN tema t ON t.idtema = tm.tema 
                                   INNER JOIN bloque b ON b.idbloque = t.bloque WHERE b.curso = ? AND tm.usuario = ?";
-                                  $datos_temas_vistos = array($_SESSION['idcurso'],$_SESSION['idusuario']);
-                              
-                                  $result2 = $conexion->consultaPreparada($datos_temas_vistos,$consulta_temas_alumno,2,"ii",false,null);
-                              
-                                  $temas_vistos = $result2[0][0];
-                                  $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
-                                  $colculo = round($calculo);
+                              $datos_temas_vistos = array($_SESSION['idcurso'], $_SESSION['idusuario']);
+
+                              $result2 = $conexion->consultaPreparada($datos_temas_vistos, $consulta_temas_alumno, 2, "ii", false, null);
+
+                              $temas_vistos = $result2[0][0];
+                              $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
+                              $colculo = round($calculo);
                               ?>
-                              <div id="progreso" class="loader mb-0" data-perc="<?php echo ".".$colculo ?>"></div>
+                              <div id="progreso" class="loader mb-0" data-perc="<?php echo "." . $colculo ?>"></div>
                             </div>
                           </div>
                         </div><br>
@@ -246,39 +244,39 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 </div>
               </div>
 
-            <!-- seccion de comentarios -->
-            <div id="div-original-comentarios">
-              <div id="mov-coments" class="container comments-area col">
-                <h3 class="h3">Comentarios del curso</h3>
-                <br>
-                <section id="area-comentarios" class="container c-scroll">
-                  <div id="comentarios" class="border" style="height:7rem;">
-                    <li id="userComment" class="list-group list-group-action"> Uriel Cisneros Torres</li>
-                    <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la saga de itachi en naruto</li>
-                    <li id="date" class="float-right list-group"> 10:00 17/01/20</li>
-                  </div>
-                  <div class="border" style="height:7rem;">
-                    <li id="userComment" class="list-group list-group-action"> Aldo chagollan</li>
-                    <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la saga de iCell de DBZ</li>
-                    <li id="date" class="float-right list-group"> 10:15 17/01/20</li>
-                  </div>
-                  <div class="border" style="height:7rem;">
-                    <li id="userComment" class="list-group list-group-action"> Mayorquin</li>
-                    <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la caricatura de bobsponja y malcom</li>
-                    <li id="date" class="float-right list-group"> 10:20 17/01/20</li>
-                  </div>
-                </section>
-                <hr>
-                <section id="area-agregar-comentario" class="container flex justify-content-center">
-                  <div class="row d-inline-flex" style="width: 100%">
-                    <form action="" style="width: 100%;">
-                      <input class="col-lg-9 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
-                      <input class="col-lg-2 col-md-3 col-sm-2 btn" type="submit" name="enviar" id="enviar" value="Enviar">
-                    </form>
-                  </div>
-                </section>
+              <!-- seccion de comentarios -->
+              <div id="div-original-comentarios">
+                <div id="mov-coments" class="container comments-area col">
+                  <h3 class="h3">Comentarios del curso</h3>
+                  <br>
+                  <section id="area-comentarios" class="container c-scroll">
+                    <div id="comentarios" class="border" style="height:7rem;">
+                      <li id="userComment" class="list-group list-group-action"> Uriel Cisneros Torres</li>
+                      <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la saga de itachi en naruto</li>
+                      <li id="date" class="float-right list-group"> 10:00 17/01/20</li>
+                    </div>
+                    <div class="border" style="height:7rem;">
+                      <li id="userComment" class="list-group list-group-action"> Aldo chagollan</li>
+                      <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la saga de iCell de DBZ</li>
+                      <li id="date" class="float-right list-group"> 10:15 17/01/20</li>
+                    </div>
+                    <div class="border" style="height:7rem;">
+                      <li id="userComment" class="list-group list-group-action"> Mayorquin</li>
+                      <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la caricatura de bobsponja y malcom</li>
+                      <li id="date" class="float-right list-group"> 10:20 17/01/20</li>
+                    </div>
+                  </section>
+                  <hr>
+                  <section id="area-agregar-comentario" class="container flex justify-content-center">
+                    <div class="row d-inline-flex" style="width: 100%">
+                      <form action="" style="width: 100%;">
+                        <input class="col-lg-9 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
+                        <input class="col-lg-2 col-md-3 col-sm-2 btn" type="submit" name="enviar" id="enviar" value="Enviar">
+                      </form>
+                    </div>
+                  </section>
+                </div>
               </div>
-            </div>
             </div>
           </div>
 
@@ -297,38 +295,38 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <!-- area de tareas -->
 
   <div id="seccion-tareas" class="area-tareas pl-5 pr-5" style="display:none;">
-      <div id="tareas">
-          <hr>
-          <h4 class="h4">Sube tus tareas aqui</h4>
-          <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
-          <form id="subir-tareas" class="form-control d-inline-flex col-lg-10">
-            <div class="custom-file col-lg-10">
-              <input type="file" name = "Fimagen" class="custom-file-input" id="customFile">
-              <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
-              <input type="hidden" name="archivo" value="3">
-              <input class="actuali-homework" type="hidden" name="tarea">
-              <input class="bloque-archivo" type="hidden" name="bloque-tarea">
-            </div>
-            <div class="col-lg-4">
-              <button class="btn btn-primary" type="submit">Subir</button>
-            </div>
-          </form>
+    <div id="tareas">
+      <hr>
+      <h4 class="h4">Sube tus tareas aqui</h4>
+      <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
+      <form id="subir-tareas" class="form-control d-inline-flex col-lg-10">
+        <div class="custom-file col-lg-10">
+          <input type="file" name="Fimagen" class="custom-file-input" id="customFile">
+          <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
+          <input type="hidden" name="archivo" value="3">
+          <input class="actuali-homework" type="hidden" name="tarea">
+          <input class="bloque-archivo" type="hidden" name="bloque-tarea">
+        </div>
+        <div class="col-lg-4">
+          <button class="btn btn-primary" type="submit">Subir</button>
+        </div>
+      </form>
 
-          <div class="table-responsive" style="width:960px;">
-            <table class="table table-hover">
-              <thead class="thead-light">
-                <tr>
-                  <th>Usuarios</th>
-                  <th>Descargar tarea</th>
-                </tr>
-              </thead>
-              <p class="ml-3 h3">Tu tarea del bloque</p>
-                <tbody class="bg-light cuerpo-tb-user">
-                </tbody>
-            </table>
-          </div>
-          
+      <div class="table-responsive" style="width:960px;">
+        <table class="table table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Usuarios</th>
+              <th>Descargar tarea</th>
+            </tr>
+          </thead>
+          <p class="ml-3 h3">Tu tarea del bloque</p>
+          <tbody class="bg-light cuerpo-tb-user">
+          </tbody>
+        </table>
       </div>
+
+    </div>
     <h4 class="h4">
       Sección de tareas
     </h4>
@@ -374,7 +372,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                     <input class="calificar-tarea" id="radio4" type="radio" name="estrellas" value="4">
                     <label for="radio4">★</label>
                     <input class="calificar-tarea" id="radio5" type="radio" name="estrellas" value="5">
-                    <label for="radio5">★</label>               
+                    <label for="radio5">★</label>
                   </p>
                 </div>
 
@@ -441,7 +439,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
   <script src="../js/jquery-3.2.1.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/stellar.js"></script>
@@ -454,9 +452,9 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <!--gmaps Js-->
   <script src="../js/gmaps.min.js"></script>
   <script src="../js/theme.js"></script>
-
+  <script src="../js/popper.js"></script>
   <script src="../js/vendor/jquery-2.2.4.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="../js/vendor/bootstrap.min.js"></script>
 
   <script src="../js/easing.min.js"></script>

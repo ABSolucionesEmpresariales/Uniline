@@ -55,7 +55,7 @@ function subir_imagen($nombre)
             $extension = end($pedazos);
 
             $foto = substr(md5(uniqid(rand())), 0, 10) . "." . $extension;
-            $directorio = $_SERVER['DOCUMENT_ROOT'] . "/img/"; // directorio de tu elección
+            $directorio = $_SERVER['DOCUMENT_ROOT'] . "/uniline/img/"; // directorio de tu elección
 
             // almacenar imagen en el servidor
             if (move_uploaded_file($_FILES[$nombre]['tmp_name'], $directorio  . $foto)) {

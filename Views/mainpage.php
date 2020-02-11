@@ -19,12 +19,12 @@ session_start();
   <!-- Site Title -->
   <title>Escuela Al Revés</title>
 
-  <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
- 
+   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+ <!--
     CSS
     ============================================= -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="../css/linearicons.css">
@@ -53,9 +53,8 @@ session_start();
   <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
   <script src="../js/registro.js"></script>
   <script src="../js/login.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -231,7 +230,7 @@ session_start();
         if (isset($_SESSION['acceso'])) {
         ?>
           <div class="banner-content col-lg-10 col-md-12">
-            <h2 class="text-uppercase text-white">
+            <h2 class="text-uppercase text-white h2">
               ACTUALIZA TUS CONOCIMIENTOS MEDIANTE
               LOS MEJORES CURSOS DE ESPECIALIZACIÓN EN LÍNEA
             </h2>
@@ -244,7 +243,7 @@ session_start();
         } else {
         ?>
           <div class="banner-content col-lg-8 col-md-12">
-            <h2 class="text-uppercase text-white">
+            <h2 class="text-uppercase text-white h2">
               ACTUALIZA TUS CONOCIMIENTOS MEDIANTE
               LOS MEJORES CURSOS DE ESPECIALIZACIÓN EN LÍNEA
             </h2>
@@ -295,7 +294,7 @@ session_start();
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
-          <h2>Nuestros experimentados profesores</h2>
+          <h2 class="h2">Nuestros experimentados profesores</h2>
           <p>Nuestros instructores tienen la mayor experiencia en su area, lo que te ayudara a aprender de los mejores.</p>
         </div>
       </div>
@@ -513,8 +512,6 @@ session_start();
 
     <!-- styles course -->
     <script src="../js/popper.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
- 
 
 </body>
 

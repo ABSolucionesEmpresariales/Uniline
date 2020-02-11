@@ -463,36 +463,16 @@ $(document).ready(function () {
         success: function (response) {
           if (response == "Existe") {
             console.log(response);
-            $("#alertas").removeClass('alert-success');
-            $("#alertas").addClass('alert-danger');
-            $("#alertas").html('<h4>Este correo ya esta registrado</h4>');
-            $("#alertas").slideDown("slow");
-            setTimeout(function () {
-              $("#alertas").slideUp("slow");
-            }, 3000);
+            alert("Usuario o Correo ya Existente");
 
           } else if (response == 'error') {
             console.log(response);
-            $("#alertas").removeClass('alert-success');
-            $("#alertas").addClass('alert-danger');
-            $("#alertas").html('<h4>Ups! hubo un error, intentelo de nuevo</h4>');
-            $("#alertas").slideDown("slow");
-            setTimeout(function () {
-              $("#alertas").slideUp("slow");
-            }, 3000);
+            alert("se produjo un error");
 
           } else {
             console.log(response);
-            alert(response);
             traerDatosProfe();
             $('#registro-profesor').trigger('reset');
-            /* $("#alertas").removeClass('alert-danger');
-            $("#alertas").addClass('alert-success');                       
-            $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
-            $("#alertas").slideDown("slow");
-            setTimeout(function(){
-                $("#alertas").slideUp("slow");
-            }, 3000); */
 
           }
         }
