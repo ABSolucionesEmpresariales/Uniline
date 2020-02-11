@@ -72,8 +72,13 @@ include '../controllers/sesion.php'
                 <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                 <?php 
-                $exlpode = explode("/",$_SESSION['imagen_perfil']);
-                $url = "../".$exlpode[4]."/min_".$exlpode[5];
+                $url = "";
+                if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
+                  $exlpode = explode("/",$_SESSION['imagen_perfil']);
+                  $url = "../".$exlpode[1]."/min_".$exlpode[2];
+                }else{
+                  $url = $_SESSION['imagen_perfil'];
+                }
                 ?>
                 <img src=<?php echo $url; ?> alt="perfil" class="course_author_image">
                 </a>
@@ -99,12 +104,17 @@ include '../controllers/sesion.php'
             <div class="col-lg-3 course_box load-picture">
               <div class="card">
                 <div id="preview">
-                <?php 
-                  $exlpode2 = explode("/",$_SESSION['imagen_perfil']);
-                  $url_2 = "../".$exlpode2[4]."/res_".$exlpode2[5];
-                ?>
                 </div>
                 <div id="preview-final">
+                <?php 
+                $url = "";
+                if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
+                  $exlpode = explode("/",$_SESSION['imagen_perfil']);
+                  $url_2 = "../".$exlpode[1]."/res_".$exlpode[2];
+                }else{
+                  $url_2 = $_SESSION['imagen_perfil'];
+                }
+                ?>
                   <img id="FotoPerfil" class="rounded-circle" width="260" height="260" src=<?php echo $url_2; ?> alt="foto de perfil">   
                 </div>
                 <div id="cargaFoto" class="custom-file">

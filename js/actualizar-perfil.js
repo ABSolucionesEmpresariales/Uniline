@@ -17,17 +17,22 @@ $(document).ready(function () {
             console.log(response);
             $("#alertas").addClass('alert-danger');
             $("#alertas").removeClass('alert-success');
+            
             if (response == "1") {
-              $('#preview-final').show();
-              $('#preview').hide();
-              datosUsuario();
               $("#alertas").removeClass('alert-danger');
               $("#alertas").addClass('alert-success');
               $("#alertas").html('<i class="fas fa-check-circle m-2"></i>Registro Exitoso');
               $("#alertas").slideDown("slow");
               setTimeout(function(){
                 $("#alertas").slideUp("slow");
+              }, 1500);
+              setTimeout(function(){
+                location.reload();
               }, 2500);
+              setTimeout(function(){
+                $('#preview-final').show();
+                $('#preview').hide();
+              }, 2600);
             }else if(response == 'imagenNoValida'){
               $("#alertas").html('<i class="fas fa-images m-2"></i></i>Tipo de imagen no valido');
               $("#alertas").slideDown("slow");
@@ -82,7 +87,8 @@ $(document).ready(function () {
                   $('#registrar-grado').val("");
                 }
                 if(datos[0][4] != ""){
-                  $('#FotoPerfil').attr('src',datos[0][4])
+                  url = datos[0][4].split("/");
+                  $('#FotoPerfil').attr('src',url[0]+"/"+url[1]+"/res_"+url[2]);
                 }
                   $('#registrar-estado').val(datos[0][11]);
                   $('#registrar-municipio').val(datos[0][12]);

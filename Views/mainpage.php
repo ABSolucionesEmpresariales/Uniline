@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION['acceso'],$_SESSION['idusuario'],$_SESSION['imagen_perfil']);
+/* var_dump($_SESSION['acceso'],$_SESSION['idusuario'],$_SESSION['imagen_perfil']); */
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -148,8 +148,13 @@ var_dump($_SESSION['acceso'],$_SESSION['idusuario'],$_SESSION['imagen_perfil']);
                 <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                 <?php 
+                $url = "";
+                if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
                   $exlpode = explode("/",$_SESSION['imagen_perfil']);
-                  $url = "../".$exlpode[4]."/min_".$exlpode[5];
+                  $url = "../".$exlpode[1]."/min_".$exlpode[2];
+                }else{
+                  $url = $_SESSION['imagen_perfil'];
+                }
                 ?>
                 <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
                 </a>

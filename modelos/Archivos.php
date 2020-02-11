@@ -55,7 +55,7 @@ function subir_imagen($nombre)
             $extension = end($pedazos);
 
             $foto = substr(md5(uniqid(rand())), 0, 10) . "." . $extension;
-            $directorio = $_SERVER['DOCUMENT_ROOT'] . "/img/"; // directorio de tu elección
+            $directorio = $_SERVER['DOCUMENT_ROOT'] . "/Uniline/img/"; // directorio de tu elección
 
             // almacenar imagen en el servidor
             if (move_uploaded_file($_FILES[$nombre]['tmp_name'], $directorio  . $foto)) {
@@ -64,7 +64,7 @@ function subir_imagen($nombre)
                 resizeImagen($directorio . '/', $foto, 65, 65, $minFoto, $extension);
                 resizeImagen($directorio . '/', $foto, 500, 500, $resFoto, $extension);
                 unlink($directorio . '/' . $foto);
-                return $directorio . $foto;
+                return "../img/" . $foto;
             } else {
                 return "error al subir";
             }
@@ -93,7 +93,7 @@ function subir_archivo($nombre)
 
             $temp = explode(".", $_FILES[$nombre]["name"]);
             $newfilename = round(microtime(true)) . '.' . end($temp);
-            $archivo = $_SERVER['DOCUMENT_ROOT'] . "/archivos/" . $newfilename;
+            $archivo = $_SERVER['DOCUMENT_ROOT'] . "/Uniline/archivos/" . $newfilename;
             if (move_uploaded_file($_FILES[$nombre]["tmp_name"], $archivo)) {
                 return "../archivos/" . $newfilename . "";
             } else {

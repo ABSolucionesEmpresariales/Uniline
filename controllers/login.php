@@ -29,7 +29,7 @@ if ($resultado != "[]") {
             if($result[0][4] != ""){
                 $_SESSION['imagen_perfil'] = $result[0][4];
             }else{
-                $_SESSION['imagen_perfil'] = "../img/Users/perfil.png";
+                $_SESSION['imagen_perfil'] = "../img/perfil.png";
             }
             
         }else if($result[0][10] == 'CEO'){

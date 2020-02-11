@@ -54,7 +54,7 @@ if(isset($_POST['updatePass'])){
         $resultado = $conexion->consultaPreparada($datos,$consultaUP,1,'sssssssssss',false,5);
         if($resultado != 0){
             if($archivo == ""){
-                $_SESSION['imagen_perfil'] = "../img/Users/perfil.png";
+                $_SESSION['imagen_perfil'] = "../img/perfil.png";
             }else{
                 $_SESSION['imagen_perfil'] = $archivo;
             }
@@ -71,8 +71,12 @@ if(isset($_POST['updatePass'])){
         } else if ($archivo == "img no valida"){
             echo "imagenNoValida";
         } else {
-            if($_SESSION['imagen_perfil'] != "../img/Users/perfil.png"){
-                unlink($_SESSION['imagen_perfil']);
+            if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
+                $exlpode = explode("/",$_SESSION['imagen_perfil']);
+                $url_1 = "../".$exlpode[1]."/min_".$exlpode[2];
+                $url_2 = "../".$exlpode[1]."/res_".$exlpode[2];
+                unlink($url_1);
+                unlink($url_2);
             }
             if(actualizar($archivo) == 1){
                 echo 1;

@@ -117,7 +117,9 @@ template_cometarios =`<div>`;
                     if(datos[0][0] == ""){
 template_cometarios =`  <img src="../img/Users/perfil.png" alt="Esta imagen no esta disponible">`;
                     }else{
-template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="course_author_image">`;    
+                        url = datos[0][0].split("/");
+                        urel = url[0]+"/"+url[1]+"/min_"+url[2];
+template_cometarios =`  <img src="${urel}" alt="${datos[0][1]}" class="course_author_image">`;    
                     }
 template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="course_author_image">
                         <label class="ml-2">${datos[0][1]}</label>
@@ -175,7 +177,9 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                         if(item[1] == ""){
          templete_tarea +=` <img src="../img/Users/perfil.png" alt="perfil" class="course_author_image">`;
                         }else{
-         templete_tarea +=` <img src="${item[1]}" alt="perfil" class="course_author_image">`;
+                        url = item[1].split("/");
+                        urel = url[0]+"/"+url[1]+"/min_"+url[2];
+         templete_tarea +=` <img src="${urel}" alt="perfil" class="course_author_image">`;
                         }
                         
       templete_tarea +=`</td>
@@ -309,10 +313,12 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                 template = ``;
                 $.each(datos,function(i,item){
                     console.log(bloque);
+                    url = item[1].split("/");
+                    urel = url[0]+"/"+url[1]+"/min_"+url[2];
                     template +=`            
                     <tr>
                         <td class="text-nowrap">
-                            <img src='${item[0]}' alt="perfil" class="course_author_image" width="30%">
+                            <img src='${urel}' alt="perfil" class="course_author_image" width="30%">
                         </td>
                         <td class="text-nowrap" style="width: 4rem;">
                             <a href="${item[1]}" download="tarea">
