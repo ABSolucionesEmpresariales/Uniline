@@ -108,7 +108,7 @@ $(document).ready(function () {
       console.log($(this).val().length);
       if($(this).val().length > 0){
         $.ajax({
-          url: "../Controllers/actualizar-perfil.php",
+          url: "../controllers/actualizar-perfil.php",
           type: "POST",
           data: "updatePass="+$(this).val(),
 

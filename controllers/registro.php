@@ -43,7 +43,7 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
     }else{
       if(isset($_FILES['Fimagen'])){
         if(strlen($_FILES['Fimagen']['tmp_name']) != 0){
-          $archivo = subir_archivo('Fimagen',1);
+          $archivo = subir_imagen('Fimagen',1);
           if ($archivo == "error al subir"){
               echo "Error";
           } else if ($archivo == "img no valida"){

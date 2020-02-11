@@ -5,6 +5,14 @@ session_start();
 require_once '../Modelos/Conexion.php';
 require_once '../Stripe/vendor/autoload.php';
 
+if (empty($_SESSION['acceso'])) { //comprobar si el usuario ya es ta logeado , de ser asi se genera el pago del curso
+    die('login');
+} else if (empty($_SESSION['verificado'])) {
+    die('login');
+} else if (empty($_SESSION['idusuario'])) {
+    die('login');
+}
+
 if (!empty($_POST['idcurso'])) {
     $conexion = new Modelos\Conexion();
     $respuesta = $conexion->consultaPreparada(
