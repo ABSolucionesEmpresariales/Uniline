@@ -44,6 +44,7 @@ include '../controllers/sessionCEO.php';
                                 <option value="0">Selecciona bloque</option>
                             </select>
                         </li>
+                        <li><a class="btn btn-primary" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
 
                     </ul>
                 </div>

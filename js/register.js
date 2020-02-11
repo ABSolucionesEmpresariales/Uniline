@@ -370,12 +370,15 @@ $(document).ready(function () {
       data: { 'accion': 'tabla' },
 
       success: function (response) {
-        template = '';
-        datos = JSON.parse(response);
-        console.log(datos);
-        for (i = 0; i < datos.length; i++) {
-          template +=
-            `
+        if (response == '') {
+          console.log("tabla vacia");
+        } else {
+          template = '';
+          datos = JSON.parse(response);
+          console.log(datos);
+          for (i = 0; i < datos.length; i++) {
+            template +=
+              `
             <tr class="tema">
               <td scope="row" class="idpregunta" style="display: none;">${datos[i][0]}</td>
               <td scope="row" class="pregunta">${datos[i][1]}</td>
@@ -383,8 +386,11 @@ $(document).ready(function () {
               <td scope="row" class="respuestaCorrecta">${datos[i][3]}</td>
             </tr>
             `;
+          }
+          $('#datos-preguntas').html(template);
         }
-        $('#datos-preguntas').html(template);
+
+
       }
     });
   }
@@ -439,7 +445,7 @@ $(document).ready(function () {
   }
 
   //////////////////////////////////////////////////////////### INSERTAR DATOS ##///////////////////////////////////////////
-  
+
 
   $('#registro-profesor').submit(function (e) { //INSERTAR PROFESORES
     if (verificar_campos('profesores') == 'campo-vacio') {
@@ -759,6 +765,6 @@ document.getElementById("inputGroupFile02").onchange = function (e) {
     preview.innerHTML = '';
     preview.append(image);
     $('#preview-final2').hide();
-   // $('#preview2 img').css("border-radius", "100%");
+    // $('#preview2 img').css("border-radius", "100%");
   };
 }
