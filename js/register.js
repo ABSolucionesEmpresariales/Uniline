@@ -256,19 +256,21 @@ $(document).ready(function () {
         }
 
         for (i = 0; i < datos.length; i++) {
+          url = datos[i][3].split("/");
+          url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
           template += `
             <tr class="examen">
               <td scope="row" style="display: none;">${datos[i][0]}</td>
               <td scope="row">${datos[i][1]}</td>
               <td scope="row">${datos[i][2]}</td>
-              <td scope="row"><img width="50%" src="${datos[i][3]}"></td>
+              <td scope="row"><img width="50%" src="${url_2}"></td>
               <td scope="row">${datos[i][4]}</td>
               <td scope="row">${datos[i][5]}</td>`;
-          /*               if(datos[i][6] == "null" || datos[i][6] == null) {
-                        template +=` <td scope="row">${dat}</td>`;
-                        }else{
-                        template +=` <td scope="row">${datos[i][6]}</td>`;
-                        } */
+  /*          if(datos[i][6] == "null" || datos[i][6] == null) {
+                template +=` <td scope="row">${dat}</td>`;
+                }else{
+                template +=` <td scope="row">${datos[i][6]}</td>`;
+                } */
           template += `<td scope="row">${datos[i][6]}</td>
               <td scope="row">${datos[i][7]}</td>
               <td scope="row">${datos[i][8]}</td>
@@ -522,6 +524,8 @@ $(document).ready(function () {
           if (response == 1) {
             datosCursos();
             $('#registro-curso').trigger('reset');
+            $('#preview-final2').show();
+            $('#preview2').hide();
           } else {
             alert("datos no enviados, hubo un error");
           }

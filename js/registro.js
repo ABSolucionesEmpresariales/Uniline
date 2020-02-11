@@ -199,6 +199,8 @@ $(document).ready(function () {
                     }
                     console.log(i);
                     if (i % 4 == 0) {
+                        url = datos[i][7].split("/");
+                        url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
                         contdador_page++;
                         templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
                         console.log("llego" + contdador_page);
@@ -227,7 +229,7 @@ $(document).ready(function () {
                                                 </div>
                                                 <div class="price_box d-flex flex-row align-items-center">
                                                     <div>
-                                                        <img src="${datos[i][7]}" class="course_author_image"  alt="Imagen del profesor ${datos[i][6]}">
+                                                        <img src="${url_2}" class="course_author_image"  alt="Imagen del profesor ${datos[i][6]}">
                                                     </div>
                                                     <div class="course_author_name">
                                                         <span>${datos[i][6]}</span>

@@ -313,7 +313,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                 template = ``;
                 $.each(datos,function(i,item){
                     console.log(bloque);
-                    url = item[1].split("/");
+                    url = item[0].split("/");
                     urel = url[0]+"/"+url[1]+"/min_"+url[2];
                     template +=`            
                     <tr>
@@ -560,54 +560,54 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
 
 
 
-          // MOSTRAR EXAMEN AL HACER CLIC EN EL ENLACE
-          $(document).on("click",".mostrar-examen", function () {
+        // MOSTRAR EXAMEN AL HACER CLIC EN EL ENLACE
+        $(document).on("click",".mostrar-examen", function () {
 
-            if($(this).hasClass('realizado') == false){
-                idExamen_seleccionado = $(this).attr("id");
-                //$('#'+idExamen_seleccionado).prev('label').prev('input').attr('checked','true');
-                $("#cambio-examen-video").addClass("d-none");
-                $("#contenido-examen").removeClass("d-none");
-                $.ajax({
-                    url:"../controllers/dashboard.php",
-                    type:"POST",
-                    data:"examenBLoques="+$(this).data("idexamenbase"),
-    
-                    success: function(response){
-                        console.log(response);
-                        datos = JSON.parse(response);
-                        console.log(datos);
-                        templete2 = `
-                        <br>
-                        <h3 class="h3">${datos[0][0]}</h3>
-                        <hr>`;
-                        $.each(datos, function (i, item) {
-                            templete2 += `
-                                <div class="pregresp flex justify-content-center d-inline-block">
-                                    <div class="pregunta">
-                                        ${item[2]}<br />
-                                    </div>
-                                    <div class="respuestas d-inline-flex flex justify-content-between">`;
-                                    respuestas = item[3].split('-*3');
-                                    cont_examen_preguntas ++;
-                                    for(y = 0; y < respuestas.length; y++){
-                                        nueva = respuestas[y].split('###');
-                                        console.log(nueva);
-                                        if(nueva[0] == ''){
-                                     templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span>${nueva[1]}</span></li>`; 
-                                        }else{
-                                     templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="0"><span>${respuestas[y]}</span></li>`; 
-                                        }
+        if($(this).hasClass('realizado') == false){
+            idExamen_seleccionado = $(this).attr("id");
+            //$('#'+idExamen_seleccionado).prev('label').prev('input').attr('checked','true');
+            $("#cambio-examen-video").addClass("d-none");
+            $("#contenido-examen").removeClass("d-none");
+            $.ajax({
+                url:"../controllers/dashboard.php",
+                type:"POST",
+                data:"examenBLoques="+$(this).data("idexamenbase"),
+
+                success: function(response){
+                    console.log(response);
+                    datos = JSON.parse(response);
+                    console.log(datos);
+                    templete2 = `
+                    <br>
+                    <h3 class="h3">${datos[0][0]}</h3>
+                    <hr>`;
+                    $.each(datos, function (i, item) {
+                        templete2 += `
+                            <div class="pregresp flex justify-content-center d-inline-block">
+                                <div class="pregunta">
+                                    ${item[2]}<br />
+                                </div>
+                                <div class="respuestas d-inline-flex flex justify-content-between">`;
+                                respuestas = item[3].split('-*3');
+                                cont_examen_preguntas ++;
+                                for(y = 0; y < respuestas.length; y++){
+                                    nueva = respuestas[y].split('###');
+                                    console.log(nueva);
+                                    if(nueva[0] == ''){
+                                    templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span>${nueva[1]}</span></li>`; 
+                                    }else{
+                                    templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="0"><span>${respuestas[y]}</span></li>`; 
                                     }
-                            templete2 +=`</div></div><hr>`;
-                        });
-                        templete2 +=`
-                        <div class="alert alert-dark d-none alerta-examen" role="alert"></div>
-                        <button class="ir-actividad">Enviar respuestas</button>`;
-                        $("#contenido-examen").html(templete2); 
-                    }
-                });
-            }
+                                }
+                        templete2 +=`</div></div><hr>`;
+                    });
+                    templete2 +=`
+                    <div class="alert alert-dark d-none alerta-examen" role="alert"></div>
+                    <button class="ir-actividad">Enviar respuestas</button>`;
+                    $("#contenido-examen").html(templete2); 
+                }
+            });
+        }
     });
 
     $(document).on('click','.examen',function(){
