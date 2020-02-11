@@ -47,14 +47,12 @@ session_start();
   <!--
     JS
     ============================================= -->
-  <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " > </script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="../js/jquery.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
   <script src="../js/registro.js"></script>
   <script src="../js/login.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

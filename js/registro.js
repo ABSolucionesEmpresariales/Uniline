@@ -1,21 +1,21 @@
 $(document).ready(function () {
     let templete2 = ``;
     obtener_Cursos();
-    //// algunos modales 
-    $('.closeCon').on("click", function (e) {
+    //// algunos modales
+    $(".closeCon").on("click", function (e) {
         location.reload();
     });
-    $('#btn-registrate').on("click", function (e) {
-        $('#login').modal('hide');
+    $("#btn-registrate").on("click", function (e) {
+        $("#login").modal("hide");
     });
 
-    $(document).on('click', '#idprueba', function () {
-        $('#autobtn').click();
+    $(document).on("click", "#idprueba", function () {
+        $("#autobtn").click();
     });
-    $('#confirmar').hide("slow");
+    $("#confirmar").hide("slow");
 
     /* <---------------------Pintar el body del modal y los loques del curso-----------------------> */
-    $(document).on('click', '.curso', function () {
+    $(document).on("click", ".curso", function () {
         curso = $(this).data("curso");
         templete = "";
         $.ajax({
@@ -54,7 +54,10 @@ $(document).ready(function () {
                     `;
                 });
                 $.ajax({
-                    url: "../controllers/contenido_index.php", type: "POST", data: "cursos-contenido=" + curso, success: function (response) {
+                    url: "../controllers/contenido_index.php",
+                    type: "POST",
+                    data: "cursos-contenido=" + curso,
+                    success: function (response) {
                         let datos = JSON.parse(response);
                         templete += `                    
                         <div class="row title-responsive" style="width: 765px">
@@ -64,18 +67,25 @@ $(document).ready(function () {
                                 <div class="col-12 border-bottom">
                                     <div class="row">
                                         <div class="col-12">
-                                            <p style="cursor:pointer;" data-bloque="bloque-${item[0]}" class="h4 cursos-slide font-italic text-white">+ Contenido del bloque ${i + 1}</p>
+                                            <p style="cursor:pointer;" data-bloque="bloque-${
+                                item[0]
+                                }" class="h4 cursos-slide font-italic text-white">+ Contenido del bloque ${i +
+                                1}</p>
                                         </div>
-                                        <div data-temas="bloque-${item[2]}-${item[0]}" class="row ml-5 bloque-${item[0]}" style="display: none">
+                                        <div data-temas="bloque-${item[2]}-${
+                                item[0]
+                                }" class="row ml-5 bloque-${item[0]}" style="display: none">
                                         </div>
                                     </div>
                                 </div>
                             `;
                         });
                         templete += `</div>`;
-                        $('.view-curso').html(templete);
-                        $('.boton-footer').html(`<button type="button" value="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive compras" data-dismiss="modal">Comprar</button>`);
-                        $('#date-modal').click();
+                        $(".view-curso").html(templete);
+                        $(".boton-footer").html(
+                            `<button type="button" value="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive compras" data-dismiss="modal">Comprar</button>`
+                        );
+                        $("#date-modal").click();
                     }
                 });
             }
@@ -83,41 +93,56 @@ $(document).ready(function () {
     });
 
     /* <--------------------- Generar checkout de pago de stripe -----------------------> */
-    $(document).on('click', '.compras', function (event) {
+    $(document).on("click", ".compras", function (event) {
         let idcurso = $(this).val();
-        $.post("../controllers/checkout.php", { idcurso: idcurso }, function (response) {
+        $.post("../controllers/checkout.php", { idcurso: idcurso }, function (
+            response
+        ) {
+            switch (response) {
+                case "login":
+                    swal("Para comprar este curso debe registrarse o iniciar sesión");
+                    break;
 
-            if (response == "pagado") {
-                window.location.replace('../views/dashboard.php?idcurso=' + idcurso);
-            } else {
-                console.log(response);
-                var stripe = Stripe('pk_test_E6v1YWAS84dvDDlDeDkywm6y00gd15Xrmm');
-                stripe.redirectToCheckout({
-                    sessionId: response
-                }).then(function (response) {
+                case "pagado":
+                    window.location.replace("../views/dashboard.php?idcurso=" + idcurso);
+                    break;
 
-                    swal("Alerta!", "La compra ha fallado intente de nuevo o contacte a soporte técnico", "info");
-                    //imprimir mensaje ocurrio un problema
-                    // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
-
-                });
+                default:
+                    var stripe = Stripe("pk_test_E6v1YWAS84dvDDlDeDkywm6y00gd15Xrmm");
+                    stripe
+                        .redirectToCheckout({
+                            sessionId: response
+                        })
+                        .then(function (response) {
+                            swal(
+                                "Alerta!",
+                                "La compra ha fallado intente de nuevo o contacte a soporte técnico",
+                                "info"
+                            );
+                            //imprimir mensaje ocurrio un problema
+                            // si elgo sale mal usar aqui para debuggear: `result.error.message`para informarle el error al usuario
+                        });
+                    break;
             }
         });
     });
 
-      function CierraPopup() {
-        $("#modal-cursos").modal('hide');//ocultamos el modal
-        $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
-        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-      }
+    function CierraPopup() {
+        $("#modal-cursos").modal("hide"); //ocultamos el modal
+        $("body").removeClass("modal-open"); //eliminamos la clase del body para poder hacer scroll
+        $(".modal-backdrop").remove(); //eliminamos el backdrop del modal
+    }
 
     /* <---------------------Desplegar el contenido del curso e imprime los temas -----------------------> */
-    $(document).on('click', '.cursos-slide', function () {
+    $(document).on("click", ".cursos-slide", function () {
         contenido = $(this).data("bloque");
-        temas = $('.' + contenido).data("temas");
+        temas = $("." + contenido).data("temas");
         datos_tema = temas.split("-");
         $.ajax({
-            url: "../controllers/contenido_index.php", type: "POST", data: "temas-bloque=" + datos_tema[2], success: function (response) {
+            url: "../controllers/contenido_index.php",
+            type: "POST",
+            data: "temas-bloque=" + datos_tema[2],
+            success: function (response) {
                 let datos2 = JSON.parse(response);
                 templete2 = "";
                 $.each(datos2, function (y, item2) {
@@ -127,20 +152,21 @@ $(document).ready(function () {
                             </div>
                             `;
                 });
-                $('.' + contenido).html(templete2);
+                $("." + contenido).html(templete2);
             }
         });
-        setTimeout(function () { $('.' + contenido).slideToggle("slow"); }, 150);
-
+        setTimeout(function () {
+            $("." + contenido).slideToggle("slow");
+        }, 150);
     });
     /* <---------------------Mostrar el div seleccionado del curso-----------------------> */
-    $(document).on('click','.mostrar', function (e) {
+    $(document).on("click", ".mostrar", function (e) {
         e.preventDefault();
         controlId = $(this).attr("id");
-        $('.page-activo').addClass('d-none');
-        $('.row').removeClass('page-activo');
-        $('.' + controlId).addClass("page-activo");
-        $('.' + controlId).removeClass("d-none");
+        $(".page-activo").addClass("d-none");
+        $(".row").removeClass("page-activo");
+        $("." + controlId).addClass("page-activo");
+        $("." + controlId).removeClass("d-none");
     });
     /* <---------------------Pintar los cursos-----------------------> */
     function obtener_Cursos() {
@@ -175,7 +201,7 @@ $(document).ready(function () {
                     if (i % 4 == 0) {
                         contdador_page++;
                         templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
-                        console.log('llego' + contdador_page);
+                        console.log("llego" + contdador_page);
                     }
                     templete += `
                                         <div class="col-lg-3 course_box bor-responsive">
@@ -224,88 +250,98 @@ $(document).ready(function () {
                     << `;
                 for (y = 0; y < contdador_page; y++) {
                     if (y == 0) {
-                        templete += `<a id="page-${y + 1}" class="m-2 mostrar h4 estado-activo" href="#">${y + 1}</a>`;
+                        templete += `<a id="page-${y +
+                            1}" class="m-2 mostrar h4 estado-activo" href="#">${y + 1}</a>`;
                     } else {
-                        templete += `<a id="page-${y + 1}" class="m-2 mostrar h4" href="#">${y + 1}</a>`;
+                        templete += `<a id="page-${y +
+                            1}" class="m-2 mostrar h4" href="#">${y + 1}</a>`;
                     }
                 }
                 templete += ` >>
                     </div>
                 </div>`;
 
-                $('.cursos').html(templete);
+                $(".cursos").html(templete);
             }
         });
     }
 
     //// animacion para todos los enlaces que te lleven a un div dentro de la misma pagina
-    $(document).on('click', '.cambiarContacto', function (e) {
-        e.preventDefault();		//evitar el eventos del enlace normal
-        var strAncla = $(this).attr('href'); //id del ancla
-        $('body,html,header').stop(true, true).animate({
-            scrollTop: $(strAncla).offset().top
-        }, 300);
+    $(document).on("click", ".cambiarContacto", function (e) {
+        e.preventDefault(); //evitar el eventos del enlace normal
+        var strAncla = $(this).attr("href"); //id del ancla
+        $("body,html,header")
+            .stop(true, true)
+            .animate(
+                {
+                    scrollTop: $(strAncla).offset().top
+                },
+                300
+            );
     });
-    
-    $('#registro').submit(function (e) {
+
+    $("#registro").submit(function (e) {
         e.preventDefault();
-        $('#btnSubmit').attr('disabled', true);
-        if ($('#registrar-nombre').val() == '' || $('#registrar-tel').val() == '' || $('#registrar-correo').val() == '' || $('#registrar-pass').val() == '') {
-            console.log('si llego');
-            $("#alertas").removeClass('alert-success');
-            $("#alertas").addClass('alert-danger');
-            $("#alertas").html('<h4>Por favor llene todos los campos</>');
+        $("#btnSubmit").attr("disabled", true);
+        if (
+            $("#registrar-nombre").val() == "" ||
+            $("#registrar-tel").val() == "" ||
+            $("#registrar-correo").val() == "" ||
+            $("#registrar-pass").val() == ""
+        ) {
+            console.log("si llego");
+            $("#alertas").removeClass("alert-success");
+            $("#alertas").addClass("alert-danger");
+            $("#alertas").html("<h4>Por favor llene todos los campos</>");
             $("#alertas").slideDown("slow");
             setTimeout(function () {
                 $("#alertas").slideUp("slow");
             }, 3000);
         } else {
-            $("#hope").removeClass("d-none");           
+            $("#hope").removeClass("d-none");
             $.ajax({
                 url: "../controllers/registro.php",
                 type: "POST",
-                data: $('#registro').serialize(),
+                data: $("#registro").serialize(),
 
                 success: function (response) {
                     $("#hope").addClass("d-none");
                     if (response == "Existe") {
                         console.log(response);
-                        $("#alertas").removeClass('alert-success');
-                        $("#alertas").addClass('alert-danger');
-                        $("#alertas").html('<h4>Este usuario ya esta registrado</h4>');
+                        $("#alertas").removeClass("alert-success");
+                        $("#alertas").addClass("alert-danger");
+                        $("#alertas").html("<h4>Este usuario ya esta registrado</h4>");
                         $("#alertas").slideDown("slow");
                         setTimeout(function () {
                             $("#alertas").slideUp("slow");
                         }, 3000);
-
-                    } else if (response == 'error') {
+                    } else if (response == "error") {
                         console.log(response);
-                        $("#alertas").removeClass('alert-success');
-                        $("#alertas").addClass('alert-danger');
-                        $("#alertas").html('<h4>Ups! hubo un error, intentelo de nuevo</h4>');
+                        $("#alertas").removeClass("alert-success");
+                        $("#alertas").addClass("alert-danger");
+                        $("#alertas").html(
+                            "<h4>Ups! hubo un error, intentelo de nuevo</h4>"
+                        );
                         $("#alertas").slideDown("slow");
                         setTimeout(function () {
                             $("#alertas").slideUp("slow");
                         }, 3000);
-
                     } else {
-                        $('#registro').trigger("reset");
+                        $("#registro").trigger("reset");
                         console.log(response);
-                        $("#alertas").removeClass('alert-danger');
-                        $("#alertas").addClass('alert-success');
-                        $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
+                        $("#alertas").removeClass("alert-danger");
+                        $("#alertas").addClass("alert-success");
+                        $("#alertas").html(
+                            "<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>"
+                        );
                         $("#alertas").slideDown("slow");
                         setTimeout(function () {
                             $("#alertas").slideUp("slow");
                         }, 3000);
-                        
                     }
-                    $('#btnSubmit').attr('disabled', false);
+                    $("#btnSubmit").attr("disabled", false);
                 }
             });
-            
         }
     });
-
-
 });
