@@ -484,10 +484,11 @@ $(document).ready(function () {
             }, 3000);
 
           } else {
-            console.log(response);
-            alert(response);
             traerDatosProfe();
             $('#registro-profesor').trigger('reset');
+            $("#preview-final").show();
+            $("#preview").hide();
+
             /* $("#alertas").removeClass('alert-danger');
             $("#alertas").addClass('alert-success');                       
             $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
