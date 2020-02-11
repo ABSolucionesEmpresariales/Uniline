@@ -6,9 +6,9 @@ header("Pragma: no-cache");
 //Iniciar una nueva sesión o reanudar la existente.
 //Si existe la sesión "cliente"..., la guardamos en una variable.
 if (!empty($_SESSION['acceso']) && !empty($_SESSION['verificado']) && !empty($_SESSION['idusuario'])){
-
+    header('Location: ../views/mainpage.php');
 }else{
-header('Location: ../views/mainpage.php');//Aqui lo redireccionas al lugar que quieras.
+//Aqui lo redireccionas al lugar que quieras.
  die();
 
 }

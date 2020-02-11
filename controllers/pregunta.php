@@ -59,7 +59,7 @@ if (!empty($_POST['accion'])) {
                 false,
                 null
             ));
-
+            
             $datos = $conexion->consultaPreparada(array($_SESSION['idbloque']),
             "SELECT idexamen FROM examen INNER JOIN bloque ON bloque = idbloque WHERE bloque = ?",
             2,
@@ -67,7 +67,12 @@ if (!empty($_POST['accion'])) {
             false,
             null
             );
-            $_SESSION['idexamen'] = $datos[0][0];
+            if($datos == null){
+                echo '';
+            }else{
+               $_SESSION['idexamen'] = $datos[0][0]; 
+            }
+            
             break;
 
         default:

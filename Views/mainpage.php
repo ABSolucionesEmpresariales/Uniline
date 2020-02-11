@@ -1,6 +1,5 @@
 <?php
 session_start();
-/* var_dump($_SESSION['acceso'],$_SESSION['idusuario'],$_SESSION['imagen_perfil']); */
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">

@@ -26,6 +26,8 @@ if (!empty($_POST['accion'])) {
                     false,
                     null
                 );
+                $_SESSION['idexamen'] = $conexion->optenerId();
+                               
             } else {
                 echo "El bloque ya contine un examen o los post no estan llegando correctamente";
             }
