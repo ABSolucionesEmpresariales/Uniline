@@ -465,23 +465,11 @@ $(document).ready(function () {
         success: function (response) {
           if (response == "Existe") {
             console.log(response);
-            $("#alertas").removeClass('alert-success');
-            $("#alertas").addClass('alert-danger');
-            $("#alertas").html('<h4>Este correo ya esta registrado</h4>');
-            $("#alertas").slideDown("slow");
-            setTimeout(function () {
-              $("#alertas").slideUp("slow");
-            }, 3000);
+            alert("Usuario o Correo ya Existente");
 
           } else if (response == 'error') {
             console.log(response);
-            $("#alertas").removeClass('alert-success');
-            $("#alertas").addClass('alert-danger');
-            $("#alertas").html('<h4>Ups! hubo un error, intentelo de nuevo</h4>');
-            $("#alertas").slideDown("slow");
-            setTimeout(function () {
-              $("#alertas").slideUp("slow");
-            }, 3000);
+            alert("se produjo un error");
 
           } else {
             traerDatosProfe();
