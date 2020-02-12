@@ -23,7 +23,7 @@ session_start();
  <!--
     CSS
     ============================================= -->
-  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="../css/linearicons.css">
@@ -88,7 +88,7 @@ session_start();
 
                 <button id="btnSubmit" class="btn-primary" style="width: 100%; height: 50px;" type="submit" name="submit">
                   Registrar
-                  <div id="hope" class="spinner-border ml-5 d-none" role="status">
+                  <div class="spinner-border ml-5 d-none" role="status">
                     <span class="sr-only">Loading...</span>
                   </div>
                 </button>
