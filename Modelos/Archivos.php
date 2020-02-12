@@ -84,10 +84,13 @@ function subir_archivo($nombre)
         if (
             mime_content_type($_FILES[$nombre]["tmp_name"]) == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == "application/vnd.ms-excel"
+            ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == 'application/msword'
+            ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == 'application/vnd.ms-powerpoint'
             ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == "application/x-msaccess"
             ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-            ||  mime_content_type($_FILES[$nombre]["tmp_name"]) ==  'application/pdf'
-            ||  mime_content_type($_FILES[$nombre]["tmp_name"]) ==  "application/x-rar"
+            ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == 'application/pdf'
+            ||  mime_content_type($_FILES[$nombre]["tmp_name"]) == "application/x-rar"
 
         ) {
 
@@ -100,7 +103,7 @@ function subir_archivo($nombre)
                 die("error al subir");
             }
         } else {
-                die("archivo no soportado");
+            die("archivo no soportado");
         }
     } else {
         return NULL;
