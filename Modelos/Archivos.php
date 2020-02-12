@@ -103,7 +103,7 @@ function subir_archivo($nombre)
                 die("error al subir");
             }
         } else {
-                die("archivo no soportado");
+            die("archivo no soportado");
         }
     } else {
         return NULL;
