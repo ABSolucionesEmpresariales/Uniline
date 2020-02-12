@@ -57,7 +57,7 @@ $(document).ready(function () {
                         templete_comentarios = ``;
                         $.each(datos,function(i,item){
                             templete_comentarios += `
-                            <div id="comentarios-${i+1}" class="border" style="height:7rem;">
+                            <div id="comentarios-${i+1}" class="border-bottom" style="height:15rem;">
                                 <li id="userComment" class="list-group list-group-action">${item[0]}</li>
                                 <li id="comment" class="list-group pl-5 pt-3 text-bold">${item[1]}</li>
                                 <li id="date" class="float-right list-group">${item[2]} ${item[3]}</li>
@@ -442,9 +442,8 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                         }else if(y == 4){
                             for(z = 0; z< datos[i][4].length; z++){
                                 template += `
-                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea}">
-                                        <a data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="h5 mostrar-tareas" href="#seccion-tareas">Subir mi tarea</a>
-                                        <h4 ></h4>
+                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea} pt-3 row" style="padding-left: 5rem;">
+                                        <a data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="h5 mostrar-tareas btn btn-primary" href="#seccion-tareas">Subir mi tarea</a>
                                             <a data-idtarea="${y + 1}">
                                                 <div class="ml-5">`;
                                                 datdoles = "";
@@ -457,7 +456,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                                                     tema = "No hay archivo disponible";
                                                     datdoles = "";
                                                 }
-                                                template += ` <a href="${datos[i][4][0][3]}" download="${datdoles}">${tema}</a>
+                                                template += ` <a class="btn btn-primary" href="${datos[i][4][0][3]}" download="${datdoles}">${tema}</a>
                                                 </div>
                                             </a>
                                         </div>

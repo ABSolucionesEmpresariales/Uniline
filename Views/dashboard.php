@@ -136,7 +136,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
               </div>
 
 
-              <div class="col details-content no-padding" style="max-height: 35rem;">
+              <div class="col details-content no-padding" style="min-height: 35rem;">
                 <div class="jq-tab-wrapper no-padding" id="horizontalTab">
                   <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding">
                     <ul class="nav nav-tabs no-padding" id="nav-barra">
@@ -246,25 +246,11 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
               <!-- seccion de comentarios -->
               <div id="div-original-comentarios">
-                <div id="mov-coments" class="container comments-area col">
+                <div id="mov-coments" class="container comments-area col" style="min-height: 30rem; height: 45rem;">
                   <h3 class="h3">Comentarios del curso</h3>
                   <br>
-                  <section id="area-comentarios" class="container c-scroll">
-                    <div id="comentarios" class="border" style="height:7rem;">
-                      <li id="userComment" class="list-group list-group-action"> Uriel Cisneros Torres</li>
-                      <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la saga de itachi en naruto</li>
-                      <li id="date" class="float-right list-group"> 10:00 17/01/20</li>
-                    </div>
-                    <div class="border" style="height:7rem;">
-                      <li id="userComment" class="list-group list-group-action"> Aldo chagollan</li>
-                      <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la saga de iCell de DBZ</li>
-                      <li id="date" class="float-right list-group"> 10:15 17/01/20</li>
-                    </div>
-                    <div class="border" style="height:7rem;">
-                      <li id="userComment" class="list-group list-group-action"> Mayorquin</li>
-                      <li id="comment" class="list-group pl-5"> Este pinche curso esta bien perro alv, mas perro que la caricatura de bobsponja y malcom</li>
-                      <li id="date" class="float-right list-group"> 10:20 17/01/20</li>
-                    </div>
+                  <section id="area-comentarios" class="container c-scroll" style="max-height: 25rem; height: 45rem;">
+                    
                   </section>
                   <hr>
                   <section id="area-agregar-comentario" class="container flex justify-content-center">
