@@ -715,7 +715,6 @@ $(document).ready(function () {
 
         success: function (response) {
           console.log(response);
-
           if (response == 1) {
             datosTareas();
             $('#registro-tarea').trigger('reset');
