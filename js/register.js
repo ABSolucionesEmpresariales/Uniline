@@ -466,10 +466,12 @@ $(document).ready(function () {
           if (response == "Existe") {
             console.log(response);
             alert("Usuario o Correo ya Existente");
+            $('.spinner-border').addClass('d-none');
 
           } else if (response == 'error') {
             console.log(response);
             alert("se produjo un error");
+            $('.spinner-border').addClass('d-none');
 
           } else {
             traerDatosProfe();
@@ -511,6 +513,7 @@ $(document).ready(function () {
             $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -550,6 +553,7 @@ $(document).ready(function () {
             $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -586,6 +590,7 @@ $(document).ready(function () {
             $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -620,6 +625,7 @@ $(document).ready(function () {
             $('.spinner-border').addClass('d-none');
           } else {
             alert("El bloque ya contine un examen o los post no estan llegando correctamente");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -680,6 +686,7 @@ $(document).ready(function () {
             $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -711,6 +718,7 @@ $(document).ready(function () {
             $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });

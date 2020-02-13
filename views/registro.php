@@ -30,17 +30,17 @@ include '../controllers/sessionCEO.php';
                         <li class="active"><a data-toggle="tab" href="#home">Profesores</a></li>
                         <li><a data-toggle="tab" href="#menu1">Cursos</a></li>
                         <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>
-                        <li class="col-2" style="margin-right: 1rem;">
+                        <li class="col-2" style="margin-right: -2rem;">
                             <select id="select-profe-tema" name="SProfesor" class="form-control m-1" style="height: 35px!important">
                                 <option value="0">Selecciona profesor</option>
                             </select>
                         </li>
-                        <li class="col-2" style="margin-right: 1rem;">
+                        <li class="col-2" style="margin-right: 2rem;">
                             <select id="select-curso" name="SCurso" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
                                 <option value="0">Selecciona un curso</option>
                             </select>
                         </li>
-                        <li class="col-2" style="margin-right: 1rem;">
+                        <li class="col-2" style="margin-right: 4rem;">
                             <select id="select-bloque" name="SBloque" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
                                 <option value="0">Selecciona bloque</option>
                             </select>
