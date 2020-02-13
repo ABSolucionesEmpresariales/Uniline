@@ -253,7 +253,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Funcion que escucha cuando el video esta por terminar >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-/*     var iframe = $('#iframeContainer iframe');
+     var iframe = $('#iframeContainer iframe');
     var player = new Vimeo.Player(iframe);
 
     player.on('ended', function() {
@@ -284,7 +284,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                     id_examen = (parseInt(datos_redirect[0])+1)+"--1";
                     $("#"+id_examen).click();
                 }
-    }); */
+    }); 
 /*     $("#video").on('ended', function () {
 
     }); */
