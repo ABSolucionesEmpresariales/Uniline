@@ -201,6 +201,8 @@ $(document).ready(function () {
                     if (i % 4 == 0) {
                         url = datos[i][7].split("/");
                         url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
+                        url3 = datos[i][3].split("/");
+                        url_3 = url[0]+"/"+url3[1]+"/res_"+url3[2];
                         contdador_page++;
                         templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
                         console.log("llego" + contdador_page);
@@ -208,7 +210,7 @@ $(document).ready(function () {
                     templete += `
                                         <div class="col-lg-3 course_box bor-responsive">
                                             <div class="card">
-                                                <img class="responsive-image"  width="250px" height="200px"  src="${datos[i][3]}" alt="Imagen del curso ${datos[i][1]}">
+                                                <img class="responsive-image"  width="250px" height="200px"  src="${url_3}" alt="Imagen del curso ${datos[i][1]}">
                                                 <div class="card-body text-center mt-0">
                                                     <div style="width: 100%; height: 70px;" class="card-title"><p class="h4 font-weight-bold" >${datos[i][1]}</p></div>
                                                     <div class="card-text"><strong>${datos[i][5]} Hrs</strong></div>

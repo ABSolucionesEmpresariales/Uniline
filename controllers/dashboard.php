@@ -109,6 +109,7 @@ if (isset($_POST['respuestaExamen'])) {
     $respuestas_usuario = explode("$", $_POST['respuestas_examen']);
     $id_preguntas = explode("$", $_POST['preguntas_id']);
     var_dump($id_preguntas);
+    var_dump($respuestas_usuario);
     $consulta = "INSERT INTO respuesta_usuario (idpregunta,usuario,respuesta) VALUES (?,?,?)";
     for ($i = 1; $i < count($respuestas_usuario); $i++) {
         $datos = array($id_preguntas[$i], $_SESSION['idusuario'], $respuestas_usuario[$i]);

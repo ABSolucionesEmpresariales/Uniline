@@ -43,10 +43,7 @@ $(document).ready(function () {
         });
         valor = valores.split('?');
         console.log(valor);
-        if (idtabla == 'tabla-profesores') {
-
-
-        } else if (idtabla == 'tabla-cursos') {
+        if (idtabla == 'tabla-cursos') {
           $('#nombre-curso').val(valor[1]);
           $('#descripcion-curso').val(valor[2]);
           $('#horas-curso').val(valor[5]);
@@ -515,6 +512,7 @@ $(document).ready(function () {
             $('#registro-curso').trigger('reset');
             $('#preview-final2').show();
             $('#preview2').hide();
+            traerDatosCombo('bloque.php', 'select-curso');
           } else {
             alert("datos no enviados, hubo un error");
           }
