@@ -140,8 +140,8 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
               <div class="col details-content no-padding" style="min-height: 35rem;">
                 <div class="jq-tab-wrapper no-padding" id="horizontalTab">
-                  <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding">
-                    <ul class="nav nav-tabs no-padding" id="nav-barra">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding" style="margin-bottom: 0;">
+                    <ul class="nav no-padding" id="nav-barra">
                       <li class="nav-item no-padding">
                         <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
                       </li>
@@ -210,10 +210,10 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                               $temas_vistos = $result2[0][0];
                               $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
                               $colculo = round($calculo);
-                              if($colculo == 100){
+                              if ($colculo == 100) {
                                 $colculo = 1;
-                              }else{
-                                $colculo = ".".$colculo;
+                              } else {
+                                $colculo = "." . $colculo;
                               }
                               ?>
                               <div id="progreso" class="loader mb-0" data-perc="<?php echo  $colculo ?>"></div>
@@ -257,14 +257,14 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                   <h3 class="h3">Comentarios del curso</h3>
                   <br>
                   <section id="area-comentarios" class="container c-scroll" style="max-height: 25rem; height: 45rem;">
-                    
+
                   </section>
                   <hr>
                   <section id="area-agregar-comentario" class="container flex justify-content-center">
                     <div class="row d-inline-flex" style="width: 100%">
                       <form action="" style="width: 100%;">
                         <input class="col-lg-9 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
-                        <input class="col-lg-2 col-md-3 col-sm-2 btn" type="submit" name="enviar" id="enviar" value="Enviar">
+                        <input class="col-lg-2 col-md-3 col-sm-2 border" type="submit" name="enviar" id="enviar" value="Enviar" style="height: 5rem;">
                       </form>
                     </div>
                   </section>
@@ -292,34 +292,38 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
       <hr>
       <h4 class="h4">Sube tus tareas aqui</h4>
       <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
-      <form id="subir-tareas" class="form-control d-inline-flex col-lg-10">
-        <div class="custom-file col-lg-10">
-          <input type="file" name="Fimagen" class="custom-file-input" id="customFile">
-          <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
-          <input type="hidden" name="archivo" value="3">
-          <input class="actuali-homework" type="hidden" name="tarea">
-          <input class="bloque-archivo" type="hidden" name="bloque-tarea">
-        </div>
-        <div class="col-lg-4">
-          <button class="btn btn-primary" type="submit">Subir</button>
+      <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12">
+        <div class="input-group">
+          <div class="custom-file col-lg-10 col-sm-12 border no-padding" style="height: 4rem;">
+            <input type="file" name="Fimagen" class="text-black col-lg-10 col-sm-5 no-padding" id="customFile" style="height: 4rem;">            
+            <input type="hidden" name="archivo" value="3">
+            <input class="actuali-homework" type="hidden" name="tarea">
+            <input class="bloque-archivo" type="hidden" name="bloque-tarea">
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary texce" type="submit" style="height: 4rem;">Subir</button>
+          </div>
         </div>
       </form>
-
-      <div class="table-responsive" style="width:960px;">
+      <br><br>
+      <hr>
+      
+      <br>
+      <div class="table-responsive">     
+      <p class="ml-3 h3">Tu tarea del bloque</p>
         <table class="table table-hover">
           <thead class="thead-light">
             <tr>
               <th>Usuarios</th>
               <th>Descargar tarea</th>
             </tr>
-          </thead>
-          <p class="ml-3 h3">Tu tarea del bloque</p>
+          </thead>         
           <tbody class="bg-light cuerpo-tb-user">
           </tbody>
         </table>
       </div>
-
     </div>
+    <br>
     <h4 class="h4">
       Sección de tareas
     </h4>
@@ -462,7 +466,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../js/main.js"></script>
 
   <!-- Course/Elements -->
-  
+
   <script src="../plugins/greensock/TweenMax.min.js"></script>
   <script src="../plugins/greensock/TimelineMax.min.js"></script>
   <script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>

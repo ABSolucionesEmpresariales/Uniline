@@ -694,44 +694,6 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
         setTimeout(function() {$("#contenido-examen").html("");$("#contenido-examen").addClass("d-none");},200);
     });
 
-    $(window).resize(function () {
-        if ($(window).width() < 768) {
-
-            if ($(".rem-nav").length != 1) {
-                $(contenido).prependTo("#nav-barra");
-                $(contenidoCom).appendTo("#nav-barra");
-                $("#nav-status").removeClass("active");
-                $("#descripcion").removeClass("active");
-                $("#contenido-cursos").removeClass("fade");
-                $("#contenido-cursos").addClass("active");
-                $("#mov-div").detach().appendTo('#contenido-cursos');
-                $("#mov-coments").detach().appendTo('#contenido-comentarios');
-                $("#scroll-responsive").addClass("scroll");
-                $("#nav-barra").addClass("scrollmenu");
-                $("#scroll-responsive").css("height", "30rem");
-                $("#contenido-cursos").css("height", "100%");
-                $(".bg-color-lista").css("height", "170%");
-                $("#navdash").removeClass("d-inline-flex");
-                $("#tam-pantalla").css("height", "100%");
-                $("#subir-tareas").removeClass("d-inline-flex");
-            }
-
-        }
-        if ($(window).width() > 768) {
-            $("#nav-status").addClass("active");
-            $("#descripcion").addClass("active");
-            $(".rem-nav").remove();
-            $("#mov-div").detach().appendTo('#div-original');
-            $("#mov-coments").detach().appendTo('#div-original-comentarios');
-            $("#scroll-responsive").removeClass("scroll");
-            $("#nav-barra").removeClass("scrollmenu");
-            $("#scroll-responsive").css("height", "15rem");
-            $(".bg-color-lista").css("height", "100%");
-            $("#tam-pantalla").css("height", "50%");
-            $("#subir-tareas").addClass("d-inline-flex");
-
-        }
-    });
 
     if ($(window).width() < 768) {
         $(contenido).prependTo("#nav-barra");
