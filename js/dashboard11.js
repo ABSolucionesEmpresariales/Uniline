@@ -175,16 +175,17 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                         <td class="d-none">${item[0]}</td>
                         <td style="width: 3rem;">`;
                         if(item[1] == ""){
-         templete_tarea +=` <img src="../img/Users/perfil.png" alt="perfil" class="course_author_image">`;
+         templete_tarea +=` <img src="../img/perfil.png" alt="perfil" class="course_author_image">`;
                         }else{
                         url = item[1].split("/");
                         urel = url[0]+"/"+url[1]+"/min_"+url[2];
          templete_tarea +=` <img src="${urel}" alt="perfil" class="course_author_image">`;
                         }
                         
+                        descarga_item2 = item[2].split('/');
       templete_tarea +=`</td>
                         <td style="width: 4rem;">
-                            <a href="${item[2]}" download="tarea-">
+                            <a href="${item[2]}" download="${descarga_item2[2]}">
                             <i class="fas fa-file-download text-dark" style="font-size:3rem;"></i>
                         </a>
                         </td>
@@ -251,40 +252,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
         </li>
             `;
 
-    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Funcion que escucha cuando el video esta por terminar >>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-     var iframe = $('#iframeContainer iframe');
-    var player = new Vimeo.Player(iframe);
-
-    player.on('ended', function() {
-                //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
-                datos_redirect = id_control_direccionamiento.split("-");
-                //Lo formamos el siguiente tema
-                id_redirecionado = datos_redirect[0]+"-"+(parseInt(datos_redirect[1])+1);
-                //verificaos si el tema existe
-                if($("#tema-"+id_redirecionado).length > 0){
-                    //checkeamos el tema actual
-                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
-                    //Se remueve la clase que lo identifica como activo
-                    $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
-                    //Realizar registro del tema
-                    registrarTemaCompletado(id_actual_base);
-                    //obtenemos los datos del nuevo tema para pintarlos
-                    obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
-                    //Le agregamos la clase para indentificarlo activo
-                    $("#tema-"+id_redirecionado).next().addClass("text-info");
-                    //igualamos la variable global a el tema actual
-                    id_control_direccionamiento = id_redirecionado;
-                    //tomamos el id de la base del tema actual
-                    id_actual_base = $("#tema-"+id_redirecionado).data("idtemabase");
-                }else{
-                    //si el id siguiente no existe se brincara al examen
-                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
-                    registrarTemaCompletado(id_actual_base);
-                    id_examen = (parseInt(datos_redirect[0])+1)+"--1";
-                    $("#"+id_examen).click();
-                }
-    }); 
+ 
 /*     $("#video").on('ended', function () {
 
     }); */
@@ -302,6 +270,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
     }
 
     function pintarTablaTareaBloque(bloque){
+        console.log(bloque);
         $.ajax({
             url:"../controllers/dashboard.php",
             type:"POST",
@@ -313,15 +282,21 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                 template = ``;
                 $.each(datos,function(i,item){
                     console.log(bloque);
-                    url = item[0].split("/");
-                    urel = url[0]+"/"+url[1]+"/min_"+url[2];
+                    urel = "";
+                    if(item[0] == ""){
+                        urel = "../img/perfil.png";
+                    }else{
+                        url = item[0].split("/");
+                        urel = url[0]+"/"+url[1]+"/min_"+url[2];
+                    }
+                    descarga_item = item[1].split('/');
                     template +=`            
                     <tr>
                         <td class="text-nowrap">
                             <img src='${urel}' alt="perfil" class="course_author_image" width="30%">
                         </td>
                         <td class="text-nowrap" style="width: 4rem;">
-                            <a href="${item[1]}" download="tarea">
+                            <a href="${item[1]}" download="${descarga_item[2]}">
                             <i class="fas fa-file-download text-dark" style="font-size:3rem;"></i>
                         </a>
                         </td>
@@ -524,9 +499,10 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                 //console.log(response);
                 datos_tema = JSON.parse(response);
                 //console.log(datos_tema);
+                console.log(datos_tema[0][3]);
                 if(datos_tema[0][3]){
                 datos_download = datos_tema[0][3].split("/");
-                dat = datos_download;
+                dat = datos_download[2];
                 }else{
                 dat = "no existe archivo";
                 }
@@ -639,6 +615,7 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
             respuestas_examen:respuestas_examen,
             puntaje_alumno:puntaje_alumno
         };
+        console.log(postada);
          $.ajax({
             url:"../controllers/dashboard.php",
             type:"POST",
@@ -686,7 +663,10 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                         $("#alertas").slideUp("slow");
                       }, 3000);
                     $("#subir-tareas").trigger("reset");
-                    pintarTablaTareaBloque(id_bloque);
+                     setTimeout(function(){
+                        pintarTablaTareaBloque(id_bloque);
+                        obtenerTareasBloque(id_bloque);
+                      }, 3000);
                 }else if(response == "tareaExist"){
                     $("#alertas").html('<i class="fas fa-times-circle m-2"></i></i>Ya existe una tarea en el bloque');
                     $("#alertas").slideDown("slow");
@@ -819,5 +799,42 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
+    
+       //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Funcion que escucha cuando el video esta por terminar >>>>>>>>>>>>>>>>>>>>>>>>>>>
+         /*   $("#iframeContainer").load("#iframeContainer > *");
+            var iframe = $('#iframeContainer iframe');
+            console.log(iframe);
+            var player = new Vimeo.Player(iframe);
+        
+            player.on('ended', function() {
+                //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
+                datos_redirect = id_control_direccionamiento.split("-");
+                //Lo formamos el siguiente tema
+                id_redirecionado = datos_redirect[0]+"-"+(parseInt(datos_redirect[1])+1);
+                //verificaos si el tema existe
+                if($("#tema-"+id_redirecionado).length > 0){
+                    //checkeamos el tema actual
+                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+                    //Se remueve la clase que lo identifica como activo
+                    $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
+                    //Realizar registro del tema
+                    registrarTemaCompletado(id_actual_base);
+                    //obtenemos los datos del nuevo tema para pintarlos
+                    //obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
+                    //Le agregamos la clase para indentificarlo activo
+                    $("#tema-"+id_redirecionado).next().addClass("text-info");
+                    //igualamos la variable global a el tema actual
+                    id_control_direccionamiento = id_redirecionado;
+                    //tomamos el id de la base del tema actual
+                    id_actual_base = $("#tema-"+id_redirecionado).data("idtemabase");
+                }else{
+                    //si el id siguiente no existe se brincara al examen
+                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+                    registrarTemaCompletado(id_actual_base);
+                    id_examen = (parseInt(datos_redirect[0])+1)+"--1";
+                    $("#"+id_examen).click();
+                }
+   
+    }); */
 
 });

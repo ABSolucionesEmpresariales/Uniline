@@ -210,8 +210,13 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                               $temas_vistos = $result2[0][0];
                               $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
                               $colculo = round($calculo);
+                              if($colculo == 100){
+                                $colculo = 1;
+                              }else{
+                                $colculo = ".".$colculo;
+                              }
                               ?>
-                              <div id="progreso" class="loader mb-0" data-perc="<?php echo "." . $colculo ?>"></div>
+                              <div id="progreso" class="loader mb-0" data-perc="<?php echo  $colculo ?>"></div>
                             </div>
                           </div>
                         </div><br>
@@ -224,7 +229,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                                 <i id="1" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
                                 <i id="2" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
                                 <i id="3" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
-                                <i id="4" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                <i id="4" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
                                 <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
                               </div>
                               <span>Excelente</span>
@@ -457,6 +462,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../js/main.js"></script>
 
   <!-- Course/Elements -->
+  
   <script src="../plugins/greensock/TweenMax.min.js"></script>
   <script src="../plugins/greensock/TimelineMax.min.js"></script>
   <script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>
@@ -467,7 +473,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../plugins/easing/easing.js"></script>
   <script src="../js/elements_custom.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="../js/dashboard.js"></script>
+  <script src="../js/dashboard11.js"></script>
 
 </body>
 
