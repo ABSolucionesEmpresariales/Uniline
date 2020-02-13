@@ -134,7 +134,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
             <div id="cambio-examen-video">
               <div id="iframeContainer" class="flex bg-color justify-content-center">
                 <!-- <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video> -->
-                <iframe src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                <iframe id="video" src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
               </div>
 
 

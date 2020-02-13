@@ -88,7 +88,7 @@ session_start();
 
                 <button id="btnSubmit" class="btn-primary" style="width: 100%; height: 50px;" type="submit" name="submit">
                   Registrar
-                  <div class="spinner-border ml-5 d-none" role="status">
+                  <div id="hope" class="spinner-border ml-5 d-none" role="status">
                     <span class="sr-only">Loading...</span>
                   </div>
                 </button>

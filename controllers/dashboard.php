@@ -98,7 +98,7 @@ if (isset($_POST['DatosTemaAcutual'])) {
 
 if (isset($_POST['temaCompleto'])) {
     $conexion = new Modelos\Conexion();
-    $datos_tema = array($_POST['temaCompleto'], 1);
+    $datos_tema = array($_POST['temaCompleto'],$_SESSION['idusuario']);
     $consulta = "INSERT INTO tema_completado (tema,usuario) VALUES (?,?)";
     echo $conexion->consultaPreparada($datos_tema, $consulta, 1, "ii", false, null);
 }
