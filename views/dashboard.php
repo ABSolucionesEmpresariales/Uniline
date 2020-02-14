@@ -132,9 +132,8 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
             <div id="contenido-examen" class="container p-5 d-none" style="min-height: 100rem;">
             </div>
             <div id="cambio-examen-video">
-              <div id="iframeContainer" class="flex bg-color justify-content-center">
-                <!-- <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video> -->
-                <iframe id="video" src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+              <div id="jalaporfa2" class="flex bg-color justify-content-center">
+                <iframe src="" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
               </div>
 
 
@@ -163,19 +162,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                       <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
                       <br>
                       <div class="container descripcion-tema">
-                        When you enter into any new area of science, you almost always find yourself with a baffling new
-                        language of technical terms to learn before you can converse with the experts. This is certainly true
-                        in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
-                        trade, the most prevalent being the telescope.
-                        <br>
-                        <br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum.
+
                       </div>
                     </div>
                     <div class="tab-pane container fade" id="archivos">
@@ -477,7 +464,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../plugins/easing/easing.js"></script>
   <script src="../js/elements_custom.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="../js/dashboard11.js"></script>
+  <script src="../js/dashboard25.js"></script>
 
 </body>
 
