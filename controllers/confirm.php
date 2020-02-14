@@ -16,7 +16,7 @@ if($resultado != '[]'){
     $resultUp = json_encode($conexion->consultaPreparada($datos2,$update,1,'i', false, null));
     $_SESSION['acceso'] = $result[0][1];
     $_SESSION['idusuario'] = $result[0][0];
-    $_SESSION['imagen_perfil'] = "../img/Users/perfil.png";
+    $_SESSION['imagen_perfil'] = "../img/perfil.png";
 }
 ?>
 <!DOCTYPE html>

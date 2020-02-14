@@ -30,15 +30,15 @@ class Email
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host       = 'smtp.hostinger.mx';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'soporte@cafionline.com';               // SMTP username
-            $mail->Password   = '4!]oK5=]';                         // SMTP password
+            $mail->Username   = 'contacto@cafionline.com';               // SMTP username
+            $mail->Password   = '`A]V8Qeu';                         // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
             $mail->Port       = 587;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('soporte@cafionline.com', 'Equipo de soporte CAFI');
+            $mail->setFrom('contacto@cafionline.com', 'Equipo de soporte CAFI');
             $mail->addAddress($this->email);     // Add a recipient
-            $mail->addReplyTo('soporte@cafionline.com', 'Equipo de soporte CAFI');
+            $mail->addReplyTo('contacto@cafionline.com', 'Equipo de soporte CAFI');
 
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML

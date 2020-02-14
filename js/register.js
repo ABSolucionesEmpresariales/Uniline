@@ -43,10 +43,7 @@ $(document).ready(function () {
         });
         valor = valores.split('?');
         console.log(valor);
-        if (idtabla == 'tabla-profesores') {
-
-
-        } else if (idtabla == 'tabla-cursos') {
+        if (idtabla == 'tabla-cursos') {
           $('#nombre-curso').val(valor[1]);
           $('#descripcion-curso').val(valor[2]);
           $('#horas-curso').val(valor[5]);
@@ -127,7 +124,6 @@ $(document).ready(function () {
             <td scope="row" style="display: none;">${datos[i][0]}</td>
             <td scope="row">${datos[i][1]}</td>
             <td scope="row">${datos[i][2]}</td>
-            <td scope="row">${datos[i][3]}</td>
             <td scope="row">${datos[i][3]}</td>
             <td scope="row">${datos[i][5]}</td>
             <td scope="row">${datos[i][6]}</td>
@@ -454,6 +450,7 @@ $(document).ready(function () {
       alert('Por favor llene todos los campos');
       e.preventDefault();
     } else {
+      $('.spinner-border').removeClass('d-none');
       var formData = new FormData(this);
       $.ajax({
         url: "../controllers/registro.php",
@@ -466,25 +463,19 @@ $(document).ready(function () {
           if (response == "Existe") {
             console.log(response);
             alert("Usuario o Correo ya Existente");
+            $('.spinner-border').addClass('d-none');
 
           } else if (response == 'error') {
             console.log(response);
             alert("se produjo un error");
+            $('.spinner-border').addClass('d-none');
 
           } else {
             traerDatosProfe();
             $('#registro-profesor').trigger('reset');
             $("#preview-final").show();
             $("#preview").hide();
-
-            /* $("#alertas").removeClass('alert-danger');
-            $("#alertas").addClass('alert-success');                       
-            $("#alertas").html('<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>');
-            $("#alertas").slideDown("slow");
-            setTimeout(function(){
-                $("#alertas").slideUp("slow");
-            }, 3000); */
-
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -499,6 +490,7 @@ $(document).ready(function () {
     } else if (verificar_campos('curso') == 'campo-vacio') {
       alert('Por favor llene todos los campos');
     } else {
+      $('.spinner-border').removeClass('d-none');
       var formData = new FormData(this);
       $.ajax({
         url: "../controllers/cursos.php",
@@ -515,8 +507,11 @@ $(document).ready(function () {
             $('#registro-curso').trigger('reset');
             $('#preview-final2').show();
             $('#preview2').hide();
+            $('.spinner-border').addClass('d-none');
+            traerDatosCombo('bloque.php', 'select-curso');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -531,6 +526,7 @@ $(document).ready(function () {
     } else if (verificar_campos('bloque') == 'campo-vacio') {
       alert('Por favor llene todos los campos');
     } else {
+      $('.spinner-border').removeClass('d-none');
       var nombre = $('#nombre-bloque').val();
       var curso = $('#select-curso').val();
       console.log(accion);
@@ -552,8 +548,10 @@ $(document).ready(function () {
             $('#registro-bloques').trigger('reset');
             accion = 'insertar';
             idbloque = '';
+            $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -572,6 +570,7 @@ $(document).ready(function () {
     } else if (verificar_campos('tema') == 'campo-vacio') {
       alert('Por favor llene todos los campos');
     } else {
+      $('.spinner-border').removeClass('d-none');
       var formData = new FormData(this);
       $.ajax({
         url: "../controllers/tema.php",
@@ -586,8 +585,10 @@ $(document).ready(function () {
           if (response == 1) {
             datosTemas();
             $('#registro-temas').trigger('reset');
+            $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -602,6 +603,7 @@ $(document).ready(function () {
     } else if (verificar_campos('examen') == 'campo-vacio') {
       alert('Por favor llene todos los campos');
     } else {
+      $('.spinner-border').removeClass('d-none');
       var nombre = $('#nombre-examen').val();
       var descripcion = $('#descripcion-examen').val();
       $.ajax({
@@ -618,8 +620,10 @@ $(document).ready(function () {
           if (response == 1) {
             datosExamen();
             $('#registro-examen').trigger('reset');
+            $('.spinner-border').addClass('d-none');
           } else {
             alert("El bloque ya contine un examen o los post no estan llegando correctamente");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -655,7 +659,7 @@ $(document).ready(function () {
         }
       }
 
-
+      $('.spinner-border').removeClass('d-none');
       var pregunta = $('#pregunta').val();
       var examen = $('#select-examen').val();
 
@@ -677,8 +681,10 @@ $(document).ready(function () {
             idpregunta = '';
             accion = 'insertar';
             $('input:radio[name=TCorrecta]').prop('checked', false);
+            $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
@@ -693,6 +699,7 @@ $(document).ready(function () {
     } else if (verificar_campos('tareas') == 'campo-vacio') {
       alert('Por favor llene todos los campos');
     } else {
+      $('.spinner-border').removeClass('d-none');
       var formData = new FormData(this);
       $.ajax({
         url: "../controllers/tarea.php",
@@ -706,8 +713,10 @@ $(document).ready(function () {
           if (response == 1) {
             datosTareas();
             $('#registro-tarea').trigger('reset');
+            $('.spinner-border').addClass('d-none');
           } else {
             alert("datos no enviados, hubo un error");
+            $('.spinner-border').addClass('d-none');
           }
         }
       });
