@@ -733,6 +733,20 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
         $('#tam-pantalla').height(height);
     });
 
+    //CONFEEEETTIIIIIIII
+
+    $.ajax({
+        url: "../controllers/dashboard.php",
+        type: "POST",
+        data: {'confeti': confeti},
+        
+        success: function (response) {
+            console.log(response);
+            
+        }
+      });
+
+
 
 
     /* VERIFICAR SI ESTA MARCADA EL CHECKBOX  */
