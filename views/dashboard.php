@@ -109,7 +109,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 </a>
                 <div class="dropdown-menu opciones-perfil">
                   <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
-                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
                 </div>
               </ul>
             </nav><!-- #nav-menu-container -->
