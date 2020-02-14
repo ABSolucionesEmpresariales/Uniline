@@ -265,7 +265,6 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
 
             success: function (response){
                 console.log(response);
-                confeti();
             }
         });
     }
@@ -508,14 +507,9 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                 dat = "no existe archivo";
                 }
                 $('.descarga').attr("href",datos_tema[0][3]);
-                                template_video = `
-                <iframe id="video" src="${datos_tema[0][0]}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                `;
-                $("#jalaporfa2").html(template_video);
+                $("#video").attr('src',datos_tema[0][0]);
                 $(".descripcion-tema").html(datos_tema[0][2]);
                 $('.descarga').attr("download",dat);
-                leer_iframe();
-                confeti();
             }
         });
     }
@@ -740,43 +734,22 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
     });
 
     //CONFEEEETTIIIIIIII
-
+    $(document).ready(function(){
     $.ajax({
-        url: "../controllers/dashboard.php",
-        type: "POST",
-        data: {'confeti': confeti},
-        
-        success: function (response) {
-            console.log(response);
-            
-        }
-      });
-
-
- //CONFEEEETTIIIIIIII
-    function confeti(){
-        $.ajax({
             url: "../controllers/dashboard.php",
             type: "POST",
-            data: 'confeti=confeti',
+            data: {'confeti': confeti},
             
             success: function (response) {
                 console.log(response);
-                if(response == 'completado'){
-                    $('#startConfetti').click();
-                    swal("¡Felicidades!, haz completado este curso");
-                    setTimeout(function(){
-                    $('#stopConfetti').click();
-                    }, 5000); 
-                }
-                
                 
             }
         });
-    }
+    });
 
     
-  
+
+
 
 
     /* VERIFICAR SI ESTA MARCADA EL CHECKBOX  */
@@ -806,46 +779,41 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
     
-    function leer_iframe(){
-             setTimeout(function(){
+       //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Funcion que escucha cuando el video esta por terminar >>>>>>>>>>>>>>>>>>>>>>>>>>>
+         /*   $("#iframeContainer").load("#iframeContainer > *");
+            var iframe = $('#iframeContainer iframe');
+            console.log(iframe);
+            var player = new Vimeo.Player(iframe);
         
-        var iframe = $(document).find("#jalaporfa2 iframe");
-        console.log(iframe);
-        var player = new Vimeo.Player(iframe);
-        
-        player.on('ended', function() {
-            console.log("llego a la funcion");
-            //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
-            datos_redirect = id_control_direccionamiento.split("-");
-            //Lo formamos el siguiente tema
-            id_redirecionado = datos_redirect[0]+"-"+(parseInt(datos_redirect[1])+1);
-            //verificaos si el tema existe
-            if($("#tema-"+id_redirecionado).length > 0){
-                console.log("Entro a la condicional del tema");
-                //checkeamos el tema actual
-                $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
-                //Se remueve la clase que lo identifica como activo
-                $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
-                //Realizar registro del tema
-                registrarTemaCompletado(id_actual_base);
-                //obtenemos los datos del nuevo tema para pintarlos
-                obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
-                //Le agregamos la clase para indentificarlo activo
-                $("#tema-"+id_redirecionado).next().addClass("text-info");
-                //igualamos la variable global a el tema actual
-                id_control_direccionamiento = id_redirecionado;
-                //tomamos el id de la base del tema actual
-                id_actual_base = $("#tema-"+id_redirecionado).data("idtemabase");
-            }else{
-                //si el id siguiente no existe se brincara al examen
-                $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
-                registrarTemaCompletado(id_actual_base);
-                id_examen = (parseInt(datos_redirect[0])+1)+"--1";
-                $("#"+id_examen).click();
-            }
+            player.on('ended', function() {
+                //se separa el id actual para sumarle un numero mas (Para cambiar al siguiente tema)
+                datos_redirect = id_control_direccionamiento.split("-");
+                //Lo formamos el siguiente tema
+                id_redirecionado = datos_redirect[0]+"-"+(parseInt(datos_redirect[1])+1);
+                //verificaos si el tema existe
+                if($("#tema-"+id_redirecionado).length > 0){
+                    //checkeamos el tema actual
+                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+                    //Se remueve la clase que lo identifica como activo
+                    $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
+                    //Realizar registro del tema
+                    registrarTemaCompletado(id_actual_base);
+                    //obtenemos los datos del nuevo tema para pintarlos
+                    //obtenerMostrarDatosTema($("#tema-"+id_redirecionado).data("idtemabase"));
+                    //Le agregamos la clase para indentificarlo activo
+                    $("#tema-"+id_redirecionado).next().addClass("text-info");
+                    //igualamos la variable global a el tema actual
+                    id_control_direccionamiento = id_redirecionado;
+                    //tomamos el id de la base del tema actual
+                    id_actual_base = $("#tema-"+id_redirecionado).data("idtemabase");
+                }else{
+                    //si el id siguiente no existe se brincara al examen
+                    $("#tema-"+id_control_direccionamiento).prev().attr('checked','true');
+                    registrarTemaCompletado(id_actual_base);
+                    id_examen = (parseInt(datos_redirect[0])+1)+"--1";
+                    $("#"+id_examen).click();
+                }
    
-        }); 
-        }, 7000);   
-    }
-    
+    }); */
+
 });
