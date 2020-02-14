@@ -438,7 +438,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
   <script src="../js/jquery-3.2.1.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <!-- <script src="../js/bootstrap.min.js"></script> -->
   <script src="../js/stellar.js"></script>
   <script src="../vendors/nice-select/js/jquery.nice-select.min.js"></script>
   <script src="../vendors/owl-carousel/owl.carousel.min.js"></script>
