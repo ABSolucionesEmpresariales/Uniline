@@ -46,7 +46,7 @@ if (!empty($_POST['idcurso'])) {
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'name' => $nombre_curso,
-                'images' => ['https://www.cafionline.com/' . 'res_'.$imagen],
+                'images' => ['https://www.cafionline.com/img' . 'res_'.$imagen],
                 'amount' => $costo * 100,
                 'currency' => 'mxn',
                 'quantity' => 1,

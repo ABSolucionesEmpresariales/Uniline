@@ -5,8 +5,10 @@ $(document).ready(function () {
     $(".closeCon").on("click", function (e) {
         location.reload();
     });
-    $("#btn-registrate").on("click", function (e) {
+    $("#ir-a-registro").on("click", function (e) {
         $("#login").modal("hide");
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
     });
 
     $(document).on("click", "#idprueba", function () {

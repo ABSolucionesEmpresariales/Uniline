@@ -509,6 +509,8 @@ $(document).ready(function () {
             $('#preview2').hide();
             $('.spinner-border').addClass('d-none');
             traerDatosCombo('bloque.php', 'select-curso');
+            $('#idcurso').val('');
+            $('#accion').val('insertar');
           } else {
             alert("datos no enviados, hubo un error");
             $('.spinner-border').addClass('d-none');
@@ -586,6 +588,8 @@ $(document).ready(function () {
             datosTemas();
             $('#registro-temas').trigger('reset');
             $('.spinner-border').addClass('d-none');
+            $('#idtema').val('');
+            $('#accion-tema').val('insertar');
           } else {
             alert("datos no enviados, hubo un error");
             $('.spinner-border').addClass('d-none');
@@ -714,6 +718,8 @@ $(document).ready(function () {
             datosTareas();
             $('#registro-tarea').trigger('reset');
             $('.spinner-border').addClass('d-none');
+            $('#idtarea').val('');
+            $('#accion-tarea').val('insertar');
           } else {
             alert("datos no enviados, hubo un error");
             $('.spinner-border').addClass('d-none');
