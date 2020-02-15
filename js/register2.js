@@ -295,6 +295,7 @@ $(document).ready(function () {
               <td scope="row" class="idbloque" style="display: none;">${datos[i][0]}</td>
               <td scope="row" class="nombreBloque">${datos[i][1]}</td>
               <td scope="row" class="CursoBloque">${datos[i][3]}</td>
+              <td scope="row" class="CursoBloque"><button type="button" id="btn-bloque-eliminar-${datos[i][0]} value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
         }
@@ -302,6 +303,14 @@ $(document).ready(function () {
       }
     });
   }
+  
+  $(function() {
+    $(document).on('click', 'button[type="button"]', function(event) {
+       let id = this.id;
+     console.log("Se presionó el Boton con Id :"+ id)
+     });
+   });
+
 
   function datosTemas() {//PINTAR TABLA TEMAS
     $.ajax({
@@ -336,6 +345,7 @@ $(document).ready(function () {
       }
     });
   }
+
 
   function datosExamen() {//PINTAR TABLA EXAMEN
     $.ajax({
@@ -509,6 +519,8 @@ $(document).ready(function () {
             $('#preview2').hide();
             $('.spinner-border').addClass('d-none');
             traerDatosCombo('bloque.php', 'select-curso');
+            $('#idcurso').val('');
+            $('#accion').val('insertar');
           } else {
             alert("datos no enviados, hubo un error");
             $('.spinner-border').addClass('d-none');
@@ -586,6 +598,8 @@ $(document).ready(function () {
             datosTemas();
             $('#registro-temas').trigger('reset');
             $('.spinner-border').addClass('d-none');
+            $('#idtema').val('');
+            $('#accion-tema').val('insertar');
           } else {
             alert("datos no enviados, hubo un error");
             $('.spinner-border').addClass('d-none');
@@ -714,6 +728,8 @@ $(document).ready(function () {
             datosTareas();
             $('#registro-tarea').trigger('reset');
             $('.spinner-border').addClass('d-none');
+            $('#idtarea').val('');
+            $('#accion-tarea').val('insertar');
           } else {
             alert("datos no enviados, hubo un error");
             $('.spinner-border').addClass('d-none');

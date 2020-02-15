@@ -113,15 +113,15 @@ $(document).ready(function () {
             success: function(response_2){
                 template_cometarios = ``;
                 datos = JSON.parse(response_2);
-template_cometarios =`<div>`;
+template_cometarios +=`<div>`;
                     if(datos[0][0] == ""){
-template_cometarios =`  <img src="../img/Users/perfil.png" alt="Esta imagen no esta disponible">`;
+template_cometarios +=`  <img width = "10%" src="../img/perfil.png" alt="Esta imagen no esta disponible">`;
                     }else{
                         url = datos[0][0].split("/");
                         urel = url[0]+"/"+url[1]+"/min_"+url[2];
-template_cometarios =`  <img src="${urel}" alt="${datos[0][1]}" class="course_author_image">`;    
+template_cometarios +=`  <img src="${urel}" alt="${datos[0][1]}" class="course_author_image">`;    
                     }
-template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="course_author_image">
+template_cometarios +=`
                         <label class="ml-2">${datos[0][1]}</label>
                     </div>
                     <div>
@@ -332,6 +332,10 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
             }
         }
     });
+    
+        $(document).on('click','.mostrar-curso-content',function(){
+        mostrarInfoCurso();
+    });
 
     /* PINTAR CONTENIDO DE LAS ACTIVIDADES*/
     
@@ -345,7 +349,11 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                 //console.log(response);
                 datos = JSON.parse(response)
                 console.log(datos);
-                template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>`;
+                template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>
+                <div class="demo row contenedor text-center mostrar-curso-content">
+                <label class="ml-3">Introduccion del curso</label>
+                </div>
+                `;
                 control_seleccion = "";
                 control_video = "";
                 control_del_chequeo = "";
@@ -468,7 +476,10 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
             success: function(response){
                 console.log(response + "llego");
                 datos_curso = JSON.parse(response);
-                $("#video").attr('src',datos_curso[0][4]);
+                template_video = `
+                <iframe id="video" src="${datos_curso[0][4]}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                `;
+                $("#jalaporfa2").html(template_video);
                 $(".descripcion-tema").html(datos_curso[0][2]);
             }
         });
@@ -522,6 +533,8 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
 
     $(document).on('click','.mostrar-tema',function(){
         if($(this).prev().hasClass("temas_vistos")){
+           $("#cambio-examen-video").removeClass("d-none");
+            $("#contenido-examen").addClass("d-none");
             id_de_base = $(this).prev().data("idtemabase");
             obtenerMostrarDatosTema(id_de_base);
             $("#tema-"+id_control_direccionamiento).next().removeClass("text-info");
@@ -584,11 +597,19 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                     });
                     templete2 +=`
                     <div class="alert alert-dark d-none alerta-examen" role="alert"></div>
-                    <button class="ir-actividad">Enviar respuestas</button>`;
+                    <button class="ir-actividad">Enviar respuestas</button>
+                    <button class="cancelar">Cancelar</button>
+                    `;
                     $("#contenido-examen").html(templete2); 
                 }
             });
         }
+    });
+    
+    
+    $(document).on('click','.cancelar',function(){
+        $("#cambio-examen-video").removeClass("d-none");
+        $("#contenido-examen").addClass("d-none");
     });
 
     $(document).on('click','.examen',function(){
@@ -669,10 +690,9 @@ template_cometarios =`  <img src="${datos[0][0]}" alt="${datos[0][1]}" class="co
                         $("#alertas").slideUp("slow");
                       }, 3000);
                     $("#subir-tareas").trigger("reset");
-                     setTimeout(function(){
+                    obtenerTareasBloque(id_bloque);
                         pintarTablaTareaBloque(id_bloque);
-                        obtenerTareasBloque(id_bloque);
-                      }, 3000);
+                        
                 }else if(response == "tareaExist"){
                     $("#alertas").html('<i class="fas fa-times-circle m-2"></i></i>Ya existe una tarea en el bloque');
                     $("#alertas").slideDown("slow");

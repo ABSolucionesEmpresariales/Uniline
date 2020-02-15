@@ -50,7 +50,7 @@ session_start();
   <script src="../js/jquery.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-  <script src="../js/registro.js"></script>
+  <script src="../js/registro2.js"></script>
   <script src="../js/login.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -141,7 +141,7 @@ session_start();
                 <li class="mt-3"><a class="text-center" href="#home-banner" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                   <?php
                   $url = "";
@@ -165,7 +165,7 @@ session_start();
                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
-                <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Iniciar sesion</a></li>
               <?php
               }
@@ -207,7 +207,7 @@ session_start();
 
           <!-- Register -->
           <p>¿No tienes cuenta?
-            <a data-toggle="modal" class="text-center" data-target="#modal-registro" href="#">Registrate</a>
+            <a id="ir-a-registro" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#">Registrate</a>
           </p>
 
         </div>
@@ -364,13 +364,13 @@ session_start();
       <div class="cursos"></div>
     </div>
     <button id="date-modal" type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#modal-cursos"></button>
-
+  </div>
     <!-- start banner Area -->
-    <section class="banner-area relative" id="home-contacto" style="min-height: 30rem;">
+    <section class="banner-area relative" id="home-contacto" style="min-height: 50rem;">
       <div class="overlay overlay-bg"></div>
       <div class="container">
         <div class="row d-flex align-items-center justify-content-center mt-10">
-          <div class="col-lg-12 text-center">
+          <div class="col-lg-12 text-center" style="margin-top: 14rem;">
             <h1 class="text-white">
               Contacto
             </h1>

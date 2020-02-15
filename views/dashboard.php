@@ -96,7 +96,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                   <?php
                   $url = "";
@@ -465,10 +465,9 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../plugins/scrollTo/jquery.scrollTo.min.js"></script>
   <script src="../plugins/easing/easing.js"></script>
   <script src="../js/elements_custom.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../js/jquery.confetti.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="../js/dashboard25.js"></script>
+  <script src="../js/dashboard38.js"></script>
   
 
 </body>
