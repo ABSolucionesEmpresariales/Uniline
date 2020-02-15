@@ -750,6 +750,7 @@ document.getElementById("inputGroupFile01").onchange = function (e) {
     preview.innerHTML = '';
     preview.append(image);
     $('#preview-final').hide();
+    $("#preview").show();
     $('#preview img').css("border-radius", "100%");
   };
 }
@@ -772,6 +773,7 @@ document.getElementById("inputGroupFile02").onchange = function (e) {
     preview.innerHTML = '';
     preview.append(image);
     $('#preview-final2').hide();
+    $('#preview2').show();
     // $('#preview2 img').css("border-radius", "100%");
   };
 }

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     //lista_temas();
     lista();
+    let contador = 0;
     let id_actual_base = "";
     let id_control_direccionamiento = "";
     let cont_examen_preguntas = 0;
@@ -9,6 +10,7 @@ $(document).ready(function () {
     let id_bloque = "";
     let calificacion_comentario = 0;
     let id_calificar_tarea = 0;
+    controlStart = 0;
     mostrarComentariosCurso();
 
        // VALORACION DE ESTRELLAS PARA CALIFICAR
@@ -332,8 +334,36 @@ template_cometarios +=`
             }
         }
     });
+
+    $(document).on('click','#guardarCurso',function(){
+        const postdata = {
+            calificacio_curso_usuarion:controlStart,
+            cometareio:$("#text_area_curso").val()
+        };
+        $.ajax({
+            url:"../controllers/dashboard.php",
+            type:"POST",
+            data: postdata,
+
+            success: function(response){
+                console.log(response);
+                 if(response == 1){
+                    $(".estrella").removeClass("checked-2");
+                    $("#text_area_curso").val("");
+                    $("#modalCalificacion").modal("hide");
+                }else{
+                    $("#alertas-curso").removeClass("d-none");
+                } 
+            }
+        });
+    });
+
+    $(document).on('click',"#calificacion-curso-user",function(){
+        $("#alertas-curso").addClass("d-none");
+    });
+
     
-        $(document).on('click','.mostrar-curso-content',function(){
+    $(document).on('click','.mostrar-curso-content',function(){
         mostrarInfoCurso();
     });
 
@@ -449,7 +479,7 @@ template_cometarios +=`
                             </div>
                                 `;
                             }                          
-                        } 
+                        }
                     }   
                 }
                // console.log(template);
@@ -768,9 +798,9 @@ template_cometarios +=`
         
         success: function (response) {
             console.log(response);
-            
         }
       });
+
 
 
  //CONFEEEETTIIIIIIII
@@ -783,11 +813,14 @@ template_cometarios +=`
             success: function (response) {
                 console.log(response);
                 if(response == 'completado'){
-                    $('#startConfetti').click();
-                    swal("¡Felicidades!, haz completado este curso");
-                    setTimeout(function(){
-                    $('#stopConfetti').click();
-                    }, 5000); 
+                    if(contador == 0){
+                        $('#startConfetti').click();
+                        swal("¡Felicidades!, haz completado este curso");
+                        setTimeout(function(){
+                        $('#stopConfetti').click();
+                        }, 5000);
+                        contador++;
+                    }
                 }
                 
                 
