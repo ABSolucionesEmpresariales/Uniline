@@ -334,6 +334,10 @@ template_cometarios +=`
             }
         }
     });
+    
+        $(document).on('click','.mostrar-curso-content',function(){
+        mostrarInfoCurso();
+    });
 
     $(document).on('click','#guardarCurso',function(){
         const postdata = {

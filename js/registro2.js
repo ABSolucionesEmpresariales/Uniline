@@ -282,9 +282,10 @@ $(document).ready(function () {
                 {
                     scrollTop: $(strAncla).offset().top
                 },
-                300
+                2000
             );
     });
+
 
     $("#registro").submit(function (e) {
         e.preventDefault();
