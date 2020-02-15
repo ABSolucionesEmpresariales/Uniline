@@ -1,5 +1,7 @@
 <?php
+session_start();
 require_once '../controllers/sesion.php';
+if(!empty($_GET['session_id'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,3 +92,7 @@ require_once '../controllers/sesion.php';
 </body>
 
 </html>
+<?php }else{
+    header('Location: mainpage.php');
+}
+?>

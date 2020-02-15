@@ -29,7 +29,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="../css/linearicons.css">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
@@ -52,7 +52,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
     ============================================= -->
 
   <script src="../js/jquery.js"></script>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
 
 </head>
 
@@ -91,6 +91,8 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
           <div class="float-right">
             <nav id="nav-menu-container">
               <ul class="nav-menu">
+              <button style="display: none;" id="startConfetti">Start</button>
+              <button style="display: none;" id="stopConfetti">Stop</button>
                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
@@ -109,7 +111,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 </a>
                 <div class="dropdown-menu opciones-perfil">
                   <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
-                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
                 </div>
               </ul>
             </nav><!-- #nav-menu-container -->
@@ -119,7 +121,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
     </div>
   </header><!-- #header -->
 
-
+ 
 
   <br><br>
 
@@ -132,16 +134,15 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
             <div id="contenido-examen" class="container p-5 d-none" style="min-height: 100rem;">
             </div>
             <div id="cambio-examen-video">
-              <div id="iframeContainer" class="flex bg-color justify-content-center">
-                <!-- <video class="col-lg-9 col-md-12 col-sm-12 no-padding" id="video" src="" autoplay preload="auto" controls width="100%" height="100%" controlslist="nodownload"></video> -->
-                <iframe src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+              <div id="jalaporfa2" class="flex bg-color justify-content-center">
+                <iframe src="" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
               </div>
 
 
               <div class="col details-content no-padding" style="min-height: 35rem;">
                 <div class="jq-tab-wrapper no-padding" id="horizontalTab">
-                  <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding">
-                    <ul class="nav nav-tabs no-padding" id="nav-barra">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding" style="margin-bottom: 0;">
+                    <ul class="nav no-padding" id="nav-barra">
                       <li class="nav-item no-padding">
                         <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
                       </li>
@@ -163,19 +164,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                       <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
                       <br>
                       <div class="container descripcion-tema">
-                        When you enter into any new area of science, you almost always find yourself with a baffling new
-                        language of technical terms to learn before you can converse with the experts. This is certainly true
-                        in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the
-                        trade, the most prevalent being the telescope.
-                        <br>
-                        <br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum.
+
                       </div>
                     </div>
                     <div class="tab-pane container fade" id="archivos">
@@ -210,8 +199,13 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                               $temas_vistos = $result2[0][0];
                               $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
                               $colculo = round($calculo);
+                              if ($colculo == 100) {
+                                $colculo = 1;
+                              } else {
+                                $colculo = "." . $colculo;
+                              }
                               ?>
-                              <div id="progreso" class="loader mb-0" data-perc="<?php echo "." . $colculo ?>"></div>
+                              <div id="progreso" class="loader mb-0" data-perc="<?php echo  $colculo ?>"></div>
                             </div>
                           </div>
                         </div><br>
@@ -224,7 +218,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                                 <i id="1" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
                                 <i id="2" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
                                 <i id="3" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
-                                <i id="4" class="fa fa-star start estrella" style="cursor: pointer;"></i>
+                                <i id="4" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
                                 <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
                               </div>
                               <span>Excelente</span>
@@ -252,14 +246,14 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                   <h3 class="h3">Comentarios del curso</h3>
                   <br>
                   <section id="area-comentarios" class="container c-scroll" style="max-height: 25rem; height: 45rem;">
-                    
+
                   </section>
                   <hr>
                   <section id="area-agregar-comentario" class="container flex justify-content-center">
                     <div class="row d-inline-flex" style="width: 100%">
                       <form action="" style="width: 100%;">
                         <input class="col-lg-9 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
-                        <input class="col-lg-2 col-md-3 col-sm-2 btn" type="submit" name="enviar" id="enviar" value="Enviar">
+                        <input class="col-lg-2 col-md-3 col-sm-2 border" type="submit" name="enviar" id="enviar" value="Enviar" style="height: 5rem;">
                       </form>
                     </div>
                   </section>
@@ -287,34 +281,38 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
       <hr>
       <h4 class="h4">Sube tus tareas aqui</h4>
       <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
-      <form id="subir-tareas" class="form-control d-inline-flex col-lg-10">
-        <div class="custom-file col-lg-10">
-          <input type="file" name="Fimagen" class="custom-file-input" id="customFile">
-          <label class="custom-file-label" for="customFile">Selecciona tu archivo</label>
-          <input type="hidden" name="archivo" value="3">
-          <input class="actuali-homework" type="hidden" name="tarea">
-          <input class="bloque-archivo" type="hidden" name="bloque-tarea">
-        </div>
-        <div class="col-lg-4">
-          <button class="btn btn-primary" type="submit">Subir</button>
+      <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12">
+        <div class="input-group">
+          <div class="custom-file col-lg-10 col-sm-12 border no-padding" style="height: 4rem;">
+            <input type="file" name="Fimagen" class="text-black col-lg-10 col-sm-5 no-padding" id="customFile" style="height: 4rem;">            
+            <input type="hidden" name="archivo" value="3">
+            <input class="actuali-homework" type="hidden" name="tarea">
+            <input class="bloque-archivo" type="hidden" name="bloque-tarea">
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-primary texce" type="submit" style="height: 4rem;">Subir</button>
+          </div>
         </div>
       </form>
-
-      <div class="table-responsive" style="width:960px;">
+      <br><br>
+      <hr>
+      
+      <br>
+      <div class="table-responsive">     
+      <p class="ml-3 h3">Tu tarea del bloque</p>
         <table class="table table-hover">
           <thead class="thead-light">
             <tr>
               <th>Usuarios</th>
               <th>Descargar tarea</th>
             </tr>
-          </thead>
-          <p class="ml-3 h3">Tu tarea del bloque</p>
+          </thead>         
           <tbody class="bg-light cuerpo-tb-user">
           </tbody>
         </table>
       </div>
-
     </div>
+    <br>
     <h4 class="h4">
       Sección de tareas
     </h4>
@@ -429,7 +427,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
   <script src="../js/jquery-3.2.1.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  <!-- <script src="../js/bootstrap.min.js"></script> -->
   <script src="../js/stellar.js"></script>
   <script src="../vendors/nice-select/js/jquery.nice-select.min.js"></script>
   <script src="../vendors/owl-carousel/owl.carousel.min.js"></script>
@@ -457,6 +455,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../js/main.js"></script>
 
   <!-- Course/Elements -->
+
   <script src="../plugins/greensock/TweenMax.min.js"></script>
   <script src="../plugins/greensock/TimelineMax.min.js"></script>
   <script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>
@@ -466,8 +465,10 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../plugins/scrollTo/jquery.scrollTo.min.js"></script>
   <script src="../plugins/easing/easing.js"></script>
   <script src="../js/elements_custom.js"></script>
+  <script src="../js/jquery.confetti.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="../js/dashboard.js"></script>
+  <script src="../js/dashboard38.js"></script>
+  
 
 </body>
 

@@ -10,14 +10,34 @@ html body{width:100%; height:100%;border:1;}
 @media (min-width: 300px) {
 breakpoint{
 max-width: 25%
-}
 
+}
+.demo input[type="checkbox"] + label span{
+	display: inline-block;
+	width: 22px!important;
+	height: 22px!important;
+	margin: -1px 4px 0 0;
+	vertical-align: middle;
+	background: url(../img/checkbox-uncheck.png);
+	background-size: cover;
+	cursor: pointer;
+}
 
 }
 /*iPhone X?*/
 @media (min-width: 375px) {
   breakpoint{
   max-width: 30%;
+  }
+  .demo input[type="checkbox"] + label span{
+    display: inline-block;
+    width: 22px!important;
+    height: 22px!important;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    background: url(../img/checkbox-uncheck.png);
+    background-size: cover;
+    cursor: pointer;
   }
 }
 /*iPhone 6 Plus*/
@@ -42,6 +62,16 @@ max-width: 25%
 @media (min-width: 992px) {
   breakpoint{
     max-width: 75%;
+  }
+  .demo input[type="checkbox"] + label span{
+    display: inline-block;
+    width: 17px!important;
+    height: 17px!important;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    background: url(../img/checkbox-uncheck.png);
+    background-size: cover;
+    cursor: pointer;
   }
 }
 /*xl*/
@@ -112,7 +142,7 @@ max-width: 25%
 }
 @media (max-width: 991px) {
   .header-top{
-    height: 3rem;
+    height: 5rem;
   }
 }
 
@@ -174,16 +204,7 @@ background-color: rgb(28, 28, 37);
 .demo input[type="checkbox"] {
 	display: none;
 }
-.demo input[type="checkbox"] + label span{
-	display: inline-block;
-	width: 17px;
-	height: 17px;
-	margin: -1px 4px 0 0;
-	vertical-align: middle;
-	background: url(../img/checkbox-uncheck.png);
-	background-size: cover;
-	cursor: pointer;
-}
+
 .demo input[type="checkbox"]:checked + label span{
 	background: url(../img/checkbox-check.png);
 	background-size: cover;

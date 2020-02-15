@@ -10,7 +10,8 @@ include '../controllers/sessionCEO.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registrar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -28,23 +29,23 @@ include '../controllers/sessionCEO.php';
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Profesores</a></li>
                         <li><a data-toggle="tab" href="#menu1">Cursos</a></li>
-                        <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>
-                        <li class="col-2" style="margin-right: 1rem;">
+                        <li><a data-toggle="tab" href="#mas">Contenido del curso</a></li>
+                        <li class="col-2" style="margin-right: -2rem;">
                             <select id="select-profe-tema" name="SProfesor" class="form-control m-1" style="height: 35px!important">
                                 <option value="0">Selecciona profesor</option>
                             </select>
                         </li>
-                        <li class="col-2" style="margin-right: 1rem;">
+                        <li class="col-2" style="margin-right: 2rem;">
                             <select id="select-curso" name="SCurso" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
                                 <option value="0">Selecciona un curso</option>
                             </select>
                         </li>
-                        <li class="col-2" style="margin-right: 1rem;">
+                        <li class="col-2" style="margin-right: 4rem;">
                             <select id="select-bloque" name="SBloque" class="form-control m-1" style="height: 35px!important; width: 20rem; margin-left: 1rem;">
                                 <option value="0">Selecciona bloque</option>
                             </select>
                         </li>
-                        <li><a class="btn btn-primary" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                        <li><a class="bg-primary" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
 
                     </ul>
                 </div>
@@ -71,6 +72,9 @@ include '../controllers/sessionCEO.php';
                                     <input type="text" id="nombre-bloque" class="form-control inden-bloque" name="TBloques" placeholder="Nombre del Bloque">
                                     <br>
                                     <button id="btn-bloque" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir</button>
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
@@ -101,6 +105,9 @@ include '../controllers/sessionCEO.php';
                                     <div>Archivo *opcional<input type="file" id="archivo-tema" class="form-control" name="FArchivo"></div>
                                     <br>
                                     <button id="btn-tema" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Añadir tema</button>
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
                                 </form>
                             </div>
                             <div class="form col-lg-7">
@@ -129,6 +136,9 @@ include '../controllers/sessionCEO.php';
                                     <textarea rows="5" cols="50" id="descripcion-examen" class="form-control inden-examen" name="TADescripcion" placeholder="escribe una descripcion de este examen"></textarea>
                                     <br>
                                     <button id="btn-examen" class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Enviar datos</button>
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
                                 </form>
                                 <hr>
                             </div>
@@ -176,6 +186,9 @@ include '../controllers/sessionCEO.php';
                                             <label><input type="text" id="respuesta4" class="form-control inden-preguntas" name="TRespuesta" placeholder="respuesta 4"></label>
                                         </div>
                                         <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                                        <div class="spinner-border text-primary d-none" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                     </div>
                                 </form>
                                 <hr>
@@ -208,6 +221,9 @@ include '../controllers/sessionCEO.php';
                                     <textarea rows="5" cols="50" id="descripcion-tarea" class="form-control inden-tareas" name="TADescripcion" placeholder="Descripcion de la tarea"></textarea>
                                     <div>archivo<input type="file" id="archivo-tarea" class="form-control inden-tareas" name="FArchivo"></div>
                                     <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
                                 </form>
                                 <hr>
                             </div>
@@ -233,20 +249,20 @@ include '../controllers/sessionCEO.php';
                     <!-- REGISTRO DE PROFESORES -->
                     <h3>Registro de Profesores</h3>
                     <hr>
-                    <div class="form col-lg-3">
+                    <div class="form col-lg-3 col-md-6">
                         <form class="form-wrap" id="registro-profesor">
                             <div class="imagen flex">
                                 <div id="preview" class="text-center">
 
                                 </div>
                                 <div id="preview-final" class="text-center">
-                                    <img id="foto-perfil" class="rounded-circle" width="200" height="200" src="../img/Users/perfil.png" alt="foto de profesor">
+                                    <img id="foto-perfil" class="rounded-circle" width="200" height="200" src="../img/perfil.png" alt="foto de profesor">
                                 </div>
-                                <input type="file" name="Fimagen" class="custom-file-input inden-profesores" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <input type="file" name="Fimagen" class="inden-profesores" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                             </div>
                             <input type="text" id="registrar-nombre" class="form-control inden-profesores" name="TNombre" placeholder="Nombre">
                             <input type="text" id="registrar-edad" class="form-control inden-profesores" name="TEdad" placeholder="Edad">
-                            <select id="registrar-grado" name="TGrado" class="form-control m-1 inden-profesores" style="height: 35px!important">
+                            <select id="registrar-grado" name="TGrado" class="form-control inden-profesores" style="height: 35px!important">
                                 <option value="">Selecciona grado de estudios</option>
                                 <option value="Secundaria">Secundaria</option>
                                 <option value="Bachillerato">Bachillerato</option>
@@ -256,12 +272,15 @@ include '../controllers/sessionCEO.php';
                             <input type="phone" id="registrar-tel" class="form-control inden-profesores" name="TTelefono" placeholder="Telefono">
                             <input type="email" id="registrar-email" class="form-control inden-profesores" name="TEmail" placeholder="Email">
                             <input type="password" id="registrar-pass" class="form-control inden-profesores" name="TPass" placeholder="Password">
-                            <select id="registrar-estado2" name="TEstado" class="form-control m-1 inden-profesores" style="height: 35px!important">
+                            <select id="registrar-estado2" name="TEstado" class="form-control inden-profesores" style="height: 35px!important">
                             </select>
                             <input type="text" id="registrar-municipio" class="form-control inden-profesores" name="TMunicipio" placeholder="Municipio">
                             <input type="text" id="registrar-profesion" class="form-control inden-profesores" name="TProfesion" placeholder="Profesion">
                             <br>
                             <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                            <div class="spinner-border text-primary d-none" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
                         </form>
 
                     </div>
@@ -294,13 +313,13 @@ include '../controllers/sessionCEO.php';
                             <input type="hidden" id="idcurso" name="idcurso" value="">
                             <input type="hidden" id="accion" name="accion" value="insertar">
                             <div class="imagen flex">
-                                 <div id="preview2" class="text-center">
+                                <div id="preview2" class="text-center">
 
                                 </div>
                                 <div id="preview-final2" class="text-center">
-                                    <img id="foto-curso" class="rounded-circle" width="200" height="200" src="../img/anadir.png" alt="foto de profesor">
+                                    <img id="foto-curso" width="200" height="200" src="../img/anadir.png" alt="foto de profesor">
                                 </div>
-                                <input type="file" name="Fimagen" class="custom-file-input inden-curso" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
+                                <input type="file" name="Fimagen" class="inden-curso" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01">
                             </div>
                             <input type="text" id="nombre-curso" class="form-control inden-curso" name="TNombre" placeholder="Nombre del curso">
                             <textarea rows="5" cols="50" id="descripcion-curso" class="form-control inden-curso" name="TADescripcion" placeholder="Descripcion del curso"></textarea>
@@ -310,6 +329,9 @@ include '../controllers/sessionCEO.php';
                             <input type="text" id="video-curso" class="form-control inden-curso" name="TVideo" placeholder="URL video"></<input>
                             <br>
                             <button class="btn btn-primary primary-btn text-uppercase" type="submit" name="submit">Registrar</button>
+                            <div class="spinner-border text-primary d-none" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
                         </form>
                     </div>
                     <div class="form col-lg-9">
@@ -339,7 +361,7 @@ include '../controllers/sessionCEO.php';
         </div>
     </div>
 
-    <script src="../js/register.js"></script>
+    <script src="../js/register2.js"></script>
 
 </body>
 

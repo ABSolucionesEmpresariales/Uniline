@@ -19,11 +19,11 @@ session_start();
   <!-- Site Title -->
   <title>Escuela Al Revés</title>
 
-   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
- <!--
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+  <!--
     CSS
     ============================================= -->
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link rel="stylesheet" href="../css/linearicons.css">
@@ -49,23 +49,23 @@ session_start();
   <script src="https://js.stripe.com/v3/"></script>
   <script src="../js/jquery.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
-  <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-  <script src="../js/registro.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+  <script src="../js/registro2.js"></script>
   <script src="../js/login.js"></script>
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
+
 
 </head>
 
 <body>
 
-<div id="alertas-registro" class="alert alert-danger fixed-top text-center" style="max-height:54px; display: none;">
-</div>
+  <div id="alertas-registro" class="alert alert-danger fixed-top text-center" style="max-height:54px; display: none;">
+  </div>
 
   <!-- Start Registro Area -->
-  <div class="modal fade" id="modal-registro"  style="height: 60rem;">
+  <div class="modal fade" id="modal-registro" style="height: 60rem;">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -92,7 +92,7 @@ session_start();
                     <span class="sr-only">Loading...</span>
                   </div>
                 </button>
-                
+
               </form>
               <br>
               <div id="alertas" class="alert alert-success text-center" style="max-height:54px; width:83%; display: none; margin-left: 40px;"></div>
@@ -143,22 +143,22 @@ session_start();
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
                 <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
-                <?php 
-                $url = "";
-                if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
-                  $exlpode = explode("/",$_SESSION['imagen_perfil']);
-                  $url = "../".$exlpode[1]."/min_".$exlpode[2];
-                }else{
-                  $url = $_SESSION['imagen_perfil'];
-                }
-                ?>
-                <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
+                  <?php
+                  $url = "";
+                  if ($_SESSION['imagen_perfil'] != "../img/perfil.png") {
+                    $exlpode = explode("/", $_SESSION['imagen_perfil']);
+                    $url = "../" . $exlpode[1] . "/min_" . $exlpode[2];
+                  } else {
+                    $url = $_SESSION['imagen_perfil'];
+                  }
+                  ?>
+                  <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
                 </a>
                 <div id="drop" class="dropdown-menu opciones-perfil">
                   <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
-                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php">Cerrar sesión</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
                 </div>
-                
+
               <?php
               } else {
               ?>
@@ -207,7 +207,7 @@ session_start();
 
           <!-- Register -->
           <p>¿No tienes cuenta?
-            <a data-toggle="modal" class="text-center" data-target="#modal-registro" href="#">Registrate</a>
+            <a id="ir-a-registro" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#">Registrate</a>
           </p>
 
         </div>
@@ -229,7 +229,7 @@ session_start();
         <?php
         if (isset($_SESSION['acceso'])) {
         ?>
-          <div class="banner-content col-lg-10 col-md-12">
+          <div class="banner-content col-lg-12">
             <h2 class="text-uppercase text-white h2">
               ACTUALIZA TUS CONOCIMIENTOS MEDIANTE
               LOS MEJORES CURSOS DE ESPECIALIZACIÓN EN LÍNEA
@@ -237,12 +237,12 @@ session_start();
             <p class="pt-10 pb-10">
               Estamos en la era de la información; prepárate, actualízate y crece a través de nuestros cursos en línea, estamos donde tú estés
             </p>
-            
+
           </div>
         <?php
         } else {
         ?>
-          <div class="banner-content col-lg-8 col-md-12">
+          <div class="banner-content col-lg-12">
             <h2 class="text-uppercase text-white h2">
               ACTUALIZA TUS CONOCIMIENTOS MEDIANTE
               LOS MEJORES CURSOS DE ESPECIALIZACIÓN EN LÍNEA
@@ -250,43 +250,48 @@ session_start();
             <p class="pt-10 pb-10">
               Estamos en la era de la información; prepárate, actualízate y crece a través de nuestros cursos en línea, estamos donde tú estés
             </p>
-            <a   href="#" data-toggle="modal" data-target="#modal-registro" class="btn btn-primary text-uppercase">Comienza ya</a>
+            <a href="#" data-toggle="modal" data-target="#modal-registro" class="btn btn-primary text-uppercase">Comienza ya</a>
           </div>
-          <div class="col-lg-4 col-md-12" style="background-color: rgba(255, 255, 255, 0.15)">
-            <h2 class="text-white">
-              Regístrate ahora para conseguir cursos desde sólo $100MX cada uno. <br>
-            </h2>
-            <p>
-              Regístrate ahora mismo, mañana será un día menos de aprendizaje.
-            </p>
-            <div class="row details-content">
-              <div class="col single-detials">
-                <span class="fa fa-graduation-cap text-primary" style="font-size: 50px;"></span>
-                <a href="#">
-                  <h4>Instructores expertos</h4>
-                </a>
-                <p>
 
-                  Cursos impartidos por instructores experimentados en su área.
-                </p>
-              </div>
-              <div class="col single-detials">
-                <span class="fa fa-handshake-o text-primary" style="font-size: 50px;"></span>
-                <a href="#">
-                  <h4>Cursos certificados</h4>
-                </a>
-                <p>
-                  Certificaciones que avalan los cursos.
-                </p>
-              </div>
-            </div>
-          <?php
-        }
-          ?>
-          </div>
       </div>
+
   </section>
   <!-- End banner Area -->
+  <section class="search-course-area relative">
+    <div class="overlay" style="background-color: rgba(255, 255, 255, 0.9)"></div>
+    <div class="container" style="padding: 5rem;">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-12">
+          <h2 class="h1">
+            Regístrate ahora para conseguir cursos desde sólo $100MX cada uno. <br>
+          </h2>
+          <p class="text-black-50" style="font-size: 18px;">
+            Regístrate ahora mismo, mañana será un día menos de aprendizaje.
+          </p>
+          <div class="row details-content">
+            <div class="col single-detials">
+              <span class="fa fa-graduation-cap text-primary" style="font-size: 100px;"></span>
+              <h4 class="text-dark">Instructores expertos</h4>
+              <p class="text-black-50" style="font-size: 18px;">
+
+                Cursos impartidos por instructores experimentados en su área.
+              </p>
+            </div>
+            <div class="col single-detials">
+              <span class="fa fa-handshake-o text-primary" style="font-size: 100px;"></span>
+              <h4 class="text-dark">Cursos certificados</h4>
+              <p class="text-black-50" style="font-size: 18px;">
+                Certificaciones que avalan los cursos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php
+        }
+  ?>
+  </section>
 
   <!-- Start Profesores Area -->
 
@@ -342,54 +347,6 @@ session_start();
     </div>
   </div>
 
-  <!-- Start feature Area -->
-  <!--     <section class="feature-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="single-feature">
-              <div class="title">
-                <h4>Cursos en linea gratuitos</h4>
-              </div>
-              <div class="desc-wrap">
-                <p>
-                  Atrévete a sumergirte en el mundo del conocimiento, suscríbete y ten accesos a nuestros cursos sin costo y lleva tus conocimientos al siguiente nivel.
-                </p>
-                <a href="#">Únete ahora!</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="single-feature">
-              <div class="title">
-                <h4>Cursos en linea premium</h4>
-              </div>
-              <div class="desc-wrap">
-                <p>
-                  Ser cliente Premium es lo mejor.  Podrás obtener descuentos en cursos, acumular puntos y asistir a cursos presenciales y conferencias sin costo.<br><br>
-                </p>
-                <a href="#">Únete ahora!</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="single-feature">
-              <div class="title">
-                <h4>Enseña en</h4>
-              </div>
-              <div class="desc-wrap">
-                <p>
-                  If you are a serious astronomy fanatic like a lot of us are, you can probably remember that one event.<br><br>
-                </p>
-                <a href="#">Únete ahora!</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-  <!-- End feature Area -->
-
   <!-- Popular -->
 
   <div id="all-cursos" class="popular page_section">
@@ -409,7 +366,7 @@ session_start();
     <button id="date-modal" type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#modal-cursos"></button>
 
     <!-- start banner Area -->
-    <section class="banner-area" id="home-contacto" style="height: 30rem;">
+    <section class="banner-area relative" id="home-contacto" style="min-height: 30rem;">
       <div class="overlay overlay-bg"></div>
       <div class="container">
         <div class="row d-flex align-items-center justify-content-center mt-10">
@@ -417,7 +374,7 @@ session_start();
             <h1 class="text-white">
               Contacto
             </h1>
-            <div class="col-lg-12 d-flex text-white justify-content-between">
+            <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between">
               <div class="single-contact-address d-inline-block">
                 <div class="icon">
                   <span class="fa fa-home"></span>
@@ -452,7 +409,6 @@ session_start();
         </div>
       </div>
     </section>
-    <!-- End banner Area -->
     <!-- End contact-page Area -->
 
 
@@ -512,7 +468,7 @@ session_start();
 
     <!-- styles course -->
     <script src="../js/popper.js"></script>
-    
+
 
 </body>
 
