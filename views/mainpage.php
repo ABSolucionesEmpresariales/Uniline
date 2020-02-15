@@ -1,6 +1,5 @@
 <?php
 session_start();
-var_dump($_SESSION['acceso'],$_SESSION['idusuario'],$_SESSION['verificado'],$_SESSION['imagen_perfil']);
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -195,7 +194,7 @@ var_dump($_SESSION['acceso'],$_SESSION['idusuario'],$_SESSION['verificado'],$_SE
           <form method="post" id="myLogin">
             <div class="form-group">
               <i class="fa fa-user"></i>
-              <input name="TUsuario" type="text" class="form-control" id="ingresar-usuario" placeholder="Usuario" required="required">
+              <input name="TEmail" type="text" class="form-control" id="ingresar-email" placeholder="Correo electronico" required="required">
             </div>
             <div class="form-group">
               <i class="fa fa-lock"></i>
