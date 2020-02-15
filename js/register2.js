@@ -1,4 +1,4 @@
-$(document).ready(function () {
+  $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
 

@@ -13,9 +13,10 @@ $result = json_decode($resultado);
 if($resultado != '[]'){
     $update = "UPDATE usuario SET verificado = 1 WHERE vkey = ?";
     $datos2 = array($vkey);
-    $resultUp = json_encode($conexion->consultaPreparada($datos2,$update,1,'i', false, null));
+    $resultUp = $conexion->consultaPreparada($datos2,$update,1,'i', false, null);
     $_SESSION['acceso'] = $result[0][1];
     $_SESSION['idusuario'] = $result[0][0];
+    $_SESSION['verificado'] = $resultUp;
     $_SESSION['imagen_perfil'] = "../img/perfil.png";
 }
 ?>
