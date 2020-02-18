@@ -295,7 +295,7 @@ $(document).ready(function () {
               <td scope="row" class="idbloque" style="display: none;">${datos[i][0]}</td>
               <td scope="row" class="nombreBloque">${datos[i][1]}</td>
               <td scope="row" class="CursoBloque">${datos[i][3]}</td>
-              <td scope="row" class="CursoBloque"><button type="button" id="btn-bloque-eliminar-${datos[i][0]} value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
+              <td scope="row" class="CursoBloque"><button type="button" data-tabla="bloque" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
         }
@@ -304,12 +304,32 @@ $(document).ready(function () {
     });
   }
   
-  $(function() {
-    $(document).on('click', 'button[type="button"]', function(event) {
-       let id = this.id;
-     console.log("Se presionó el Boton con Id :"+ id)
+    $(document).on('click','.elim', function(event) {
+          console.log($(this).val());
+          console.log($(this).data("tabla"));
+         $.ajax({
+          url:"../controllers/"+$(this).data("tabla")+".php",
+          type:"POST",
+          data:"ideliminarregistro="+$(this).val(),
+          success: function(response){
+              if(response == 1){
+                  if($(this).data("tabla") == "bloque"){
+                      datosBloques();
+                  }else if($(this).data("tabla") == "tema"){
+                      datosTemas();
+                  }else if($(this).data("tabla") == "examen"){
+                      datosExamen();
+                  }else if($(this).data("tabla") == "pregunta"){
+                      datosPreguntas();
+                  }else if($(this).data("tabla") == "tarea"){
+                      datosTareas();
+                  }
+              }else{
+                alert("Algo salio mal");
+              }
+          }
+        }); 
      });
-   });
 
 
   function datosTemas() {//PINTAR TABLA TEMAS
@@ -338,6 +358,7 @@ $(document).ready(function () {
               <td scope="row" class="DescripcionTema">${datos[i][2]}</td>
               <td scope="row" class="videoTema">${datos[i][3]}</td>
               <td scope="row" class="ArchivoTema">${datos[i][4]}</td>
+              <td scope="row" class="CursoBloque"><button type="button" data-tabla="tema" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
         }
@@ -364,6 +385,7 @@ $(document).ready(function () {
               <td scope="row" class="idexamen" style="display: none;">${datos[i][0]}</td>
               <td scope="row" class="nombreExamen">${datos[i][1]}</td>
               <td scope="row" class="DescripcionExamen">${datos[i][2]}</td>
+              <td scope="row" class="CursoBloque"><button type="button" data-tabla="examen" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
         }
@@ -392,6 +414,7 @@ $(document).ready(function () {
               <td scope="row" class="pregunta">${datos[i][1]}</td>
               <td scope="row" class="respuestas">${datos[i][2]}</td>
               <td scope="row" class="respuestaCorrecta">${datos[i][3]}</td>
+              <td scope="row" class="CursoBloque"><button type="button" data-tabla="pregunta" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
           }
@@ -427,6 +450,7 @@ $(document).ready(function () {
               <td scope="row" class="nombreTarea">${datos[i][1]}</td>
               <td scope="row" class="DescripcionTarea">${datos[i][2]}</td>
               <td scope="row" class="ArchivoTarea">${datos[i][3]}</td>
+              <td scope="row" class="CursoBloque"><button type="button" data-tabla="tarea" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
         }
