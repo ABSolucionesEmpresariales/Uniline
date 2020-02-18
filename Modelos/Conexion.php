@@ -88,8 +88,8 @@ class Conexion
     public function passClean($string)
     {
         $string = str_replace(
-            array(' ', "'"),
-            array('', ''),
+            array("'"),
+            array(''),
             $string
         );
 
