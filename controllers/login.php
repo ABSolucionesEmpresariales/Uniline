@@ -8,12 +8,12 @@ require_once '../Modelos/Conexion.php';
 
 $conexion = new Modelos\Conexion();
 
-$usuario = $_POST['TUsuario'];
+$email = $_POST['TEmail'];
 $password = $_POST['TPassword'];
 
-$consulta = "SELECT * FROM usuario WHERE nombre = ? ";
-$datos = array($_POST['TUsuario']);
-$resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'s', false, null));
+$consulta = "SELECT * FROM usuario WHERE email = ? OR nombre = ?";
+$datos = array($_POST['TEmail'],$_POST['TEmail']);
+$resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'ss', false, null));
 $result = json_decode($resultado);
 
 
@@ -21,7 +21,7 @@ if ($resultado != "[]") {
     if (password_verify($password, $result[0][7])) {
         if($result[0][9] == 1 && $result[0][10] != 'CEO') {
             echo '1';
-            $_SESSION['acceso'] = $usuario;
+            $_SESSION['acceso'] = $email;
             $_SESSION['idusuario'] = $result[0][0];
             $_SESSION['emailusuario'] = $result[0][6];
             $_SESSION['verificado'] = $result[0][9];

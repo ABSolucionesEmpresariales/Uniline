@@ -58,6 +58,51 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
 <body>
 
+    <div class="modal fade" id="modalCalificacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Calificacion del curso</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <div class="col-lg-12">
+
+              <div class="container text-center">
+                <h6 class="h3">Calidad del curso</h6>
+                  <div class="">
+                  <div class="star m-5" style="color: gray">
+                    <i id="1" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                    <i id="2" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                    <i id="3" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                    <i id="4" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                    <i id="5" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                  </div>
+                </div>
+              </div>
+              
+
+
+              <div class="form-group text-center">
+                <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                <textarea id="text_area_curso" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div id="alertas-curso" class="alert alert-danger" role="alert">
+                Ups! Algo salio mal.  
+              </div>
+
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="guardarCurso" type="button" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <div id="alertas" class="alert alert-danger fixed-top text-center" style="max-height:85px;display: none;">
   </div>
 
@@ -96,7 +141,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                <li class="mt-3"><a class="text-center cambiarContacto" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                   <?php
                   $url = "";
@@ -209,26 +254,12 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                             </div>
                           </div>
                         </div><br>
-                        <div class="col-lg-6 col-md-7">
-                          <div class="container footer-bottom">
-                            <h6 class="mb-15 h3">Calidad del curso</h6>
-                            <div class="d-flex flex reviews justify-content-xl-around">
-                              <span>Regular</span>
-                              <div class="star" style="color: gray">
-                                <i id="1" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
-                                <i id="2" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
-                                <i id="3" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
-                                <i id="4" class="fa fa-star start estrella checked-2" style="cursor: pointer;"></i>
-                                <i id="5" class="fa fa-star start estrella" style="cursor: pointer;"></i>
-                              </div>
-                              <span>Excelente</span>
-                            </div>
-                          </div>
-                        </div>
-
 
                       </div>
+                      <button id="calificacion-curso-user" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCalificacion">Caificar el curso</button>
                     </div>
+
+
 
 
 

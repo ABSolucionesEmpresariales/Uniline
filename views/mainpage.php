@@ -141,7 +141,7 @@ session_start();
                 <li class="mt-3"><a class="text-center" href="#home-banner" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                   <?php
                   $url = "";
@@ -165,7 +165,7 @@ session_start();
                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                 <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
-                <li class="mt-3"><a class="text-center cambiarContacto" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                 <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Iniciar sesion</a></li>
               <?php
               }
@@ -194,7 +194,7 @@ session_start();
           <form method="post" id="myLogin">
             <div class="form-group">
               <i class="fa fa-user"></i>
-              <input name="TUsuario" type="text" class="form-control" id="ingresar-usuario" placeholder="Usuario" required="required">
+              <input name="TEmail" type="text" class="form-control" id="ingresar-email" placeholder="Correo electronico o usuario" required="required">
             </div>
             <div class="form-group">
               <i class="fa fa-lock"></i>
@@ -364,110 +364,110 @@ session_start();
       <div class="cursos"></div>
     </div>
     <button id="date-modal" type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#modal-cursos"></button>
-
-    <!-- start banner Area -->
-    <section class="banner-area relative" id="home-contacto" style="min-height: 30rem;">
-      <div class="overlay overlay-bg"></div>
-      <div class="container">
-        <div class="row d-flex align-items-center justify-content-center mt-10">
-          <div class="col-lg-12 text-center">
-            <h1 class="text-white">
-              Contacto
-            </h1>
-            <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between">
-              <div class="single-contact-address d-inline-block">
-                <div class="icon">
-                  <span class="fa fa-home"></span>
-                </div>
-                <div class="contact-details">
-                  <h5>Autlán de Navarro, Jalisco</h5>
-                  <p>
-                    Obregón #124 F
-                  </p>
-                </div>
+  </div>
+  <!-- start banner Area -->
+  <section class="banner-area relative" style="min-height: 50rem;">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+      <div class="row d-flex align-items-center justify-content-center mt-10">
+        <div class="col-lg-12 text-center" style="margin-top: 14rem;">
+          <h1 class="text-white">
+            Contacto
+          </h1>
+          <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between">
+            <div class="single-contact-address d-inline-block">
+              <div class="icon">
+                <span class="fa fa-home"></span>
               </div>
-              <div class="single-contact-address d-inline-block">
-                <div class="icon">
-                  <span class="fa fa-phone"></span>
-                </div>
-                <div class="contact-details">
-                  <h5>+52 (958) 9865 562</h5>
-                  <p>Lunes - Viernes con atención de 9 am - 4 pm</p>
-                </div>
+              <div class="contact-details">
+                <h5>Autlán de Navarro, Jalisco</h5>
+                <p>
+                  Obregón #124 F
+                </p>
               </div>
-              <div class="single-contact-address d-inline-block">
-                <div class="icon">
-                  <span class="fa fa-envelope"></span>
-                </div>
-                <div class="contact-details">
-                  <h5>soporte@udemy.com</h5>
-                  <p>Envianos tu duda en cualquier momento!</p>
-                </div>
+            </div>
+            <div class="single-contact-address d-inline-block">
+              <div class="icon">
+                <span class="fa fa-phone"></span>
+              </div>
+              <div class="contact-details">
+                <h5>+52 (958) 9865 562</h5>
+                <p>Lunes - Viernes con atención de 9 am - 4 pm</p>
+              </div>
+            </div>
+            <div class="single-contact-address d-inline-block">
+              <div class="icon">
+                <span class="fa fa-envelope"></span>
+              </div>
+              <div class="contact-details">
+                <h5>soporte@udemy.com</h5>
+                <p>Envianos tu duda en cualquier momento!</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- End contact-page Area -->
+    </div>
+  </section>
+  <!-- End contact-page Area -->
+  <div id="home-contacto"></div>
 
-
-    <!-- start footer Area -->
-    <footer class="footer-area footer-ipad-pro">
-      <div class="align-items-center justify-content-between">
-        <div class="row">
-          <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
-            <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
-          </div>
-          <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
-            <p class="mb-0">&copy; AB Soluciones Empresariales <script>
-                document.write(new Date().getFullYear());
-              </script>
-              All rights reserved.
-            </p>
-            <ul class="list-inline  mt-0 clock text-center">
-              <li class="list-inline-item">
-                <a href="#">Politicas de Privacidad</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Imagen Corporativa</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
-            <div class="social-network mt-0">
-              <p class="h4 text-white">Siguenos en Redes Sociales</p>
-              <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
-              <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>
-              <a class="h3 m-3 text-white" href="#"><i class="fab fa-instagram"></i></a>
-            </div>
+  <!-- start footer Area -->
+  <footer class="footer-area footer-ipad-pro">
+    <div class="align-items-center justify-content-between">
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
+          <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
+        </div>
+        <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
+          <p class="mb-0">&copy; AB Soluciones Empresariales <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved.
+          </p>
+          <ul class="list-inline  mt-0 clock text-center">
+            <li class="list-inline-item">
+              <a href="#">Politicas de Privacidad</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Imagen Corporativa</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
+          <div class="social-network mt-0">
+            <p class="h4 text-white">Siguenos en Redes Sociales</p>
+            <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
+            <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>
+            <a class="h3 m-3 text-white" href="#"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
       </div>
-    </footer>
-    <!-- End footer Area -->
+    </div>
+  </footer>
+  <!-- End footer Area -->
 
 
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="../js/vendor/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="../js/easing.min.js"></script>
-    <script src="../js/hoverIntent.js"></script>
-    <script src="../js/superfish.min.js"></script>
-    <script src="../js/jquery.ajaxchimp.min.js"></script>
-    <script src="../js/jquery.magnific-popup.min.js"></script>
-    <script src="../js/jquery.tabs.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/mail-script.js"></script>
-    <script src="../js/main.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="../js/vendor/bootstrap.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+  <script src="../js/easing.min.js"></script>
+  <script src="../js/hoverIntent.js"></script>
+  <script src="../js/superfish.min.js"></script>
+  <script src="../js/jquery.ajaxchimp.min.js"></script>
+  <script src="../js/jquery.magnific-popup.min.js"></script>
+  <script src="../js/jquery.tabs.min.js"></script>
+  <script src="../js/jquery.nice-select.min.js"></script>
+  <script src="../js/owl.carousel.min.js"></script>
+  <script src="../js/mail-script.js"></script>
+  <script src="../js/main.js"></script>
 
-    <!-- styles course -->
-    <script src="../js/popper.js"></script>
+  <!-- styles course -->
+  <script src="../js/popper.js"></script>
 
 
 </body>
