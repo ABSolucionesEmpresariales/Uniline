@@ -659,6 +659,8 @@
             datosExamen();
             $('#registro-examen').trigger('reset');
             $('.spinner-border').addClass('d-none');
+            accion = 'insertar';
+            idexamen = '';
           } else {
             alert("El bloque ya contine un examen o los post no estan llegando correctamente");
             $('.spinner-border').addClass('d-none');
