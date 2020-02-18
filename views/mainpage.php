@@ -194,7 +194,7 @@ session_start();
           <form method="post" id="myLogin">
             <div class="form-group">
               <i class="fa fa-user"></i>
-              <input name="TEmail" type="text" class="form-control" id="ingresar-email" placeholder="Correo electronico" required="required">
+              <input name="TEmail" type="text" class="form-control" id="ingresar-email" placeholder="Correo electronico o usuario" required="required">
             </div>
             <div class="form-group">
               <i class="fa fa-lock"></i>
