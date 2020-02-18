@@ -29,7 +29,7 @@ include '../controllers/sessionCEO.php';
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Profesores</a></li>
                         <li><a data-toggle="tab" href="#menu1">Cursos</a></li>
-                        <li><a data-toggle="tab" href="#mas">bloques y temas</a></li>
+                        <li><a data-toggle="tab" href="#mas">Contenido del curso</a></li>
                         <li class="col-2" style="margin-right: -2rem;">
                             <select id="select-profe-tema" name="SProfesor" class="form-control m-1" style="height: 35px!important">
                                 <option value="0">Selecciona profesor</option>
@@ -361,7 +361,7 @@ include '../controllers/sessionCEO.php';
         </div>
     </div>
 
-    <script src="../js/register.js"></script>
+    <script src="../js/register2.js"></script>
 
 </body>
 

@@ -53,6 +53,23 @@ if (!empty($_POST['accion'])) {
             }
             break;
 
+            case "eliminar":
+                if (!empty($_POST['ideliminarregistro'])) {
+                    echo $conexion->consultaPreparada(
+                        array($_POST['ideliminarregistro']),
+                        "DELETE tarea_completada,evaluacion_tarea_completada
+                        FROM tarea
+                        LEFT JOIN tarea_completada ON tarea.idtarea = tarea_completada.tarea
+                        LEFT JOIN evaluacion_tarea_completada ON tarea_completada.id= tarea_completada
+                        WHERE idtarea = ?",
+                        1,
+                        "s",
+                        false,
+                        null
+                    );
+                }
+            break;
+
         case "items":
             echo json_encode($conexion->consultaPreparada(
                 array($_SESSION['idcurso']),

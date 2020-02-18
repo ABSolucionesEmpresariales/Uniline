@@ -5,6 +5,13 @@ include '../Modelos/Archivos.php';
 include '../Modelos/Fecha.php';
 
 
+if(isset($_POST['calificacio_curso_usuarion'])){
+    $conexion = new Modelos\Conexion();
+    echo $conexion->consultaPreparada(
+        array("",$_SESSION['idcurso'],$_POST['calificacio_curso_usuarion'],$_SESSION['idusuario'],$_POST['cometareio']),
+        "INSERT INTO calificacion (idcalificacion,curso,calificacion,usuario,comentario) VALUES(?,?,?,?,?)",
+         1,"iiiis",false, null);
+}
 
 if (isset($_POST["id_cometario"])) {
     $conexion = new Modelos\Conexion();

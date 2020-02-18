@@ -4,7 +4,7 @@ require_once '../Modelos/Conexion.php';
 require_once '../Modelos/Archivos.php';
 
 if (!empty($_POST['accion'])) {
-   
+
     $conexion = new Modelos\Conexion();
 
     switch ($_POST['accion']) {
@@ -14,8 +14,8 @@ if (!empty($_POST['accion'])) {
                 $video = 'https://player.vimeo.com/video/';
                 $idvideo = explode('/', $_POST['TVideo']);
                 $video .= end($idvideo);
-               echo $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo') , $_SESSION['idbloque']),
+                echo $conexion->consultaPreparada(
+                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo'), $_SESSION['idbloque']),
                     "INSERT INTO tema (idtema,nombre,descripcion,video,archivo, bloque) VALUES (?,?,?,?,?,?)",
                     1,
                     "ssssss",
@@ -58,6 +58,22 @@ if (!empty($_POST['accion'])) {
                 echo "los post no estan llegando correctamente";
             }
             break;
+
+        case "eliminar":
+            if (!empty($_POST['ideliminarregistro'])) {
+                echo $conexion->consultaPreparada(
+                    array($_POST['ideliminarregistro']),
+                    "DELETE tema_completado
+                        FROM tema
+                        LEFT JOIN tema_completado ON tema.idtema = tema_completado.tema
+                        WHERE idtema = ?",
+                    1,
+                    "s",
+                    false,
+                    null
+                );
+            }
+        break;
 
         case "items":
             echo json_encode($conexion->consultaPreparada(
