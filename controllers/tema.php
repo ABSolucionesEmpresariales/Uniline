@@ -63,7 +63,7 @@ if (!empty($_POST['accion'])) {
             if (!empty($_POST['ideliminarregistro'])) {
                 echo $conexion->consultaPreparada(
                     array($_POST['ideliminarregistro']),
-                    "DELETE tema_completado
+                    "DELETE tema_completado,tema
                         FROM tema
                         LEFT JOIN tema_completado ON tema.idtema = tema_completado.tema
                         WHERE idtema = ?",

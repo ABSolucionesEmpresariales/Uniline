@@ -50,7 +50,7 @@ session_start();
   <script src="../js/jquery.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-  <script src="../js/registro2.js"></script>
+  <script src="../js/registro9.js"></script>
   <script src="../js/login.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

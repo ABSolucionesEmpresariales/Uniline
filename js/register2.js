@@ -307,23 +307,23 @@
     $(document).on('click','.elim', function(event) {
           console.log($(this).val());
           console.log($(this).data("tabla"));
+          const postdata = {
+            accion:'eliminar',
+            ideliminarregistro:$(this).val()
+          };
+          
          $.ajax({
           url:"../controllers/"+$(this).data("tabla")+".php",
           type:"POST",
-          data:"ideliminarregistro="+$(this).val(),
+          data:postdata,
           success: function(response){
+          console.log(response);
               if(response == 1){
-                  if($(this).data("tabla") == "bloque"){
-                      datosBloques();
-                  }else if($(this).data("tabla") == "tema"){
-                      datosTemas();
-                  }else if($(this).data("tabla") == "examen"){
-                      datosExamen();
-                  }else if($(this).data("tabla") == "pregunta"){
-                      datosPreguntas();
-                  }else if($(this).data("tabla") == "tarea"){
-                      datosTareas();
-                  }
+                  datosBloques();
+                  datosTemas();
+                  datosExamen();
+                  datosPreguntas();
+                  datosTareas();
               }else{
                 alert("Algo salio mal");
               }
@@ -659,6 +659,8 @@
             datosExamen();
             $('#registro-examen').trigger('reset');
             $('.spinner-border').addClass('d-none');
+            accion = 'insertar';
+            idexamen = '';
           } else {
             alert("El bloque ya contine un examen o los post no estan llegando correctamente");
             $('.spinner-border').addClass('d-none');
@@ -755,7 +757,7 @@
             $('#idtarea').val('');
             $('#accion-tarea').val('insertar');
           } else {
-            alert("datos no enviados, hubo un error");
+            alert("Ya existe una tarea o los datos no fueron enviados");
             $('.spinner-border').addClass('d-none');
           }
         }

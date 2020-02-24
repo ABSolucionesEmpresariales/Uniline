@@ -110,7 +110,7 @@ $(document).ready(function () {
                     break;
 
                 default:
-                    var stripe = Stripe("pk_test_E6v1YWAS84dvDDlDeDkywm6y00gd15Xrmm");
+                    var stripe = Stripe("pk_live_eDjWfiO9ESs6N7s7tAek4d2n00bEJUW51W");
                     stripe
                         .redirectToCheckout({
                             sessionId: response
@@ -181,6 +181,7 @@ $(document).ready(function () {
                 let datos = JSON.parse(response);
                 console.log(datos);
                 let templete = ``;
+
                 ocultar = "";
                 contdador_page = 0;
                 cont = 0;
@@ -195,16 +196,21 @@ $(document).ready(function () {
                 console.log(total);
 
                 for (i = 0; i < datos.length; i++) {
+                                    let url_2 = "";
+                let url_3 = "";
+                let url = "";
+                let url3 = "";
                     cont++;
                     if (i != 0) {
                         ocultar = "d-none";
                     }
                     console.log(i);
+                            url = datos[i][7].split("/");
+                            url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
+                            url3 = datos[i][3].split("/");
+                            url_3 = url[0]+"/"+url3[1]+"/res_"+url3[2];
                     if (i % 4 == 0) {
-                        url = datos[i][7].split("/");
-                        url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
-                        url3 = datos[i][3].split("/");
-                        url_3 = url[0]+"/"+url3[1]+"/res_"+url3[2];
+
                         contdador_page++;
                         templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
                         console.log("llego" + contdador_page);
