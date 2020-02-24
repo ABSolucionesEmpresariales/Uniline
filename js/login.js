@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   $('#myLogin').submit(function (e) {
-    if ($('#ingresar-usuario').val() == '' || $('#ingresar-password').val() == '') {
+    if ($('#ingresar-email').val() == '' || $('#ingresar-password').val() == '') {
         console.log('si llego');
         $('.alerta-login').html('<h2 class="alert alert-danger">*Llene todos los campos</h2>')
     } else {
@@ -24,7 +24,7 @@ $(document).ready(function () {
                 }else if(response == "passwordIncorrecta"){
                   $('.alerta-login').html('<h2 class="alert alert-danger">*Contraseña incorrecta</h2>')
                 }else{
-                  $('.alerta-login').html('<h2 class="alert alert-danger">*Este usuario no existe</h2>')
+                  $('.alerta-login').html('<h2 class="alert alert-danger">*Este correo no esta registrado</h2>')
                 }
             }
         });

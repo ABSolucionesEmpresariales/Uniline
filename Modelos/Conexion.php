@@ -9,9 +9,9 @@ class Conexion
 
     private $datos = array(
         "host" => "localhost",
-        "user" => "root",
-        "pass" => "",
-        "db" => "uniline"
+        "user" => "u981877364_cool",
+        "pass" => "t>jXJbbN",
+        "db" => "u981877364_uniline"
     );
 
     public $con;
@@ -88,8 +88,8 @@ class Conexion
     public function passClean($string)
     {
         $string = str_replace(
-            array(' ', "'"),
-            array('', ''),
+            array("'"),
+            array(''),
             $string
         );
 
@@ -139,10 +139,10 @@ class Conexion
                 "\\", "¨", "º", "~",
                 "|", "!", "\"",
                 "·", "$", "&",
-                "(", ")", "?", "'", "¡",
-                "¿", "[", "^", "<code>", "]",
+                "(", ")", "'",
+               "[", "^", "<code>", "]",
                 "+", "}", "{", "¨", "´",
-                ">", "< ", ";", ",",
+                ">", "< ", ";",
                 "''"
             ),
             '',

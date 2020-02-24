@@ -199,6 +199,12 @@ $(document).ready(function() {
             $(this).nextAll('ul').eq(0).slideToggle();
             $(this).toggleClass("lnr-chevron-up lnr-chevron-down");
         });
+        
+        $(document).on('click', '.cambiar', function(e) {
+            $('body').toggleClass('mobile-nav-active');
+            $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-h');
+            $('#mobile-body-overly').toggle();
+        });
 
         $(document).on('click', '#mobile-nav-toggle', function(e) {
             $('body').toggleClass('mobile-nav-active');
@@ -246,6 +252,7 @@ $(document).ready(function() {
 
                 if ($('body').hasClass('mobile-nav-active')) {
                     $('body').removeClass('mobile-nav-active');
+                    $('#mobile-nav-toggle i').toggleClass('fa-ellipsis-h');
                     $('#mobile-nav-toggle i').toggleClass('lnr-times lnr-bars');
                     $('#mobile-body-overly').fadeOut();
                 }

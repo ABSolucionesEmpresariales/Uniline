@@ -22,6 +22,9 @@ max-width: 25%
 	background-size: cover;
 	cursor: pointer;
 }
+.imagen-miscursos {
+  width: 100%;
+}
 
 }
 /*iPhone X?*/
@@ -39,6 +42,9 @@ max-width: 25%
     background-size: cover;
     cursor: pointer;
   }
+.imagen-miscursos {
+  width: 100%;
+}
 }
 /*iPhone 6 Plus*/
 @media (min-width: 377px) {
@@ -48,6 +54,9 @@ max-width: 25%
   .logo-responsive{
     width: 80%;
   }
+.imagen-miscursos {
+  width: 100%;
+}
 }
 /*md*/
 @media (min-width: 768px) {
@@ -57,6 +66,9 @@ max-width: 25%
   .logo-responsive{
     width: 80%;
   }
+.imagen-miscursos {
+  width: 100%;
+}
 }
 /*lg*/
 @media (min-width: 992px) {
@@ -73,6 +85,9 @@ max-width: 25%
     background-size: cover;
     cursor: pointer;
   }
+.imagen-miscursos {
+  width: 100%;
+}
 }
 /*xl*/
 @media (min-width: 1200px) {

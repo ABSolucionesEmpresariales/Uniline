@@ -34,11 +34,11 @@ if (!empty($_POST['idcurso'])) {
         );
 
         $nombre_curso = $respuesta[0][0];
-        $imagen = explode("../", $respuesta[0][1]);
-        $imagen = $imagen[1];
+        $imagen = explode("/", $respuesta[0][1]);
+        $imagen = end($imagen);
         $costo =  $respuesta[0][2];
 
-        \Stripe\Stripe::setApiKey('sk_test_Y6RKrzhKN7rrZZ7MsL7PQ6lC00JsFcaSLw');
+        \Stripe\Stripe::setApiKey('sk_live_wqVAMoiFqnzUFdjhliKHSpCz00snlprJPe');
 
         $session = \Stripe\Checkout\Session::create([
             'client_reference_id' => $_SESSION['idusuario'],
@@ -46,14 +46,14 @@ if (!empty($_POST['idcurso'])) {
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'name' => $nombre_curso,
-                'images' => ['https://www.cafionline.com/img' . 'res_'.$imagen],
+                'images' => ['https://www.escuelaalreves.com/img/' . 'res_'.$imagen],
                 'amount' => $costo * 100,
                 'currency' => 'mxn',
                 'quantity' => 1,
             ]],
             'metadata' => ['idcurso' => $_POST['idcurso']], //poner el id del curso
-            'success_url' => 'https://www.cafionline.com/views/success.php?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => 'https://www.cafionline.com/views/failure.php?session_id=true',
+            'success_url' => 'https://www.escuelaalreves.com/views/success.php?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'https://www.escuelaalreves.com/views/failure.php?session_id=true',
         ]);
         echo $session->id;
     } else {

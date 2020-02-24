@@ -30,21 +30,21 @@ class Email
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host       = 'smtp.hostinger.mx';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'contacto@cafionline.com';               // SMTP username
-            $mail->Password   = '`A]V8Qeu';                         // SMTP password
+            $mail->Username   = 'ceo@escuelaalreves.com';               // SMTP username
+            $mail->Password   = 'kdLTxFC+';                         // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
             $mail->Port       = 587;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('contacto@cafionline.com', 'Equipo de soporte CAFI');
+            $mail->setFrom('ceo@escuelaalreves.com', 'Equipo de soporte CAFI');
             $mail->addAddress($this->email);     // Add a recipient
-            $mail->addReplyTo('contacto@cafionline.com', 'Equipo de soporte CAFI');
+            $mail->addReplyTo('ceo@escuelaalreves.com', 'Equipo de soporte CAFI');
 
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Verificacion de correo CAFI';
-            $mail->Body    = "<a href='https://www.cafionline.com/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
-            $mail->AltBody = "<a href='https://www.cafionline.com/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
+            $mail->Body    = "<a href='https://www.escuelaalreves.com/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
+            $mail->AltBody = "<a href='https://www.escuelaalreves.com/controllers/confirm.php?vkey=$this->vkey'>verificar cuenta</a>";
 
             $mail->send();
 
