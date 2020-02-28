@@ -188,11 +188,11 @@ max-width: 25%;
 }
 .cont-actividades{
   padding-left: 1rem; 
-  padding-top: .4rem; 
+   padding-top: .4rem; 
   padding-right: .4rem; 
-  padding-bottom: .4rem; 
-  border-top:solid 1px; 
-  border-color: rgb(220, 220, 220);
+  padding-bottom: .4rem;  
+/*   border-top:solid 1px; 
+  border-color: rgb(220, 220, 220); */
 }
 .h-scroll-box {
   height: 250px; 
@@ -382,3 +382,26 @@ background-color: rgb(28, 28, 37);
   .checked-2{
     color: yellow!important;
   }
+
+  .color-contenido{
+    background-color: rgba(0, 0, 0, 0.26); 
+    
+  }
+  .color-intro{
+    background-color: #016793de;
+  }
+  .color-Examen-enabled{
+    background-color: #016793c2;
+  }
+  .color-Bloque-enabled{
+    background-color: #016793a1;
+  }
+.temas-hover:hover{
+  background-color: #75c3e47a;
+}
+
+.border-comentario{
+  border: 1px solid rgb(122, 122, 122);
+  border-radius: 2px;
+  border-bottom: 1px solid rgb(145, 143, 143);
+}

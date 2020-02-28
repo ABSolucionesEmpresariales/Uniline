@@ -185,7 +185,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
               </div>
 
 
-              <div class="col details-content no-padding" style="min-height: 35rem;">
+              <div class="col details-content no-padding" style="min-height: 35rem;border-bottom: rgb(0,0,0);">
                 <div class="jq-tab-wrapper no-padding" id="horizontalTab">
                   <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding" style="margin-bottom: 0;">
                     <ul class="nav no-padding" id="nav-barra">
@@ -277,7 +277,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 <div id="mov-coments" class="container comments-area col" style="min-height: 30rem; height: 45rem;">
                   <h3 class="h3">Comentarios del curso</h3>
                   <br>
-                  <section id="area-comentarios" class="container c-scroll" style="max-height: 25rem; height: 45rem;">
+                  <section id="area-comentarios" class="container c-scroll" style="max-height: 25rem; height: 45rem;border: 1px solid rgb(122, 122, 122);border-radius: 5px;">
 
                   </section>
                   <hr>
@@ -285,7 +285,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                     <div class="row d-inline-flex" style="width: 100%">
                       <form action="" style="width: 100%;">
                         <input class="col-lg-9 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
-                        <input class="col-lg-2 col-md-3 col-sm-2 border" type="submit" name="enviar" id="enviar" value="Enviar" style="height: 5rem;">
+                        <input class="col-lg-2 col-md-3 col-sm-2 btn btn-outline-primary rounded-left" type="submit" name="enviar" id="enviar" value="Enviar" style="height: 5rem;">
                       </form>
                     </div>
                   </section>

@@ -6,7 +6,7 @@
 
 body.mobile-nav-active{overflow:hidden}
 body.mobile-nav-active #mobile-nav{right:0}
-body.mobile-nav-active #mobile-nav-toggle{color:#fff}
+body.mobile-nav-active #mobile-nav-toggle{color:rgb(43, 15, 201)}
 
 .section-gap{padding:120px 0}
 
