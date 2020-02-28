@@ -266,8 +266,7 @@ session_start();
   
   <!-- End banner Area -->
   <section class="search-course-area relative" style="height: 40rem">
-   
-  
+
   </section>
   
   <!-- Popular -->

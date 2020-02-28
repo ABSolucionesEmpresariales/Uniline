@@ -383,9 +383,12 @@ template_cometarios +=`
                 //console.log(response);
                 datos = JSON.parse(response)
                 console.log(datos);
-                template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>
-                <div class="demo row contenedor text-center mostrar-curso-content" style="cursor: pointer;">
-                    <label style="margin-left: 100px;cursor: pointer;">Introduccion del curso</label>
+    template = `
+                <div >
+                    <h4 style="padding: 1rem;" class="h4 text-center widget_title mt-3 ">Contenido del curso</h4>
+                </div>
+                <div class="demo row contenedor text-center mostrar-curso-content temas-hover" style="cursor: pointer;">
+                    <label class=" p-3" style="margin-left: 100px;cursor: pointer;">Introduccion del curso</label>
                 </div>
                 `;
                 control_seleccion = "";
@@ -414,17 +417,19 @@ template_cometarios +=`
                                 id_examen = "1--"+1;
                              }
                             template += `
-                                <div class="demo row contenedor flex align-items-center cont-actividades">
+                                <div class="demo row contenedor flex align-items-center cont-actividades temas-hover">
                                     <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
                                     <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
-                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">+${datos[i][0][1]}</a>
+                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">Examen ${i+1}: ${datos[i][0][1]}</a>
                                 </div>`;
                         }else if(y == 1){
                             template += `
-                            <div class="demo row contenedor flex align-items-center cont-actividades">
+                            <div class="demo row contenedor cont-actividades">
+                                <div class="flex align-items-center temas-hover">
                                     <input type="checkbox" id="customCheck-bloque-${(i+1)+"-"+(y-1)}" name="example1" ${control_seleccion}>
                                     <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center"><span class="registro_tema"></span></label>
-                                    <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">-${datos[i][2]}</a>
+                                    <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">${datos[i][2]}</a>
+                                </div>
                                 <div class="span-${(i+1)+"-"+(y-1)}" style="display: none;">`;
                                 cont = 0;
                             for(z = 0; z< datos[i][3].length; z++){
@@ -451,7 +456,7 @@ template_cometarios +=`
                                         control_seleccion = "disabled";
                                     }
                                     template +=
-                                    `<div class="demo row pt-1 m-0 flex align-items-center">
+                                    `<div class="demo row pt-1 m-0 flex align-items-center temas-hover">
                                         <input class="" type="checkbox" id="customCheck-${(i+1)+"-"+(z+1)}" name="example1" ${control_seleccion}>
                                         <label data-idtemabase="${datos[i][3][z][0]}" id="tema-${(i+1)+"-"+(z+1)}" for="customCheck-${(i+1)+"-"+(z+1)}" class="${control_del_chequeo} col-3 text-justify desbloqueo-${i} pl-4 flex align-items-center"><span class="registro_tema"></span></label>
                                         <a id="${(i+1) +"-"+(z+1)}" class="col-9 mostrar-tema" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
@@ -605,6 +610,7 @@ template_cometarios +=`
                     console.log(response);
                     datos = JSON.parse(response);
                     console.log(datos);
+                    let contador_pregunta = 1;
                     templete2 = `
                     <br>
                     <h3 class="h3">${datos[0][0]}</h3>
@@ -613,7 +619,7 @@ template_cometarios +=`
                         templete2 += `
                             <div class="pregresp flex justify-content-center d-inline-block">
                                 <div class="pregunta">
-                                    ${item[2]}<br />
+                                  <h3>${contador_pregunta +".- "+item[2]}</h3>
                                 </div>
                                 <div class="respuestas d-inline-flex flex justify-content-between">`;
                                 respuestas = item[3].split('-*3');
@@ -622,11 +628,12 @@ template_cometarios +=`
                                     nueva = respuestas[y].split('###');
                                     console.log(nueva);
                                     if(nueva[0] == ''){
-                                    templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span>${nueva[1]}</span></li>`; 
+                                    templete2 += `<li class="list-inline p-2 ml-5"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span class="estado text-dark">${nueva[1]}</span><i class="ml-3"></i></li>`; 
                                     }else{
-                                    templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="0"><span>${respuestas[y]}</span></li>`; 
+                                    templete2 += `<li class="list-inline p-2 ml-5"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="0"><span class="text-dark">${respuestas[y]}</span><i class="ml-3"></i></li>`; 
                                     }
                                 }
+                        contador_pregunta++     
                         templete2 +=`</div></div><hr>`;
                     });
                     templete2 +=`
@@ -656,6 +663,7 @@ template_cometarios +=`
     });
     
     $(document).on('click','.ir-actividad',function(){
+        $(".cancelar").hide();
         preguntas_id = "";
         calificacion = 0;
         respuestas_examen = "";
@@ -664,6 +672,13 @@ template_cometarios +=`
             respuestas_examen += "$" + $(".selected-user").eq(y).next("span").text();
             if($('.selected-user').eq(y).val() != '0'){
                 calificacion++;
+                $(".selected-user").eq(y).next("span").removeClass("text-dark").addClass("text-success");
+                $(".selected-user").eq(y).next("span").next("i").addClass("fas fa-check-circle text-success");
+            }else{
+                $(".selected-user").eq(y).next("span").removeClass("text-dark").addClass("text-danger");
+                $(".selected-user").eq(y).next("span").next("i").addClass("fas fa-times-circle text-danger");
+                $(".estado").removeClass("text-dark").addClass("text-success");
+                $(".estado").next("i").addClass("fas fa-check-circle text-success");
             }
         }
         console.log(preguntas_id);
@@ -689,6 +704,7 @@ template_cometarios +=`
                     $('.alerta-examen').html("<p class='h3'>Tu califuacion es: <span>"+ puntaje_alumno +"</span><br><input class='seguir-curso btn btn-primary' value='seguir' type='button'></p>");       
                 }else{
                     $('.alerta-examen').html("<p class='h3'>Tu califuacion es: <span>"+ puntaje_alumno +"</span><br><input class='seguir-curso btn btn-primary' value='seguir' type='button'></p>");
+                    
                 }
             }
         }); 
@@ -818,7 +834,7 @@ template_cometarios +=`
                 if(response == 'completado'){
                     if(contador == 0){
                         $('#startConfetti').click();
-                        swal("¡Felicidades!, haz completado este curso");
+                        swal("¡Felicidades!, haz completado este curso 🎉🎉");
                         setTimeout(function(){
                         $('#stopConfetti').click();
                         }, 5000);
