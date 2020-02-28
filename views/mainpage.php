@@ -352,7 +352,7 @@ session_start();
           </p>
           <ul class="list-inline  mt-0 clock text-center">
             <li class="list-inline-item">
-              <a href="#">Politicas de Privacidad</a>
+              <a href="privacyPolicy.php">Politicas de Privacidad</a>
             </li>
             <li class="list-inline-item">
               <a href="#">Imagen Corporativa</a>
