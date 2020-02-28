@@ -300,7 +300,7 @@ session_start();
           <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between" style="margin-left: -3rem">
             <div class="single-contact-address d-inline-block">
               <div class="icon">
-                <span class="fa fa-home"></span>
+                <span class="fa fa-home" style="font-size: 30px"></span>
               </div>
               <div class="contact-details">
                 <h5>Autlán de Navarro, Jalisco</h5>
@@ -311,7 +311,7 @@ session_start();
             </div>
             <div class="single-contact-address d-inline-block">
               <div class="icon">
-                <span class="fa fa-phone"></span>
+                <span class="fa fa-phone" style="font-size: 30px"></span>
               </div>
               <div class="contact-details">
                 <h5>3171035768</h5>
@@ -320,7 +320,7 @@ session_start();
             </div>
             <div class="single-contact-address d-inline-block">
               <div class="icon">
-                <span class="fa fa-envelope"></span>
+                <span class="fa fa-envelope" style="font-size: 30px"></span>
               </div>
               <div class="contact-details">
                 <h5>soporte@escuelaalreves.com</h5>
