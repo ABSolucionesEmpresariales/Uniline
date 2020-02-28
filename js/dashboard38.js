@@ -622,7 +622,7 @@ template_cometarios +=`
                                     nueva = respuestas[y].split('###');
                                     console.log(nueva);
                                     if(nueva[0] == ''){
-                                    templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span>${nueva[1]}</span></li>`; 
+                                    templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="1"><span class="text-danger">${nueva[1]}</span></li>`; 
                                     }else{
                                     templete2 += `<li class="list-inline p-2"><input data-idpregunta="${item[1]}" id="sal-${(i+1)+"-"+(y+1)}" class="examen" name="nombre-${i}" type="radio" value="0"><span>${respuestas[y]}</span></li>`; 
                                     }
@@ -639,7 +639,6 @@ template_cometarios +=`
             });
         }
     });
-    
     
     $(document).on('click','.cancelar',function(){
         $("#cambio-examen-video").removeClass("d-none");
@@ -664,6 +663,11 @@ template_cometarios +=`
             respuestas_examen += "$" + $(".selected-user").eq(y).next("span").text();
             if($('.selected-user').eq(y).val() != '0'){
                 calificacion++;
+                $(".selected-user").eq(y).next("span").addClass("text-success");
+                console.log($(".selected-user").eq(y).next("span").addClass("text-success"));
+            }else{
+                $(".selected-user").eq(y).next("span").addClass("text-danger");
+                con
             }
         }
         console.log(preguntas_id);

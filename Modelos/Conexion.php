@@ -9,9 +9,9 @@ class Conexion
 
     private $datos = array(
         "host" => "localhost",
-        "user" => "u981877364_cool",
-        "pass" => "t>jXJbbN",
-        "db" => "u981877364_uniline"
+        "user" => "root",
+        "pass" => "",
+        "db" => "uniline"
     );
 
     public $con;
@@ -137,12 +137,10 @@ class Conexion
         $string = str_replace(
             array(
                 "\\", "¨", "º", "~",
-                "|", "!", "\"",
-                "·", "$", "&",
-                "(", ")", "'",
-               "[", "^", "<code>", "]",
-                "+", "}", "{", "¨", "´",
-                ">", "< ", ";",
+                "|", "\"",
+                "·", "&","'",
+               "[", "<code>", "]",
+                 "}", "{", "¨", "´",";",
                 "''"
             ),
             '',

@@ -176,7 +176,8 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
         <div id="div-original" class="row">
 
           <div id="cambiar-a-examen" class="col-lg-9 col-md-7 col-sm-12 no-padding">
-            <div id="contenido-examen" class="container p-5 d-none" style="min-height: 100rem;">
+            <div id="contenido-examen" class="ml-5 p-5 d-none" style="min-height: 100rem;margin-left:120px!important;">
+
             </div>
             <div id="cambio-examen-video">
               <div id="jalaporfa2" class="flex bg-color justify-content-center">
