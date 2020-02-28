@@ -3,13 +3,20 @@ breakpoint{
 max-width: 100%;
 display: inline-block;
 }
-html body{width:100%; height:100%;border:1;}
+html body{
+  width:100%; 
+  height:100%;
+  border:1;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
 
 
 /*sm*/
 @media (min-width: 300px) {
 breakpoint{
-max-width: 25%
+max-width: 25%;
 
 }
 .demo input[type="checkbox"] + label span{
@@ -22,7 +29,17 @@ max-width: 25%
 	background-size: cover;
 	cursor: pointer;
 }
-
+.imagen-miscursos {
+  width: 100%;
+}
+.titulo{
+  font-family: Century Gothic;
+  font-weight: 900;
+  font-size: 50px!important;
+}
+.respons{
+  max-width: 300px!important;
+}
 }
 /*iPhone X?*/
 @media (min-width: 375px) {
@@ -39,6 +56,17 @@ max-width: 25%
     background-size: cover;
     cursor: pointer;
   }
+.imagen-miscursos {
+  width: 100%;
+}
+.titulo{
+  font-family: Century Gothic;
+  font-weight: 900;
+  font-size: 50px!important;
+}
+.respons{
+  max-width: 375px!important;
+}
 }
 /*iPhone 6 Plus*/
 @media (min-width: 377px) {
@@ -48,6 +76,17 @@ max-width: 25%
   .logo-responsive{
     width: 80%;
   }
+.imagen-miscursos {
+  width: 100%;
+}
+.titulo{
+  font-family: Century Gothic;
+  font-weight: 900;
+  font-size: 50px!important;
+}
+.respons{
+  max-width: 377px!important;
+}
 }
 /*md*/
 @media (min-width: 768px) {
@@ -57,6 +96,17 @@ max-width: 25%
   .logo-responsive{
     width: 80%;
   }
+.imagen-miscursos {
+  width: 100%;
+}
+.titulo{
+  font-family: Century Gothic;
+  font-weight: 900;
+  font-size: 50px!important;
+}
+.respons{
+  max-width: 768px!important;
+}
 }
 /*lg*/
 @media (min-width: 992px) {
@@ -73,16 +123,34 @@ max-width: 25%
     background-size: cover;
     cursor: pointer;
   }
+.imagen-miscursos {
+  width: 100%;
+}
+.titulo{
+  font-family: Century Gothic;
+  font-weight: 900;
+  font-size: 60px!important;
+}
+.respons{
+  max-width: 992px!important;
+}
 }
 /*xl*/
-@media (min-width: 1200px) {
+@media (min-width: 1448px) {
   breakpoint{
     max-width: 100%;
   }
 }
-
+.titulo{
+  font-family: Century Gothic;
+  font-weight: 900;
+  font-size: 60px;
+}
 .margineado{
   margin-bottom: 1500;
+}
+.respons{
+  max-width: 1200px!important;
 }
 
 @keyframes roll {

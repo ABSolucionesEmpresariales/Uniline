@@ -384,8 +384,8 @@ template_cometarios +=`
                 datos = JSON.parse(response)
                 console.log(datos);
                 template = `<h4 style="padding: 1rem;" class="h4 text-center widget_title mb-0">Contenido del curso</h4>
-                <div class="demo row contenedor text-center mostrar-curso-content">
-                <label class="ml-3">Introduccion del curso</label>
+                <div class="demo row contenedor text-center mostrar-curso-content" style="cursor: pointer;">
+                    <label style="margin-left: 100px;cursor: pointer;">Introduccion del curso</label>
                 </div>
                 `;
                 control_seleccion = "";

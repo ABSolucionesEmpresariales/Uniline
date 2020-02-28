@@ -10,7 +10,17 @@ if (!empty($_POST['accion'])) {
     switch ($_POST['accion']) {
 
         case "insertar":
-            if (isset($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque'])) {
+            
+                $resultado =  $conexion->consultaPreparada(
+                array($_SESSION['idbloque']),
+                "SELECT idtarea FROM tarea WHERE bloque = ?",
+                2,
+                "s",
+                false,
+                null
+            );
+            
+            if (isset($_POST['idtarea']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_SESSION['idbloque']) && empty($resultado)) {
                 echo $conexion->consultaPreparada(
                     array($_POST['idtarea'], $_POST['TNombre'], $_POST['TADescripcion'], subir_archivo('FArchivo'), $_SESSION['idbloque']),
                     "INSERT INTO tarea (idtarea,nombre,descripcion,archivo_bajada,bloque) VALUES (?,?,?,?,?)",
@@ -20,7 +30,7 @@ if (!empty($_POST['accion'])) {
                     null
                 );
             } else {
-                echo "los post no estan llegando correctamente";
+                  echo "El bloque ya contine una tarea o los post no estan llegando correctamente";
             }
             break;
 
@@ -57,7 +67,7 @@ if (!empty($_POST['accion'])) {
                 if (!empty($_POST['ideliminarregistro'])) {
                     echo $conexion->consultaPreparada(
                         array($_POST['ideliminarregistro']),
-                        "DELETE tarea_completada,evaluacion_tarea_completada
+                        "DELETE tarea,tarea_completada,evaluacion_tarea_completada
                         FROM tarea
                         LEFT JOIN tarea_completada ON tarea.idtarea = tarea_completada.tarea
                         LEFT JOIN evaluacion_tarea_completada ON tarea_completada.id= tarea_completada
