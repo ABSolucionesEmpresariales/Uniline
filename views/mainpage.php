@@ -263,13 +263,12 @@ session_start();
       </div>
 
   </section>
-  <?php
-        }
-  ?>
   <!-- End banner Area -->
   <section class="search-course-area relative" style="height: 40rem">
    
-  
+  <?php
+        }
+  ?>
   </section>
   
   <!-- Popular -->
