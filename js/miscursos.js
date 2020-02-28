@@ -24,7 +24,6 @@ $(document).ready(function () {
                             <tr data-idcurso="${datos[i][2]}" style="cursor:pointer;" class="go-to-curso" data-toggle="tooltip" title="Ir a ${datos[i][3]}">
                                 <td class="align-middle" style="max-width: 16rem; min-width: 9rem;" scope="row"><img class="img-fluid"  src=${url_2} alt="logo-html5"></td>
                                 <td id="nombre-curso" class="align-middle"><h2 class="h3">${datos[i][3]}</h2></td>
-                                <td id="descripcion-curso" class="align-middle"><h4 class="h4">${datos[i][4]}</h4></td>
                             </tr>
                     `;
                     }

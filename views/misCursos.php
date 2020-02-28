@@ -111,7 +111,6 @@ include '../controllers/sesion.php'
           <thead class="thead-light">
             <tr>
               <th colspan="2">Cusro</th>
-              <th scope="col">Descripción</th>
             </tr>
           </thead>
           <tbody id="lista-tabla-cursos">

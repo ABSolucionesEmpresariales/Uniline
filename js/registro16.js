@@ -15,15 +15,15 @@ $(document).ready(function () {
         $("#autobtn").click();
     });
     $("#confirmar").hide("slow");
-    
+
     /* <---------------------scroll para cambiar logo-----------------------> */
-    $(function(){
-        $(document).scroll(function(){
-            if($(this).scrollTop() > 120) {
-                $('#logo-imagen').attr('src','../img/uniline2.png')
+    $(function () {
+        $(document).scroll(function () {
+            if ($(this).scrollTop() > 120) {
+                $('#logo-imagen').attr('src', '../img/uniline2.png')
             }
-            if($(this).scrollTop() < 120) {        
-             $('#logo-imagen').attr('src','../img/uniline3.png');  
+            if ($(this).scrollTop() < 120) {
+                $('#logo-imagen').attr('src', '../img/uniline3.png');
             }
         });
     });
@@ -31,6 +31,7 @@ $(document).ready(function () {
     /* <---------------------Pintar el body del modal y los loques del curso-----------------------> */
     $(document).on("click", ".curso", function () {
         curso = $(this).data("curso");
+        templeteT = "";
         templete = "";
         $.ajax({
             url: "../controllers/contenido_index.php",
@@ -41,15 +42,19 @@ $(document).ready(function () {
                 let datos = JSON.parse(response);
                 console.log(datos);
                 $.each(datos, function (i, item) {
-                    templete += `
-                    <div class="row mt-0" style="width: 765px"> 
-                        <iframe class="responsive-video" src="${item[8]}" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
-                    </div>
-                    <div class="row border-bottom mb-2 title-responsive"  style="width: 765px">
+                    templeteT += `
+                    <div class="row mb-2 title-responsive"  style="width: 765px">
                         <div class="col-lg-9 col-sm-12 ml-0">
                             <p class="h3 text-bold" style="color:black"><strong>${item[1]}</strong></p>
                         </div>
                     </div>
+                    <button type="button w-2" class="fas fa-times close" style="font-size: 30px;" data-dismiss="modal"></button>
+                    `;
+                    templete += `
+                    <div class="row mt-0" style="width: 765px"> 
+                        <iframe class="responsive-video" src="${item[8]}" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
+                    </div>
+                    
                 
                     <div class="row border-bottom  title-responsive"  style="width: 765px">
                         <div class="col-lg-12 col-sm-12">
@@ -88,6 +93,7 @@ $(document).ready(function () {
                             `;
                         });
                         templete += `</div>`;
+                        $(".modal-header").html(templeteT);
                         $(".view-curso").html(templete);
                         $(".boton-footer").html(
                             `<button type="button" value="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive compras" style="background-color: #fd5601;" data-dismiss="modal">Comprar</button>`
@@ -176,51 +182,51 @@ $(document).ready(function () {
         $("." + controlId).removeClass("d-none");
     });
     /* <---------------------Pintar los cursos-----------------------> */
-function obtener_Cursos() {
-$.ajax({
-url: "../controllers/contenido_index.php",
-type: "POST",
-data: "cursos=cursos",
-success: function (response) {
-console.log(response);
-let datos = JSON.parse(response);
-console.log(datos);
-let templete = ``;
+    function obtener_Cursos() {
+        $.ajax({
+            url: "../controllers/contenido_index.php",
+            type: "POST",
+            data: "cursos=cursos",
+            success: function (response) {
+                console.log(response);
+                let datos = JSON.parse(response);
+                console.log(datos);
+                let templete = ``;
 
-            ocultar = "";
-            contdador_page = 0;
-            cont = 0;
-            total = 0;
-            totaldatos = datos.length;
-            console.log(totaldatos);
-            if (datos.length % 4 == 0) {
-                total = Math.round(datos.length / 4);
-            } else {
-                total = Math.round((datos.length + 1) / 4);
-            }
-            console.log(total);
-
-            for (i = 0; i < datos.length; i++) {
-                                let url_2 = "";
-            let url_3 = "";
-            let url = "";
-            let url3 = "";
-                cont++;
-                if (i != 0) {
-                    ocultar = "d-none";
+                ocultar = "";
+                contdador_page = 0;
+                cont = 0;
+                total = 0;
+                totaldatos = datos.length;
+                console.log(totaldatos);
+                if (datos.length % 4 == 0) {
+                    total = Math.round(datos.length / 4);
+                } else {
+                    total = Math.round((datos.length + 1) / 4);
                 }
-                console.log(i);
-                        url = datos[i][7].split("/");
-                        url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
-                        url3 = datos[i][3].split("/");
-                        url_3 = url[0]+"/"+url3[1]+"/res_"+url3[2];
-                if (i % 4 == 0) {
+                console.log(total);
 
-                    contdador_page++;
-                    templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
-                    console.log("llego" + contdador_page);
-                }
-                templete += `
+                for (i = 0; i < datos.length; i++) {
+                    let url_2 = "";
+                    let url_3 = "";
+                    let url = "";
+                    let url3 = "";
+                    cont++;
+                    if (i != 0) {
+                        ocultar = "d-none";
+                    }
+                    console.log(i);
+                    url = datos[i][7].split("/");
+                    url_2 = url[0] + "/" + url[1] + "/min_" + url[2];
+                    url3 = datos[i][3].split("/");
+                    url_3 = url[0] + "/" + url3[1] + "/res_" + url3[2];
+                    if (i % 4 == 0) {
+
+                        contdador_page++;
+                        templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
+                        console.log("llego" + contdador_page);
+                    }
+                    templete += `
                                     <div class="col-lg-3 course_box bor-responsive">
                                         <div class="card">
                                             <img class="responsive-image"  width="250px" height="150px"  src="${url_3}" alt="Imagen del curso ${datos[i][1]}">
@@ -241,52 +247,58 @@ let templete = ``;
                                             </div>
                                             <div class="card-text mt-3 text-center">
                                                 <div>
-                                                    <img src="${url_2}" class="course_author_image"  alt="Imagen del profesor ${datos[i][6]}">
-                                                </div>
-                                                <div class="course_author_name">
-                                                    <span>${datos[i][6]}</span>
-                                           <button type="button" value="${datos[i][0]}" class="price_box d-flex flex-row align-items-center btn btn-success text-white compras" data-dismiss="modal">
-                                               <div>
-                                               comprar
-                                               </div>
-                                                <div class="course_price d-flex flex-column align-items-center justify-content-center">
-                                                    <span>$${datos[i][8]}</span>
-                                                </div>
-                                            </button>     </div>
-
-                                                <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
+                                                    <div>
+                                                        <img src="${url_2}" class="course_author_image"  alt="Imagen del profesor ${datos[i][6]}">
+                                                    </div>
+                                                    <div class="course_author_name">
+                                                        <span>${datos[i][6]}</span>
+                                                    </div>   
+                                                    <br>
+                                                    <div>
+                                                    <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
+                                                    </div>
+                                                    <div class="row" style="margin-left:1px;">
+                                                        <button type="button" value="${datos[i][0]}" class="boton-compra text-center btn compras" data-dismiss="modal" style="background-color: #373d3d; color: white;">
+                                                            COMPRAR
+                                                        </button>  
+                                                        <div class="div-precio d-flex flex-column align-items-center justify-content-center" style="background-color: #fd5601;" >
+                                                                <span class="text-white">$${datos[i][8]}</span>
+                                                        </div>  
+                                                    
+                                                    </div>       
+                                                </div>              
                                             </div>
 
                                         </div>
                                     </div>
                                     `;
-                if (cont % 4 == 0 || totaldatos == cont) {
-                    templete += `</div>`;
+                    if (cont % 4 == 0 || totaldatos == cont) {
+                        templete += `</div>`;
+                    }
                 }
-            }
-            console.log(cont);
-            templete += `                
+                console.log(cont);
+                templete += `                
             <div class="row m-5">
                 <div class="col-12 text-center">
                 << `;
-            for (y = 0; y < contdador_page; y++) {
-                if (y == 0) {
-                    templete += `<a id="page-${y +
-                        1}" class="m-2 mostrar h4 estado-activo" href="#">${y + 1}</a>`;
-                } else {
-                    templete += `<a id="page-${y +
-                        1}" class="m-2 mostrar h4" href="#">${y + 1}</a>`;
+                for (y = 0; y < contdador_page; y++) {
+                    if (y == 0) {
+                        templete += `<a id="page-${y +
+                            1}" class="m-2 mostrar h4 estado-activo" href="#">${y + 1}</a>`;
+                    } else {
+                        templete += `<a id="page-${y +
+                            1}" class="m-2 mostrar h4" href="#">${y + 1}</a>`;
+                    }
                 }
-            }
-            templete += ` >>
+                templete += ` >>
                 </div>
             </div>`;
 
-            $(".cursos").html(templete);
-        }
-    });
-}
-    
+                $(".cursos").html(templete);
+            }
+        });
+    }
+
     ////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     //// animacion para todos los enlaces que te lleven a un div dentro de la misma pagina

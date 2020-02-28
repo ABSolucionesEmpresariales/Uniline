@@ -69,7 +69,7 @@ session_start();
     <div class="modal-dialog modal-login">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Registrate y obten acceso a los cursos</h4>
+          <h4 class="modal-title">Regístrate y obtén acceso a los cursos</h4>
           <button type="button" class="fas fa-times close" style="font-size: 30px;" data-dismiss="modal"></button>
         </div>
         <div class="modal-body row justify-content-center align-items-center">
@@ -117,10 +117,7 @@ session_start();
     <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content ">
-        <div class="modal-header" >
-
-          <button type="button w-2" class="close" data-dismiss="modal">&times;</button>
-        </div>
+        <div class="modal-header" ></div>
         <div class="modal-body">
           <div class="container view-curso"></div>
         </div>
@@ -261,11 +258,12 @@ session_start();
             <br>
           </div>
       </div>
-
-  </section>
-  <?php
+      <?php
         }
   ?>
+
+  </section>
+  
   <!-- End banner Area -->
   <section class="search-course-area relative" style="height: 40rem">
    

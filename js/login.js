@@ -13,7 +13,7 @@ $(document).ready(function () {
             success: function (response) {
               console.log(response);
                 if (response == 1) {
-                    window.location.replace('../views/mainpage.php');
+                    window.location.replace('../views/misCursos.php');
                     console.log("ingresado");
                     
                 }else if(response == 'ceo'){

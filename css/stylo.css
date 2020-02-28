@@ -382,3 +382,17 @@ background-color: rgb(28, 28, 37);
   .checked-2{
     color: yellow!important;
   }
+  .boton-compra{
+      width: 64%;
+      height: 67px;
+      background: #eaebec;
+      margin-top: 41px;
+      margin-right: 0px;
+
+  }
+  .div-precio{
+    width: 30%;
+    height: 67px;
+    background: #eaebec;
+    margin-top: 41px;
+}
