@@ -267,6 +267,10 @@ background-color: rgb(28, 28, 37);
   top:0px; 
   height: 100%; 
   background-color: rgb(245, 245, 245);
+
+  -webkit-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
 }
 /* estilo checkbox*/
 .demo input[type="checkbox"] {
@@ -418,4 +422,19 @@ background-color: rgb(28, 28, 37);
   border: 1px solid rgb(122, 122, 122);
   border-radius: 2px;
   border-bottom: 1px solid rgb(145, 143, 143);
+}
+.nav-style{
+  margin-bottom: 0;
+  -webkit-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+}
+.area-comentarios{
+  max-height: 25rem;
+   height: 45rem;
+   border-radius: 5px;
+   margin-bottom: 0;
+   -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
+   -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
+   box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
 }
