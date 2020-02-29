@@ -206,14 +206,14 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                     <div class="tab-pane container fade" id="contenido-cursos">
                       <!--contenido de los cursos cuando es responsive-->
                     </div>
-                    <div class="tab-pane container text-justify h-scroll" id="descripcion" style="font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
+                    <div class="tab-pane container text-justify h-scroll" id="descripcion" style=" padding-top:2rem; font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
                       <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
                       <br>
                       <div class="container descripcion-tema">
 
                       </div>
                     </div>
-                    <div class="tab-pane container fade" id="archivos">
+                    <div class="tab-pane container fade" id="archivos" style=" padding-top:2rem;">
                       Descargar archivos
                       <br>
                       <br>
@@ -434,7 +434,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
           </p>
           <ul class="list-inline  mt-0 clock text-center">
             <li class="list-inline-item">
-              <a href="#">Politicas de Privacidad</a>
+              <a href="avisodeprivacidad.php">Politicas de Privacidad</a>
             </li>
             <li class="list-inline-item">
               <a href="#">Imagen Corporativa</a>

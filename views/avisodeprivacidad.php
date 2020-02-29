@@ -96,7 +96,7 @@ session_start();
                             <?php
                             if (isset($_SESSION['acceso'])) {
                             ?>
-                                <li class="mt-3"><a class="text-center" href="#home-banner" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                                 <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
                                 <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
@@ -136,7 +136,7 @@ session_start();
     </header><!-- #header -->
 
 
-    <div class="card col-lg-12 contenido">
+    <div class="card contenido">
         <div class="card-body">
             <div id="contenedorimg">
                 <img class="img-fluid" src="../img/image.png">
