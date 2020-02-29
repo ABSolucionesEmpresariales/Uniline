@@ -437,7 +437,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
               <a href="avisodeprivacidad.php">Politicas de Privacidad</a>
             </li>
             <li class="list-inline-item">
-              <a href="#">Imagen Corporativa</a>
+              <a href="imagenCorporativa.php">Imagen Corporativa</a>
             </li>
           </ul>
         </div>
