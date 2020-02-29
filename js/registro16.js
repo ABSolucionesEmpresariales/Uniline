@@ -47,6 +47,9 @@ $(document).ready(function () {
                         <div class="col-lg-9 col-sm-12 ml-0">
                             <p class="h3 text-bold" style="color:black"><strong>${item[1]}</strong></p>
                         </div>
+                        <div class="col-lg-3 col-sm-12 mb-0">
+                            <button type="button" value="${curso}" class="btn btn-md btn-outline-secondary text-white botton-responsive compras ml-0" style="background-color: #fd5601;" data-dismiss="modal">Comprar</button>
+                        </div>
                     </div>
                     <button type="button w-2" class="fas fa-times close" style="font-size: 30px;" data-dismiss="modal"></button>
                     `;
@@ -73,10 +76,10 @@ $(document).ready(function () {
                         let datos = JSON.parse(response);
                         templete += `                    
                         <div class="row title-responsive" style="width: 765px">
-                            <p class="h3 p-2 cont-curso-responsive" style="margin-left:280px;color:black;"><strong>Contenido del curso</strong></p>`;
+                            <p class="h3 p-2 cont-curso-responsive clickear" style="margin-left:280px;color:black;"><strong>Contenido del curso</strong></p>`;
                         $.each(datos, function (i, item) {
                             templete += `
-                                <div class="col-12 border-bottom">
+                                <div class="col-12 border-bottom slide-content-curso m-0" style="cursor:pointer;">
                                     <div class="row">
                                         <div class="col-12">
                                             <p style="cursor:pointer;color:black;" data-bloque="bloque-${
@@ -95,15 +98,13 @@ $(document).ready(function () {
                         templete += `</div>`;
                         $(".modal-header").html(templeteT);
                         $(".view-curso").html(templete);
-                        $(".boton-footer").html(
-                            `<button type="button" value="${curso}" class="btn btn-md btn-outline-secondary border border-secondary text-white botton-responsive compras" style="background-color: #fd5601;" data-dismiss="modal">Comprar</button>`
-                        );
                         $("#date-modal").click();
                     }
                 });
             }
         });
     });
+
 
     /* <--------------------- Generar checkout de pago de stripe -----------------------> */
     $(document).on("click", ".compras", function (event) {
@@ -258,7 +259,7 @@ $(document).ready(function () {
                                                     <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
                                                     </div>
                                                     <div class="row" style="margin-left:1px;">
-                                                        <button type="button" value="${datos[i][0]}" class="boton-compra text-center btn compras" data-dismiss="modal" style="background-color: #373d3d; color: white;">
+                                                        <button type="button" value="${datos[i][0]}" class="btn boton-compra text-center hover-boton compras" data-dismiss="modal" style="background-color: #373d3d; color: white;">
                                                             COMPRAR
                                                         </button>  
                                                         <div class="div-precio d-flex flex-column align-items-center justify-content-center" style="background-color: #fd5601;" >
