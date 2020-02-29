@@ -423,7 +423,6 @@ box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
   border-radius: 2px;
   border-bottom: 1px solid rgb(145, 143, 143);
 }
-<<<<<<< HEAD
 .nav-style{
   margin-bottom: 0;
   -webkit-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
@@ -438,9 +437,7 @@ box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
    -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
    -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
    box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
-=======
-
+}
 .hover-boton:hover{
   background-color: #858888;
->>>>>>> Dashboard
 }
