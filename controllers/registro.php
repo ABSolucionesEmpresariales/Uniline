@@ -34,11 +34,7 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
     $datos_verificar = array($_POST['TEmail']);
     $resultado = json_encode($conexion->consultaPreparada($datos_verificar,$consulta_verificar,2,'s', false, null));
 
-    $consulta_verificar_2 = "SELECT * FROM usuario WHERE nombre = ?";
-    $datos_verificar_2 = array($_POST['TNombre']);
-    $resultado_2 = json_encode($conexion->consultaPreparada($datos_verificar_2,$consulta_verificar_2,2,'s',false, null));
-
-    if($resultado != '[]' || $resultado_2 != '[]'){
+    if($resultado != '[]'){
         echo 'Existe';
     }else{
       if(isset($_FILES['Fimagen'])){

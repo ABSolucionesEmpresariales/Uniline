@@ -51,10 +51,10 @@ $(document).ready(function () {
                             <button type="button" value="${curso}" class="btn btn-md btn-outline-secondary text-white botton-responsive compras ml-0" style="background-color: #fd5601;" data-dismiss="modal">Comprar</button>
                         </div>
                     </div>
-                    <button type="button w-2" class="fas fa-times close" style="font-size: 30px;" data-dismiss="modal"></button>
+                    <button type="button w-2" class="fas fa-times close closeModalCurso" style="font-size: 30px;" data-dismiss="modal"></button>
                     `;
                     templete += `
-                    <div class="row mt-0" style="width: 765px"> 
+                    <div id="videoModal" class="row mt-0" style="width: 765px"> 
                         <iframe class="responsive-video" src="${item[8]}" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
                     </div>
                     
@@ -96,7 +96,7 @@ $(document).ready(function () {
                             `;
                         });
                         templete += `</div>`;
-                        $(".modal-header").html(templeteT);
+                        $(".header-curso").html(templeteT);
                         $(".view-curso").html(templete);
                         $("#date-modal").click();
                     }
@@ -109,6 +109,10 @@ $(document).ready(function () {
     /* <--------------------- Generar checkout de pago de stripe -----------------------> */
     $(document).on("click", ".compras", function (event) {
         let idcurso = $(this).val();
+        console.log("Entro a quitar video");
+        templete = "";
+        templete = `<iframe class="responsive-video" src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        $("#videoModal").html(templete);
         $.post("../controllers/checkout.php", { idcurso: idcurso }, function (
             response
         ) {
@@ -256,7 +260,7 @@ $(document).ready(function () {
                                                     </div>   
                                                     <br>
                                                     <div>
-                                                    <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
+                                                        <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
                                                     </div>
                                                     <div class="row" style="margin-left:1px;">
                                                         <button type="button" value="${datos[i][0]}" class="btn boton-compra text-center hover-boton compras" data-dismiss="modal" style="background-color: #373d3d; color: white;">
@@ -329,7 +333,7 @@ $(document).ready(function () {
             console.log("si llego");
             $("#alertas").removeClass("alert-success");
             $("#alertas").addClass("alert-danger");
-            $("#alertas").html("<h4>Por favor llene todos los campos</>");
+            $("#alertas").html("<h5>Por favor llene todos los campos</h5>");
             $("#alertas").slideDown("slow");
             setTimeout(function () {
                 $("#alertas").slideUp("slow");
@@ -347,7 +351,7 @@ $(document).ready(function () {
                         console.log(response);
                         $("#alertas").removeClass("alert-success");
                         $("#alertas").addClass("alert-danger");
-                        $("#alertas").html("<h4>Este usuario ya esta registrado</h4>");
+                        $("#alertas").html("<h5>Este usuario ya esta registrado</h5>");
                         $("#alertas").slideDown("slow");
                         setTimeout(function () {
                             $("#alertas").slideUp("slow");
@@ -357,7 +361,7 @@ $(document).ready(function () {
                         $("#alertas").removeClass("alert-success");
                         $("#alertas").addClass("alert-danger");
                         $("#alertas").html(
-                            "<h4>Ups! hubo un error, intentelo de nuevo</h4>"
+                            "<h5>Ups! hubo un error, intentelo de nuevo</h5>"
                         );
                         $("#alertas").slideDown("slow");
                         setTimeout(function () {
@@ -369,7 +373,7 @@ $(document).ready(function () {
                         $("#alertas").removeClass("alert-danger");
                         $("#alertas").addClass("alert-success");
                         $("#alertas").html(
-                            "<h4>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</>"
+                            "<h5>¡Listo! te enviamos un e-mail a tu correo para verificar tu cuenta</h5>"
                         );
                         $("#alertas").slideDown("slow");
                         setTimeout(function () {
@@ -381,4 +385,12 @@ $(document).ready(function () {
             });
         }
     });
+
+    $(document).on('click','.closeModalCurso',function(){
+        console.log("Entro a quitar video");
+        templete = "";
+        templete = `<iframe class="responsive-video" src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        $("#videoModal").html(templete);
+    });
+
 });

@@ -50,7 +50,8 @@ session_start();
   <script src="../js/jquery.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-  <script src="../js/registro16.js"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="../js/registro21.js"></script>
   <script src="../js/login.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -117,7 +118,7 @@ session_start();
     <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content ">
-        <div class="modal-header" ></div>
+        <div class="modal-header header-curso" ></div>
         <div class="modal-body">
           <div class="container view-curso"></div>
         </div>

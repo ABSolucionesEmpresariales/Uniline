@@ -11,9 +11,9 @@ $conexion = new Modelos\Conexion();
 $email = $_POST['TEmail'];
 $password = $_POST['TPassword'];
 
-$consulta = "SELECT * FROM usuario WHERE email = ? OR nombre = ?";
-$datos = array($_POST['TEmail'],$_POST['TEmail']);
-$resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'ss', false, null));
+$consulta = "SELECT * FROM usuario WHERE email = ?";
+$datos = array($_POST['TEmail']);
+$resultado = json_encode($conexion->consultaPreparada($datos,$consulta,2,'s', false, null));
 $result = json_decode($resultado);
 
 
