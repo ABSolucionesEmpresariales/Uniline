@@ -595,8 +595,27 @@ template_cometarios +=`
 
         // MOSTRAR EXAMEN AL HACER CLIC EN EL ENLACE
         $(document).on("click",".mostrar-examen", function () {
-
         if($(this).hasClass('realizado') == false){
+            var iframe = $(document).find("#jalaporfa2 iframe");
+            console.log(iframe);
+            var player = new Vimeo.Player(iframe);
+            player.pause().then(function() {
+                console.log("entro");
+              }).catch(function(error) {
+                switch (error.name) {
+                  case 'PasswordError':
+                      // The video is password-protected
+                      break;
+              
+                  case 'PrivacyError':
+                      // The video is private
+                      break;
+              
+                  default:
+                      // Some other error occurred
+                      break;
+                }
+              });
             idExamen_seleccionado = $(this).attr("id");
             //$('#'+idExamen_seleccionado).prev('label').prev('input').attr('checked','true');
             $("#cambio-examen-video").addClass("d-none");

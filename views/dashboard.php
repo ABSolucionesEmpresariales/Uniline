@@ -501,7 +501,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../js/elements_custom.js"></script>
   <script src="../js/jquery.confetti.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="../js/dashboard41.js"></script>
+  <script src="../js/dashboard42.js"></script>
   
 
 </body>
