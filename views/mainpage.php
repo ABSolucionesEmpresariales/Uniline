@@ -265,9 +265,9 @@ session_start();
   </section>
   
   <!-- End banner Area -->
-  <section class="search-course-area relative" style="height: 40rem">
+  <img src="../img/nuestros-cursos.png" style="width: 100%;
+  height: auto;"> 
 
-  </section>
   
   <!-- Popular -->
 
@@ -296,8 +296,8 @@ session_start();
           <br>
           <br>
           
-          <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between" style="margin-left: -3rem">
-            <div class="single-contact-address d-inline-block">
+          <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between" style="margin-left: 0">
+            <div class="single-contact-address d-inline-block" style="max-height: 2rem;">
               <div class="icon">
                 <span class="fa fa-home" style="font-size: 30px"></span>
               </div>
@@ -308,7 +308,7 @@ session_start();
                 </p>
               </div>
             </div>
-            <div class="single-contact-address d-inline-block">
+            <div class="single-contact-address d-inline-block" style="max-height: 2rem;">
               <div class="icon">
                 <span class="fa fa-phone" style="font-size: 30px"></span>
               </div>
@@ -317,7 +317,7 @@ session_start();
                 <p>Lunes a Viernes con atención de 9:00 a 16:00 horas</p>
               </div>
             </div>
-            <div class="single-contact-address d-inline-block">
+            <div class="single-contact-address d-inline-block" style="max-height: 2rem;">
               <div class="icon">
                 <span class="fa fa-envelope" style="font-size: 30px"></span>
               </div>
