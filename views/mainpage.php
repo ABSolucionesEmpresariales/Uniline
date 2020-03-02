@@ -207,8 +207,10 @@ session_start();
           </form>
 
           <!-- Register -->
-          <p>¿No tienes cuenta?
+          <p>¿No tienes cuenta? 
             <a id="ir-a-registro" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#">Registrate</a>
+            ¿Olvidaste tu contraseña?
+            <a id="ir-a-pass-reset" data-toggle="modal" class="text-center" data-target="#modal-reset-pass" href="#">Click Aquí</a>
           </p>
 
         </div>
