@@ -260,7 +260,7 @@ $(document).ready(function () {
                                                     </div>   
                                                     <br>
                                                     <div>
-                                                    <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
+                                                        <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
                                                     </div>
                                                     <div class="row" style="margin-left:1px;">
                                                         <button type="button" value="${datos[i][0]}" class="btn boton-compra text-center hover-boton compras" data-dismiss="modal" style="background-color: #373d3d; color: white;">
