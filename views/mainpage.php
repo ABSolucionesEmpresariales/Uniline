@@ -118,7 +118,7 @@ session_start();
     <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content ">
-        <div class="modal-header" ></div>
+        <div class="modal-header header-curso" ></div>
         <div class="modal-body">
           <div class="container view-curso"></div>
         </div>
