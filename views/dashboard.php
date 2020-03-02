@@ -276,10 +276,10 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
               <!-- seccion de comentarios -->
               <div id="div-original-comentarios">
-                <div id="mov-coments" class="container comments-area col" style="min-height: 30rem; height: 45rem;">
+                <div id="mov-coments" class="container col" style="min-height: 30rem; height: 45rem; background-color: rgb(243, 243, 243); padding: 2rem 5rem;">
                   <h3 class="h3">Comentarios del curso</h3>
                   <br>
-                  <section id="area-comentarios" class="container c-scroll area-comentarios border">
+                  <section id="area-comentarios" class="c-scroll area-comentarios border">
 
                   </section>
                   
@@ -312,10 +312,9 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
   <div id="seccion-tareas" class="area-tareas pl-5 pr-5" style="display:none;">
     <div id="tareas">
-      <hr>
       <h4 class="h4">Sube tus tareas aqui</h4>
       <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
-      <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12">
+      <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12" style="background-color: white; border:0;">
         <div class="input-group">
           <div class="custom-file col-lg-10 col-sm-12 border no-padding" style="height: 4rem;">
             <input type="file" name="Fimagen" class="text-black col-lg-10 col-sm-5 no-padding" id="customFile" style="height: 4rem;">            

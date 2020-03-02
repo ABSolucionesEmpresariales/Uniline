@@ -59,10 +59,12 @@ $(document).ready(function () {
                         templete_comentarios = ``;
                         $.each(datos,function(i,item){
                             templete_comentarios += `
-                            <div id="comentarios-${i+1}" class="border-bottom" style="height:15rem;">
-                                <li id="userComment" class="list-group list-group-action">${item[0]}</li>
-                                <li id="comment" class="list-group pl-5 pt-3 text-bold">${item[1]}</li>
-                                <li id="date" class="float-right list-group">${item[2]} ${item[3]}</li>
+                            <div id="comentarios-${i+1}" class="" style="height:auto; padding: 1rem 3rem; background-color: white;">
+                                <div class="container border" style="box-shadow: 10px 5px 10px #EDEDED; border-radius: 1rem;">
+                                    <li id="userComment" class="list-group list-group-action font-weight-bold">${item[0]}</li>
+                                    <li id="comment" class="list-group pl-5 pt-3 text-bold">${item[1]}</li>
+                                    <li id="date" class="float-right list-group font-weight-bold">${item[2]} ${item[3]}</li>
+                                </div>
                             </div>
                             `; 
                         });
@@ -384,8 +386,8 @@ template_cometarios +=`
                 datos = JSON.parse(response)
                 console.log(datos);
     template = `
-                <div style="margin-top: 2rem; background-color:  #5ca8ff;">
-                    <h4 style="padding: 1rem;" class="h4 text-center widget_title mt-3 text-white">Contenido del curso</h4>
+                <div style="margin-top: 0rem; background-color:  #5ca8ff;">
+                    <h4 style="padding: 1rem;" class="h4 text-center widget_title text-white">Contenido del curso</h4>
                 </div>
                 <div class="demo text-center mostrar-curso-content temas-hover border-bottom" style="cursor: pointer;">
                     <label class=" p-3" style="cursor: pointer;">Introduccion del curso</label>
