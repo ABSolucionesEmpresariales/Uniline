@@ -96,7 +96,7 @@ $(document).ready(function () {
                             `;
                         });
                         templete += `</div>`;
-                        $(".modal-header").html(templeteT);
+                        $(".header-curso").html(templeteT);
                         $(".view-curso").html(templete);
                         $("#date-modal").click();
                     }
