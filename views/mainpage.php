@@ -194,7 +194,7 @@ session_start();
           <form method="post" id="myLogin">
             <div class="form-group">
               <i class="fa fa-user"></i>
-              <input name="TEmail" type="text" class="form-control" id="ingresar-email" placeholder="Correo electronico o usuario" required="required">
+              <input name="TEmail" type="text" class="form-control" id="ingresar-email" placeholder="Correo electronico" required="required">
             </div>
             <div class="form-group">
               <i class="fa fa-lock"></i>
@@ -297,7 +297,7 @@ session_start();
           <br>
           
           <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between" style="margin-left: 0">
-            <div class="single-contact-address d-inline-block" style="max-height: 2rem;">
+            <div class="single-contact-address d-inline-block" style="max-width: 20rem;">
               <div class="icon">
                 <span class="fa fa-home" style="font-size: 30px"></span>
               </div>
@@ -308,7 +308,7 @@ session_start();
                 </p>
               </div>
             </div>
-            <div class="single-contact-address d-inline-block" style="max-height: 2rem;">
+            <div class="single-contact-address d-inline-block" style="max-width: 20rem;">
               <div class="icon">
                 <span class="fa fa-phone" style="font-size: 30px"></span>
               </div>
@@ -317,7 +317,7 @@ session_start();
                 <p>Lunes a Viernes con atención de 9:00 a 16:00 horas</p>
               </div>
             </div>
-            <div class="single-contact-address d-inline-block" style="max-height: 2rem;">
+            <div class="single-contact-address d-inline-block" style="max-width: 20rem;">
               <div class="icon">
                 <span class="fa fa-envelope" style="font-size: 30px"></span>
               </div>

@@ -189,6 +189,7 @@ include '../controllers/sesion.php'
                       </div>
                     
                     <button id="actualizar" class="btn-primary primary-btn text-uppercase btn-sm-block" type="submit" name="submit">Guardar cambios</button>
+                    <br>
                 </div>
               </div>
             </div>

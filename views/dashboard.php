@@ -188,7 +188,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
               <div class="col details-content no-padding" style="min-height: 27rem;border-bottom: rgb(0,0,0);">
                 <div class="jq-tab-wrapper no-padding" id="horizontalTab">
                   <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding nav-style">
-                    <ul class="nav no-padding" id="nav-barra">
+                    <ul class="nav no-padding" id="nav-barra" style="padding-left: 2rem;">
                       <li class="nav-item no-padding">
                         <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
                       </li>
@@ -277,7 +277,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 <div id="mov-coments" class="container comments-area col" style="min-height: 30rem; height: 45rem;">
                   <h3 class="h3">Comentarios del curso</h3>
                   <br>
-                  <section id="area-comentarios" class="container c-scroll area-comentarios">
+                  <section id="area-comentarios" class="container c-scroll area-comentarios border">
 
                   </section>
                   
@@ -296,7 +296,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
           <div id="mov-div" class="col-lg-3 col-md-5 col-sm-12 search-course-right section-gap fondo-lista">
             <div class="col bg-color-lista no-padding">
-              <div id="tam-pantalla" class="lista-curso-aside single_sidebar_widget post_category_widget mover h-scroll sticky-aside" style="height: 50%;">
+              <div id="tam-pantalla" class="lista-curso-aside single_sidebar_widget post_category_widget mover h-scroll sticky-aside" style="height: 50%; padding-right: 1rem;">
                 <!--loades lista-->
               </div>
             </div>
@@ -499,7 +499,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../js/elements_custom.js"></script>
   <script src="../js/jquery.confetti.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="../js/dashboard41.js"></script>
+  <script src="../js/dashboard42.js"></script>
   
 
 </body>

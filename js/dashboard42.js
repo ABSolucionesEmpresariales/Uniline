@@ -420,7 +420,7 @@ template_cometarios +=`
                                 <div class="demo contenedor flex align-items-center cont-actividades temas-hover border-bottom">
                                     <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
                                     <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
-                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">Examen ${i+1}: ${datos[i][0][1]}</a>
+                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">Examen ${i+1}</a>
                                 </div>`;
                         }else if(y == 1){
                             template += `
@@ -428,7 +428,7 @@ template_cometarios +=`
                                 <div class="flex align-items-center temas-hover border-bottom">
                                     <input type="checkbox" id="customCheck-bloque-${(i+1)+"-"+(y-1)}" name="example1" ${control_seleccion}>
                                     <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center"><span class="registro_tema"></span></label>
-                                    <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">${datos[i][2]}</a>
+                                    <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer; font-weight: bold;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">${datos[i][2]}</a>
                                 </div>
                                 <div class="span-${(i+1)+"-"+(y-1)}" style="display: none;">`;
                                 cont = 0;
@@ -465,8 +465,10 @@ template_cometarios +=`
                         }else if(y == 4){
                             for(z = 0; z< datos[i][4].length; z++){
                                 template += `
-                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea} pt-3 row justify-content-between">
-                                        <button data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="col-5 h5 mostrar-tareas primary-btn btn-primary" href="#seccion-tareas" style="padding: 0;">Subir mi tarea</button>
+                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea}">
+                                        <div class="text-center">Tareas</div>
+                                        <div class="pt-3 row justify-content-between">
+                                        <button data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="col-5 mostrar-tareas btn boton-tarea btn-light" href="#seccion-tareas">Subir</button>
                                             
                                                 `;
                                                 datdoles = "";
@@ -474,14 +476,16 @@ template_cometarios +=`
                                                 if(datos[i][4][0][3]){
                                                     datos_dow = datos[i][4][0][3].split("/");
                                                     datdoles = datos_dow[2];
-                                                    tema = "Descargar Tarea"
+                                                    tema = "Descargar"
                                                 }else{
                                                     tema = "No hay archivo disponible";
                                                     datdoles = "";
                                                 }
-                                                template += ` <button class="col-5 primary-btn btn-primary" href="${datos[i][4][0][3]}" download="${datdoles}" style="padding: 0; line-height:  20px;">${tema}</button>
+                                                template += ` <button class="col-5 btn boton-tarea btn-light" href="${datos[i][4][0][3]}" download="${datdoles}" style="border-radius:5px; padding: 0; line-height:  20px;">${tema}</button>
                                                 
                                             
+                                        </div>
+                                        
                                         </div>
                                     </div>
                                 </div>
