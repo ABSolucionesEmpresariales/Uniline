@@ -76,8 +76,8 @@ class Email
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Recuperar contraseña Uniline';
-            $mail->Body    = "<a href='https://www.escuelaalreves.com/controllers/resetPass.php?vkey=$this->vkey'>Recuperar contrasena</a>";
-            $mail->AltBody = "<a href='https://www.escuelaalreves.com/controllers/resetPass.php?vkey=$this->vkey'>Recuperar contrasena</a>";
+            $mail->Body    = "<a href='https://www.escuelaalreves.com/controllers/resetPass.php?vkey=$this->vkey'&correo=$this->email>Recuperar contrasena</a>";
+            $mail->AltBody = "<a href='https://www.escuelaalreves.com/controllers/resetPass.php?vkey=$this->vkey'&correo=$this->email>Recuperar contrasena</a>";
 
             $mail->send();
 
