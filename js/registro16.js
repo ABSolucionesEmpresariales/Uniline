@@ -109,6 +109,10 @@ $(document).ready(function () {
     /* <--------------------- Generar checkout de pago de stripe -----------------------> */
     $(document).on("click", ".compras", function (event) {
         let idcurso = $(this).val();
+        console.log("Entro a quitar video");
+        templete = "";
+        templete = `<iframe class="responsive-video" src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        $("#videoModal").html(templete);
         $.post("../controllers/checkout.php", { idcurso: idcurso }, function (
             response
         ) {
@@ -384,6 +388,7 @@ $(document).ready(function () {
 
     $(document).on('click','.closeModalCurso',function(){
         console.log("Entro a quitar video");
+        templete = "";
         templete = `<iframe class="responsive-video" src="" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
         $("#videoModal").html(templete);
     });
