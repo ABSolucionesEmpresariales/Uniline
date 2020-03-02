@@ -247,11 +247,13 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                               $colculo = round($calculo);
                               if ($colculo == 100) {
                                 $colculo = 1;
-                              } else {
+                              }else if($colculo < 10){
+                                $colculo = ".0".$colculo;
+                              }else {
                                 $colculo = "." . $colculo;
                               }
                               ?>
-                              <div id="progreso" class="loader mb-0" data-perc="<?php echo  $colculo ?>"></div>
+                              <div id="progreso" class="loader mb-0" data-perc=".04"></div>
                             </div>
                           </div>
                         </div>
