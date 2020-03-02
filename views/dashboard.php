@@ -188,7 +188,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
               <div class="col details-content no-padding" style="min-height: 27rem;border-bottom: rgb(0,0,0);">
                 <div class="jq-tab-wrapper no-padding" id="horizontalTab">
                   <nav class="navbar navbar-expand-lg navbar-light bg-light no-padding nav-style">
-                    <ul class="nav no-padding" id="nav-barra">
+                    <ul class="nav no-padding" id="nav-barra" style="padding-left: 2rem;">
                       <li class="nav-item no-padding">
                         <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
                       </li>
@@ -276,10 +276,10 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
               <!-- seccion de comentarios -->
               <div id="div-original-comentarios">
-                <div id="mov-coments" class="container comments-area col" style="min-height: 30rem; height: 45rem;">
+                <div id="mov-coments" class="container col" style="min-height: 30rem; height: 45rem; background-color: rgb(243, 243, 243); padding: 2rem 5rem;">
                   <h3 class="h3">Comentarios del curso</h3>
                   <br>
-                  <section id="area-comentarios" class="container c-scroll area-comentarios">
+                  <section id="area-comentarios" class="c-scroll area-comentarios border">
 
                   </section>
                   
@@ -298,7 +298,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
           <div id="mov-div" class="col-lg-3 col-md-5 col-sm-12 search-course-right section-gap fondo-lista">
             <div class="col bg-color-lista no-padding">
-              <div id="tam-pantalla" class="lista-curso-aside single_sidebar_widget post_category_widget mover h-scroll sticky-aside" style="height: 50%;">
+              <div id="tam-pantalla" class="lista-curso-aside single_sidebar_widget post_category_widget mover h-scroll sticky-aside" style="height: 50%; padding-right: 1rem;">
                 <!--loades lista-->
               </div>
             </div>
@@ -312,10 +312,9 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
   <div id="seccion-tareas" class="area-tareas pl-5 pr-5" style="display:none;">
     <div id="tareas">
-      <hr>
       <h4 class="h4">Sube tus tareas aqui</h4>
       <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
-      <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12">
+      <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12" style="background-color: white; border:0;">
         <div class="input-group">
           <div class="custom-file col-lg-10 col-sm-12 border no-padding" style="height: 4rem;">
             <input type="file" name="Fimagen" class="text-black col-lg-10 col-sm-5 no-padding" id="customFile" style="height: 4rem;">            

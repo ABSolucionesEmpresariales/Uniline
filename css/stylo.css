@@ -40,6 +40,14 @@ max-width: 25%;
 .respons{
   max-width: 300px!important;
 }
+/*acaba menu responsivo del contenido*/
+
+.bg-color-lista{
+  position:absolute; 
+  top:0px; 
+  height: 100%; 
+  background-color: rgb(250, 250, 250);
+}
 }
 /*iPhone X?*/
 @media (min-width: 375px) {
@@ -67,6 +75,15 @@ max-width: 25%;
 .respons{
   max-width: 375px!important;
 }
+/*acaba menu responsivo del contenido*/
+
+.bg-color-lista{
+  position:absolute; 
+  top:0px; 
+  height: 100%; 
+  background-color: rgb(250, 250, 250);;
+
+}
 }
 /*iPhone 6 Plus*/
 @media (min-width: 377px) {
@@ -87,6 +104,14 @@ max-width: 25%;
 .respons{
   max-width: 377px!important;
 }
+/*acaba menu responsivo del contenido*/
+
+.bg-color-lista{
+  position:absolute; 
+  top:0px; 
+  height: 100%; 
+  background-color: rgb(250, 250, 250);;
+}
 }
 /*md*/
 @media (min-width: 768px) {
@@ -106,6 +131,18 @@ max-width: 25%;
 }
 .respons{
   max-width: 768px!important;
+}
+/*acaba menu responsivo del contenido*/
+
+.bg-color-lista{
+  position:absolute; 
+  top:0px; 
+  height: 100%; 
+  background-color: rgb(250, 250, 250);;
+
+  -webkit-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
 }
 }
 /*lg*/
@@ -133,6 +170,18 @@ max-width: 25%;
 }
 .respons{
   max-width: 992px!important;
+}
+/*acaba menu responsivo del contenido*/
+
+.bg-color-lista{
+  position:absolute; 
+  top:0px; 
+  height: 100%; 
+  background-color: rgb(250, 250, 250);;
+
+  -webkit-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
 }
 }
 /*xl*/
@@ -239,7 +288,7 @@ background-color: rgb(28, 28, 37);
 .scroll{
   overflow-y: scroll;
   max-height: 30rem;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(255, 255, 255);
 }
 ::-webkit-scrollbar {
   display: none;
@@ -259,19 +308,6 @@ background-color: rgb(28, 28, 37);
   padding: 14px;
   text-decoration: none;
 }
-
-/*acaba menu responsivo del contenido*/
-
-.bg-color-lista{
-  position:absolute; 
-  top:0px; 
-  height: 100%; 
-  background-color: rgb(255, 255, 255);
-
-  -webkit-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
-}
 /* estilo checkbox*/
 .demo input[type="checkbox"] {
 	display: none;
@@ -289,7 +325,7 @@ box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
   font-size: 16px; color: rgb(87, 87, 87);
 }
 .area-tareas{
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(255, 255, 255);
 }
 .sticky-aside{
   position: -webkit-sticky; 
@@ -433,11 +469,27 @@ box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
   max-height: 25rem;
    height: 45rem;
    border-radius: 5px;
-   margin-bottom: 0;
-   -webkit-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
-   -moz-box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
-   box-shadow: 0px 0px 9px -1px rgba(0,0,0,0.75);
+   margin-bottom: 1rem;
 }
 .hover-boton:hover{
   background-color: #858888;
+}
+.nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active {
+  text-decoration: none;
+  background-color:rgb(217, 236, 232);
+  
+}
+.boton-tarea{
+  -webkit-box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75);
+border-radius:5px;
+ padding: 0;
+ color:#016793a1;
+ max-width: 11rem;
+ height: 3rem;
+}
+.boton-tarea:hover{
+  background-color: rgb(11,184,155);
+  color: white;
 }
