@@ -110,7 +110,7 @@ include '../controllers/sesion.php'
         <table class="table table-hover">
           <thead class="thead-light">
             <tr>
-              <th colspan="2">Cusro</th>
+              <th colspan="2">Curso</th>
             </tr>
           </thead>
           <tbody id="lista-tabla-cursos">
