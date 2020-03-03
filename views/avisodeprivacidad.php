@@ -57,6 +57,17 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <style>
+        @media (min-width: 377px) {
+            .contenido {
+            margin-left: 20rem;
+            margin-right: 20rem;
+            padding-left:5rem;
+            padding-right:5rem;
+        }
+                }
+        a{
+            font-size: 15px;
+        }
         p {
             text-align: justify;
             color: black;
@@ -64,6 +75,40 @@ session_start();
 
         h1 {
             text-align: center;
+            font-weight: bold;
+        }
+        h5 {
+
+            font-size: 20px;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
+            background-color: #fff;
+        }
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem;
+        }
+        .card-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 1.25rem;
         }
 
         #contenedorimg img {
@@ -74,7 +119,8 @@ session_start();
         }
 
         .contenido {
-            margin: 0 auto;
+            padding-left:5rem;
+            padding-right:5rem;
         }
 
         .foter {
@@ -97,9 +143,9 @@ session_start();
                             if (isset($_SESSION['acceso'])) {
                             ?>
                                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                                <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                                     <?php
                                     $url = "";
@@ -121,9 +167,9 @@ session_start();
                             } else {
                             ?>
                                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                                <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                                 <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
-                                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                                 <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Iniciar sesion</a></li>
                             <?php
                             }
@@ -138,12 +184,12 @@ session_start();
 
     <div class="card contenido">
         <div class="card-body">
-            <div id="contenedorimg">
+            <div id="contenedorimg" style="margin-top: 3rem;">
                 <img class="img-fluid" src="../img/image.png">
             </div>
             <br>
         </div>
-        <div class="contenido container">
+        <div class="">
             <div id="divparrafo1">
                 <p> Gracias por unirte a nosotros, en UNILINE escuela al revés queremos
                     agradecerte por ser parte de este gran movimiento, queremos hacerte
@@ -518,7 +564,6 @@ session_start();
 
 
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="../js/vendor/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="../js/vendor/bootstrap.min.js"></script>
