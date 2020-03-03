@@ -97,9 +97,9 @@ session_start();
                             if (isset($_SESSION['acceso'])) {
                             ?>
                                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                                <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                                 <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
                                     <?php
                                     $url = "";
@@ -121,9 +121,9 @@ session_start();
                             } else {
                             ?>
                                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                                <li class="mt-3"><a class="text-center" href="#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                                 <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
-                                <li class="mt-3"><a class="text-center" href="#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
                                 <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Iniciar sesion</a></li>
                             <?php
                             }

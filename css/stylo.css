@@ -493,3 +493,6 @@ border-radius:5px;
   background-color: rgb(11,184,155);
   color: white;
 }
+a:focus{
+  color: rgb(255, 94, 0)!important;
+}
