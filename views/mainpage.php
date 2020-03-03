@@ -189,9 +189,6 @@ session_start();
         </div>
         <div class="alerta-login"></div>
         <div class="modal-body">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-          </ul>
           <form method="post" id="myLogin">
             <div class="form-group">
               <i class="fa fa-user"></i>
@@ -207,17 +204,31 @@ session_start();
           </form>
 
           <!-- Register -->
-          <p>¿No tienes cuenta? 
+          <p class="extra-options">¿No tienes cuenta? 
             <a id="ir-a-registro" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#">Registrate</a>
-            ¿Olvidaste tu contraseña?
-            <a id="ir-a-pass-reset" data-toggle="modal" class="text-center" data-target="#modal-reset-pass" href="#">Click Aquí</a>
           </p>
-
+          <p class="extra-options">
+          ¿Olvidaste tu contraseña?
+            <a id="show-pass-reset" data-toggle="modal" class="text-center">Click Aquí</a>
+          </p>
+          
+          <!-- Reset password -->
+          <div id="reset-pass-div">
+            <hr/>
+            <form method="post" id="resetForm">
+              <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon addon-ico"><p><i class="fas fa-envelope"></i></p></span>
+                  <input type="text" class="form-control reset-pass" placeholder="Ingresa tu correo">
+                  <div class="input-group-btn">
+                    <button id="resetPassBtn}" class="btn btn-primary reset-pass-btn">&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>&nbsp;&nbsp;</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <h5 id="hint">*Enviaremos un correo con los pasos para recuperar tu contraseña</h6>
+          </div>
         </div>
-
-        <div class="modal-footer">
-        </div>
-
       </div>
     </div>
   </div>

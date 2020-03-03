@@ -13,4 +13,18 @@
         $vkey = $emailClass->setEmail($_POST['emailForReset']);
         $enviar = $emailClass->enviarEmailRecuperarPass();
     }
+
+    if(isset($_POST['newPass'])){
+        $conexion = new Modelos\Conexion();
+        $encriptado = trim(password_hash($_POST['newPass'],PASSWORD_DEFAULT));
+        echo $conexion->consultaPreparada(
+            array($encriptado,$_POST['correo']),
+            "UPDATE usuario SET password = ? WHERE email = ?",
+            1,
+            "s",
+            false,
+            null
+        );
+    }
+
 ?>

@@ -407,6 +407,8 @@ template_cometarios +=`
                              if(datos[i][0][4] == 1){
                                 control_seleccion = "checked";
                                 control_del_chequeo = "temas_vistos";
+                                cursor_pointer = ""
+                                cursor_pointer_temas="cursor: pointer;";
                                 examen = "realizado";
                                 checkeo_final = "span-"+(i+1)+"-0";
                              }else{
@@ -414,6 +416,8 @@ template_cometarios +=`
                                 control_seleccion = "disabled";
                                 examen = "";
                                 bloque_tarea = "d-none";
+                                cursor_pointer = "cursor: pointer;"
+                                cursor_pointer_temas="";
                              }
                              if(datos[0][0][4] != 1){
                                 id_examen = "1--"+1;
@@ -422,7 +426,7 @@ template_cometarios +=`
                                 <div class="demo contenedor flex align-items-center cont-actividades temas-hover border-bottom">
                                     <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
                                     <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
-                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="cursor: pointer;" class="mostrar-examen col-10 nav-link font-actividades ${examen}">Examen ${i+1}</a>
+                                    <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="${cursor_pointer}" class="mostrar-examen col-10 nav-link font-actividades ${examen}">Examen ${i+1}</a>
                                 </div>`;
                         }else if(y == 1){
                             template += `
@@ -461,7 +465,7 @@ template_cometarios +=`
                                     `<div class="demo pt-1 m-0 flex align-items-center temas-hover border-bottom">
                                         <input class="" type="checkbox" id="customCheck-${(i+1)+"-"+(z+1)}" name="example1" ${control_seleccion}>
                                         <label data-idtemabase="${datos[i][3][z][0]}" id="tema-${(i+1)+"-"+(z+1)}" for="customCheck-${(i+1)+"-"+(z+1)}" class="${control_del_chequeo} col-3 text-justify desbloqueo-${i} pl-4 flex align-items-center"><span class="registro_tema"></span></label>
-                                        <a id="${(i+1) +"-"+(z+1)}" class="col-9 mostrar-tema" style="cursor: pointer; font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
+                                        <a id="${(i+1) +"-"+(z+1)}" class="col-9 mostrar-tema" style="${cursor_pointer_temas} font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
                                      </div>`;  
                             }
                         }else if(y == 4){
