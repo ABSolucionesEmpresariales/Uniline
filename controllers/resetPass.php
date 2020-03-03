@@ -89,20 +89,26 @@ if(isset($_GET['vkey'])){
                     <img class="img-fluid" src="../img/uniline3.png" alt="uniline" width="60%" style="margin-top: 1rem;">
                     </div>
                     <br>
-                    <div class="contenido text-center">
-                        <div>
-                            <p style="font-weight: bold">Contraseña nueva:</p>
-                            <input id="new-pass" type="text"  class="form-control" style="max-width: 15rem; margin-left: auto; margin-right: auto;">
-                        </div>
-                        <div>
-                            <p style="font-weight: bold">Verificar contraseña:</p>
-                            <input id="confirm-new-pass" type="text"  class="form-control" style="max-width: 15rem; margin-left: auto; margin-right: auto;">
-                        </div>
-                        <br>
-                        <div>
-                            <button class="btn btn-primary" type="submit">Guardar</button>
-                        </div>
-                    </div>               
+                    <form id="resetPass">
+                        <div class="contenido text-center">
+                            <input id="con_email" type="hidden" value="<?php echo $_GET['correo'] ?>">
+                            <div>
+                                <p style="font-weight: bold">Contraseña nueva:</p>
+                                <input id="new-pass" type="text"  class="form-control" style="max-width: 15rem; margin-left: auto; margin-right: auto;">
+                            </div>
+                            <div>
+                                <p style="font-weight: bold">Verificar contraseña:</p>
+                                <input id="confirm-new-pass" type="text"  class="form-control" style="max-width: 15rem; margin-left: auto; margin-right: auto;">
+                            </div>
+                            <br>
+                            <div>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                            <div id="alert_pass" class="alert alert-danger" role="alert">
+                                
+                            </div>
+                        </div>   
+                    </form>            
             </div>
         </div>
     </div>
@@ -116,6 +122,7 @@ if(isset($_GET['vkey'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="../js/vendor/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/resetPass.js"></script>
 </body>
 
 </html>

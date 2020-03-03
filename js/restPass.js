@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    $("").submit(function(){
-        primerPass = $("").val();
-        segundaPass = $("").val();
+    $("#resetPass").submit(function(){
+        primerPass = $("#new-pass").val();
+        segundaPass = $("#confirm-new-pass").val();
         if(primerPass == segundaPass){
             const data = {
                 newPass:primerPass,
-                correo:$("").val()
+                correo:$("#con_email").val()
             }
             $.ajax({
                 url:"../controllers/reset_pass.php",
@@ -17,12 +17,12 @@ $(document).ready(function(){
                     if(response == "1"){
                         location.href ="mainpage.php";
                     }else{
-                        $("").html("<p>Oh, oh parece que las contrasenas no coinciden</p>");
+                        $("#alert_pass").html("<p>Oh, oh parece que las contrasenas no coinciden</p>");
                     }
                 }
             })
         }else{
-            $("").html("<p>Oh, oh parece que las contrasenas no coinciden</p>");
+            $("#alert_pass").html("<p>Oh, oh parece que las contrasenas no coinciden</p>");
         }
     });
 });
