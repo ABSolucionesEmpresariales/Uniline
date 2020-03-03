@@ -31,9 +31,36 @@ $(document).ready(function () {
         e.preventDefault();
     }
   });
-
+    /*Password Reset AJAX*/
   $("#show-pass-reset").click(function(e){
     $("#reset-pass-div").slideToggle();
+  });
+
+  $("#resetForm").submit(function(e){
+    if ($('#ingresar-email').val() == ''){
+      alert('debes ingresar algún correo electronico');
+    }else{
+      $.ajax({
+        url: "../controllers/reset_pass.php",
+        type: "POST",
+        data: $('#resetForm').serialize(),
+
+        success: function (response) {
+          switch(response){
+            case 'mail_existe':
+              alert('Enviamos un correo para restaurar tu contraseña');
+              window.location.replace("..views/mainpage.php");
+              break;
+            case 'mail_noExiste':
+              alert('El correo que ingresaste no esta registrado... registrate aqui');
+              break;
+            default:
+              alert('sepa la bola');
+              break; 
+          }
+        }
+      }); 
+    }
   });
   
 });
