@@ -411,6 +411,8 @@ template_cometarios +=`
                                 cursor_pointer_temas="cursor: pointer;";
                                 examen = "realizado";
                                 checkeo_final = "span-"+(i+1)+"-0";
+                                color_lista = "";
+                                lista_examen = "bg-color-desabilitado";
                              }else{
                                 control_del_chequeo = "";
                                 control_seleccion = "disabled";
@@ -418,12 +420,14 @@ template_cometarios +=`
                                 bloque_tarea = "d-none";
                                 cursor_pointer = "cursor: pointer;"
                                 cursor_pointer_temas="";
+                                color_lista="bg-color-desabilitado";
+                                lista_examen = ""
                              }
                              if(datos[0][0][4] != 1){
                                 id_examen = "1--"+1;
                              }
                             template += `
-                                <div class="demo contenedor flex align-items-center cont-actividades temas-hover border-bottom">
+                                <div class="demo contenedor flex align-items-center cont-actividades temas-hover border-bottom ${lista_examen}">
                                     <input type="checkbox" class="chk-examen" id="customCheck-examen-${i+"-"+y}" name="example1" ${control_seleccion}>
                                     <label data-bloque="bloque-${(i+1)+"-"+(y-1)}" id="examen-${(i+1)}" for="customCheck-examen-${i+"-"+y}" class="col-2 flex align-items-center" ><span></span></label>
                                     <a id="${(i+1)+"-"+(parseInt(y-1))}" data-idexamenbase="${datos[i][0][0]}" data-desbloqueo="desbloqueo-${i}" style="${cursor_pointer}" class="mostrar-examen col-10 nav-link font-actividades ${examen}">Examen ${i+1}</a>
@@ -431,12 +435,12 @@ template_cometarios +=`
                         }else if(y == 1){
                             template += `
                             <div class="demo contenedor cont-actividades">
-                                <div class="flex align-items-center temas-hover border-bottom">
+                                <div class="flex align-items-center temas-hover border-bottom ${color_lista}">
                                     <input type="checkbox" id="customCheck-bloque-${(i+1)+"-"+(y-1)}" name="example1" ${control_seleccion}>
                                     <label id="bloque-${(i+1)+"-"+(y-1)}" for="customCheck-bloque-${(i+1)+"-"+(y-1)}" class="col-2 flex align-items-center"><span class="registro_tema"></span></label>
                                     <a data-idbloquebase="${datos[i][1]}" data-idactividad="${(i+1)+"-"+(y-1)}" style="cursor: pointer; font-weight: bold;" id="span-${(i+1)+"-"+(y-1)}" class="mostrar-actividad col-10 spam nav-link font-actividades">${datos[i][2]}</a>
                                 </div>
-                                <div class="span-${(i+1)+"-"+(y-1)}" style="display: none;">`;
+                                <div class="span-${(i+1)+"-"+(y-1)} ${color_lista}" style="display: none;">`;
                                 cont = 0;
                             for(z = 0; z< datos[i][3].length; z++){
                                     if(control_seleccion == 'checked' && datos[i][3][0][5] == 0 && cont == 0){
@@ -462,7 +466,7 @@ template_cometarios +=`
                                         control_seleccion = "disabled";
                                     }
                                     template +=
-                                    `<div class="demo pt-1 m-0 flex align-items-center temas-hover border-bottom">
+                                    `<div class="demo pt-1 m-0 flex align-items-center temas-hover border-bottom ${color_lista}">
                                         <input class="" type="checkbox" id="customCheck-${(i+1)+"-"+(z+1)}" name="example1" ${control_seleccion}>
                                         <label data-idtemabase="${datos[i][3][z][0]}" id="tema-${(i+1)+"-"+(z+1)}" for="customCheck-${(i+1)+"-"+(z+1)}" class="${control_del_chequeo} col-3 text-justify desbloqueo-${i} pl-4 flex align-items-center"><span class="registro_tema"></span></label>
                                         <a id="${(i+1) +"-"+(z+1)}" class="col-9 mostrar-tema" style="${cursor_pointer_temas} font-family: 'Poppins:100', sans-serif; font-size: 14px; color: rgb(87, 87, 87);">${datos[i][3][z][1]}</a>
@@ -471,7 +475,7 @@ template_cometarios +=`
                         }else if(y == 4){
                             for(z = 0; z< datos[i][4].length; z++){
                                 template += `
-                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea}">
+                                        <div class="tarea-${(i+1)+"--"+1} ${bloque_tarea} ${color_lista}">
                                         <div class="text-center">Tareas</div>
                                         <div class="pt-3 row justify-content-between">
                                         <button data-idtareabase="${datos[i][4][0][0]}" data-idbloque="${datos[i][1]}" class="col-5 mostrar-tareas btn boton-tarea btn-light" href="#seccion-tareas">Subir</button>
@@ -606,7 +610,7 @@ template_cometarios +=`
         // MOSTRAR EXAMEN AL HACER CLIC EN EL ENLACE
         $(document).on("click",".mostrar-examen", function () {
         if($(this).hasClass('realizado') == false){
-            var iframe = $(document).find("#jalaporfa2 iframe");
+/*             var iframe = $(document).find("#jalaporfa2 iframe");
             console.log(iframe);
             var player = new Vimeo.Player(iframe);
             player.pause().then(function() {
@@ -625,7 +629,7 @@ template_cometarios +=`
                       // Some other error occurred
                       break;
                 }
-              });
+              }); */
             idExamen_seleccionado = $(this).attr("id");
             //$('#'+idExamen_seleccionado).prev('label').prev('input').attr('checked','true');
             $("#cambio-examen-video").addClass("d-none");

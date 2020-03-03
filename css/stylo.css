@@ -250,10 +250,6 @@ box-shadow: 0px 0px 24px -4px rgba(0,0,0,0.75);
   overflow-x: hidden;
 }
 .cont-actividades{
-  padding-left: 1rem; 
-   padding-top: .4rem; 
-  padding-right: .4rem; 
-  padding-bottom: .4rem;  
 /*   border-top:solid 1px; 
   border-color: rgb(220, 220, 220); */
 }
@@ -506,4 +502,7 @@ border-radius:5px;
 .boton-tarea:hover{
   background-color: rgb(11,184,155);
   color: white;
+}
+.bg-color-desabilitado{
+  background-color: rgba(165, 165, 165, 0.438)!important;
 }
