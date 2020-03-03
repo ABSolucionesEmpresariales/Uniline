@@ -219,7 +219,7 @@ session_start();
               <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon addon-ico"><p><i class="fas fa-envelope"></i></p></span>
-                  <input type="text" class="form-control reset-pass" placeholder="Ingresa tu correo">
+                    <input name="emailForReset" type="text" class="form-control reset-pass" placeholder="Ingresa tu correo">
                   <div class="input-group-btn">
                     <button id="resetPassBtn" class="btn btn-primary reset-pass-btn">&nbsp;&nbsp;<i class="fas fa-arrow-right"></i>&nbsp;&nbsp;</button>
                   </div>
@@ -228,6 +228,7 @@ session_start();
             </form>
             <h5 id="hint">*Enviaremos un correo con los pasos para recuperar tu contraseña</h6>
           </div>
+          
         </div>
       </div>
     </div>

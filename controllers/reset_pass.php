@@ -9,9 +9,24 @@
     }
 
     if(isset($_POST['emailForReset'])){
-        $emailClass = new Modelos\Email();
-        $vkey = $emailClass->setEmail($_POST['emailForReset']);
-        $enviar = $emailClass->enviarEmailRecuperarPass();
+        $conexion = new Modelos\Conexion();
+
+        $resultado = $conexion->consultaPreparada(
+            array($_POST['emailForReset']),
+            "SELECT * FROM usuario WHERE email = ?",
+            2,
+            "s",
+            false,
+            null
+        );
+        if(!empty($resultado)){
+            $emailClass = new Modelos\Email();
+            $vkey = $emailClass->setEmail($_POST['emailForReset']);
+            $enviar = $emailClass->enviarEmailRecuperarPass();
+            echo "mail_existe";
+        }else{
+            echo "mail_noExiste";
+        }
     }
 
     if(isset($_POST['newPass'])){
