@@ -16,59 +16,110 @@ if(isset($_GET['vkey'])){
     );
 
       if($resultado == 1){?>
-
-<?php }
-}
-?>
         <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <title>Recuperar contraseña</title>
-            <style>
-                .centrado{
-                    margin-top: 10%;
-                    margin-left: 30%;
-                    width: 400px;
-                    height: 400px;
-                }
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recuperar contraseña</title>
+    <style>
+                
                /*sm*/
                 @media (min-width: 300px) {
+                    .responsive{
+                        width: 100%; 
+                        height: 60%; 
+                        border-radius: 1rem;
+                    }
 
                 }
-                @media (min-width: 375px) {
+                @media (min-width: 377px) {
+                    .responsive{
+                        width: 100%; 
+                        height: 70%; 
+                        border-radius: 1rem;
+                    }
 
                 }
-                @media (min-width: 300px) {
+                @media (min-width: 768px) {
+                    .responsive{
+                        width: 100%; 
+                        height: 80%; 
+                        border-radius: 1rem;
+                    }
 
                 }
-                @media (min-width: 300px) {
+                @media (min-width: 992px) {
+                    .responsive{
+                        width: 40%; 
+                        height: 80%; 
+                        border-radius: 1rem;
+                    }
 
                 }
-                @media (min-width: 300px) {
-
-                }
-                @media (min-width: 300px) {
+                @media (min-width: 1024px) {
+                    .responsive{
+                        width: 40%; 
+                        height: 80%; 
+                        border-radius: 1rem;
+                    }
 
                 }
             </style>
-        </head>
-        <body>
-            <div class="container">
-                <div class="border border-dark centrado">
-                    <div>
-                        <div class="">
-                            <p>Contraseña nueva:</p>
-                            <input type="text">
+
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body class="pass-area">
+    <div class="overlay-bg">
+        <div class="container fullscreen flex align-items-center justify-content-center">
+            <div id="ventana" class="align-items-center justify-content-center bg-white responsive">               
+                    <div class="imagen text-center">
+                    <img class="img-fluid" src="../img/uniline3.png" alt="uniline" width="60%" style="margin-top: 1rem;">
+                    </div>
+                    <br>
+                    <div class="contenido text-center">
+                        <div>
+                            <p style="font-weight: bold">Contraseña nueva:</p>
+                            <input id="new-pass" type="text"  class="form-control" style="max-width: 15rem; margin-left: auto; margin-right: auto;">
                         </div>
                         <div>
-                            <p>Recuperar contraseñ:</p>
-                            <input type="text">
+                            <p style="font-weight: bold">Verificar contraseña:</p>
+                            <input id="confirm-new-pass" type="text"  class="form-control" style="max-width: 15rem; margin-left: auto; margin-right: auto;">
                         </div>
-                    </div>                    
-                </div>
+                        <br>
+                        <div>
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </div>               
             </div>
-        </body>
-        </html>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
+<?php }
+}
+?>
+

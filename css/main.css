@@ -22,6 +22,10 @@ body.mobile-nav-active #mobile-nav-toggle{color:rgb(43, 15, 201)}
 .banner-area .overlay-bg-footer{background-color: #04091ee7}
 .dash-area{background:url(../img/lp.jpg) right;background-size:cover}
 .dash-area .overlay-bg{background-color:rgba(4,9,30,0.8)}
+.pass-area{background: linear-gradient(
+  rgba(0, 0, 0, 0.7),
+  rgba(0, 0, 0, 0.7)
+), url(../img/lp.jpg) right;background-size:cover}
 @media (max-width: 767px){
   .fullscreen{height:700px !important}}
   .banner-content{text-align:left}
