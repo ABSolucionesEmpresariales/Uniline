@@ -32,5 +32,8 @@ $(document).ready(function () {
     }
   });
 
+  $("#show-pass-reset").click(function(e){
+    $("#reset-pass-div").slideToggle();
+  });
   
 });

@@ -31,11 +31,21 @@ font-size: 18px;
 .modal-login .form-control {
 padding-left: 40px;
 }
+.modal-login .reset-pass {
+padding-left: 1px;
+}
+
+.modal-login .addon-ico{
+padding:6px 20px;
+border-right: none;
+background-color: #fff;
+}
 .modal-login .form-control:focus {
 border-color: #00ce81;
 }
 .modal-login .form-control, .modal-login .btn {
 min-height: 40px;
+max-height: 40px;
 border-radius: 3px;
 }
 .modal-login .hint-text {
@@ -48,12 +58,12 @@ top: -5px;
 right: -5px;
 }
 .modal-login .btn {
-background: #00ce81;
+background: #00a7ce;
 border: none;
 line-height: normal;
 }
 .modal-login .btn:hover, .modal-login .btn:focus {
-background: #00bf78;
+background: #337ab7;
 }
 .modal-login .modal-footer {
 background: #ecf0f1;
