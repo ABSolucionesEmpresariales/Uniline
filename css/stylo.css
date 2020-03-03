@@ -12,6 +12,20 @@ html body{
     overflow-x: hidden; 
 }
 
+/*Modal Styles*/
+.extra-options{
+  margin: 0;
+  text-align: center;
+}
+
+#hint{
+  color: #016793a1;
+}
+
+#reset-pass-div{
+  display: none;
+}
+
 
 /*sm*/
 @media (min-width: 300px) {
