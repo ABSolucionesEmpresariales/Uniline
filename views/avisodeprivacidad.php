@@ -168,9 +168,7 @@ session_start();
                             ?>
                                 <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
                                 <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
-                                <li class="mt-3"><a id="registro-user" data-toggle="modal" class="text-center" data-target="#modal-registro" href="#" style="font-size: 14px; text-decoration: none;">Registrate</a></li>
                                 <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
-                                <li class="mt-3"><a class="text-center" id="autobtn" style="font-size: 14px; text-decoration: none; color:rgb(255, 94, 0)" data-toggle="modal" href=".login">Iniciar sesion</a></li>
                             <?php
                             }
                             ?>
@@ -533,14 +531,14 @@ session_start();
                     <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
                 </div>
                 <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
-                    <p class="mb-0 foter">&copy; AB Soluciones Empresariales <script>
+                    <p class="mb-0 foter text-center">&copy; AB Soluciones Empresariales <script>
                             document.write(new Date().getFullYear());
                         </script>
                         All rights reserved.
                     </p>
                     <ul class="list-inline  mt-0 clock text-center">
                         <li class="list-inline-item">
-                            <a href="avisodeprivacidad.php">Politicas de Privacidad</a>
+                            <a href="avisodeprivacidad.php">Políticas de Privacidad</a>
                         </li>
                         <li class="list-inline-item">
                             <a href="imagenCorporativa.php">Imagen Corporativa</a>
@@ -549,7 +547,7 @@ session_start();
                 </div>
                 <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
                     <div class="social-network mt-0">
-                        <p class="h4 text-white">Siguenos en Redes Sociales</p>
+                        <p class="h4 text-white text-center">Síguenos</p>
                         <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
                         <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>

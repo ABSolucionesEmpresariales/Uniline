@@ -14,7 +14,6 @@ $(document).ready(function () {
           processData: false,
           
           success: function (response) {
-            console.log(response);
             $("#alertas").addClass('alert-danger');
             $("#alertas").removeClass('alert-success');
             
@@ -70,7 +69,6 @@ $(document).ready(function () {
 
             success: function (response) {
                 let datos = JSON.parse(response);
-                console.log(datos);
                 $('#numero').val(datos[0][0]);
                 $('#registrar-nombre').val(datos[0][1]);
                 $('#registrar-tel').val(datos[0][5]);
@@ -111,7 +109,6 @@ $(document).ready(function () {
 
     /////////////////////// Verificar si la contrasena es correcta //////////////////////////////
     $(document).on('keyup','#registrar-pass',function(e){
-      console.log($(this).val().length);
       if($(this).val().length > 0){
         $.ajax({
           url: "../controllers/actualizar-perfil.php",
@@ -119,7 +116,6 @@ $(document).ready(function () {
           data: "updatePass="+$(this).val(),
 
           success: function (response){
-            console.log(response);
             $('.alerta-pass').slideDown("slow");
             if(response == "true"){
               $('.alerta-pass').removeClass('alert-danger');

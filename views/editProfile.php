@@ -57,10 +57,10 @@ include '../controllers/sesion.php'
   <body>
   <header id="header">
     <div class="header-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row justify-content-between">
           <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
-            <a href="mainpage.php"><img src="../img/uniline2.png" width="40%" alt="" title="" /></a>
+            <a href="mainpage.php"><img src="../img/uniline2.png" width="32%" alt="" title="" /></a>
           </div>
           <div class="float-right">
             <nav id="nav-menu-container">
@@ -197,7 +197,8 @@ include '../controllers/sesion.php'
         </div>
       </div>
       </form>
-    
+    <br>
+      <br>
 
 
     
@@ -216,7 +217,7 @@ include '../controllers/sesion.php'
               </p>
               <ul class="list-inline  mt-0 clock text-center">
                 <li class="list-inline-item">
-                  <a href="avisodeprivacidad.php">Politicas de Privacidad</a>
+                  <a href="avisodeprivacidad.php">Políticas de Privacidad</a>
                 </li>
                 <li class="list-inline-item">
                   <a href="imagenCorporativa.php">Imagen Corporativa</a>
@@ -225,7 +226,7 @@ include '../controllers/sesion.php'
             </div>
             <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
               <div class="social-network mt-0">
-              <p class="h4 text-white">Siguenos en Redes Sociales</p>
+              <p class="h4 text-white">Síguenos</p>
                   <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
                   <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
                   <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>

@@ -433,18 +433,12 @@ background-color: rgb(28, 28, 37);
     color: yellow!important;
   }
   .boton-compra{
-      width: 64%;
-      height: 67px;
       background: #eaebec;
-      margin-top: 41px;
-      margin-right: 0px;
 
   }
   .div-precio{
-    width: 30%;
-    height: 67px;
     background: #eaebec;
-    margin-top: 41px;
+
 }
 
   .color-contenido{
@@ -511,3 +505,27 @@ a:focus{
 .bg-color-desabilitado{
   background-color: rgba(165, 165, 165, 0.438)!important;
 } 
+.item
+{
+    position: relative;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.item:hover
+{
+    transform: scale(1.02);
+
+}
+.item-comprar
+{
+    position: relative;
+    display: inline-block;
+    transition: all 0.1s ease;
+}
+
+.item-comprar:hover
+{
+    transform: scale(1.05);
+
+}

@@ -87,7 +87,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
               <div class="form-group text-center">
                 <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                <textarea id="text_area_curso" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea maxlength="500" id="text_area_curso" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
               <div id="alertas-curso" class="alert alert-danger" role="alert">
                 Ups! Algo salio mal.  
@@ -128,10 +128,10 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
   <header id="header">
     <div class="header-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row justify-content-between">
           <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
-            <a href="mainpage.php"><img src="../img/uniline2.png" width="40%" alt="" title="" /></a>
+            <a href="mainpage.php"><img src="../img/uniline2.png" width="32%" alt="" title="" /></a>
           </div>
           <div class="float-right">
             <nav id="nav-menu-container">
@@ -193,12 +193,11 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                         <a id="nav-status" class="nav-link" data-toggle="tab" href="#descripcion">Descripción</a>
                       </li>
                       <li class="nav-item no-padding">
-                        <a class="nav-link" data-toggle="tab" href="#archivos">Archivos adjuntos</a>
+                        <a class="nav-link" data-toggle="tab" href="#archivos">Recursos y Archivos</a>
                       </li>
                       <li class="nav-item no-padding">
-                        <a class="nav-link" data-toggle="tab" href="#progress">Progreso del curso</a>
+                        <button id="calificacion-curso-user" type="button" class="btn btn-primary" style="font-size: 18px;" data-toggle="modal" data-target="#modalCalificacion">Caificar el curso</button>
                       </li>
-
                     </ul>
                   </nav>
 
@@ -207,65 +206,62 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                       <!--contenido de los cursos cuando es responsive-->
                     </div>
                     <div class="tab-pane container text-justify h-scroll" id="descripcion" style=" padding-top:2rem; font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
-                      <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
-                      <br>
-                      <div class="container descripcion-tema">
+                      <div class="row">
+                        <div class="col-6">
+                          <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
+                          <br>
+                          <div class="container descripcion-tema">
 
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <h2 class="font-weight-bold text-center h3">Progreso del curso</h2>
+                          <div class=" single-sidebar-widget tag_cloud_widget m-0 ">
+                            <div class="loaders m-0 flex justify-content-center">
+                              <div class=" elements_loaders_container col-lg-4">
+                                <!-- Loader -->
+                                <?php
+                                $conexion = new Modelos\Conexion();
+                                $datos_tema = array($_SESSION['idcurso']);
+                                $cosulta_temas_curso = "SELECT COUNT(idtema) AS cantidadTemas FROM tema t 
+            INNER JOIN bloque b ON t.bloque = b.idbloque WHERE b.curso = ?";
+                                $result = $conexion->consultaPreparada($datos_tema, $cosulta_temas_curso, 2, "i", false, null);
+
+                                $temas_curso = $result[0][0];
+
+                                $consulta_temas_alumno = "SELECT COUNT(tema) FROM tema_completado tm 
+            INNER JOIN tema t ON t.idtema = tm.tema 
+            INNER JOIN bloque b ON b.idbloque = t.bloque WHERE b.curso = ? AND tm.usuario = ?";
+                                $datos_temas_vistos = array($_SESSION['idcurso'], $_SESSION['idusuario']);
+
+                                $result2 = $conexion->consultaPreparada($datos_temas_vistos, $consulta_temas_alumno, 2, "ii", false, null);
+
+                                $temas_vistos = $result2[0][0];
+                                $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
+                                $colculo = round($calculo);
+                                if ($colculo == 100) {
+                                  $colculo = 1;
+                                } else if ($colculo < 10) {
+                                  $colculo = ".0" . $colculo;
+                                } else {
+                                  $colculo = "." . $colculo;
+                                }
+                                ?>
+                                <div id="progreso" class="loader mb-0" data-perc="<?php echo $colculo ?>"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="tab-pane container fade" id="archivos" style=" padding-top:2rem;">
                       Descargar archivos
                       <br>
                       <br>
-                      En este apartado podras descargar los archivos de cada tema <a class="descarga" href="download/pack.txt" download="Pack.txt"> descargar</a>
+                      En este apartado podrás descargar los archivos de cada tema <a class="descarga" href="download/pack.txt" download="Pack.txt"> descargar</a>
                       </p>
                     </div>
-                    <div class="tab-pane container fade" id="progress">
-                      <div class="">
-                        <div class=" single-sidebar-widget tag_cloud_widget m-0 ">
-                          <div class="loaders m-0 flex justify-content-center">
-                            <div class=" elements_loaders_container col-lg-3">
-                              <!-- Loader -->
-                              <?php
-                              $conexion = new Modelos\Conexion();
-                              $datos_tema = array($_SESSION['idcurso']);
-                              $cosulta_temas_curso = "SELECT COUNT(idtema) AS cantidadTemas FROM tema t 
-                                  INNER JOIN bloque b ON t.bloque = b.idbloque WHERE b.curso = ?";
-                              $result = $conexion->consultaPreparada($datos_tema, $cosulta_temas_curso, 2, "i", false, null);
-
-                              $temas_curso = $result[0][0];
-
-                              $consulta_temas_alumno = "SELECT COUNT(tema) FROM tema_completado tm 
-                                  INNER JOIN tema t ON t.idtema = tm.tema 
-                                  INNER JOIN bloque b ON b.idbloque = t.bloque WHERE b.curso = ? AND tm.usuario = ?";
-                              $datos_temas_vistos = array($_SESSION['idcurso'], $_SESSION['idusuario']);
-
-                              $result2 = $conexion->consultaPreparada($datos_temas_vistos, $consulta_temas_alumno, 2, "ii", false, null);
-
-                              $temas_vistos = $result2[0][0];
-                              $calculo = (100 / intval($temas_curso)) * intval($temas_vistos);
-                              $colculo = round($calculo);
-                              if ($colculo == 100) {
-                                $colculo = 1;
-                              }else if($colculo < 10){
-                                $colculo = ".0".$colculo;
-                              }else {
-                                $colculo = "." . $colculo;
-                              }
-                              ?>
-                              <div id="progreso" class="loader mb-0" data-perc=".04"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <button id="calificacion-curso-user" type="button" class="btn btn-primary" style="margin-left: 41%; font-size: 18px;" data-toggle="modal" data-target="#modalCalificacion">Caificar el curso</button>
-                      </div>
-                      
-                    </div>
-
-
-
-
-
                     <div class="tab-pane container fade" id="contenido-comentarios">
                       <!--contenido de los cursos cuando es responsive-->
                     </div>
@@ -277,7 +273,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
               <!-- seccion de comentarios -->
               <div id="div-original-comentarios">
                 <div id="mov-coments" class="container col" style="min-height: 30rem; height: 45rem; background-color: rgb(243, 243, 243); padding: 2rem 5rem;">
-                  <h3 class="h3">Comentarios del curso</h3>
+                  <h3 class="h3">Comentarios</h3>
                   <br>
                   <section id="area-comentarios" class="c-scroll area-comentarios border">
 
@@ -286,7 +282,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                   <section id="area-agregar-comentario" class="container flex justify-content-center" style="padding: 0;">
                     <div class="row d-inline-flex" style="width: 100%;">
                       <form action="" style="width: 100%;">
-                        <input class="col-lg-10 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
+                        <input maxlength="500" class="col-lg-10 col-md-8 col-sm-7 input-field comment-curso" type="text" placeholder="Escribe un comentario..">
                         <input class="col-lg-2 col-md-3 col-sm-2  btn-primary" type="submit" name="enviar" id="enviar" value="Enviar" style="height: 5rem;">
                       </form>
                     </div>
@@ -312,8 +308,8 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
 
   <div id="seccion-tareas" class="area-tareas pl-5 pr-5" style="display:none;">
     <div id="tareas">
-      <h4 class="h4">Sube tus tareas aqui</h4>
-      <p>sube tus tareas para que los profesores y demas usuarios de este curso puedan calificarte</p>
+      <h4 class="h4">Sube tus tareas aquí</h4>
+      <p>Recuerda que calificar la tarea de tus compañeros te dará un panorama diferente</p>
       <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12" style="background-color: white; border:0;">
         <div class="input-group">
           <div class="custom-file col-lg-10 col-sm-12 border no-padding" style="height: 4rem;">
@@ -398,7 +394,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                 <div class="cometario p-3">
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                    <textarea id="coment-user" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea maxlength="500" id="coment-user" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                 </div>
 
@@ -435,7 +431,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
           </p>
           <ul class="list-inline  mt-0 clock text-center">
             <li class="list-inline-item">
-              <a href="avisodeprivacidad.php">Politicas de Privacidad</a>
+              <a href="avisodeprivacidad.php">Políticas de Privacidad</a>
             </li>
             <li class="list-inline-item">
               <a href="imagenCorporativa.php">Imagen Corporativa</a>
@@ -444,7 +440,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
         </div>
         <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
           <div class="social-network mt-0">
-            <p class="h4 text-white">Siguenos en Redes Sociales</p>
+            <p class="h4 text-white">Síguenos</p>
             <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
             <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
             <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>
@@ -500,7 +496,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <script src="../js/elements_custom.js"></script>
   <script src="../js/jquery.confetti.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="../js/dashboard42.js"></script>
+  <script src="../js/dashboard46.js"></script>
   
 
 </body>
