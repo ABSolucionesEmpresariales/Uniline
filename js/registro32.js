@@ -28,93 +28,6 @@ $(document).ready(function () {
         });
     });
 
-    /* <---------------------Pintar el body del modal y los loques del curso-----------------------> */
-    $(document).on("click", ".curso", function () {
-        curso = $(this).data("curso");
-        templeteT = "";
-        templete = "";
-        $.ajax({
-            url: "../controllers/contenido_index.php",
-            type: "POST",
-            data: "cursos-modal=" + curso,
-
-            success: function (response) {
-                let datos = JSON.parse(response);
-                $.each(datos, function (i, item) {
-                    templeteT += `
-                    <div class="row mb-2 title-responsive">
-                        <div class="col-lg-9 col-sm-12 ml-0">
-                            <p class="h3 text-bold" style="color:black"><strong>${item[1]}</strong></p>
-                        </div>
-                        
-                    </div>
-                    <button type="button w-2" class="fas fa-times close closeModalCurso" style="font-size: 30px;" data-dismiss="modal"></button>
-                    `;
-                    templete += `
-                    <div id="videoModal" class="row mt-0"> 
-                        <iframe class="responsive-video" src="${item[8]}" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
-                    </div>
-                    
-                
-                    <div class="border-bottom  title-responsive">
-                    
-                        <div class="row d-flex">
-                            <div class="col-lg-9 col-sm-12 d-sm-inline-block px-5 order-1">
-                                <p class="h3 mt-5 text-info"><strong>Descripción:</strong></p>
-                                <p class="h4 mt-5 text-justify inter" style="line-height:30px;color:black;">${item[2]}</p>
-                            </div>
-                            <div class="flex col-lg-3 col-sm-4 justify-content-center align-items-center d-lg-inline-flex d-sm-inline-block order-sm-2">
-                                <div class="flex d-lg-block mt-5">
-                                    <button type="button" value="${curso}" class="d-sm-inline-flex mb-2 item-comprar btn btn-lg text-white compras" style="background-color: #fd5601; " data-dismiss="modal">Comprar</button>
-                                    <div class="d-sm-inline-flex p-4 align-items-center justify-content-center text-center" style="background-color: #373d3d; max-width: 14.5rem; max-height: 62px;" >
-                                    <span class="text-white text-center" style="width: 14.5rem;">$${datos[i][7]} MX</span>
-                                    </div> 
-                                </div>
-                            </div>
-                            
-                        </div>
-
-                    </div>
-                    `;
-                });
-                $.ajax({
-                    url: "../controllers/contenido_index.php",
-                    type: "POST",
-                    data: "cursos-contenido=" + curso,
-                    success: function (response) {
-                        let datos = JSON.parse(response);
-                        templete += `                    
-                        <div class="title-responsive" style="width: 765px">
-                            <p class="h3 p-2 cont-curso-responsive clickear" style="margin-left:280px;color:black;"><strong>Contenido del curso</strong></p>`;
-                        $.each(datos, function (i, item) {
-                            templete += `
-                                <div class="col-12 border-bottom slide-content-curso m-0" style="cursor:pointer;">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <p style="cursor:pointer;color:black;" data-bloque="bloque-${
-                                item[0]
-                                }" class="h4 cursos-slide font-italic" style="color:black;">Capítulo ${i +
-                                1}</p>
-                                        </div>
-                                        <div data-temas="bloque-${item[2]}-${
-                                item[0]
-                                }" class="row ml-5 bloque-${item[0]}" style="display: none">
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-                        });
-                        templete += `</div>`;
-                        $(".header-curso").html(templeteT);
-                        $(".view-curso").html(templete);
-                        $("#date-modal").click();
-                    }
-                });
-            }
-        });
-    });
-
-
     /* <--------------------- Generar checkout de pago de stripe -----------------------> */
     $(document).on("click", ".compras", function (event) {
         let idcurso = $(this).val();
@@ -314,6 +227,13 @@ $(document).ready(function () {
             }
         });
     }
+    /* <---------------------redirecciona a la pagina de los cursos segun el curso elegido -----------------------> */
+    $(document).on("click", ".curso", function () {
+        if($(this).data("curso") != ""){
+            window.location.replace('../views/descripcioncursos.php?idcurso=' + $(this).data("curso"));
+        }
+    });
+
 
     ////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -429,3 +349,4 @@ $(document).ready(function () {
     });
 
 });
+
