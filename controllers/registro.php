@@ -18,7 +18,7 @@ if(isset($_POST['sesion'])){
 } */
 
 
-if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre']) && !empty($_POST['TTelefono'])){
+if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'])){
     $emailClass = new Modelos\Email();
 
     $email = $_POST['TEmail'];
@@ -34,11 +34,7 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
     $datos_verificar = array($_POST['TEmail']);
     $resultado = json_encode($conexion->consultaPreparada($datos_verificar,$consulta_verificar,2,'s', false, null));
 
-    $consulta_verificar_2 = "SELECT * FROM usuario WHERE nombre = ?";
-    $datos_verificar_2 = array($_POST['TNombre']);
-    $resultado_2 = json_encode($conexion->consultaPreparada($datos_verificar_2,$consulta_verificar_2,2,'s',false, null));
-
-    if($resultado != '[]' || $resultado_2 != '[]'){
+    if($resultado != '[]'){
         echo 'Existe';
     }else{
       if(isset($_FILES['Fimagen'])){
@@ -54,7 +50,7 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
               $datos_registro_maestro = array($nombre,$_POST['TEdad'],$_POST['TGrado'],$archivo,$telefono,$email,$encriptado,$vkey,$verificado,"Maestro",$_POST['TEstado'],$_POST['TMunicipio'],$profecion);
               $resultado = $conexion->consultaPreparada($datos_registro_maestro,$consulta_registro_maestros,1,'sissssssissss',false,6);
               if($resultado == 1){
-                $enviar = $emailClass->enviarEmailConfirmacion();
+                $enviar = $emailClass->enviarEmailConfirmacion($_POST['TNombre']);
                 echo $resultado;
               }else{
                 echo "error";
@@ -62,17 +58,21 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
           }
        }
       }else{
-        $consulta_registro = "INSERT INTO usuario (nombre, telefono, email, password, vkey, verificado,tipo) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $datos_registro = array($nombre, $telefono, $email, $encriptado, $vkey, $verificado, 'Estudiante');
-        $resultado = $conexion->consultaPreparada($datos_registro,$consulta_registro,1,'sssssis', false, 3);
-        if($resultado == 1){
-          echo $resultado;
-          $enviar = $emailClass->enviarEmailConfirmacion();
-        }else{
-          echo 'error';  
-        }
+          if(strlen($password) >= 8){
+            $consulta_registro = "INSERT INTO usuario (nombre, telefono, email, password, vkey, verificado,tipo) VALUES (?, ?, ?, ?, ?, ?, ?)";
+             $datos_registro = array($nombre, $telefono, $email, $encriptado, $vkey, $verificado, 'Estudiante');
+             $resultado = $conexion->consultaPreparada($datos_registro,$consulta_registro,1,'sssssis', false, 3);
+             if($resultado == 1){
+             echo $resultado;
+             $enviar = $emailClass->enviarEmailConfirmacion($_POST['TNombre']);
+             }else{
+              echo 'error';  
+             }
+            }else{
+          echo 'error';
+         }
+         }
       }
-    }
 }
 
 ?>
