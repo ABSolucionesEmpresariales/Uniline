@@ -66,11 +66,10 @@ $pagina = "mainpage";
         ?>
           <div class="banner-content col-lg-11">
             <h2 class="text-white text-center titulo">
-             Desarróllate a través de nuestros cursos en línea.
+              APRENDE DESDE CASA EN EL MOMENTO QUE TÚ QUIERAS.
             </h2>
             <p class="text-white text-center" style="font-family: Century Gothic; font-weight: 400; font-size: 22px; line-height: 25px;">
-              Capacitate en cursos especializados desde cualquier lugar del mundo;
-              donde tú estés, nosotros estamos.
+            Tu salón de clases está en tu casa..
             </p>
             <br>
           </div>
@@ -79,11 +78,10 @@ $pagina = "mainpage";
         ?>
           <div class="banner-content col-lg-11">
             <h2 class="text-white text-center titulo">
-             Desarróllate a través de nuestros cursos en línea.
+            APRENDE DESDE CASA EN EL MOMENTO QUE TÚ QUIERAS.
             </h2>
             <p class="text-white text-center" style="line-height: 25px; font-family: Century Gothic; font-weight: 400; font-size: 22px">
-            Capacitate en cursos especializados desde cualquier lugar del mundo;
-              donde tú estés, nosotros estamos.
+            Tu salón de clases está en tu casa..
             </p>
             <br>
             <div class="flex justify-content-center">

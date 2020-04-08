@@ -15,12 +15,17 @@ if (!empty($_POST['accion'])) {
                 $idvideo = explode('/', $_POST['TVideo']);
                 $video .= end($idvideo);
                 echo $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo'), $_SESSION['idbloque']),
-                    "INSERT INTO tema (idtema,nombre,descripcion,video,archivo, bloque) VALUES (?,?,?,?,?,?)",
+                    array($_SESSION['idbloque'], ".", "tema", $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo'), $_SESSION['idbloque']),
+                    "INSERT INTO tema (preferencia,nombre,descripcion,video,archivo, bloque) VALUES(
+                        CONCAT( 
+                            ?, ?, (SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = ?)
+                        ),
+                        ?,?,?,?,?
+                    )",
                     1,
-                    "ssssss",
+                    "ssssssss",
                     false,
-                    null
+                    1
                 );
             } else {
                 echo "los post no estan llegando correctamente";
@@ -73,7 +78,7 @@ if (!empty($_POST['accion'])) {
                     null
                 );
             }
-        break;
+            break;
 
         case "items":
             echo json_encode($conexion->consultaPreparada(
@@ -89,12 +94,25 @@ if (!empty($_POST['accion'])) {
         case 'tabla':
             echo json_encode($conexion->consultaPreparada(
                 array($_SESSION['idbloque']),
-                "SELECT idtema,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY idtema ASC",
+                "SELECT idtema,preferencia,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY preferencia ASC",
                 2,
                 "s",
                 false,
                 null
             ));
+            break;
+
+        case 'reordenaritemstabla':
+            foreach ($_POST['reordenamientorows'] as $metadatosrow) {
+                $conexion->consultaPreparada(
+                    array($metadatosrow['preferencia'], $metadatosrow['idtema']),
+                    "UPDATE tema SET preferencia = ? WHERE idtema = ?",
+                    1,
+                    "ss",
+                    false,
+                    null
+                );
+            }
             break;
 
         default:

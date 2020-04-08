@@ -1,7 +1,8 @@
-  $(document).ready(function () {
+$(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
-
+  let bloque = 0;
+  let reordenamientorows = [];
   let accion = 'insertar';
   let correcta = '';
   let idbloque = 'insertar';
@@ -191,6 +192,7 @@
   });
 
   $(document).on('change', '#select-bloque', function () { //session al bloque
+    bloque = $(this).val();
     $.ajax({
       url: "../controllers/combo_profesores.php",
       type: "POST",
@@ -242,7 +244,7 @@
 
         for (i = 0; i < datos.length; i++) {
           url = datos[i][3].split("/");
-          url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
+          url_2 = url[0] + "/" + url[1] + "/min_" + url[2];
           template += `
             <tr class="examen">
               <td scope="row" style="display: none;">${datos[i][0]}</td>
@@ -251,11 +253,11 @@
               <td scope="row"><img width="50%" src="${url_2}"></td>
               <td scope="row">${datos[i][4]}</td>
               <td scope="row">${datos[i][5]}</td>`;
-  /*          if(datos[i][6] == "null" || datos[i][6] == null) {
-                template +=` <td scope="row">${dat}</td>`;
-                }else{
-                template +=` <td scope="row">${datos[i][6]}</td>`;
-                } */
+          /*          if(datos[i][6] == "null" || datos[i][6] == null) {
+                        template +=` <td scope="row">${dat}</td>`;
+                        }else{
+                        template +=` <td scope="row">${datos[i][6]}</td>`;
+                        } */
           template += `<td scope="row">${datos[i][6]}</td>
               <td scope="row">${datos[i][7]}</td>
               <td scope="row">${datos[i][8]}</td>
@@ -291,30 +293,30 @@
       }
     });
   }
-  
-    $(document).on('click','.elim', function(event) {
-          const postdata = {
-            accion:'eliminar',
-            ideliminarregistro:$(this).val()
-          };
-          
-         $.ajax({
-          url:"../controllers/"+$(this).data("tabla")+".php",
-          type:"POST",
-          data:postdata,
-          success: function(response){
-              if(response == 1){
-                  datosBloques();
-                  datosTemas();
-                  datosExamen();
-                  datosPreguntas();
-                  datosTareas();
-              }else{
-                alert("Algo salio mal");
-              }
-          }
-        }); 
-     });
+
+  $(document).on('click', '.elim', function (event) {
+    const postdata = {
+      accion: 'eliminar',
+      ideliminarregistro: $(this).val()
+    };
+
+    $.ajax({
+      url: "../controllers/" + $(this).data("tabla") + ".php",
+      type: "POST",
+      data: postdata,
+      success: function (response) {
+        if (response == 1) {
+          datosBloques();
+          datosTemas();
+          datosExamen();
+          datosPreguntas();
+          datosTareas();
+        } else {
+          alert("Algo salio mal");
+        }
+      }
+    });
+  });
 
 
   function datosTemas() {//PINTAR TABLA TEMAS
@@ -338,10 +340,11 @@
             `
             <tr class="tema">
               <td scope="row" class="idtema" style="display: none;">${datos[i][0]}</td>
-              <td scope="row" class="nombreTema">${datos[i][1]}</td>
-              <td scope="row" class="DescripcionTema">${datos[i][2]}</td>
-              <td scope="row" class="videoTema">${datos[i][3]}</td>
-              <td scope="row" class="ArchivoTema">${datos[i][4]}</td>
+              <td scope="row" class="preferencia" style="display: none;">${datos[i][1]}</td>
+              <td scope="row" class="nombreTema">${datos[i][2]}</td>
+              <td scope="row" class="DescripcionTema">${datos[i][3]}</td>
+              <td scope="row" class="videoTema">${datos[i][4]}</td>
+              <td scope="row" class="ArchivoTema">${datos[i][5]}</td>
               <td scope="row" class="CursoBloque"><button type="button" data-tabla="tema" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
@@ -350,6 +353,40 @@
       }
     });
   }
+
+  // enviar el nuevo orden de la tabla
+  $(document).on('click', '#btnorden', function () {
+    $("#btnorden").prop('disabled', true);
+    $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (respuesta) {
+    })
+  });
+
+  // reordenamiento dinamico de la tabla
+  $("#datos-tema").sortable({
+    containerSelector: ' table ',
+    itemPath: ' > tbody ',
+    itemSelector: ' tr ',
+    cursor: 'pointer',
+    axis: 'y',
+    dropOnEmpty: false,
+    start: function (e, ui) {
+      ui.item.addClass("selected");
+    },
+    stop: function (e, ui) {
+      reordenamientorows = [];
+      $("#btnorden").prop('disabled', false);
+      ui.item.removeClass("selected");
+      $(this).find("tr").each(function (index) {
+        const id = $(this).find("td").eq(0).html();
+        $(this).find("td").eq(1).html(bloque + "." + index);
+        const preferencia = $(this).find("td").eq(1).html();
+        reordenamientorows.push({
+          idtema: id,
+          preferencia: preferencia
+        });
+      });
+    }
+  });
 
 
   function datosExamen() {//PINTAR TABLA EXAMEN
