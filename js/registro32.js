@@ -429,3 +429,55 @@ $(document).ready(function () {
     });
 
 });
+
+$(document).ready(function() {
+    let sesion = ""; 
+
+    verisesion();
+
+    function verisesion(){
+    $.post("../controllers/registro.php","sesion=sesion", function(response) {
+            sesion = response;
+            console.log(sesion);
+        });
+    }
+
+    function pintarItems() {
+        let template = `<option value="">Del Curso...</option>`;
+        $.post("../controllers/cupones.php", {
+            accion: "items"
+        }, function(response) {
+            const datos = JSON.parse(response);
+            datos.forEach(function(item) {
+                template += `
+                    <option value="${item[0]}">${item[1]}</option>
+                    `;
+
+            });
+            $('select').html(template);
+        })
+    }
+    pintarItems();
+
+    $(document).on('submit', '#FCupones', function(e) {
+        e.preventDefault();
+        if(sesion != "" ){
+            if ($('#codigo').val().length != 0 && $('#curso').val().length != 0) {
+            $.post("../controllers/cupones.php", $(this).serialize() + "&accion=editar", function(response) {
+                console.log(response);
+                if (!response.includes('1')) {
+                    swal("Codigo Invalido", "Verifique sus datos o intentelo mas tarde", "warning");
+                } else {
+                   // pintarTabla(); descomentar ya que se haya integrado en un solo js
+                      window.location.replace("../views/misCursos.php");
+                }
+            })
+            $(this)[0].reset();
+            } else {
+                swal("Datos Incompletos", "Por favor llene todos los campos o inicie sesion", "warning");
+            }
+        }else{
+            swal("Datos Incompletos", "Es necesario tener cuenta para realizar esta accion", "warning");
+        }
+    })
+})

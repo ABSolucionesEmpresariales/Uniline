@@ -785,3 +785,74 @@ document.getElementById("inputGroupFile02").onchange = function (e) {
     // $('#preview2 img').css("border-radius", "100%");
   };
 }
+
+$(document).ready(function() {
+  function pintarItems() {
+      let template = `<option value="">Del Curso...</option>`;
+      $.post("../controllers/cupones.php", {
+          accion: "items"
+      }, function(response) {
+          const datos = JSON.parse(response);
+          datos.forEach(function(item) {
+              template += `
+                  <option value="${item[0]}">${item[1]}</option>
+                  `;
+
+          });
+          $('#curso').html(template);
+      })
+  }
+
+  function pintarDatosTabla() {
+      let template = ``;
+      $.post("../controllers/cupones.php", {
+          accion: "tabla"
+      }, function(response) {
+          const datos = JSON.parse(response);
+          datos.forEach(function(item) {
+              template += `
+         <tr>
+              <td>${item[0]}</td>
+              <td>${item[1]}</td>
+              <td>${item[2]}</td>`;
+              if(item[3] == "Pendiente"){
+ template += `<td class="text-danger">${item[3]}</td>`;
+              }else{
+ template += `<td class="text-success">${item[3]}</td>`;      
+              }
+ template += `
+         </tr>
+         `;
+
+          });
+          $('#cuerpotabla').html(template);
+      })
+  }
+  pintarDatosTabla();
+  pintarItems();
+
+  $(document).on('submit', '#FCupones', function(e) {
+      e.preventDefault();
+      console.log($('#cupones-input').val());
+      console.log($('#curso').val());
+      if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
+          $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function(response) {
+              if (!response.includes('1')) {
+                  swal("Ocurrio un problema", "Verifique todos los campos o intentelo mas tarde", "warning");
+              }
+          })
+          $(this)[0].reset();
+      } else {
+          alert("Datos Incompletos Por favor llene todos los campos");
+      }
+      pintarDatosTabla();
+
+  })
+
+  $("#buscador").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#cuerpotabla tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+  });
+})

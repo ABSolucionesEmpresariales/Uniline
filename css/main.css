@@ -17,7 +17,7 @@ body.mobile-nav-active #mobile-nav-toggle{color:rgb(43, 15, 201)}
 .overlay{position:absolute;left:0;right:0;top:0;bottom:0}
 .section-title{text-align:center;display:block;margin-left:auto;margin-right:auto;margin-bottom:80px}
 .section-title h1{margin-bottom:10px}
-.banner-area{background:url(../img/banner-bg.jpg) right;background-size:cover}
+.banner-area{background:url(../img/banner-bg.webp) right;background-size:cover}
 .banner-area .overlay-bg{background-color:rgba(0, 0, 0, 0.7)}
 .banner-area .overlay-bg-footer{background-color: #04091ee7}
 .dash-area{background:url(../img/lp.jpg) right;background-size:cover}

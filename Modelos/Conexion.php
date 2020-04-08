@@ -9,9 +9,9 @@ class Conexion
 
     private $datos = array(
         "host" => "localhost",
-        "user" => "u981877364_cool",
-        "pass" => "Eh]XWg0F",
-        "db" => "u981877364_uniline"
+        "user" => "root",
+        "pass" => "",
+        "db" => "uniline"
     );
 
     public $con;
