@@ -58,9 +58,9 @@ if(isset($_POST['TNombre']) && isset($_POST['TADescripcion']) && isset($_POST['T
             "i", 
             false, 
             null);
-            if($imagen != ""){
-               echo editar_curso($imagen[0][0],$conexion);
-            }
+            
+            echo editar_curso($imagen[0][0],$conexion);
+        
         }
     }
 }
