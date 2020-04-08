@@ -26,10 +26,6 @@ $pagina = "general";
     <!-- meta character set -->
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
     <!-- #Scripts -->
     <?php include "../Components/scripts.php"; ?>
     <script src="../js/descripcion-cursos.js"></script>
@@ -71,7 +67,7 @@ $pagina = "general";
                             <!-- informacion del curso -->
                         </div>
                         <hr>
-                        <h2 class="h3 text-center">¡Compártelo con tus amigos!</h2>
+                        <h3 class="text-center">¡Compártelo con tus amigos!</h2>
                         <div class="mt-3 text-center">
                             <a class="whatsapp" href="whatsapp://send?text=https://unilineprueba.000webhostapp.com/views/descripcioncursos.php?idcurso=<?php echo $_SESSION['idcurso'] ?>"><i class="fab fa-whatsapp"></a></i>
                             <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Funilineprueba.000webhostapp.com%2Fviews%2Fdescripcioncursos.php%3Fidcurso%3D<?php echo $_SESSION['idcurso'] ?>&layout=button&size=large&width=103&height=28&appId" width="103" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
@@ -85,7 +81,7 @@ $pagina = "general";
                 </div>
                 <div class="contenido-curso text-center col-12 col-lg-3">
                     <div class="titulo-contenido">
-                        <h2 class="h3 text-white">Contenido del curso</h2>
+                        <h3 class="text-white">Contenido del curso</h2>
                     </div>
                     <br>
                     <div class="contenido-informacion">

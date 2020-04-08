@@ -48,6 +48,9 @@
     height: 100%;
     border: 0;
 }
+.contenido-curso {
+    padding: 0!important;
+}
 .titulo-capitulos h3{
     margin-left: 4rem;
     text-align: left!important;

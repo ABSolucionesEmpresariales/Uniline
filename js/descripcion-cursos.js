@@ -83,9 +83,9 @@ $(document).ready(function() {
           separar = datos[0][10].split("###");
           templateImagen += `<img src="${url_3}" alt="curso" width="100%" style="border-radius: 1rem;">`;
           templateTitulo += `<div>
-                                <h1 class="h1 text-white strong titulo-banner">${item[1]}</h1>
+                                <h1 class="text-white strong titulo-banner">${item[1]}</h1>
                                 <div class="d-sm-block d-lg-flex">
-                                    <div class="col-12 col-lg-4 col-xl-4 no-padding">
+                                    <div class="col-12 col-lg-4 col-xl-4" style="padding: 0;">
                                         <button value="${datos[i][0]}" class="mt-5 boton-comprar-cursos primary-btn compras">Comprar curso</button>
                                     </div>
                                     <div class="mt-5 col-12 col-lg-3 col-xl-2 precio-banner d-flex align-items-center justify-content-center">
@@ -97,7 +97,7 @@ $(document).ready(function() {
           templateInfo += `
                         <div class="mt-3">
                             <div class="contenido-info-curso">
-                                <h1 class="h3">${item[1]}</h1>
+                                <h3>${item[1]}</h1>
                                 <br/>
                                 <ul>
                                     <li>
@@ -116,15 +116,15 @@ $(document).ready(function() {
                                 </ul>
                             </div>
                             <div class="contenido-maestro">
-                                <h2 class="h4 pt-5">Curso impartido por:</h2>
+                                <h4 class="pt-5">Curso impartido por:</h2>
                                 <div class="maestro row">
                                     <div class="col-3">
                                         <img src="${url_2}" alt="profesor" style="border-radius: 100%;">
                                     </div>
                                     <div class="col-8 flex align-items-center">
                                         <div>
-                                            <h3 class="h5">${item[6]}</h3>
-                                            <p class="h6">${separar[0]}, ${separar[1]}</p>
+                                            <h4>${item[6]}</h3>
+                                            <h5>${separar[0]}, ${separar[1]}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -139,10 +139,10 @@ $(document).ready(function() {
                         <br>
                         <div class="contenido-descripcion">
                             <div class="titulo-descripcion">
-                                <h2 class="h3 text-center titulo-descripcion">Descripcion</h2>
+                                <h3 class="text-center titulo-descripcion">Descripcion</h2>
                             </div>
                             <div class="descripcion text-justify">
-                                ${item[2]}
+                                <h4>${item[2]}</h4>
                             </div>
                         </div>
                     `;
@@ -186,7 +186,9 @@ $(document).ready(function() {
                 $.each(datos2, function (y, item2) {
                     templateTemas += `     
                     
-                            <li class="text-left" style="margin-left: 5rem!important;">${item2[1]}</li>
+                            <li class="text-left" style="margin-left: 6rem!important;">
+                            <h4>${item2[1]}</h4>
+                            </li>
                             `;
                 });
                 $("." + contenido).html(templateTemas);
