@@ -357,7 +357,12 @@ $(document).ready(function () {
   // enviar el nuevo orden de la tabla
   $(document).on('click', '#btnorden', function () {
     $("#btnorden").prop('disabled', true);
-    $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (respuesta) {
+    $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (response) {
+        if(response == ""){
+          swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
+        }else{
+          swal("Ups!", "Algo salio mal!", "warning")
+        }
     })
   });
 

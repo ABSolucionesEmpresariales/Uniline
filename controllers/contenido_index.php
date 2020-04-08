@@ -27,7 +27,7 @@ if(isset($_POST['cursos-contenido'])){
 if(isset($_POST['temas-bloque'])){
     $conexion = new Modelos\Conexion();
     $data = array($_POST['temas-bloque']);
-    $consuta = "SELECT t.idtema,t.nombre FROM tema t WHERE t.bloque = ?";
+    $consuta = "SELECT t.idtema,t.nombre FROM tema t WHERE t.bloque = ? ORDER BY preferencia";
     echo json_encode($conexion->consultaPreparada($data,$consuta,2,"i",false,null));
 }
 if(isset($_POST['cursos-descripcion'])){
