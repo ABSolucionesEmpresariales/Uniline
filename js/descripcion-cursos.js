@@ -72,6 +72,7 @@ $(document).ready(function() {
 
       success: function(response) {
         let datos = JSON.parse(response);
+        console.log(datos);
         $.each(datos, function(i, item) {
 
                     
@@ -83,7 +84,7 @@ $(document).ready(function() {
           separar = datos[0][10].split("###");
           templateImagen += `<img src="${url_3}" alt="curso" width="100%" style="border-radius: 1rem;">`;
           templateTitulo += `<div>
-                                <h1 class="text-white strong titulo-banner">${item[1]}</h1>
+                                <h1 class="text-white strong titulo-banner" style="min-width: 900px">${item[1]}</h1>
                                 <div class="d-sm-block d-lg-flex">
                                     <div class="col-12 col-lg-4 col-xl-4" style="padding: 0;">
                                         <button value="${datos[i][0]}" class="mt-5 boton-comprar-cursos primary-btn compras">Comprar curso</button>
