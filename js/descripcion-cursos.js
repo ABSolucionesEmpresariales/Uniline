@@ -9,7 +9,9 @@ $(document).ready(function() {
       data: "cursos=cursos",
       success: function(response) {
         let datos = JSON.parse(response);
-        id = datos[0][0];
+        $.each(datos, function(i, item) {
+            id = datos[i][0];
+        });       
       }
     });
   }
@@ -72,7 +74,6 @@ $(document).ready(function() {
 
       success: function(response) {
         let datos = JSON.parse(response);
-        console.log(datos);
         $.each(datos, function(i, item) {
 
                     
