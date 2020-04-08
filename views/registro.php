@@ -14,6 +14,7 @@ include '../controllers/sessionCEO.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
@@ -118,6 +119,7 @@ include '../controllers/sessionCEO.php';
                                             <th scope="col">Descripcion</th>
                                             <th scope="col">Video</th>
                                             <th scope="col">Archivo</th>
+                                            <th><button id="btnorden" class="btn btn-primary" disabled>Cambiar orden</button></th>
                                         </tr>
                                     </thead>
                                     <tbody id="datos-tema">
