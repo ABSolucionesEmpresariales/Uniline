@@ -1,0 +1,84 @@
+<?php
+session_start();
+require_once '../Modelos/Conexion.php';
+require('../APIs/fpdf/fpdf.php');
+
+/* if(isset($_POST['certificacion'])){ */
+    $conexion = new Modelos\Conexion();
+    $result =$conexion->consultaPreparada(
+        array($_SESSION['idusuario']),
+        "SELECT u.nombre,c.fecha_inicio,c.fecha_fin FROM usuario u INNER JOIN inscripcion c ON c.alumno = u.idusuario WHERE u.idusuario = ?",
+        2,
+        "i",
+        false,
+        null
+    );
+
+    $alumno = $result[0][0];
+    $curso = "'Exel basico intermedio-experto'";
+    $fecha_inicial = $result[0][1];
+    $fecha_final = $result[0][2];
+    $ano = $result[0][1];
+    $anoDelCurso = "2020";
+
+    $fechaFinal = "Del $fecha_inicial al $fecha_final del $anoDelCurso";
+
+    class PDF extends FPDF {  
+    // Cabecera de página
+    function Header(){
+        // Logo
+        $this->Image('../img/certificacion.jpg',0,0,300);
+        // Arial bold 15
+        // Movernos a la derecha
+        $this->Cell(20);
+        // Título
+        // Salto de línea
+        $this->Ln(20);
+    }
+    function Footer(){
+        $maestro = "Diego Alonso Leon De Dios";
+
+        // Posición: a 1,5 cm del final
+        $this->SetY(-20);
+        // Arial italic 8
+        $this->SetFont('Arial','I',12);
+        $this->SetTextColor(225,255,255);
+        // Número de página
+        $this->Cell(152,8,utf8_decode(''),0,0,'C');
+        $this->Cell(60,6,utf8_decode($maestro),0,1,'C');
+    }
+    }
+
+    $pdf = new PDF("L");
+    $pdf->AddPage();
+
+
+    $pdf->Cell(19,88,utf8_decode(''),0,1,'C');
+
+    $pdf->Cell(152,8,utf8_decode(''),0,0,'C');
+
+    $pdf->SetTextColor(225,255,255);
+    $pdf->SetFont('Arial','B',16);
+    $pdf->Cell(60,8,utf8_decode($alumno),0,1,'C');
+
+    $pdf->Cell(19,1,utf8_decode(''),0,1,'C');
+
+    $pdf->Cell(152,6,utf8_decode(''),0,0,'C');
+
+    $pdf->SetFont('Arial','B',12);
+    $pdf->Cell(60,6,utf8_decode('Por hacer acreditado sactisfactoriamente el curso:'),0,1,'C');
+    $pdf->SetFont('Arial','I',12);
+
+    $pdf->Cell(152,6,utf8_decode(''),0,0,'C');
+    $pdf->Cell(60,6,utf8_decode($curso),0,1,'C');
+    $pdf->SetFont('Arial','B',12);
+
+    $pdf->Cell(152,6,utf8_decode(''),0,0,'C');
+    $pdf->Cell(60,6,utf8_decode($fechaFinal),0,1,'C');
+    $pdf->Cell(152,6,utf8_decode(''),0,0,'C');
+    $pdf->Cell(60,6,utf8_decode("En la Escuela Al Reves de AB 'Uniline'"),0,1,'C');
+
+    $pdf->Output();
+    $pdf->Output("D","Uriel");
+/* } */
+?>

@@ -64,7 +64,6 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-
 </head>
 
 <body>
@@ -84,7 +83,7 @@ session_start();
           <div class="col-lg-12 col-md-7 search-course-right" id="reg1">
 
             <form class="form-wrap" id="registro" method="post">
-<div class="form-group">
+              <div class="form-group">
                   <i class="fa fa-at"></i>
                 <input type="email" id="registrar-correo" class="form-control text-dark" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'">
               </div>
@@ -135,11 +134,13 @@ session_start();
   </div>
   <!---------end modal ----------->
   <header id="header">
+
     <div class="container-fluid main-menu">
       <div class="row justify-content-between">
         <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
           <a href="mainpage.php"><img id="logo-imagen" src="../img/uniline3.png" width="32%" alt="" title="" /></a>
         </div>
+
         <div class="float-right">
           <nav id="nav-menu-container">
             <ul class="nav-menu">
@@ -299,6 +300,8 @@ session_start();
   <!-- End banner Area -->
 
 
+
+
   
   <!-- Popular -->
 
@@ -313,6 +316,44 @@ session_start();
     </div>
     <button id="date-modal" type="button" class="btn btn-info btn-lg d-none" data-toggle="modal" data-target="#modal-cursos"></button>
   </div>
+
+  <section class="dash-area" style="height: 250px;">
+        <div class="row p-0 px-md-5 px-sm-3" style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.664));">
+            <div class="col-lg-3 col-md-12 p-5 d-lg-block d-md-none d-none" >
+              <i style="font-size: 200px" class="fas fa-laptop-code text-white"></i>
+            </div>
+            <div class="col-lg-6 col-md-12" >
+              <form class="form-group" id="FCupones">
+              <p class="text-center h2 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea tu Codigo</p>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 mb-3 mb-md-2">
+                          <input name="INCodigo" class="form-control" type="text" placeholder="Codigo" id="codigo">
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                          <select name="SCurso" class="form-control" 
+                            style="height:50px;
+                                    line-height:30px;
+                                    border-radius: 5px;" 
+                            id="curso">
+                          </select>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 pt-5">
+                      <button class="btn btn-block text-white" style="height:50px; font-size: 20px; background-color: #fd5601;"  type="submit">Canjear codigo</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-3 col-md-12 p-5">
+                <p class="h3" style="color: #fd5601;text-shadow: 0.1em 0.1em 0.1em #000!important;">Utiliza tu codigo aqui!!</p>
+                <p class="h3 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea el cupon para poder iniciar tu curso ahora!!</p>
+            </div>
+        </div>
+</section>
+  
 
  
 
@@ -364,8 +405,11 @@ session_start();
       </div>
     </div>
   </section>
+
   <!-- End contact-page Area -->
   <div id="home-contacto"></div>
+
+
 
   <!-- start footer Area -->
   <footer class="footer-area footer-ipad-pro">
