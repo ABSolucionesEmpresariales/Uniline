@@ -1,5 +1,6 @@
 <?php
 session_start();
+$pagina = "general";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,54 +21,27 @@ session_start();
     <!-- Site Title -->
     <title>Escuela Al Revés</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!--
-    CSS
-    ============================================= -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="../css/linearicons.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/magnific-popup.css">
-    <link rel="stylesheet" href="../css/nice-select.css">
-    <link rel="stylesheet" href="../css/animate.min.css">
-    <link rel="stylesheet" href="../css/owl.carousel.css">
-    <link rel="stylesheet" href="../css/jquery-ui.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/main_styles.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/styles/login.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/stylo.css">
-    <link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
-    <link rel="stylesheet" href="../css/icons/all.css">
-
-    <!--
-    JS
-    ============================================= -->
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="../js/jquery.js"></script>
-    <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-    <script src="../js/registro16.js"></script>
-    <script src="../js/login.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- #Scripts -->
+    <?php include "../Components/scripts.php"; ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="../js/registro.js"></script>
+    <script src="../js/login9.js"></script>
+    <!-- #Scripts -->
+
     <style>
         @media (min-width: 377px) {
             .contenido {
-            margin-left: 20rem;
-            margin-right: 20rem;
-            padding-left:5rem;
-            padding-right:5rem;
+                margin-left: 20rem;
+                margin-right: 20rem;
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
         }
-                }
-        a{
+
+        a {
             font-size: 15px;
         }
+
         p {
             text-align: justify;
             color: black;
@@ -77,13 +51,15 @@ session_start();
             text-align: center;
             font-weight: bold;
         }
+
         h5 {
 
             font-size: 20px;
         }
+
         body {
             margin: 0;
-            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             font-size: 1rem;
             font-weight: 400;
             line-height: 1.5;
@@ -91,6 +67,7 @@ session_start();
             text-align: left;
             background-color: #fff;
         }
+
         .card {
             position: relative;
             display: -ms-flexbox;
@@ -101,9 +78,10 @@ session_start();
             word-wrap: break-word;
             background-color: #fff;
             background-clip: border-box;
-            border: 1px solid rgba(0,0,0,.125);
+            border: 1px solid rgba(0, 0, 0, .125);
             border-radius: .25rem;
         }
+
         .card-body {
             -ms-flex: 1 1 auto;
             flex: 1 1 auto;
@@ -119,8 +97,8 @@ session_start();
         }
 
         .contenido {
-            padding-left:5rem;
-            padding-right:5rem;
+            padding-left: 5rem;
+            padding-right: 5rem;
         }
 
         .foter {
@@ -130,55 +108,10 @@ session_start();
 </head>
 
 <body>
-    <header id="header">
-        <div class="container main-menu">
-            <div class="row justify-content-between">
-                <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
-                    <a href="mainpage.php"><img id="logo-imagen" src="../img/uniline3.png" width="40%" alt="" title="" /></a>
-                </div>
-                <div class="float-right">
-                    <nav id="nav-menu-container">
-                        <ul class="nav-menu">
-                            <?php
-                            if (isset($_SESSION['acceso'])) {
-                            ?>
-                                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
-                                <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
-                                <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
-                                    <?php
-                                    $url = "";
-                                    if ($_SESSION['imagen_perfil'] != "../img/perfil.png") {
-                                        $exlpode = explode("/", $_SESSION['imagen_perfil']);
-                                        $url = "../" . $exlpode[1] . "/min_" . $exlpode[2];
-                                    } else {
-                                        $url = $_SESSION['imagen_perfil'];
-                                    }
-                                    ?>
-                                    <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
-                                </a>
-                                <div id="drop" class="dropdown-menu opciones-perfil">
-                                    <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
-                                    <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
-                                </div>
 
-                            <?php
-                            } else {
-                            ?>
-                                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
-                                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
-                            <?php
-                            }
-                            ?>
-                        </ul>
-                    </nav><!-- #nav-menu-container -->
-                </div>
-            </div>
-        </div>
-    </header><!-- #header -->
-
+    <!-- #header -->
+    <?php include "../Components/header.php"; ?>
+    <!-- #header -->
 
     <div class="card contenido">
         <div class="card-body">
@@ -521,66 +454,11 @@ session_start();
             <a href="#">Correo: datospersonales@escuerlaalreves.com</a><br>
             <small> Copyright © UNILINE escuela al revés 2020</small>
         </div>
-
     </div>
-
-    <footer class="footer-area">
-        <div class="align-items-center justify-content-between">
-            <div class="row">
-                <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
-                    <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="25%" alt="" title="" /></a>
-                </div>
-                <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
-                    <p class="mb-0 foter text-center">&copy; AB Soluciones Empresariales <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        All rights reserved.
-                    </p>
-                    <ul class="list-inline  mt-0 clock text-center">
-                        <li class="list-inline-item">
-                            <a href="avisodeprivacidad.php">Políticas de Privacidad</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="imagenCorporativa.php">Imagen Corporativa</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
-                    <div class="social-network mt-0">
-                        <p class="h4 text-white text-center">Síguenos</p>
-                        <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
-                        <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a class="h3 m-3 text-white" href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- End footer Area -->
-
-
-
-    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="../js/vendor/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="../js/easing.min.js"></script>
-    <script src="../js/hoverIntent.js"></script>
-    <script src="../js/superfish.min.js"></script>
-    <script src="../js/jquery.ajaxchimp.min.js"></script>
-    <script src="../js/jquery.magnific-popup.min.js"></script>
-    <script src="../js/jquery.tabs.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/mail-script.js"></script>
-    <script src="../js/main.js"></script>
-
-    <!-- styles course -->
-    <script src="../js/popper.js"></script>
-
-
 </body>
+
+<!-- start footer Area -->
+<?php include "../Components/footer.php"; ?>
+<!-- End footer Area -->
 
 </html>

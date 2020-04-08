@@ -119,6 +119,7 @@ $(document).ready(function () {
             data: "cursos=cursos",
             success: function (response) {
                 let datos = JSON.parse(response);
+                console.log(datos);
                 let templete = ``;
 
                 ocultar = "";

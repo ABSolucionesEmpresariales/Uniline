@@ -10,7 +10,6 @@ $(document).ready(function() {
       success: function(response) {
         let datos = JSON.parse(response);
         id = datos[0][0];
-        console.log(id);
       }
     });
   }
@@ -57,56 +56,84 @@ $(document).ready(function() {
 });
   /* <---------------------Se pintan el titulo y otros datos del curso-----------------------> */
   $(document).ready(function() {
-    templateImagen = "";
-    templateTitulo = "";
-    templateInfo = "";
-    templateVideo = "";
-    templateContenido = "";
+    let templateImagen = "";
+    let templateTitulo = "";
+    let templateInfo = "";
+    let templateVideo = "";
+    let templateContenido = "";
+    let url = "";
+    let url_2 = "";
+    let url_3 = "";
+    let url3 = "";
     $.ajax({
       url: "../controllers/contenido_index.php",
       type: "POST",
       data: "cursos-descripcion=" + id,
 
       success: function(response) {
-        console.log(response);
         let datos = JSON.parse(response);
-        console.log(datos);
         $.each(datos, function(i, item) {
-          separar = datos[0][9].split("###");
-          templateImagen += `<img src="" alt="curso" width="100%" style="border-radius: 1rem;">`;
-          templateTitulo += `<h1 class="h1 text-white strong" style="font-size: 50px;">${item[1]}</h1>`;
+
+                    
+            url = datos[i][7].split("/");
+            url_2 = url[0] + "/" + url[1] + "/min_" + url[2];
+            url3 = datos[i][3].split("/");
+            url_3 = url[0] + "/" + url3[1] + "/res_" + url3[2];
+                    
+          separar = datos[0][10].split("###");
+          templateImagen += `<img src="${url_3}" alt="curso" width="100%" style="border-radius: 1rem;">`;
+          templateTitulo += `<div>
+                                <h1 class="h1 text-white strong titulo-banner">${item[1]}</h1>
+                                <div class="d-sm-block d-lg-flex">
+                                    <div class="col-12 col-lg-4 col-xl-4 no-padding">
+                                        <button value="${datos[i][0]}" class="mt-5 boton-comprar-cursos primary-btn compras">Comprar curso</button>
+                                    </div>
+                                    <div class="mt-5 col-12 col-lg-3 col-xl-2 precio-banner d-flex align-items-center justify-content-center">
+                                        <span class="text-white">$${datos[i][8]} MX</span>
+                                    </div>  
+                                                    
+                                </div> 
+                            </div>`;
           templateInfo += `
-                    <button value="${id}" class="boton-comprar-cursos primary-btn compras">Comprar curso</button>
-                        <div class="contenido-maestro">
-                            <h2 class="h4 pt-5">Curso impartido por:</h2>
-                            <div class="maestro row">
-                                <div class="col-3">
-                                    <img src="../img/diego.jpg" alt="profesor" style="border-radius: 100%;">
-                                </div>
-                                <div class="col-8 flex align-items-center">
-                                    <div>
-                                        <h3 class="h5">${item[5]}</h3>
-                                        <p class="h6">${separar[0]}, ${separar[1]}</p>
+                        <div class="mt-3">
+                            <div class="contenido-info-curso">
+                                <h1 class="h3">${item[1]}</h1>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <div class="star" style="color: yellow">
+                                            <i class="fas fa-star" style="cursor: pointer;"></i>
+                                            <i class="fas fa-star" style="cursor: pointer;"></i>
+                                            <i class="fas fa-star" style="cursor: pointer;"></i>
+                                            <i class="fas fa-star" style="cursor: pointer;"></i>
+                                            <i class="far fa-star" style="cursor: pointer;"></i>
+                                        </div>
+                                    </li>
+                                    <li><i class="fab fa-youtube"></i> ${item[5]} horas de curso</li>
+                                    <li><i class="fas fa-infinity"></i> Acceso de por vida</li>
+                                    <li><i class="fas fa-mobile-alt"></i> Acceso desde dispositivos moviles</li>
+                                    <li><i class="fas fa-certificate"></i> Certificación al finalizar</li>
+                                </ul>
+                            </div>
+                            <div class="contenido-maestro">
+                                <h2 class="h4 pt-5">Curso impartido por:</h2>
+                                <div class="maestro row">
+                                    <div class="col-3">
+                                        <img src="${url_2}" alt="profesor" style="border-radius: 100%;">
+                                    </div>
+                                    <div class="col-8 flex align-items-center">
+                                        <div>
+                                            <h3 class="h5">${item[6]}</h3>
+                                            <p class="h6">${separar[0]}, ${separar[1]}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="contenido-detalles">
-                            <h2 class="h4 pt-5">Este curso incluye</h2>
-                            <br>
-                            <ul>
-                                <li><i class="fas fa-check-circle" style="color: LightGray;"></i> 5 horas de vídeo bajo demanda</li>
-                                <li><i class="fas fa-check-circle" style="color: LightGray;"></i> 17 artículos</li>
-                                <li><i class="fas fa-check-circle" style="color: LightGray;"></i> 11 recursos descargables</li>
-                                <li><i class="fas fa-check-circle" style="color: LightGray;"></i> Acceso de por vida</li>
-                                <li><i class="fas fa-check-circle" style="color: LightGray;"></i> Acceso en dispositivos móviles y TV</li>
-                                <li><i class="fas fa-check-circle" style="color: LightGray;"></i> Certificado de finalización</li>
-                            </ul>
                         </div>`;
           templateVideo += `
                         <div>
                             <div class="contenido-video text-center">
-                                <iframe class="embed-responsive-item" src="${item[8]}" width="640" height="346" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                <iframe class="iframe-responsivo" src="${item[9]}" width="640" height="350" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                             </div>
                         </div>
                         <br>
@@ -127,15 +154,15 @@ $(document).ready(function() {
           data: "cursos-contenido=" + id,
           success: function(response) {
             let datos = JSON.parse(response);
-            console.log(datos);
             $.each(datos, function(i, item) {
               templateContenido += `
-                                <li data-toggle="collapse" data-bloque="bloque-${item[0]}" class="mb-2 curso" style="cursor:pointer;>
-                                    <h3 class="h4">Capitulo ${i + 1}</h3>
+                                <li data-toggle="collapse" data-bloque="bloque-${item[0]}" class="mb-3 curso titulo-capitulos item-anim uno">
+                                    <h3 class="h3">Capitulo ${i + 1}</h3>
                                 </li>
                                 <div data-temas="bloque-${item[2]}-${item[0]}" class="collapse bloque-${item[0]}">
                                 </div>`;              
             });
+            $("#imagen-curso").html(templateImagen);
             $("#titulo-curso").html(templateTitulo);
             $("#informacion-curso").html(templateInfo);
             $("#contenido-video").html(templateVideo);
@@ -158,7 +185,8 @@ $(document).ready(function() {
                 templateTemas = "";
                 $.each(datos2, function (y, item2) {
                     templateTemas += `     
-                            <li>${item2[1]}</li>
+                    
+                            <li class="text-left" style="margin-left: 5rem!important;">${item2[1]}</li>
                             `;
                 });
                 $("." + contenido).html(templateTemas);

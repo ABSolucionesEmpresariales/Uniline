@@ -33,7 +33,13 @@ if(isset($_POST['temas-bloque'])){
 if(isset($_POST['cursos-descripcion'])){
     $conexion = new Modelos\Conexion();
     $data = array($_SESSION['idcurso']);
-    $consuta = "SELECT c.idcurso,c.nombre,c.descripcion,c.calificacion,c.horas,u.nombre,u.imagen,c.costo,c.video, u.trabajo 
+    $consuta = "SELECT c.idcurso,c.nombre,c.descripcion,c.imagen,c.calificacion,c.horas,u.nombre,u.imagen,c.costo,c.video, u.trabajo 
     FROM curso c INNER JOIN usuario u ON c.profesor = u.idusuario WHERE c.idcurso = ?";
-    echo json_encode($conexion->consultaPreparada($data,$consuta,2,"i",false,null));
+    echo $resultado = json_encode($conexion->consultaPreparada($data,$consuta,2,"i",false,null));
+
+    $result = json_decode($resultado);
+    $exlpode = explode("/", $result[0][3]);
+    $url = $exlpode[1] . "/res_" . $exlpode[2];
+    $_SESSION['imagen_curso'] = $url;
+    $_SESSION['nombre_curso'] = $result[0][1];
 }
