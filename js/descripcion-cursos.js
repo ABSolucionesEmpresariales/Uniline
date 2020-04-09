@@ -1,20 +1,8 @@
 $(document).ready(function() {
-  let id = "";
-  obtener_Cursos();
 
-  function obtener_Cursos() {
-    $.ajax({
-      url: "../controllers/contenido_index.php",
-      type: "POST",
-      data: "cursos=cursos",
-      success: function(response) {
-        let datos = JSON.parse(response);
-        $.each(datos, function(i, item) {
-            id = datos[i][0];
-        });       
-      }
-    });
-  }
+let params = new URLSearchParams(location.search);
+let id = params.get('idcurso');
+
   /* <--------------------- Generar checkout de pago de stripe -----------------------> */
   $(document).on("click", ".compras", function (event) {
     let idcurso = $(this).val();
