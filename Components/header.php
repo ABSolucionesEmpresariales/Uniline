@@ -8,7 +8,7 @@
     <div class="container-fluid main-menu">
       <div class="row justify-content-between">
         <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
-          <a href="mainpage.php"><img id="logo-imagen" src="../img/uniline3.png" width="25%" alt="" title="" /></a>
+          <a href="mainpage.php"><img id="logo-imagen" src="../img/uniline3.png" width="25%" alt="uniline"/></a>
         </div>
         <div class="float-right">
           <nav id="nav-menu-container">

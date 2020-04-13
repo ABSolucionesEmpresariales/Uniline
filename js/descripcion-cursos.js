@@ -48,6 +48,7 @@ let id = params.get('idcurso');
   $(document).ready(function() {
     let templateImagen = "";
     let templateTitulo = "";
+    let templateBotones = "";
     let templateInfo = "";
     let templateVideo = "";
     let templateContenido = "";
@@ -62,6 +63,7 @@ let id = params.get('idcurso');
 
       success: function(response) {
         let datos = JSON.parse(response);
+        console.log(datos);
         $.each(datos, function(i, item) {
 
                     
@@ -72,18 +74,17 @@ let id = params.get('idcurso');
                     
           separar = datos[0][10].split("###");
           templateImagen += `<img src="${url_3}" alt="curso" width="100%" style="border-radius: 1rem;">`;
-          templateTitulo += `<div>
-                                <h1 class="text-white strong titulo-banner" style="min-width: 900px">${item[1]}</h1>
-                                <div class="d-sm-block d-lg-flex">
-                                    <div class="col-12 col-lg-4 col-xl-4" style="padding: 0;">
-                                        <button value="${datos[i][0]}" class="mt-5 boton-comprar-cursos primary-btn compras">Comprar curso</button>
-                                    </div>
-                                    <div class="mt-5 col-12 col-lg-3 col-xl-2 precio-banner d-flex align-items-center justify-content-center">
-                                        <span class="text-white">$${datos[i][8]} MX</span>
-                                    </div>  
-                                                    
-                                </div> 
-                            </div>`;
+          templateTitulo += `<h1 class="text-white strong titulo-banner">${item[1]}</h1>`;
+          templateBotones += `<div class="d-sm-block d-lg-flex">
+                                <div class="col-12 col-lg-7 col-xl-7" style="padding: 0;">
+                                    <button value="${datos[i][0]}" class="mt-5 boton-comprar-cursos primary-btn compras">Comprar curso</button>
+                                </div>
+                                <div class="mt-5 col-12 col-lg-5 col-xl-5 precio-banner d-flex align-items-center justify-content-center">
+                                    <span class="text-white">$${datos[i][8]} MX</span>
+                                </div>                                                
+                            </div> 
+          
+          `;                  
           templateInfo += `
                         <div class="mt-3">
                             <div class="contenido-info-curso">
@@ -154,6 +155,7 @@ let id = params.get('idcurso');
             });
             $("#imagen-curso").html(templateImagen);
             $("#titulo-curso").html(templateTitulo);
+            $("#botones-curso").html(templateBotones);
             $("#informacion-curso").html(templateInfo);
             $("#contenido-video").html(templateVideo);
             $("#contenido-contenido").html(templateContenido);
@@ -186,7 +188,7 @@ let id = params.get('idcurso');
         });
         setTimeout(function () {
             $("." + contenido).slideToggle("slow");
-        }, 150);
+        }, 100);
     });
   });
 });

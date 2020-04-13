@@ -50,10 +50,14 @@ $pagina = "general";
                     <!-- imagen del curso -->
                 </div>
                 <div class="col-12 col-lg-9 flex align-items-center">
-                    <div">
-                        <div id="titulo-curso" class="titulo-curso">
+                    <div class="col">
+                        <div id="titulo-curso" class="titulo-curso col-12 col-lg-12">
                             <!-- titulo del curso -->
                         </div>
+                        <div id="botones-curso" class="botones-curso col-12 col-lg-6">
+                            <!-- botones del curso -->
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,8 +73,8 @@ $pagina = "general";
                         <hr>
                         <h3 class="text-center">¡Compártelo con tus amigos!</h2>
                         <div class="mt-3 text-center">
-                            <a class="whatsapp" href="whatsapp://send?text=https://unilineprueba.000webhostapp.com/views/descripcioncursos.php?idcurso=<?php echo $_SESSION['idcurso'] ?>"><i class="fab fa-whatsapp"></a></i>
-                            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Funilineprueba.000webhostapp.com%2Fviews%2Fdescripcioncursos.php%3Fidcurso%3D<?php echo $_SESSION['idcurso'] ?>&layout=button&size=large&width=103&height=28&appId" width="103" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                            <a class="whatsapp" href="whatsapp://send?text=https://escuelaalreves.com/views/descripcioncursos.php?idcurso=<?php echo $_SESSION['idcurso'] ?>"><i class="fab fa-whatsapp"></a></i>
+                            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fescuelaalreves.com%2Fviews%2Fdescripcioncursos.php%3Fidcurso%3D<?php echo $_SESSION['idcurso'] ?>&layout=button&size=large&width=103&height=28&appId" width="103" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                         </div>
                     </div>
                 </div>

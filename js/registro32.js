@@ -149,12 +149,12 @@ $(document).ready(function () {
                     if (i % 4 == 0) {
 
                         contdador_page++;
-                        templete += `<div class="row course_boxes page-${contdador_page} ${ocultar} page-activo">`;
+                        templete += `<div class="row d-flex justify-content-between course_boxes page-${contdador_page} ${ocultar} page-activo">`;
                     }
                     templete += `
-                                    <div class="col-lg-3 course_box bor-responsive item"  style="box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75); margin-right: 5rem!important;">
+                                    <div class="col-lg-2 course_box bor-responsive item"  style="box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.75);">
                                         <div class="card text-center" style="border-radius:2rem;">
-                                            <img class="responsive-image"  width="250px" height="150px"  src="${url_3}" alt="Imagen del curso ${datos[i][1]}">
+                                            <img class="img-fluid responsive-image"  width="250px" height="150px"  src="${url_3}" alt="Imagen del curso ${datos[i][1]}">
                                             <div class="card-body text-center">
                                             <p class="h4 font-weight-bold" style="height: 38px;" >${datos[i][1]}</p>               
                                             </div>
@@ -186,7 +186,7 @@ $(document).ready(function () {
                                             <div class="card-text mt-3 text-center">
                                                 <div>
                                                     <div>
-                                                        <button type="button" class="curso btn btn-primary text-white more-cursos-responsive" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
+                                                        <button type="button" class="curso btn btn-primary text-white mt-4" data-curso="${datos[i][0]}" style="cursor: pointer;">Descripción del curso</button>
                                                     </div>
                                                     <div class="row justify-content-between" style="margin:2rem 0rem;">
                                                         <button type="button" value="${datos[i][0]}" class="item-comprar col-6 btn boton-compra text-center hover-boton compras" data-dismiss="modal" style=" background-color: #fd5601; color: white;">
