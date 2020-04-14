@@ -4,10 +4,11 @@ require_once '../Modelos/Conexion.php';
 require('../APIs/fpdf/fpdf.php');
 
 /* if(isset($_POST['certificacion'])){ */
+    $_SESSION['idusuario'] = 20;
     $conexion = new Modelos\Conexion();
     $result =$conexion->consultaPreparada(
         array($_SESSION['idusuario']),
-        "SELECT u.nombre,c.fecha_inicio,c.fecha_fin FROM usuario u INNER JOIN inscripcion c ON c.alumno = u.idusuario WHERE u.idusuario = ?",
+        "SELECT u.nombre,ci.nombre,c.fecha_inicio,c.fecha_fin FROM usuario u INNER JOIN inscripcion c ON c.alumno = u.idusuario INNER JOIN curso ci ON ci.idcurso = c.curso WHERE u.idusuario = ?",
         2,
         "i",
         false,
@@ -16,10 +17,10 @@ require('../APIs/fpdf/fpdf.php');
 
     $alumno = $result[0][0];
     $curso = "'Exel basico intermedio-experto'";
-    $fecha_inicial = $result[0][1];
-    $fecha_final = $result[0][2];
-    $ano = $result[0][1];
-    $anoDelCurso = "2020";
+    $fecha_inicial = $result[0][2];
+    $fecha_final = $result[0][3];
+    $temp = explode("-", $result[0][3]);
+    $anoDelCurso = $temp[0];
 
     $fechaFinal = "Del $fecha_inicial al $fecha_final del $anoDelCurso";
 

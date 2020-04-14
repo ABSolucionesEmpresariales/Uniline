@@ -340,12 +340,12 @@ $(document).ready(function () {
             `
             <tr class="tema">
               <td scope="row" class="idtema" style="display: none;">${datos[i][0]}</td>
-              <td scope="row" class="preferencia" style="display: none;">${datos[i][1]}</td>
               <td scope="row" class="nombreTema">${datos[i][2]}</td>
               <td scope="row" class="DescripcionTema">${datos[i][3]}</td>
               <td scope="row" class="videoTema">${datos[i][4]}</td>
               <td scope="row" class="ArchivoTema">${datos[i][5]}</td>
               <td scope="row" class="CursoBloque"><button type="button" data-tabla="tema" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
+              <td scope="row" class="preferencia" style="display: none;">${datos[i][1]}</td>
             </tr>
             `;
         }
