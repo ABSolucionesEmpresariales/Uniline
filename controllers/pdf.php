@@ -9,6 +9,7 @@ require('../APIs/fpdf/fpdf.php');
     $conexion = new Modelos\Conexion();
 
     $conexion->cambiarDatos();
+    
 
     $result =$conexion->consultaPreparada(
         array($_SESSION['idusuario']),
