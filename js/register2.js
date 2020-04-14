@@ -1,4 +1,4 @@
-  $(document).ready(function () {
+$(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
 
@@ -129,7 +129,7 @@
             `;
           template_combo +=
             `
-              <option value="${datos[i][0]}">${datos[i][1]}</option>
+              <option valuREGISTRe="${datos[i][0]}">${datos[i][1]}</option>
             `;
         }
         $('#select-profe-tema').html(template_combo);
@@ -242,7 +242,7 @@
 
         for (i = 0; i < datos.length; i++) {
           url = datos[i][3].split("/");
-          url_2 = url[0]+"/"+url[1]+"/min_"+url[2];
+          url_2 = url[0] + "/" + url[1] + "/min_" + url[2];
           template += `
             <tr class="examen">
               <td scope="row" style="display: none;">${datos[i][0]}</td>
@@ -251,11 +251,11 @@
               <td scope="row"><img width="50%" src="${url_2}"></td>
               <td scope="row">${datos[i][4]}</td>
               <td scope="row">${datos[i][5]}</td>`;
-  /*          if(datos[i][6] == "null" || datos[i][6] == null) {
-                template +=` <td scope="row">${dat}</td>`;
-                }else{
-                template +=` <td scope="row">${datos[i][6]}</td>`;
-                } */
+          /*          if(datos[i][6] == "null" || datos[i][6] == null) {
+                        template +=` <td scope="row">${dat}</td>`;
+                        }else{
+                        template +=` <td scope="row">${datos[i][6]}</td>`;
+                        } */
           template += `<td scope="row">${datos[i][6]}</td>
               <td scope="row">${datos[i][7]}</td>
               <td scope="row">${datos[i][8]}</td>
@@ -291,30 +291,30 @@
       }
     });
   }
-  
-    $(document).on('click','.elim', function(event) {
-          const postdata = {
-            accion:'eliminar',
-            ideliminarregistro:$(this).val()
-          };
-          
-         $.ajax({
-          url:"../controllers/"+$(this).data("tabla")+".php",
-          type:"POST",
-          data:postdata,
-          success: function(response){
-              if(response == 1){
-                  datosBloques();
-                  datosTemas();
-                  datosExamen();
-                  datosPreguntas();
-                  datosTareas();
-              }else{
-                alert("Algo salio mal");
-              }
-          }
-        }); 
-     });
+
+  $(document).on('click', '.elim', function (event) {
+    const postdata = {
+      accion: 'eliminar',
+      ideliminarregistro: $(this).val()
+    };
+
+    $.ajax({
+      url: "../controllers/" + $(this).data("tabla") + ".php",
+      type: "POST",
+      data: postdata,
+      success: function (response) {
+        if (response == 1) {
+          datosBloques();
+          datosTemas();
+          datosExamen();
+          datosPreguntas();
+          datosTareas();
+        } else {
+          alert("Algo salio mal");
+        }
+      }
+    });
+  });
 
 
   function datosTemas() {//PINTAR TABLA TEMAS
@@ -786,73 +786,73 @@ document.getElementById("inputGroupFile02").onchange = function (e) {
   };
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   function pintarItems() {
-      let template = `<option value="">Del Curso...</option>`;
-      $.post("../controllers/cupones.php", {
-          accion: "items"
-      }, function(response) {
-          const datos = JSON.parse(response);
-          datos.forEach(function(item) {
-              template += `
+    let template = `<option value="">Del Curso...</option>`;
+    $.post("../controllers/cupones.php", {
+      accion: "items"
+    }, function (response) {
+      const datos = JSON.parse(response);
+      datos.forEach(function (item) {
+        template += `
                   <option value="${item[0]}">${item[1]}</option>
                   `;
 
-          });
-          $('#curso').html(template);
-      })
+      });
+      $('#curso').html(template);
+    })
   }
 
   function pintarDatosTabla() {
-      let template = ``;
-      $.post("../controllers/cupones.php", {
-          accion: "tabla"
-      }, function(response) {
-          const datos = JSON.parse(response);
-          datos.forEach(function(item) {
-              template += `
+    let template = ``;
+    $.post("../controllers/cupones.php", {
+      accion: "tabla"
+    }, function (response) {
+      const datos = JSON.parse(response);
+      datos.forEach(function (item) {
+        template += `
          <tr>
               <td>${item[0]}</td>
               <td>${item[1]}</td>
               <td>${item[2]}</td>`;
-              if(item[3] == "Pendiente"){
- template += `<td class="text-danger">${item[3]}</td>`;
-              }else{
- template += `<td class="text-success">${item[3]}</td>`;      
-              }
- template += `
+        if (item[3] == "Pendiente") {
+          template += `<td class="text-danger">${item[3]}</td>`;
+        } else {
+          template += `<td class="text-success">${item[3]}</td>`;
+        }
+        template += `
          </tr>
          `;
 
-          });
-          $('#cuerpotabla').html(template);
-      })
+      });
+      $('#cuerpotabla').html(template);
+    })
   }
   pintarDatosTabla();
   pintarItems();
 
-  $(document).on('submit', '#FCupones', function(e) {
-      e.preventDefault();
-      console.log($('#cupones-input').val());
-      console.log($('#curso').val());
-      if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
-          $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function(response) {
-              if (!response.includes('1')) {
-                  swal("Ocurrio un problema", "Verifique todos los campos o intentelo mas tarde", "warning");
-              }
-          })
-          $(this)[0].reset();
-      } else {
-          alert("Datos Incompletos Por favor llene todos los campos");
-      }
-      pintarDatosTabla();
+  $(document).on('submit', '#FCupones', function (e) {
+    e.preventDefault();
+    console.log($('#cupones-input').val());
+    console.log($('#curso').val());
+    if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
+      $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function (response) {
+        if (!response.includes('1')) {
+          swal("Ocurrio un problema", "Verifique todos los campos o intentelo mas tarde", "warning");
+        }
+      })
+      $(this)[0].reset();
+    } else {
+      alert("Datos Incompletos Por favor llene todos los campos");
+    }
+    pintarDatosTabla();
 
   })
 
-  $("#buscador").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#cuerpotabla tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
+  $("#buscador").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#cuerpotabla tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
   });
 })

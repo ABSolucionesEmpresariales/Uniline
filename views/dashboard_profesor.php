@@ -65,8 +65,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
       <div class="col-lg-3 py-5 vh-100 border-right navbar-expand shadow">
 
          <div class="media mb-5">
-            <img src=<?php echo $url?> alt="prof"
-               class="mx-3 w-25 rounded-circle img-fluid align-self-center">
+            <img src=<?php echo $url?> alt="prof" class="mx-3 w-25 rounded-circle img-fluid align-self-center">
 
             <div class="media-body">
                <h5 class="mt-2"><?php echo $nombre?></h5>
@@ -111,14 +110,15 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
                         <div class="card-body">
-                           <form>
+                           <form id="registrar-curso">
                               <div class="text-center">
-                                 <img src="../img/cursos/no_course.png" alt="curso"
+                                 <img src="../img/cursos/no_course.png" id="foto-curso" alt="curso"
                                     class="align-self-center  mb-3 w-25" />
                               </div>
                               <div class="form-group">
                                  <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <input type="file" class="input-curso custom-file-input" id="customFile"
+                                       name="imagen-curso">
                                     <label class="custom-file-label" for="customFile">Imagen del Curso</label>
                                  </div>
                               </div>
@@ -126,31 +126,44 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <input type="text" class="form-control form-control-sm"
-                                       placeholder="Nombre del Curso">
+                                    <input type="text" class="input-curso form-control form-control-sm"
+                                       name="nombre-curso" placeholder="Nombre del Curso">
                                  </div>
                                  <div class="form-group col-md-12">
-                                    <textarea class="form-control form-control-sm"
+                                    <textarea class="input-curso form-control form-control-sm" name="descripcion-curso"
                                        placeholder="Descripción del curso"></textarea>
                                  </div>
                               </div>
                               <div class="form-row">
                                  <div class="form-group col-md-6">
-                                    <input type="number" name="nombre-bloque" id="nombre-bloque"
-                                       placeholder="Horas del Curso" class="form-control form-control-sm">
+                                    <input type="number" id="horas-curso" name="horas-curso"
+                                       placeholder="Horas del Curso" class="input-curso form-control form-control-sm">
                                  </div>
                                  <div class="form-group col-md-6">
-                                    <input type="number" name="nombre-bloque" id="nombre-bloque"
-                                       placeholder="Costo de Curso" class="form-control form-control-sm">
+                                    <input type="number" id="costo-curso" name="costo-curso"
+                                       placeholder="Costo de Curso" class="input-curso form-control form-control-sm">
                                  </div>
                               </div>
                               <div class="form-group">
-                                 <input type="text" class="form-control form-control-sm" placeholder="URL video">
+                                 <input type="text" class="input-curso form-control form-control-sm" name="video-curso"
+                                    placeholder="URL video">
                               </div>
-                              <div class="form-row">
-                                 <button type="submit"
-                                    class="col-lg-4 offset-lg-8 btn btn-success btn-md">Crear</button>
+
+                              <div class="form-row mt-5">
+                                 <div class="col-lg-2 text-center">
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                       <span class="sr-only">Loading...</span>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-2 offset-lg-8">
+                                 <button type="submit" name="submit"
+                                    class="btn btn-success btn-lg">Crear</button>
+                                 </div>
+                                 
                               </div>
+
+
+
                            </form>
 
                         </div>
@@ -314,262 +327,251 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
             <!-- CONTENIDO CURSOS TAB -->
             <div class="tab-pane fade" id="contenido-curso" role="tabpanel" aria-labelledby="contenido-curso-tab">
-               <div class="accordion" id="accordionContenido">
-                  <div class="card bg-light shadow">
-                     <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                              aria-expanded="true" aria-controls="collapseOne">
-                              <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Temas de Bloque</h5>
-                           </button>
-                        </h2>
-                     </div>
 
-                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                        data-parent="#accordionContenido">
-                        <div class="card-body">
-                           <form>
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="cursos"
-                                       id="cursos-select">
-                                       <option selected value="">Elija el Curso</option>
-                                       <option value="">Curso 1</option>
-                                       <option value="">Curso 2</option>
-                                       <option value="">Curso 3</option>
-                                       <option value="">Curso 4</option>
-                                    </select>
-                                 </div>
-                              </div>
+               <!-- COMBO BOX SUPERIORES -->
+               <div class="row mb-5">
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="bloques"
-                                       id="bloques-select">
-                                       <option selected value="">Elija el Bloque</option>
-                                       <option value="">Bloque 1</option>
-                                       <option value="">Bloque 2</option>
-                                       <option value="">Bloque 3</option>
-                                       <option value="">Bloque 4</option>
-                                    </select>
-                                 </div>
-                              </div>
+                  <div class="col-lg-6">
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <input type="text" class="form-control form-control-sm"
-                                       placeholder="Nombre del Tema">
-                                 </div>
-                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control form-control-sm"
-                                       placeholder="Descripción del Tema"></textarea>
-                                 </div>
-                              </div>
-
-                              <div class="form-group">
-                                 <input type="text" class="form-control form-control-sm" placeholder="URL video">
-                              </div>
-
-                              <div class="form-group">
-                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Subir Archivo</label>
-                                 </div>
-                              </div>
-
-                              <div class="form-row">
-                                 <button type="submit"
-                                    class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
-                              </div>
-
-                           </form>
-
-                        </div>
-                     </div>
+                     <select class="shadow custom-select form-control custom-select-lg text-danger" name="cursos"
+                        id="cursos-select">
+                        <option selected value="">Elija el Curso</option>
+                        <option value="">Curso 1</option>
+                        <option value="">Curso 2</option>
+                        <option value="">Curso 3</option>
+                        <option value="">Curso 4</option>
+                     </select>
                   </div>
 
-                  <div class="card bg-light shadow">
-                     <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                              data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                              <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Pregunta Examen</h5>
-                           </button>
-                        </h2>
-                     </div>
-                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                        data-parent="#accordionContenido">
-                        <div class="card-body">
-                           <form>
+                  <div class="col-lg-6">
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="cursos"
-                                       id="cursos-select">
-                                       <option selected value="">Elija el Curso</option>
-                                       <option value="">Curso 1</option>
-                                       <option value="">Curso 2</option>
-                                       <option value="">Curso 3</option>
-                                       <option value="">Curso 4</option>
-                                    </select>
-                                 </div>
+                     <select class="shadow custom-select form-control custom-select-lg text-danger" name="bloques"
+                        id="bloques-select">
+                        <option selected value="">Elija el Bloque</option>
+                        <option value="">Bloque 1</option>
+                        <option value="">Bloque 2</option>
+                        <option value="">Bloque 3</option>
+                        <option value="">Bloque 4</option>
+                     </select>
 
-
-                                 <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="bloques"
-                                       id="bloques-select">
-                                       <option selected value="">Elija el Bloque</option>
-                                       <option value="">Bloque 1</option>
-                                       <option value="">Bloque 2</option>
-                                       <option value="">Bloque 3</option>
-                                       <option value="">Bloque 4</option>
-                                    </select>
-                                 </div>
-                              </div>
-                              <!-- PREGUNTA -->
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <input type="text" name="pregunta-examen" id="pregunta-examen"
-                                       placeholder="Escriba la pregunta" class="form-control form-control-sm">
-                                 </div>
-                              </div>
-                              <!-- RESPUESTA A -->
-                              <div class="form-row">
-                                 <div class="form-group col-lg-1">
-                                    <div class="custom-control custom-radio">
-                                       <input type="radio" id="customRadio1" name="customRadio"
-                                          class="custom-control-input">
-                                       <label class="custom-control-label" for="customRadio1"></label>
-                                    </div>
-                                 </div>
-                                 <div class="form-group col-lg-11">
-                                    <input type="text" name="respuesta1" id="respuesta1" placeholder="Respuesta A"
-                                       class="form-control form-control-sm">
-                                 </div>
-                              </div>
-                              <!-- RESPUESTA B -->
-                              <div class="form-row">
-                                 <div class="form-group col-lg-1">
-                                    <div class="custom-control custom-radio">
-                                       <input type="radio" id="customRadio2" name="customRadio"
-                                          class="custom-control-input">
-                                       <label class="custom-control-label" for="customRadio2"></label>
-                                    </div>
-                                 </div>
-                                 <div class="form-group col-lg-11">
-                                    <input type="text" name="respuesta2" id="respuesta2" placeholder="Respuesta B"
-                                       class="form-control form-control-sm">
-                                 </div>
-                              </div>
-                              <!-- RESPUESTA C -->
-                              <div class="form-row">
-                                 <div class="form-group col-lg-1">
-                                    <div class="custom-control custom-radio">
-                                       <input type="radio" id="customRadio3" name="customRadio"
-                                          class="custom-control-input">
-                                       <label class="custom-control-label" for="customRadio3"></label>
-                                    </div>
-                                 </div>
-                                 <div class="form-group col-lg-11">
-                                    <input type="text" name="respuesta3" id="respuesta3" placeholder="Respuesta C"
-                                       class="form-control form-control-sm">
-                                 </div>
-                              </div>
-                              <!-- RESPUESTA D -->
-                              <div class="form-row">
-                                 <div class="form-group col-lg-1">
-                                    <div class="custom-control custom-radio">
-                                       <input type="radio" id="customRadio4" name="customRadio"
-                                          class="custom-control-input">
-                                       <label class="custom-control-label" for="customRadio4"></label>
-                                    </div>
-                                 </div>
-                                 <div class="form-group col-lg-11">
-                                    <input type="text" name="respuesta4" id="respuesta4" placeholder="Respuesta D"
-                                       class="form-control form-control-sm">
-                                 </div>
-                              </div>
-
-                              <div class="form-row">
-                                 <button type="submit"
-                                    class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
-                              </div>
-
-                           </form>
-                        </div>
-                     </div>
                   </div>
+               </div>
 
-                  <div class="card bg-light shadow">
-                     <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                              data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                              <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Tarea</h5>
-                           </button>
-                        </h2>
-                     </div>
-                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                        data-parent="#accordionContenido">
-                        <div class="card-body">
-                           <form>
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="cursos"
-                                       id="cursos-select">
-                                       <option selected value="">Elija el Curso</option>
-                                       <option value="">Curso 1</option>
-                                       <option value="">Curso 2</option>
-                                       <option value="">Curso 3</option>
-                                       <option value="">Curso 4</option>
-                                    </select>
-                                 </div>
+
+               <!-- ACCORDION -->
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="accordion" id="accordionContenido">
+                        <div class="card bg-light shadow">
+                           <div class="card-header" id="headingOne">
+                              <h2 class="mb-0">
+                                 <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Temas de Bloque
+                                    </h5>
+                                 </button>
+                              </h2>
+                           </div>
+
+                           <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                              data-parent="#accordionContenido">
+                              <div class="card-body">
+                                 <form>
+
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <input type="text" class="form-control form-control-sm"
+                                             placeholder="Nombre del Tema">
+                                       </div>
+                                       <div class="form-group col-md-12">
+                                          <textarea class="form-control form-control-sm"
+                                             placeholder="Descripción del Tema"></textarea>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                       <input type="text" class="form-control form-control-sm" placeholder="URL video">
+                                    </div>
+
+                                    <div class="form-group">
+                                       <div class="custom-file">
+                                          <input type="file" class="custom-file-input" id="customFile">
+                                          <label class="custom-file-label" for="customFile">Subir Archivo</label>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <button type="submit"
+                                          class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                                    </div>
+
+                                 </form>
+
                               </div>
+                           </div>
+                        </div>
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="cursos"
-                                       id="cursos-select">
-                                       <option selected value="">Elija el Bloque</option>
-                                       <option value="">Bloque 1</option>
-                                       <option value="">Bloque 2</option>
-                                       <option value="">Bloque 3</option>
-                                       <option value="">Bloque 4</option>
-                                    </select>
-                                 </div>
+                        <div class="card bg-light shadow">
+                           <div class="card-header" id="headingTwo">
+                              <h2 class="mb-0">
+                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Pregunta Examen
+                                    </h5>
+                                 </button>
+                              </h2>
+                           </div>
+                           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                              data-parent="#accordionContenido">
+                              <div class="card-body">
+                                 <form>
+
+                                    <!-- PREGUNTA -->
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <input type="text" name="pregunta-examen" id="pregunta-examen"
+                                             placeholder="Escriba la pregunta" class="form-control form-control-sm">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA A -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio1" name="customRadio"
+                                                class="custom-control-input">
+                                             <label class="custom-control-label" for="customRadio1"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta1" id="respuesta1" placeholder="Respuesta A"
+                                             class="form-control form-control-sm">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA B -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio2" name="customRadio"
+                                                class="custom-control-input">
+                                             <label class="custom-control-label" for="customRadio2"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta2" id="respuesta2" placeholder="Respuesta B"
+                                             class="form-control form-control-sm">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA C -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio3" name="customRadio"
+                                                class="custom-control-input">
+                                             <label class="custom-control-label" for="customRadio3"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta3" id="respuesta3" placeholder="Respuesta C"
+                                             class="form-control form-control-sm">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA D -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio4" name="customRadio"
+                                                class="custom-control-input">
+                                             <label class="custom-control-label" for="customRadio4"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta4" id="respuesta4" placeholder="Respuesta D"
+                                             class="form-control form-control-sm">
+                                       </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <button type="submit"
+                                          class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                                    </div>
+
+                                 </form>
                               </div>
+                           </div>
+                        </div>
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <input type="text" name="nombre-tarea" id="nombre-tarea"
-                                       placeholder="Nombre de la Tarea" class="form-control form-control-sm">
-                                 </div>
+                        <div class="card bg-light shadow">
+                           <div class="card-header" id="headingThree">
+                              <h2 class="mb-0">
+                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Tarea</h5>
+                                 </button>
+                              </h2>
+                           </div>
+                           <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                              data-parent="#accordionContenido">
+                              <div class="card-body">
+                                 <form>
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <select class="custom-select form-control custom-select-sm" name="cursos"
+                                             id="cursos-select">
+                                             <option selected value="">Elija el Curso</option>
+                                             <option value="">Curso 1</option>
+                                             <option value="">Curso 2</option>
+                                             <option value="">Curso 3</option>
+                                             <option value="">Curso 4</option>
+                                          </select>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <select class="custom-select form-control custom-select-sm" name="cursos"
+                                             id="cursos-select">
+                                             <option selected value="">Elija el Bloque</option>
+                                             <option value="">Bloque 1</option>
+                                             <option value="">Bloque 2</option>
+                                             <option value="">Bloque 3</option>
+                                             <option value="">Bloque 4</option>
+                                          </select>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <input type="text" name="nombre-tarea" id="nombre-tarea"
+                                             placeholder="Nombre de la Tarea" class="form-control form-control-sm">
+                                       </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <textarea class="form-control form-control-sm"
+                                             placeholder="Descripción de la Tarea"></textarea>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                       <div class="custom-file">
+                                          <input type="file" class="custom-file-input" id="customFile">
+                                          <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <button type="submit"
+                                          class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                                    </div>
+
+                                 </form>
                               </div>
+                           </div>
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control form-control-sm"
-                                       placeholder="Descripción de la Tarea"></textarea>
-                                 </div>
-                              </div>
-
-                              <div class="form-group">
-                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
-                                 </div>
-                              </div>
-
-                              <div class="form-row">
-                                 <button type="submit"
-                                    class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
-                              </div>
-
-                           </form>
                         </div>
                      </div>
-
                   </div>
                </div>
 
@@ -638,6 +640,12 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
    </script>
    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   <!-- jQUERY -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+   <!-- LOCAL SCRIPTS -->
+   <script src="../js/dashboard_profesor.js"></script>
 </body>
 
 </html>
