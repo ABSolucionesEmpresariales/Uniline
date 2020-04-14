@@ -2,7 +2,6 @@
 session_start();
 require_once '../Modelos/Conexion.php';
 require_once '../Modelos/Archivos.php';
-
 if (!empty($_POST['accion'])) {
 
     $conexion = new Modelos\Conexion();
@@ -10,22 +9,17 @@ if (!empty($_POST['accion'])) {
     switch ($_POST['accion']) {
 
         case "insertar":
-            if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_SESSION['idbloque'])) {
+            if (isset($_POST['idtema']) && !empty($_POST['preferencia']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_SESSION['idbloque'])) {
                 $video = 'https://player.vimeo.com/video/';
                 $idvideo = explode('/', $_POST['TVideo']);
                 $video .= end($idvideo);
                 echo $conexion->consultaPreparada(
-                    array($_SESSION['idbloque'], ".", "tema", $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo'), $_SESSION['idbloque']),
-                    "INSERT INTO tema (preferencia,nombre,descripcion,video,archivo, bloque) VALUES(
-                        CONCAT( 
-                            ?, ?, (SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = ?)
-                        ),
-                        ?,?,?,?,?
-                    )",
+                    array($_POST['preferencia'], $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo'), $_SESSION['idbloque']),
+                    "INSERT INTO tema (preferencia,nombre,descripcion,video,archivo, bloque) VALUES(?,?,?,?,?,?)",
                     1,
-                    "ssssssss",
+                    "ssssss",
                     false,
-                    1
+                    null
                 );
             } else {
                 echo "los post no estan llegando correctamente";

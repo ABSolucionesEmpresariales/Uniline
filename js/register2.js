@@ -1,7 +1,7 @@
 $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
-  let bloque = 0;
+  let preferencia_nuevo_renglon = 0;
   let reordenamientorows = [];
   let accion = 'insertar';
   let correcta = '';
@@ -328,6 +328,7 @@ $(document).ready(function () {
       success: function (response) {
         template = '';
         datos = JSON.parse(response);
+        preferencia_nuevo_renglon = datos.length + 1;
         for (i = 0; i < datos.length; i++) {
           for (var j = 0; j <= datos[i].length; j++) {
             if (datos[i][j] == 'null' || datos[i][j] === null) {
@@ -378,7 +379,7 @@ $(document).ready(function () {
       ui.item.removeClass("selected");
       $(this).find("tr").each(function (index) {
         const id = $(this).find("td").eq(0).html();
-        $(this).find("td").eq(1).html(bloque + "." + index);
+        $(this).find("td").eq(1).html(index + 1);
         const preferencia = $(this).find("td").eq(1).html();
         reordenamientorows.push({
           idtema: id,
@@ -621,16 +622,13 @@ $(document).ready(function () {
       alert('Por favor llene todos los campos');
     } else {
       $('.spinner-border').removeClass('d-none');
-      var formData = new FormData(this);
       $.ajax({
         url: "../controllers/tema.php",
         type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
+        data: $(this).serialize() + "&preferencia=" + preferencia_nuevo_renglon,
 
         success: function (response) {
-
+          console.log(response);
           if (response == 1) {
             datosTemas();
             $('#registro-temas').trigger('reset');
