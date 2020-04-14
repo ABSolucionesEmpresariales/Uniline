@@ -26,6 +26,9 @@ class Conexion
             $this->datos['db']
         );
         
+
+        
+        
         /* Comprueba la conexión */
         if ($this->con->connect_errno) {
             printf("Connect failed: %s\n", $this->con->connect_error);
@@ -154,6 +157,9 @@ class Conexion
         return mysqli_fetch_all($this->con->query($sql));
     }
 
+    public function cambiarDatos(){
+        mysqli_query($this->con,"SET lc_time_names = 'es_VE'");
+    }
 
     public function consultaSimple($sql)
     {

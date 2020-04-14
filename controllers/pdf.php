@@ -3,12 +3,16 @@ session_start();
 require_once '../Modelos/Conexion.php';
 require('../APIs/fpdf/fpdf.php');
 
+
 /* if(isset($_POST['certificacion'])){ */
     $_SESSION['idusuario'] = 20;
     $conexion = new Modelos\Conexion();
+
+    $conexion->cambiarDatos();
+
     $result =$conexion->consultaPreparada(
         array($_SESSION['idusuario']),
-        "SELECT u.nombre,ci.nombre,c.fecha_inicio,c.fecha_fin FROM usuario u INNER JOIN inscripcion c ON c.alumno = u.idusuario INNER JOIN curso ci ON ci.idcurso = c.curso WHERE u.idusuario = ?",
+        "SELECT u.nombre,ci.nombre,DATE_FORMAT(c.fecha_inicio,'%W %d de %M '),DATE_FORMAT(c.fecha_fin,'%W %d de %M del %Y') FROM usuario u INNER JOIN inscripcion c ON c.alumno = u.idusuario INNER JOIN curso ci ON ci.idcurso = c.curso WHERE u.idusuario = ?",
         2,
         "i",
         false,
@@ -16,13 +20,13 @@ require('../APIs/fpdf/fpdf.php');
     );
 
     $alumno = $result[0][0];
-    $curso = "'Exel basico intermedio-experto'";
+    $curso = "'".$result[0][1]."'";
     $fecha_inicial = $result[0][2];
     $fecha_final = $result[0][3];
     $temp = explode("-", $result[0][3]);
     $anoDelCurso = $temp[0];
 
-    $fechaFinal = "Del $fecha_inicial al $fecha_final del $anoDelCurso";
+    $fechaFinal = "Del $fecha_inicial al $fecha_final ";
 
     class PDF extends FPDF {  
     // Cabecera de página
