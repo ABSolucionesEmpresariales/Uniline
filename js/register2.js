@@ -341,12 +341,12 @@ $(document).ready(function () {
             `
             <tr class="tema">
               <td scope="row" class="idtema" style="display: none;">${datos[i][0]}</td>
+              <td scope="row" class="preferencia" style="display: none;">${datos[i][1]}</td>
               <td scope="row" class="nombreTema">${datos[i][2]}</td>
               <td scope="row" class="DescripcionTema">${datos[i][3]}</td>
               <td scope="row" class="videoTema">${datos[i][4]}</td>
               <td scope="row" class="ArchivoTema">${datos[i][5]}</td>
               <td scope="row" class="CursoBloque"><button type="button" data-tabla="tema" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
-              <td scope="row" class="preferencia" style="display: none;">${datos[i][1]}</td>
             </tr>
             `;
         }
@@ -359,11 +359,11 @@ $(document).ready(function () {
   $(document).on('click', '#btnorden', function () {
     $("#btnorden").prop('disabled', true);
     $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (response) {
-        if(response == ""){
-          swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
-        }else{
-          swal("Ups!", "Algo salio mal!", "warning")
-        }
+      if (response == "") {
+        swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
+      } else {
+        swal("Ups!", "Algo salio mal!", "warning")
+      }
     })
   });
 
@@ -826,73 +826,73 @@ document.getElementById("inputGroupFile02").onchange = function (e) {
   };
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   function pintarItems() {
-      let template = `<option value="">Del Curso...</option>`;
-      $.post("../controllers/cupones.php", {
-          accion: "items"
-      }, function(response) {
-          const datos = JSON.parse(response);
-          datos.forEach(function(item) {
-              template += `
+    let template = `<option value="">Del Curso...</option>`;
+    $.post("../controllers/cupones.php", {
+      accion: "items"
+    }, function (response) {
+      const datos = JSON.parse(response);
+      datos.forEach(function (item) {
+        template += `
                   <option value="${item[0]}">${item[1]}</option>
                   `;
 
-          });
-          $('#curso').html(template);
-      })
+      });
+      $('#curso').html(template);
+    })
   }
 
   function pintarDatosTabla() {
-      let template = ``;
-      $.post("../controllers/cupones.php", {
-          accion: "tabla"
-      }, function(response) {
-          const datos = JSON.parse(response);
-          datos.forEach(function(item) {
-              template += `
+    let template = ``;
+    $.post("../controllers/cupones.php", {
+      accion: "tabla"
+    }, function (response) {
+      const datos = JSON.parse(response);
+      datos.forEach(function (item) {
+        template += `
          <tr>
               <td>${item[0]}</td>
               <td>${item[1]}</td>
               <td>${item[2]}</td>`;
-              if(item[3] == "Pendiente"){
- template += `<td class="text-danger">${item[3]}</td>`;
-              }else{
- template += `<td class="text-success">${item[3]}</td>`;      
-              }
- template += `
+        if (item[3] == "Pendiente") {
+          template += `<td class="text-danger">${item[3]}</td>`;
+        } else {
+          template += `<td class="text-success">${item[3]}</td>`;
+        }
+        template += `
          </tr>
          `;
 
-          });
-          $('#cuerpotabla').html(template);
-      })
+      });
+      $('#cuerpotabla').html(template);
+    })
   }
   pintarDatosTabla();
   pintarItems();
 
-  $(document).on('submit', '#FCupones', function(e) {
-      e.preventDefault();
-      console.log($('#cupones-input').val());
-      console.log($('#curso').val());
-      if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
-          $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function(response) {
-              if (!response.includes('1')) {
-                  swal("Ocurrio un problema", "Verifique todos los campos o intentelo mas tarde", "warning");
-              }
-          })
-          $(this)[0].reset();
-      } else {
-          alert("Datos Incompletos Por favor llene todos los campos");
-      }
-      pintarDatosTabla();
+  $(document).on('submit', '#FCupones', function (e) {
+    e.preventDefault();
+    console.log($('#cupones-input').val());
+    console.log($('#curso').val());
+    if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
+      $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function (response) {
+        if (!response.includes('1')) {
+          swal("Ocurrio un problema", "Verifique todos los campos o intentelo mas tarde", "warning");
+        }
+      })
+      $(this)[0].reset();
+    } else {
+      alert("Datos Incompletos Por favor llene todos los campos");
+    }
+    pintarDatosTabla();
 
   })
 
-  $("#buscador").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#cuerpotabla tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
+  $("#buscador").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#cuerpotabla tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
   });
 })
