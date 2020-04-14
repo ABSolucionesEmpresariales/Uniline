@@ -9,7 +9,7 @@ require('../APIs/fpdf/fpdf.php');
     $conexion = new Modelos\Conexion();
 
     $conexion->cambiarDatos();
-    
+
 
     $result =$conexion->consultaPreparada(
         array($_SESSION['idusuario']),
@@ -33,7 +33,7 @@ require('../APIs/fpdf/fpdf.php');
     // Cabecera de página
     function Header(){
         // Logo
-        $this->Image('../img/certificacion.jpg',0,0,300);
+        $this->Image('../img/certificacion.png',0,0,300);
         // Arial bold 15
         // Movernos a la derecha
         $this->Cell(20);
