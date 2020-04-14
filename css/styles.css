@@ -413,6 +413,7 @@ button:focus {
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
+  
   z-index: 1;
   min-height: 780px;
   display: flex;

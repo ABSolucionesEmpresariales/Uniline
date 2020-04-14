@@ -16,7 +16,7 @@ include '../controllers/sessionCEO.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
 
 </head>
 
@@ -31,6 +31,7 @@ include '../controllers/sessionCEO.php';
                         <li class="active"><a data-toggle="tab" href="#home">Profesores</a></li>
                         <li><a data-toggle="tab" href="#menu1">Cursos</a></li>
                         <li><a data-toggle="tab" href="#mas">Contenido del curso</a></li>
+                        <li><a data-toggle="tab" href="#cupones">Cupones</a></li>
                         <li class="col-2" style="margin-right: -2rem;">
                             <select id="select-profe-tema" name="SProfesor" class="form-control m-1" style="height: 35px!important">
                                 <option value="0">Selecciona profesor</option>
@@ -51,7 +52,41 @@ include '../controllers/sessionCEO.php';
                     </ul>
                 </div>
             </div>
+
             <div class="tab-content">
+                <div id="cupones" class="tab-pane fade">
+                    <div class="container d-lg-flex d-block">
+                        <div class="col-lg-3 mt-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form class="form-group" id="FCupones">
+                                        <input name="INCupones" class="form-control mt-3" type="number" placeholder="Cupones" min="1" id="cupones-input">
+                                        <select name="SCurso" class="form-control mt-2" id="curso">
+                                        </select>
+                                        <button class="btn btn-primary btn-block mt-2" type="submit">Generar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 mt-4">
+                            <div class="input-group mb-2">
+                                <input class="form-control" type="search" id="buscador">
+                            </div>
+                            <table class="table table-borderless table-responsive-md table-hover">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Canjeo</th>
+                                        <th>Curso</th>
+                                        <th>Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center" id="cuerpotabla">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <div id="mas" class="tab-pane fade">
                     <div class="col-lg-12">
                         <ul class="nav nav-tabs">
