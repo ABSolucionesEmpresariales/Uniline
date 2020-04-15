@@ -12,7 +12,7 @@ if(isset($_POST['nombre-curso']) && isset($_POST['descripcion-curso']) && isset(
    $conexion = New Modelos\Conexion();
    $archivo = "";
   
-         if (strlen($_FILES['imagen-curso']['tmp_name']) != 0) {
+         
            $archivo = subir_imagen('imagen-curso');
            if ($archivo == "error al subir"){
                echo "Error";
@@ -31,7 +31,7 @@ if(isset($_POST['nombre-curso']) && isset($_POST['descripcion-curso']) && isset(
                    false, 
                    null);
            }
-         }
+         
    
 
 }

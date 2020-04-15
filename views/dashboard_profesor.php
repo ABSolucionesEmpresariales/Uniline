@@ -117,9 +117,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                               </div>
                               <div class="form-group">
                                  <div class="custom-file">
-                                    <input type="file" class="input-curso custom-file-input" id="customFile"
-                                       name="imagen-curso">
-                                    <label class="custom-file-label" for="customFile">Imagen del Curso</label>
+                                    <input type="file" class="custom-file-input" id="file-image" name="imagen-curso">
+                                    <label class="custom-file-label" for="file-image" id="image-name">Imagen del
+                                       Curso</label>
                                  </div>
                               </div>
 
@@ -155,11 +155,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                        <span class="sr-only">Loading...</span>
                                     </div>
                                  </div>
-                                 <div class="col-lg-2 offset-lg-8">
                                  <button type="submit" name="submit"
-                                    class="btn btn-success btn-lg">Crear</button>
-                                 </div>
-                                 
+                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
+
                               </div>
 
 
