@@ -48,7 +48,7 @@ require('../APIs/fpdf/fpdf.php');
         $this->SetY(-20);
         // Arial italic 8
         $this->SetFont('Arial','I',12);
-        $this->SetTextColor(225,255,255);
+        $this->SetTextColor(1,102,147);
         // Número de página
         $this->Cell(152,8,utf8_decode(''),0,0,'C');
         $this->Cell(60,6,utf8_decode($maestro),0,1,'C');
@@ -63,7 +63,7 @@ require('../APIs/fpdf/fpdf.php');
 
     $pdf->Cell(152,8,utf8_decode(''),0,0,'C');
 
-    $pdf->SetTextColor(225,255,255);
+    $pdf->SetTextColor(1,102,147);
     $pdf->SetFont('Arial','B',16);
     $pdf->Cell(60,8,utf8_decode($alumno),0,1,'C');
 
@@ -83,8 +83,7 @@ require('../APIs/fpdf/fpdf.php');
     $pdf->Cell(60,6,utf8_decode($fechaFinal),0,1,'C');
     $pdf->Cell(152,6,utf8_decode(''),0,0,'C');
     $pdf->Cell(60,6,utf8_decode("En la Escuela Al Reves de AB 'Uniline'"),0,1,'C');
-
-    $pdf->Output();
-    $pdf->Output("D","Uriel");
+    
+    $pdf->Output("F","../archivos/NAme.pdf");
 /* } */
 ?>
