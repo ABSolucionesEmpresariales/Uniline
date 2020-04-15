@@ -56,7 +56,7 @@ if (isset($_POST['datos_lista'])) {
         $consulta_temas_bloque = "SELECT a.idtema,a.nombre,a.descripcion,a.video,a.archivo,case when b.tema is null then 0 else 1 end as temas_vistos 
         FROM tema a LEFT JOIN (SELECT * FROM tema_completado tm WHERE tm.usuario = ?) b on a.idtema = b.tema 
         INNER JOIN bloque c ON c.idbloque = a.bloque
-        WHERE a.bloque = ? AND c.curso = ?";
+        WHERE a.bloque = ? AND c.curso = ? ORDER BY preferencia";
         $array_temporales_temas = $conexion->consultaPreparada($datos_consulta_temas, $consulta_temas_bloque, 2, "isi", false, null);
 
         // <<< consulta que trae las tareas del curso>>> 

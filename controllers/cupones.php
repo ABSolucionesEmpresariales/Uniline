@@ -71,8 +71,13 @@ if (!empty($_POST['accion'])) {
             break;
 
         case 'tabla':
-            echo json_encode($conexion->obtenerDatosDeTabla("SELECT codigo, canjeo , curso.nombre , usuario FROM cupones INNER JOIN curso ON idcurso = curso ORDER BY id DESC"));
-            break;
+            $resultado = json_encode($conexion->obtenerDatosDeTabla("SELECT codigo, canjeo , curso.nombre , usuario FROM cupones INNER JOIN curso ON idcurso = curso ORDER BY id DESC"));
+            if($resultado != "[]"){
+                echo $resultado;
+            }else{
+                echo "sinDatos";
+            }
+        break;
 
         default:
             echo "El tipo de accion no existe";

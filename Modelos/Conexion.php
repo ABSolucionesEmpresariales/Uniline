@@ -14,7 +14,7 @@ class Conexion
     private $datos = array(
         "host" => "localhost",
         "user" => "root",
-        "pass" => "38271784",
+        "pass" => "",
         "db" => "uniline"
     );
 
@@ -29,6 +29,9 @@ class Conexion
             $this->datos['pass'],
             $this->datos['db']
         );
+        
+
+        
         
         /* Comprueba la conexión */
         if ($this->con->connect_errno) {
@@ -158,6 +161,9 @@ class Conexion
         return mysqli_fetch_all($this->con->query($sql));
     }
 
+    public function cambiarDatos(){
+        mysqli_query($this->con,"SET lc_time_names = 'es_VE'");
+    }
 
     public function consultaSimple($sql)
     {

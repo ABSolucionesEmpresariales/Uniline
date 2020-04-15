@@ -1,7 +1,8 @@
 $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
-
+  let preferencia_nuevo_renglon = 0;
+  let reordenamientorows = [];
   let accion = 'insertar';
   let correcta = '';
   let idbloque = 'insertar';
@@ -191,6 +192,7 @@ $(document).ready(function () {
   });
 
   $(document).on('change', '#select-bloque', function () { //session al bloque
+    bloque = $(this).val();
     $.ajax({
       url: "../controllers/combo_profesores.php",
       type: "POST",
@@ -326,6 +328,7 @@ $(document).ready(function () {
       success: function (response) {
         template = '';
         datos = JSON.parse(response);
+        preferencia_nuevo_renglon = datos.length + 1;
         for (i = 0; i < datos.length; i++) {
           for (var j = 0; j <= datos[i].length; j++) {
             if (datos[i][j] == 'null' || datos[i][j] === null) {
@@ -338,10 +341,11 @@ $(document).ready(function () {
             `
             <tr class="tema">
               <td scope="row" class="idtema" style="display: none;">${datos[i][0]}</td>
-              <td scope="row" class="nombreTema">${datos[i][1]}</td>
-              <td scope="row" class="DescripcionTema">${datos[i][2]}</td>
-              <td scope="row" class="videoTema">${datos[i][3]}</td>
-              <td scope="row" class="ArchivoTema">${datos[i][4]}</td>
+              <td scope="row" class="preferencia" style="display: none;">${datos[i][1]}</td>
+              <td scope="row" class="nombreTema">${datos[i][2]}</td>
+              <td scope="row" class="DescripcionTema">${datos[i][3]}</td>
+              <td scope="row" class="videoTema">${datos[i][4]}</td>
+              <td scope="row" class="ArchivoTema">${datos[i][5]}</td>
               <td scope="row" class="CursoBloque"><button type="button" data-tabla="tema" value="${datos[i][0]}" class="btn btn-danger elim">Borrar</button></td>
             </tr>
             `;
@@ -350,6 +354,45 @@ $(document).ready(function () {
       }
     });
   }
+
+  // enviar el nuevo orden de la tabla
+  $(document).on('click', '#btnorden', function () {
+    $("#btnorden").prop('disabled', true);
+    $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (response) {
+      if (response == "") {
+        swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
+      } else {
+        swal("Ups!", "Algo salio mal!", "warning")
+      }
+    })
+  });
+
+  // reordenamiento dinamico de la tabla
+  $("#datos-tema").sortable({
+    containerSelector: ' table ',
+    itemPath: ' > tbody ',
+    itemSelector: ' tr ',
+    cursor: 'pointer',
+    axis: 'y',
+    dropOnEmpty: false,
+    start: function (e, ui) {
+      ui.item.addClass("selected");
+    },
+    stop: function (e, ui) {
+      reordenamientorows = [];
+      $("#btnorden").prop('disabled', false);
+      ui.item.removeClass("selected");
+      $(this).find("tr").each(function (index) {
+        const id = $(this).find("td").eq(0).html();
+        $(this).find("td").eq(1).html(index + 1);
+        const preferencia = $(this).find("td").eq(1).html();
+        reordenamientorows.push({
+          idtema: id,
+          preferencia: preferencia
+        });
+      });
+    }
+  });
 
 
   function datosExamen() {//PINTAR TABLA EXAMEN
@@ -584,16 +627,13 @@ $(document).ready(function () {
       alert('Por favor llene todos los campos');
     } else {
       $('.spinner-border').removeClass('d-none');
-      var formData = new FormData(this);
       $.ajax({
         url: "../controllers/tema.php",
         type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
+        data: $(this).serialize() + "&preferencia=" + preferencia_nuevo_renglon,
 
         success: function (response) {
-
+          console.log(response);
           if (response == 1) {
             datosTemas();
             $('#registro-temas').trigger('reset');

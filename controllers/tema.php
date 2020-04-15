@@ -2,7 +2,6 @@
 session_start();
 require_once '../Modelos/Conexion.php';
 require_once '../Modelos/Archivos.php';
-
 if (!empty($_POST['accion'])) {
 
     $conexion = new Modelos\Conexion();
@@ -10,13 +9,13 @@ if (!empty($_POST['accion'])) {
     switch ($_POST['accion']) {
 
         case "insertar":
-            if (isset($_POST['idtema']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_SESSION['idbloque'])) {
+            if (isset($_POST['idtema']) && !empty($_POST['preferencia']) && !empty($_POST['TNombre']) && !empty($_POST['TADescripcion']) && !empty($_POST['TVideo']) && !empty($_SESSION['idbloque'])) {
                 $video = 'https://player.vimeo.com/video/';
                 $idvideo = explode('/', $_POST['TVideo']);
                 $video .= end($idvideo);
                 echo $conexion->consultaPreparada(
-                    array($_POST['idtema'], $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo'), $_SESSION['idbloque']),
-                    "INSERT INTO tema (idtema,nombre,descripcion,video,archivo, bloque) VALUES (?,?,?,?,?,?)",
+                    array($_POST['preferencia'], $_POST['TNombre'], $_POST['TADescripcion'], $video, subir_archivo('FArchivo'), $_SESSION['idbloque']),
+                    "INSERT INTO tema (preferencia,nombre,descripcion,video,archivo, bloque) VALUES(?,?,?,?,?,?)",
                     1,
                     "ssssss",
                     false,
@@ -73,7 +72,7 @@ if (!empty($_POST['accion'])) {
                     null
                 );
             }
-        break;
+            break;
 
         case "items":
             echo json_encode($conexion->consultaPreparada(
@@ -89,12 +88,25 @@ if (!empty($_POST['accion'])) {
         case 'tabla':
             echo json_encode($conexion->consultaPreparada(
                 array($_SESSION['idbloque']),
-                "SELECT idtema,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY idtema ASC",
+                "SELECT idtema,preferencia,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY preferencia ASC",
                 2,
                 "s",
                 false,
                 null
             ));
+            break;
+
+        case 'reordenaritemstabla':
+            foreach ($_POST['reordenamientorows'] as $metadatosrow) {
+                $conexion->consultaPreparada(
+                    array($metadatosrow['preferencia'], $metadatosrow['idtema']),
+                    "UPDATE tema SET preferencia = ? WHERE idtema = ?",
+                    1,
+                    "ss",
+                    false,
+                    null
+                );
+            }
             break;
 
         default:
