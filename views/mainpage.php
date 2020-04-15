@@ -6,6 +6,14 @@ $pagina = "mainpage";
 <html lang="zxx" class="no-js">
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W9KKRW5');</script>
+    <!-- End Google Tag Manager -->
+    
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon-->
@@ -20,20 +28,76 @@ $pagina = "mainpage";
   <meta charset="UTF-8">
   <meta property="og:title" content="Escuela Al Revés UNILINE">
   <meta property="og:description" content="Aprende en nuestra escuela en linea.">
-  <meta property="og:image" content="https://escuelaalreves.com/img/inicio.jpg">
-  <meta property="og:url" content="https://escuelaalreves.com">
+  <meta property="og:image" content="https://www.escuelaalreves.com/img/inicio.jpg">
+  <meta property="og:url" content="https://www.escuelaalreves.com">
   <!-- Site Title -->
   <title>Escuela Al Revés</title>
 
+  <!--
+    CSS
+    ============================================= -->
+
+<!-- <link rel="stylesheet" href="../css/linearicons.css"> -->
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css"> <!--  importante! -->
+<!-- <link rel="stylesheet" href="../css/magnific-popup.css"> -->
+<!-- <link rel="stylesheet" href="../css/nice-select.css"> -->
+<!-- <link rel="stylesheet" href="../css/animate.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/owl.carousel.css"> -->
+<!-- <link rel="stylesheet" href="../css/jquery-ui.css"> -->
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/main_styles.css">
+<!-- <link rel="stylesheet" href="../css/responsive.css"> -->
+<link rel="stylesheet" href="../css/styles/login.css">
+<!-- <link rel="stylesheet" href="../css/style.css"> -->
+<link rel="stylesheet" href="../css/stylo.css">
+<!-- <link rel="stylesheet" href="../css/style-descripcion-cursos.css"> -->
+<link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
+<link rel="stylesheet" href="../css/icons/all.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!--  importante! -->
+
+  <!--
+    JS
+    ============================================= -->
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="../js/jquery.js"></script> <!--  importante! -->
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script src="../js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="../js/vendor/bootstrap.min.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
+<script src="../js/easing.min.js"></script>
+<!-- <script src="../js/hoverIntent.js"></script> -->
+<script src="../js/superfish.min.js"></script>
+<script src="../js/jquery.ajaxchimp.min.js"></script>
+<script src="../js/jquery.magnific-popup.min.js"></script> <!--  importante! -->
+<!-- <script src="../js/jquery.tabs.min.js"></script> -->
+<!-- <script src="../js/jquery.nice-select.min.js"></script> -->
+<script src="../js/owl.carousel.min.js"></script>
+<!-- <script src="../js/mail-script.js"></script> -->
+<script src="../js/main.js"></script>
+<script src="../js/popper.js"></script>
   <!-- #Scripts -->
-  <?php include "../Components/scripts.php"; ?> 
+
   <script src="../js/registro32.js"></script>
   <script src="../js/login9.js"></script>
-  <!-- #Scripts -->
+
 
 </head>
 
 <body>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9KKRW5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
   <div id="alertas-registro" class="alert alert-danger fixed-top text-center" style="max-height:54px; display: none;">
   </div>
 
@@ -118,7 +182,7 @@ $pagina = "mainpage";
   </div>
 
   <section class="dash-area" style="height: 250px;">
-        <div class="row p-0 px-md-5 px-sm-3" style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.664));">
+        <div class="row overlay-bg p-0 px-md-5 px-sm-3" style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.664));">
             <div class="col-lg-3 col-md-12 p-5 d-lg-block d-md-none d-none" >
               <i style="font-size: 200px" class="fas fa-laptop-code text-white"></i>
             </div>
@@ -148,8 +212,8 @@ $pagina = "mainpage";
               </form>
             </div>
             <div class="col-lg-3 col-md-12 p-5">
-                <p class="h3" style="color: #fd5601;text-shadow: 0.1em 0.1em 0.1em #000!important;">Utiliza tu codigo aqui!!</p>
-                <p class="h3 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea el cupon para poder iniciar tu curso ahora!!</p>
+                <p class="h3" style="color: #fd5601;text-shadow: 0.1em 0.1em 0.1em #000!important;">Ingresa tu código</p>
+                <p class="h3 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">y comienza a disfrutar sus beneficios.</p>
             </div>
         </div>
 </section>

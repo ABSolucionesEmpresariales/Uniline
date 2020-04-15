@@ -398,7 +398,7 @@ include '../controllers/sessionCEO.php';
         </div>
     </div>
 
-    <script src="../js/register2.js"></script>
+    <script src="../js/register3.js"></script>
 
 </body>
 
