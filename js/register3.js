@@ -1,7 +1,7 @@
 $(document).ready(function () {
   pintar_Estados_Mexico('registrar-estado2');
   traerDatosProfe(); //trae a los combos informacion del profesor para mandarla por sesion
-  let bloque = 0;
+  let preferencia_nuevo_renglon = 0;
   let reordenamientorows = [];
   let accion = 'insertar';
   let correcta = '';
@@ -130,7 +130,7 @@ $(document).ready(function () {
             `;
           template_combo +=
             `
-              <option value="${datos[i][0]}">${datos[i][1]}</option>
+              <option valuREGISTRe="${datos[i][0]}">${datos[i][1]}</option>
             `;
         }
         $('#select-profe-tema').html(template_combo);
@@ -328,6 +328,7 @@ $(document).ready(function () {
       success: function (response) {
         template = '';
         datos = JSON.parse(response);
+        preferencia_nuevo_renglon = datos.length + 1;
         for (i = 0; i < datos.length; i++) {
           for (var j = 0; j <= datos[i].length; j++) {
             if (datos[i][j] == 'null' || datos[i][j] === null) {
@@ -358,11 +359,11 @@ $(document).ready(function () {
   $(document).on('click', '#btnorden', function () {
     $("#btnorden").prop('disabled', true);
     $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (response) {
-        if(response == ""){
-          swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
-        }else{
-          swal("Ups!", "Algo salio mal!", "warning")
-        }
+      if (response == "") {
+        swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
+      } else {
+        swal("Ups!", "Algo salio mal!", "warning")
+      }
     })
   });
 
@@ -383,7 +384,7 @@ $(document).ready(function () {
       ui.item.removeClass("selected");
       $(this).find("tr").each(function (index) {
         const id = $(this).find("td").eq(0).html();
-        $(this).find("td").eq(1).html(bloque + "." + index);
+        $(this).find("td").eq(1).html(index + 1);
         const preferencia = $(this).find("td").eq(1).html();
         reordenamientorows.push({
           idtema: id,
@@ -626,16 +627,13 @@ $(document).ready(function () {
       alert('Por favor llene todos los campos');
     } else {
       $('.spinner-border').removeClass('d-none');
-      var formData = new FormData(this);
       $.ajax({
         url: "../controllers/tema.php",
         type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
+        data: $(this).serialize() + "&preferencia=" + preferencia_nuevo_renglon,
 
         success: function (response) {
-
+          console.log(response);
           if (response == 1) {
             datosTemas();
             $('#registro-temas').trigger('reset');
@@ -828,73 +826,73 @@ document.getElementById("inputGroupFile02").onchange = function (e) {
   };
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   function pintarItems() {
-      let template = `<option value="">Del Curso...</option>`;
-      $.post("../controllers/cupones.php", {
-          accion: "items"
-      }, function(response) {
-          const datos = JSON.parse(response);
-          datos.forEach(function(item) {
-              template += `
+    let template = `<option value="">Del Curso...</option>`;
+    $.post("../controllers/cupones.php", {
+      accion: "items"
+    }, function (response) {
+      const datos = JSON.parse(response);
+      datos.forEach(function (item) {
+        template += `
                   <option value="${item[0]}">${item[1]}</option>
                   `;
 
-          });
-          $('#curso').html(template);
-      })
+      });
+      $('#curso').html(template);
+    })
   }
 
   function pintarDatosTabla() {
-      let template = ``;
-      $.post("../controllers/cupones.php", {
-          accion: "tabla"
-      }, function(response) {
-          const datos = JSON.parse(response);
-          datos.forEach(function(item) {
-              template += `
+    let template = ``;
+    $.post("../controllers/cupones.php", {
+      accion: "tabla"
+    }, function (response) {
+      const datos = JSON.parse(response);
+      datos.forEach(function (item) {
+        template += `
          <tr>
               <td>${item[0]}</td>
               <td>${item[1]}</td>
               <td>${item[2]}</td>`;
-              if(item[3] == "Pendiente"){
- template += `<td class="text-danger">${item[3]}</td>`;
-              }else{
- template += `<td class="text-success">${item[3]}</td>`;      
-              }
- template += `
+        if (item[3] == "Pendiente") {
+          template += `<td class="text-danger">${item[3]}</td>`;
+        } else {
+          template += `<td class="text-success">${item[3]}</td>`;
+        }
+        template += `
          </tr>
          `;
 
-          });
-          $('#cuerpotabla').html(template);
-      })
+      });
+      $('#cuerpotabla').html(template);
+    })
   }
   pintarDatosTabla();
   pintarItems();
 
-  $(document).on('submit', '#FCupones', function(e) {
-      e.preventDefault();
-      console.log($('#cupones-input').val());
-      console.log($('#curso').val());
-      if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
-          $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function(response) {
-              if (!response.includes('1')) {
-                  swal("Ocurrio un problema", "Verifique todos los campos o intentelo mas tarde", "warning");
-              }
-          })
-          $(this)[0].reset();
-      } else {
-          alert("Datos Incompletos Por favor llene todos los campos");
-      }
-      pintarDatosTabla();
+  $(document).on('submit', '#FCupones', function (e) {
+    e.preventDefault();
+    console.log($('#cupones-input').val());
+    console.log($('#curso').val());
+    if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
+      $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function (response) {
+        if (!response.includes('1')) {
+          swal("Ocurrio un problema", "Verifique todos los campos o intentelo mas tarde", "warning");
+        }
+      })
+      $(this)[0].reset();
+    } else {
+      alert("Datos Incompletos Por favor llene todos los campos");
+    }
+    pintarDatosTabla();
 
   })
 
-  $("#buscador").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#cuerpotabla tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
+  $("#buscador").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#cuerpotabla tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
   });
 })

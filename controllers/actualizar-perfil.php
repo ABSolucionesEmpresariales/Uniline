@@ -67,7 +67,7 @@ if(isset($_POST['updatePass'])){
     if (strlen($_FILES['Fimagen']['tmp_name']) != 0) {
         $archivo = subir_imagen('Fimagen');
         if ($archivo == "error al subir"){
-            echo "Error";
+            echo "ErrorImagen";
         } else if ($archivo == "img no valida"){
             echo "imagenNoValida";
         } else {
@@ -81,7 +81,7 @@ if(isset($_POST['updatePass'])){
             if(actualizar($archivo) == 1){
                 echo 1;
             }else{
-                echo 0;
+                echo actualizar($archivo);
             }
         }
     }else{

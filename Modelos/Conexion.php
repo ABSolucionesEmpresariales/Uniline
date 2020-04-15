@@ -6,7 +6,11 @@ use mysqli;
 
 class Conexion
 {
-
+    /* Datos de hosting, ESTO SE TIENE QUE BORRAAAR O NOS VAN A HAKIAR ALV 
+    "host" => "localhost",
+    "user" => "u981877364_cool",
+    "pass" => "Eh]XWg0F",
+    "db" => "u981877364_uniline" */
     private $datos = array(
         "host" => "localhost",
         "user" => "root",
@@ -25,6 +29,9 @@ class Conexion
             $this->datos['pass'],
             $this->datos['db']
         );
+        
+
+        
         
         /* Comprueba la conexión */
         if ($this->con->connect_errno) {
@@ -154,6 +161,9 @@ class Conexion
         return mysqli_fetch_all($this->con->query($sql));
     }
 
+    public function cambiarDatos(){
+        mysqli_query($this->con,"SET lc_time_names = 'es_VE'");
+    }
 
     public function consultaSimple($sql)
     {
