@@ -46,6 +46,7 @@ $(document).ready(function () {
               }, 2500);
             }
              else {
+               console.log(response);
               $("#alertas").html('<i class="fas fa-exclamation-triangle m-2"></i>Ups, algo salio mal,Por favor intentalo de nuevo');
               $("#alertas").slideDown("slow");
               setTimeout(function(){

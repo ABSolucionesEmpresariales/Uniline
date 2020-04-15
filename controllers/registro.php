@@ -53,7 +53,7 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
                 $enviar = $emailClass->enviarEmailConfirmacion($_POST['TNombre']);
                 echo $resultado;
               }else{
-                echo "error";
+                echo "errorconsulta";
               }
           }
        }
@@ -66,10 +66,10 @@ if(isset($_POST['TEmail']) && !empty($_POST['TPass']) && !empty($_POST['TNombre'
              echo $resultado;
              $enviar = $emailClass->enviarEmailConfirmacion($_POST['TNombre']);
              }else{
-              echo 'error';  
+              echo 'errorpass';  
              }
-            }else{
-          echo 'error';
+          } else{
+          echo 'errorminorpass';
          }
          }
       }
