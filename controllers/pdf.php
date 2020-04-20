@@ -3,12 +3,17 @@ session_start();
 require_once '../Modelos/Conexion.php';
 require('../APIs/fpdf/fpdf.php');
 
+
 /* if(isset($_POST['certificacion'])){ */
     $_SESSION['idusuario'] = 20;
     $conexion = new Modelos\Conexion();
+
+    $conexion->cambiarDatos();
+
+
     $result =$conexion->consultaPreparada(
         array($_SESSION['idusuario']),
-        "SELECT u.nombre,ci.nombre,c.fecha_inicio,c.fecha_fin FROM usuario u INNER JOIN inscripcion c ON c.alumno = u.idusuario INNER JOIN curso ci ON ci.idcurso = c.curso WHERE u.idusuario = ?",
+        "SELECT u.nombre,ci.nombre,DATE_FORMAT(c.fecha_inicio,'%W %d de %M '),DATE_FORMAT(c.fecha_fin,'%W %d de %M del %Y') FROM usuario u INNER JOIN inscripcion c ON c.alumno = u.idusuario INNER JOIN curso ci ON ci.idcurso = c.curso WHERE u.idusuario = ?",
         2,
         "i",
         false,
@@ -16,19 +21,19 @@ require('../APIs/fpdf/fpdf.php');
     );
 
     $alumno = $result[0][0];
-    $curso = "'Exel basico intermedio-experto'";
+    $curso = "'".$result[0][1]."'";
     $fecha_inicial = $result[0][2];
     $fecha_final = $result[0][3];
     $temp = explode("-", $result[0][3]);
     $anoDelCurso = $temp[0];
 
-    $fechaFinal = "Del $fecha_inicial al $fecha_final del $anoDelCurso";
+    $fechaFinal = "Del $fecha_inicial al $fecha_final ";
 
     class PDF extends FPDF {  
     // Cabecera de página
     function Header(){
         // Logo
-        $this->Image('../img/certificacion.jpg',0,0,300);
+        $this->Image('../img/certificacion.png',0,0,300);
         // Arial bold 15
         // Movernos a la derecha
         $this->Cell(20);
@@ -43,7 +48,7 @@ require('../APIs/fpdf/fpdf.php');
         $this->SetY(-20);
         // Arial italic 8
         $this->SetFont('Arial','I',12);
-        $this->SetTextColor(225,255,255);
+        $this->SetTextColor(1,102,147);
         // Número de página
         $this->Cell(152,8,utf8_decode(''),0,0,'C');
         $this->Cell(60,6,utf8_decode($maestro),0,1,'C');
@@ -58,7 +63,7 @@ require('../APIs/fpdf/fpdf.php');
 
     $pdf->Cell(152,8,utf8_decode(''),0,0,'C');
 
-    $pdf->SetTextColor(225,255,255);
+    $pdf->SetTextColor(1,102,147);
     $pdf->SetFont('Arial','B',16);
     $pdf->Cell(60,8,utf8_decode($alumno),0,1,'C');
 
@@ -78,8 +83,7 @@ require('../APIs/fpdf/fpdf.php');
     $pdf->Cell(60,6,utf8_decode($fechaFinal),0,1,'C');
     $pdf->Cell(152,6,utf8_decode(''),0,0,'C');
     $pdf->Cell(60,6,utf8_decode("En la Escuela Al Reves de AB 'Uniline'"),0,1,'C');
-
-    $pdf->Output();
-    $pdf->Output("D","Uriel");
+    
+    $pdf->Output("F","../archivos/NAme.pdf");
 /* } */
 ?>

@@ -130,7 +130,7 @@ $(document).ready(function () {
             `;
           template_combo +=
             `
-              <option value="${datos[i][0]}">${datos[i][1]}</option>
+              <option valuREGISTRe="${datos[i][0]}">${datos[i][1]}</option>
             `;
         }
         $('#select-profe-tema').html(template_combo);
