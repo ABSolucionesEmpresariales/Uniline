@@ -7,28 +7,22 @@ $pagina = "general";
 
 <head>
     <title>Imagen corporativa</title>
-    <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <!-- Author Meta -->
-    <meta name="author" content="colorlib">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
+    <meta name="author" content="ABsoluciones">
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <meta name="description" content="Imagen corporativa, Quieres saber quienes somos, aqui te lo decimos!">
     <meta charset="UTF-8">
-    <!-- Site Title -->
+
     <title>Escuela Al Revés</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.css"> <!--  importante! -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/main_styles.css">
+    <link rel="stylesheet" href="../css/styles/login.css">
+    <link rel="stylesheet" href="../css/stylo.css">
+    <link rel="stylesheet" href="../css/icons/all.css">
 
-    <!-- #Scripts -->
-    <?php include "../Components/scripts.php"; ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="../js/registro.js"></script>
-    <script src="../js/login9.js"></script>
-    <!-- #Scripts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!--  importante! -->
 
     <style>
         @media (min-width: 377px) {
@@ -195,6 +189,18 @@ $pagina = "general";
             </div>
         </div>
     </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script async src="../js/main.js"></script>
+    <script async src="../js/popper.js"></script>
+    <script src="../js/registro32.js"></script>
+    <script src="../js/login9.js"></script>
+
 </body>
 
 <!-- start footer Area -->

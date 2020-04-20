@@ -12,28 +12,22 @@ $pagina = "general";
     ?>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
     <link rel="icon" type="image/png" href="/img/favicon.png" />
-    <!-- Author Meta -->
     <meta name="author" content="AB soluciones empresariales">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
+    <meta name="description" content="Descripcion de los cursos">
 
-    <!-- #Scripts -->
-    <?php include "../Components/scripts.php"; ?>
-    <script src="../js/descripcion-cursos3.js"></script>
-    <script src="../js/registro.js"></script>
-    <script src="../js/login9.js"></script>
-    <!-- #Scripts -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/main_styles.css">
+    <link rel="stylesheet" href="../css/styles/login.css">
+<!--     <link rel="stylesheet" href="../css/style.css"> -->
+    <link rel="stylesheet" href="../css/stylo.css">
+    <link rel="stylesheet" href="../css/style-descripcion-cursos.css">
+    <link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
+    <link rel="stylesheet" href="../css/icons/all.css">
 
- 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 </head>
 
@@ -56,7 +50,7 @@ $pagina = "general";
                         </div>
                         <div id="botones-curso" class="botones-curso col-12 col-lg-6">
                             <!-- botones del curso -->
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,11 +66,11 @@ $pagina = "general";
                         </div>
                         <hr>
                         <h3 class="text-center">¡Compártelo con tus amigos!</h2>
-                        <div class="mt-3 text-center">
-                            <a class="whatsapp" href="whatsapp://send?text=https://www.escuelaalreves.com/views/descripcioncursos.php?idcurso=<?php echo $_SESSION['idcurso'] ?>"><i class="fab fa-whatsapp"></a></i>
+                            <div class="mt-3 text-center">
+                                <a class="whatsapp" href="whatsapp://send?text=https://www.escuelaalreves.com/views/descripcioncursos.php?idcurso=<?php echo $_SESSION['idcurso'] ?>"><i class="fab fa-whatsapp"></a></i>
 
-                            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.escuelaalreves.com%2Fviews%2Fdescripcioncursos.php%3Fidcurso%3D<?php echo $_SESSION['idcurso'] ?>&layout=button&size=large&width=103&height=28&appId" width="103" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                        </div>
+                                <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.escuelaalreves.com%2Fviews%2Fdescripcioncursos.php%3Fidcurso%3D<?php echo $_SESSION['idcurso'] ?>&layout=button&size=large&width=103&height=28&appId" width="103" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                            </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -99,6 +93,30 @@ $pagina = "general";
             </div>
         </div>
     </div>
+
+    <!-- #Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/easing.min.js"></script>
+    <script src="../js/superfish.min.js"></script>
+    <script src="../js/jquery.ajaxchimp.min.js"></script>
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/popper.js"></script>
+    <script src="../js/descripcion-cursos3.js"></script>
+    <script src="../js/registro.js"></script>
+    <script src="../js/login9.js"></script>
+    <!-- #Scripts -->
+
 </body>
 
 <!-- start footer Area -->

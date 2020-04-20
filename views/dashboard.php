@@ -3,7 +3,7 @@ session_start();
 require_once '../Modelos/Conexion.php';
 include '../controllers/sesion.php';
 $_SESSION['idcurso'] = $_GET['idcurso'];
-
+$pagina = "general";
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -22,86 +22,67 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
   <!-- Site Title -->
   <title>Escuela Al Revés</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-  <!--
-    CSS
-    ============================================= -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="../css/linearicons.css">
-  <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
-  <link rel="stylesheet" href="../css/magnific-popup.css">
-  <link rel="stylesheet" href="../css/nice-select.css">
-  <link rel="stylesheet" href="../css/animate.min.css">
-  <link rel="stylesheet" href="../css/owl.carousel.css">
-  <link rel="stylesheet" href="../css/jquery-ui.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/main_styles.css">
-  <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/styles/login.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/icons/all.css">
   <link rel="stylesheet" href="../css/stylo.css">
 
-  <!--
-    JS
-    ============================================= -->
-
-  <script src="../js/jquery.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-
 </head>
 
 <body>
 
-    <div class="modal fade" id="modalCalificacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Calificacion del curso</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
+  <div class="modal fade" id="modalCalificacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title h5" id="exampleModalLabel">Calificacion del curso</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
           <div class="col-lg-12">
 
-              <div class="container text-center">
-                <h6 class="h3">Calidad del curso</h6>
-                  <div class="">
-                  <div class="star m-5" style="color: gray">
-                    <i id="1" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
-                    <i id="2" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
-                    <i id="3" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
-                    <i id="4" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
-                    <i id="5" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
-                  </div>
+            <div class="container text-center">
+              <h6 class="h3">Calidad del curso</h6>
+              <div class="">
+                <div class="star m-5" style="color: gray">
+                  <i id="1" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                  <i id="2" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                  <i id="3" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                  <i id="4" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
+                  <i id="5" class="fa fa-star start estrella h2 m-2" style="cursor: pointer;"></i>
                 </div>
               </div>
-              
+            </div>
 
 
-              <div class="form-group text-center">
-                <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                <textarea maxlength="500" id="text_area_curso" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
-              <div id="alertas-curso" class="alert alert-danger" role="alert">
-                Ups! Algo salio mal.  
-              </div>
+
+            <div class="form-group text-center">
+              <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+              <textarea maxlength="500" id="text_area_curso" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div id="alertas-curso" class="alert alert-danger" role="alert">
+              Ups! Algo salio mal.
+            </div>
 
           </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="guardarCurso" type="button" class="btn btn-primary">Guardar</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="guardarCurso" type="button" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>
+  </div>
 
   <div id="alertas" class="alert alert-danger fixed-top text-center" style="max-height:85px;display: none;">
   </div>
@@ -123,51 +104,9 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
       </div>
     </div>
   </div>
-
-
-
-  <header id="header">
-    <div class="header-top">
-      <div class="container-fluid">
-        <div class="row justify-content-between">
-          <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
-            <a href="mainpage.php"><img src="../img/uniline2.png" width="32%" alt="" title="" /></a>
-          </div>
-          <div class="float-right">
-            <nav id="nav-menu-container">
-              <ul class="nav-menu">
-              <button style="display: none;" id="startConfetti">Start</button>
-              <button style="display: none;" id="stopConfetti">Stop</button>
-                <li class="mt-3"><a class="text-center" href="mainpage.php" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
-                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
-                <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
-                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
-                <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
-                  <?php
-                  $url = "";
-                  if ($_SESSION['imagen_perfil'] != "../img/perfil.png") {
-                    $exlpode = explode("/", $_SESSION['imagen_perfil']);
-                    $url = "../" . $exlpode[1] . "/min_" . $exlpode[2];
-                  } else {
-                    $url = $_SESSION['imagen_perfil'];
-                  }
-                  ?>
-                  <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
-                </a>
-                <div class="dropdown-menu opciones-perfil">
-                  <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
-                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
-                </div>
-              </ul>
-            </nav><!-- #nav-menu-container -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </header><!-- #header -->
-
- 
-
+  <!-- #header -->
+  <?php include "../Components/header.php"; ?>
+  <!-- #header -->
   <br><br>
 
   <div class="device-container">
@@ -278,7 +217,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                   <section id="area-comentarios" class="c-scroll area-comentarios border">
 
                   </section>
-                  
+
                   <section id="area-agregar-comentario" class="container flex justify-content-center" style="padding: 0;">
                     <div class="row d-inline-flex" style="width: 100%;">
                       <form action="" style="width: 100%;">
@@ -313,7 +252,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
       <form id="subir-tareas" class="form-control d-inline-flex col-lg-6 col-sm-12" style="background-color: white; border:0;">
         <div class="input-group">
           <div class="custom-file col-lg-10 col-sm-12 border no-padding" style="height: 4rem;">
-            <input type="file" name="Fimagen" class="text-black col-lg-10 col-sm-5 no-padding" id="customFile" style="height: 4rem;">            
+            <input type="file" name="Fimagen" class="text-black col-lg-10 col-sm-5 no-padding" id="customFile" style="height: 4rem;">
             <input type="hidden" name="archivo" value="3">
             <input class="actuali-homework" type="hidden" name="tarea">
             <input class="bloque-archivo" type="hidden" name="bloque-tarea">
@@ -325,17 +264,17 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
       </form>
       <br><br>
       <hr>
-      
+
       <br>
-      <div class="table-responsive">     
-      <p class="ml-3 h3">Tu tarea del bloque</p>
+      <div class="table-responsive">
+        <p class="ml-3 h3">Tu tarea del bloque</p>
         <table class="table table-hover">
           <thead class="thead-light">
             <tr>
               <th>Usuarios</th>
               <th>Descargar tarea</th>
             </tr>
-          </thead>         
+          </thead>
           <tbody class="bg-light cuerpo-tb-user">
           </tbody>
         </table>
@@ -414,91 +353,57 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
     </div>
   </div>
 
-
-  <!-- start footer Area -->
-
-  <footer class="footer-area">
-    <div class="align-items-center justify-content-between">
-      <div class="row">
-        <div class="col-lg-4 col-sm-12 text-center mt-3 mb-4">
-          <a class="" href="mainpage.php"><img src="../img/uniline2.png" width="35%" alt="" title="" /></a>
-        </div>
-        <div class="col-lg-4 col-sm-12 mb-4 mt-3 align-bottom text-center">
-          <p class="mb-0">&copy; AB Soluciones Empresariales <script>
-              document.write(new Date().getFullYear());
-            </script>
-            All rights reserved.
-          </p>
-          <ul class="list-inline  mt-0 clock text-center">
-            <li class="list-inline-item">
-              <a href="avisodeprivacidad.php">Políticas de Privacidad</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="imagenCorporativa.php">Imagen Corporativa</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-sm-12 text-center align-bottom mb-4 mt-2">
-          <div class="social-network mt-0">
-            <p class="h4 text-white">Síguenos</p>
-            <a class="h3 m-3 text-white" href="#"><i class="fab fa-facebook"></i></a>
-            <a class="h3 m-3 text-white" href="#"><i class="fab fa-twitter"></i></a>
-            <a class="h3 m-3 text-white" href="#"><i class="fab fa-whatsapp"></i></a>
-            <a class="h3 m-3 text-white" href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- End footer Area -->
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  <script src="../js/jquery.js"></script>
   <script src="../js/jquery-3.2.1.min.js"></script>
-  <!-- <script src="../js/bootstrap.min.js"></script> -->
-  <script src="../js/stellar.js"></script>
-  <script src="../vendors/nice-select/js/jquery.nice-select.min.js"></script>
-  <script src="../vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="../js/owl-carousel-thumb.min.js"></script>
+<!--   <script src="../js/stellar.js"></script> -->
+<!--   <script src="../vendors/nice-select/js/jquery.nice-select.min.js"></script> -->
+<!--   <script src="../vendors/owl-carousel/owl.carousel.min.js"></script> -->
+<!--   <script src="../js/owl-carousel-thumb.min.js"></script> -->
   <script src="../js/jquery.ajaxchimp.min.js"></script>
-  <script src="../vendors/counter-up/jquery.counterup.js"></script>
-  <script src="../js/mail-script.js"></script>
+<!--   <script src="../vendors/counter-up/jquery.counterup.js"></script> -->
+<!--   <script src="../js/mail-script.js"></script> -->
   <!--gmaps Js-->
-  <script src="../js/gmaps.min.js"></script>
-  <script src="../js/theme.js"></script>
-  <script src="../js/popper.js"></script>
+<!--   <script src="../js/gmaps.min.js"></script> -->
+<!--   <script src="../js/theme.js"></script> -->
+<!--   <script src="../js/popper.js"></script> -->
   <script src="../js/vendor/jquery-2.2.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="../js/vendor/bootstrap.min.js"></script>
 
-  <script src="../js/easing.min.js"></script>
-  <script src="../js/hoverIntent.js"></script>
+<!--   <script src="../js/easing.min.js"></script> -->
+<!--   <script src="../js/hoverIntent.js"></script> -->
   <script src="../js/superfish.min.js"></script>
   <script src="../js/jquery.ajaxchimp.min.js"></script>
   <script src="../js/jquery.magnific-popup.min.js"></script>
   <script src="../js/jquery.tabs.min.js"></script>
-  <script src="../js/jquery.nice-select.min.js"></script>
+<!--   <script src="../js/jquery.nice-select.min.js"></script> -->
   <script src="../js/owl.carousel.min.js"></script>
-  <script src="../js/mail-script.js"></script>
+<!--   <script src="../js/mail-script.js"></script> -->
   <script src="../js/main.js"></script>
 
   <!-- Course/Elements -->
 
-  <script src="../plugins/greensock/TweenMax.min.js"></script>
-  <script src="../plugins/greensock/TimelineMax.min.js"></script>
+<!--   <script src="../plugins/greensock/TweenMax.min.js"></script> -->
+<!--   <script src="../plugins/greensock/TimelineMax.min.js"></script> -->
   <script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>
-  <script src="../plugins/greensock/animation.gsap.min.js"></script>
-  <script src="../plugins/greensock/ScrollToPlugin.min.js"></script>
+<!--   <script src="../plugins/greensock/animation.gsap.min.js"></script> -->
+<!--   <script src="../plugins/greensock/ScrollToPlugin.min.js"></script> -->
   <script src="../plugins/progressbar/progressbar.min.js"></script>
-  <script src="../plugins/scrollTo/jquery.scrollTo.min.js"></script>
-  <script src="../plugins/easing/easing.js"></script>
+<!--   <script src="../plugins/scrollTo/jquery.scrollTo.min.js"></script> -->
+<!--   <script src="../plugins/easing/easing.js"></script> -->
   <script src="../js/elements_custom.js"></script>
   <script src="../js/jquery.confetti.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="../js/dashboard46.js"></script>
-  
+
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
 
 </body>
+
+
+<!-- start footer Area -->
+<?php include "../Components/footer.php"; ?>
+<!-- End footer Area -->
 
 </html>

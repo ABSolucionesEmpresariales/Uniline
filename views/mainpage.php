@@ -6,24 +6,31 @@ $pagina = "mainpage";
 <html lang="zxx" class="no-js">
 
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W9KKRW5');</script>
-    <!-- End Google Tag Manager -->
-    
-  <!-- Mobile Specific Meta -->
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-W9KKRW5');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Favicon-->
   <link rel="icon" type="image/png" href="/img/favicon.png" />
-  <!-- Author Meta -->
   <meta name="author" content="AB soluciones empresariales">
-  <!-- Meta Description -->
-  <meta name="description" content="">
-  <!-- Meta Keyword -->
+  <meta name="description" content="En UNILINE, la escuela al reves encontraras los mejores cursos de calidad y a buen precio, y lo mejor es que puedes aprender a tu ritmo!">
   <meta name="keywords" content="">
+  
   <!-- meta character set -->
   <meta charset="UTF-8">
   <meta property="og:title" content="Escuela Al Revés UNILINE">
@@ -37,67 +44,25 @@ $pagina = "mainpage";
     CSS
     ============================================= -->
 
-<!-- <link rel="stylesheet" href="../css/linearicons.css"> -->
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/bootstrap.css"> <!--  importante! -->
-<!-- <link rel="stylesheet" href="../css/magnific-popup.css"> -->
-<!-- <link rel="stylesheet" href="../css/nice-select.css"> -->
-<!-- <link rel="stylesheet" href="../css/animate.min.css"> -->
-<!-- <link rel="stylesheet" href="../css/owl.carousel.css"> -->
-<!-- <link rel="stylesheet" href="../css/jquery-ui.css"> -->
-<link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/main_styles.css">
-<!-- <link rel="stylesheet" href="../css/responsive.css"> -->
-<link rel="stylesheet" href="../css/styles/login.css">
-<!-- <link rel="stylesheet" href="../css/style.css"> -->
-<link rel="stylesheet" href="../css/stylo.css">
-<!-- <link rel="stylesheet" href="../css/style-descripcion-cursos.css"> -->
-<link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
-<link rel="stylesheet" href="../css/icons/all.css">
+  <link rel="stylesheet" href="../css/bootstrap.css"> <!--  importante! -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/main_styles.css">
+  <link rel="stylesheet" href="../css/styles/login.css">
+  <!-- <link rel="stylesheet" href="../css/style.css"> -->
+  <link rel="stylesheet" href="../css/stylo.css">
+  <link rel="stylesheet" href="../css/stylo-responsive-editPerfil.css">
+  <link rel="stylesheet" href="../css/icons/all.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!--  importante! -->
-
-  <!--
-    JS
-    ============================================= -->
-
-<script src="https://js.stripe.com/v3/"></script>
-<script src="../js/jquery.js"></script> <!--  importante! -->
-<script src="../js/jquery-3.2.1.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-<script src="https://player.vimeo.com/api/player.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<script src="../js/vendor/jquery-2.2.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="../js/vendor/bootstrap.min.js"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
-<script src="../js/easing.min.js"></script>
-<!-- <script src="../js/hoverIntent.js"></script> -->
-<script src="../js/superfish.min.js"></script>
-<script src="../js/jquery.ajaxchimp.min.js"></script>
-<script src="../js/jquery.magnific-popup.min.js"></script> <!--  importante! -->
-<!-- <script src="../js/jquery.tabs.min.js"></script> -->
-<!-- <script src="../js/jquery.nice-select.min.js"></script> -->
-<script src="../js/owl.carousel.min.js"></script>
-<!-- <script src="../js/mail-script.js"></script> -->
-<script src="../js/main.js"></script>
-<script src="../js/popper.js"></script>
-  <!-- #Scripts -->
-
-  <script src="../js/registro32.js"></script>
-  <script src="../js/login9.js"></script>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!--  importante! -->
 
 </head>
 
 <body>
-    
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9KKRW5"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9KKRW5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <div id="alertas-registro" class="alert alert-danger fixed-top text-center" style="max-height:54px; display: none;">
   </div>
 
@@ -110,7 +75,7 @@ $pagina = "mainpage";
     <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content ">
-        <div class="modal-header header-curso" ></div>
+        <div class="modal-header header-curso"></div>
         <div class="modal-body">
           <div class="view-curso"></div>
         </div>
@@ -133,7 +98,7 @@ $pagina = "mainpage";
               APRENDE DESDE CASA EN EL MOMENTO QUE TÚ QUIERAS.
             </h2>
             <p class="text-white text-center" style="font-family: Century Gothic; font-weight: 400; font-size: 22px; line-height: 25px;">
-            Tu salón de clases está en tu casa..
+              Tu salón de clases está en tu casa..
             </p>
             <br>
           </div>
@@ -142,10 +107,10 @@ $pagina = "mainpage";
         ?>
           <div class="banner-content col-lg-11">
             <h2 class="text-white text-center titulo">
-            APRENDE DESDE CASA EN EL MOMENTO QUE TÚ QUIERAS.
+              APRENDE DESDE CASA EN EL MOMENTO QUE TÚ QUIERAS.
             </h2>
             <p class="text-white text-center" style="line-height: 25px; font-family: Century Gothic; font-weight: 400; font-size: 22px">
-            Tu salón de clases está en tu casa..
+              Tu salón de clases está en tu casa..
             </p>
             <br>
             <div class="flex justify-content-center">
@@ -155,25 +120,25 @@ $pagina = "mainpage";
             <br>
           </div>
       </div>
-      <?php
+    <?php
         }
-  ?>
+    ?>
 
   </section>
-  
+
   <!-- End banner Area -->
 
 
 
 
-  
+
   <!-- Popular -->
 
   <div id="all-cursos" class="popular">
     <div class="container">
       <div class="row">
         <div class="col text-center">
-            <p class="h1" style="font-weight: bold;">Nuestros cursos</p>
+          <p class="h1" style="font-weight: bold;">Nuestros cursos</p>
         </div>
       </div>
       <div class="cursos"></div>
@@ -182,44 +147,42 @@ $pagina = "mainpage";
   </div>
 
   <section class="dash-area" style="height: 250px;">
-        <div class="row overlay-bg p-0 px-md-5 px-sm-3" style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.664));">
-            <div class="col-lg-3 col-md-12 p-5 d-lg-block d-md-none d-none" >
-              <i style="font-size: 200px" class="fas fa-laptop-code text-white"></i>
-            </div>
-            <div class="col-lg-6 col-md-12" >
-              <form class="form-group" id="FCupones">
-              <p class="text-center h2 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea tu Codigo</p>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 mb-3 mb-md-2">
-                          <input name="INCodigo" class="form-control" type="text" placeholder="Codigo" id="codigo">
-                        </div>
-                        <div class="col-lg-6 col-md-12">
-                          <select name="SCurso" class="form-control" 
-                            style="height:50px;
-                                    line-height:30px;
-                                    border-radius: 5px;" 
-                            id="curso">
-                          </select>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 pt-5">
-                      <button class="btn btn-block text-white" style="height:50px; font-size: 20px; background-color: #fd5601;"  type="submit">Canjear codigo</button>
-                  </div>
+    <div class="row overlay-bg p-0 px-md-5 px-sm-3" style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.664));">
+      <div class="col-lg-3 col-md-12 p-5 d-lg-block d-md-none d-none">
+        <i style="font-size: 200px" class="fas fa-laptop-code text-white"></i>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <form class="form-group" id="FCupones">
+          <p class="text-center h2 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea tu Codigo</p>
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-lg-6 col-md-12 mb-3 mb-md-2">
+                  <input name="INCodigo" class="form-control" type="text" placeholder="Codigo" id="codigo">
                 </div>
-              </form>
+                <div class="col-lg-6 col-md-12">
+                  <select name="SCurso" class="form-control" style="height:50px;
+                                    line-height:30px;
+                                    border-radius: 5px;" id="curso">
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-3 col-md-12 p-5">
-                <p class="h3" style="color: #fd5601;text-shadow: 0.1em 0.1em 0.1em #000!important;">Ingresa tu código</p>
-                <p class="h3 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">y comienza a disfrutar sus beneficios.</p>
+            <div class="col-lg-12 pt-5">
+              <button class="btn btn-block text-white" style="height:50px; font-size: 20px; background-color: #fd5601;" type="submit">Canjear codigo</button>
             </div>
-        </div>
-</section>
-  
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-3 col-md-12 p-5">
+        <p class="h3" style="color: #fd5601;text-shadow: 0.1em 0.1em 0.1em #000!important;">Ingresa tu código</p>
+        <p class="h3 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">y comienza a disfrutar sus beneficios.</p>
+      </div>
+    </div>
+  </section>
 
- 
+
+
 
   <!-- start banner Area -->
   <section class="banner-area relative" style="min-height: 30rem;">
@@ -232,7 +195,7 @@ $pagina = "mainpage";
           </h1>
           <br>
           <br>
-          
+
           <div class="col-lg-12 d-lg-flex d-sm-inline-block text-white justify-content-between" style="margin-left: 0">
             <div class="single-contact-address d-inline-block" style="max-width: 20rem;">
               <div class="icon">
@@ -241,7 +204,7 @@ $pagina = "mainpage";
               <div class="contact-details">
                 <h5>Autlán de Navarro, Jalisco</h5>
                 <p>
-                 Corona Araiza #540 Col.IPEVI C.P.48900
+                  Corona Araiza #540 Col.IPEVI C.P.48900
                 </p>
               </div>
             </div>
@@ -259,7 +222,7 @@ $pagina = "mainpage";
                 <span class="fa fa-envelope" style="font-size: 30px"></span>
               </div>
               <div class="contact-details">
-                  <p>Atención a clientes</p>
+                <p>Atención a clientes</p>
                 <h5>atencionaclientes@escuelaalreves.com</h5>
                 <p>¡No dudes en escribirnos!</p>
               </div>
@@ -272,6 +235,30 @@ $pagina = "mainpage";
 
   <!-- End contact-page Area -->
   <div id="home-contacto"></div>
+
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="../js/jquery.js"></script> <!--  importante! -->
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script src="../js/vendor/jquery-2.2.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="../js/vendor/bootstrap.min.js"></script>
+  <script src="../js/easing.min.js"></script>
+  <script src="../js/superfish.min.js"></script>
+  <script src="../js/jquery.ajaxchimp.min.js"></script>
+  <script src="../js/jquery.magnific-popup.min.js"></script> <!--  importante! -->
+  <script src="../js/owl.carousel.min.js"></script>
+  <script async src="../js/main.js"></script>
+  <script async src="../js/popper.js"></script>
+  <!-- #Scripts -->
+
+  <script src="../js/registro32.js"></script>
+  <script src="../js/login9.js"></script>
+
 </body>
 
 <!-- start footer Area -->
