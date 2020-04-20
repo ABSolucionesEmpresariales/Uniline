@@ -5,8 +5,8 @@ require_once '../Modelos/Conexion.php';
 if(isset($_POST['cursos'])){
     $conexion = new Modelos\Conexion();
     $consuta = "SELECT c.idcurso,c.nombre,c.descripcion,c.imagen,c.calificacion,c.horas,u.nombre,u.imagen,c.costo
-    FROM curso c INNER JOIN usuario u ON c.profesor = u.idusuario";
-    echo json_encode($conexion->obtenerDatosDeTabla($consuta));
+    FROM curso c INNER JOIN usuario u ON c.profesor = u.idusuario WHERE c.publicacion = ?";
+    echo json_encode($conexion->consultaPreparada(array(1),$consuta,2,'s',false,null));
     
 }
 
