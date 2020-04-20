@@ -107,7 +107,6 @@ $pagina = "general";
     <script src="../js/vendor/bootstrap.min.js"></script>
     <script src="../js/easing.min.js"></script>
     <script src="../js/superfish.min.js"></script>
-    <script src="../js/jquery.ajaxchimp.min.js"></script>
     <script src="../js/jquery.magnific-popup.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/main.js"></script>

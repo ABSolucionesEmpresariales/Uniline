@@ -227,7 +227,7 @@ $(document).ready(function() {
     }
 
     //------- Smooth Scroll  js --------//  
-    $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
+    /* $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
             if (target.length) {
@@ -259,7 +259,7 @@ $(document).ready(function() {
                 return false;
             }
         }
-    });
+    }); */
 
     $(document).ready(function() {
 
@@ -297,7 +297,7 @@ $(document).ready(function() {
 
     //------- Google Map  js --------//  
 
-    if (document.getElementById("map")) {
+    /* if (document.getElementById("map")) {
         google.maps.event.addDomListener(window, 'load', init);
 
         function init() {
@@ -429,12 +429,12 @@ $(document).ready(function() {
                 title: 'Snazzy!'
             });
         }
-    }
+    } */
 
     //------- Mailchimp js --------//  
 
-    $(document).ready(function() {
+    /* $(document).ready(function() {
         $('#mc_embed_signup').find('form').ajaxChimp();
     });
-
+ */
 });
