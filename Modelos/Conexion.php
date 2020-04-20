@@ -14,7 +14,7 @@ class Conexion
     private $datos = array(
         "host" => "localhost",
         "user" => "root",
-        "pass" => "",
+        "pass" => "38271784",
         "db" => "uniline"
     );
 
@@ -87,6 +87,8 @@ class Conexion
          return mysqli_fetch_all($stmt->get_result());
         }
     }
+
+    
     public function optenerId()
     {
         return $this->con->insert_id;

@@ -91,6 +91,27 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
       <div class="col-lg-9 p-4">
 
+         <!-- COMBO BOX SUPERIORES -->
+         <div class="row mb-5">
+
+            <div class="col-lg-6">
+              
+               <p class="small m-0">&nbsp;</p>
+               <select class="shadow custom-select form-control custom-select-lg text-danger" name="cursos"
+                  id="cursos-select">
+
+               </select>
+            </div>
+
+            <div class="col-lg-6">
+               <p id="info-select-bloque" class="small text-danger m-0">*Selecciona un curso para mostrar bloques</p>
+               <select class="shadow custom-select form-control custom-select-lg text-danger" name="bloques"
+                  id="bloques-select">
+               </select>
+            </div>
+         </div>
+
+
          <div class="tab-content" id="v-pills-tabContent">
 
             <!-- CURSOS TAB -->
@@ -149,7 +170,11 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     placeholder="URL video">
                               </div>
 
-                              <div class="form-row mt-5">
+                              <div class="alert alert-success mt-3 d-none" role="alert" id="alerta">
+                                 <p class="m-0"> ¡<b>Curso creado:</b> se ha creado el curso con éxito!</p>
+                              </div>
+
+                              <div class="form-row mt-3">
                                  <div class="col-lg-2 text-center">
                                     <div class="spinner-border text-primary d-none" role="status">
                                        <span class="sr-only">Loading...</span>
@@ -157,10 +182,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                  </div>
                                  <button type="submit" name="submit"
                                     class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
-
                               </div>
-
-
 
                            </form>
 
@@ -168,50 +190,43 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                      </div>
                   </div>
 
+                  <!-- AÑADIR BLOQUES -->
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingTwo">
                         <h2 class="mb-0">
-                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                              data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                           <button id="aniadir-bloque" class="btn btn-link collapsed disabled" type="button"
+                              data-toggle="collapse" data-target="#collapseBloque" aria-expanded="false"
+                              aria-controls="collapseBloque">
                               <h5><i class="fas fa-plus-circle"></i> Añadir Bloques</h5>
                            </button>
                         </h2>
                      </div>
-                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                     <div id="collapseBloque" class="collapse" aria-labelledby="headingTwo"
                         data-parent="#accordionExample">
                         <div class="card-body">
-                           <form>
-
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="cursos"
-                                       id="cursos-select">
-                                       <option selected value="">Elija el Curso</option>
-                                       <option value="">Curso 1</option>
-                                       <option value="">Curso 2</option>
-                                       <option value="">Curso 3</option>
-                                       <option value="">Curso 4</option>
-                                    </select>
-                                 </div>
-                              </div>
+                           <form id="registrar-bloque">
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
                                     <input type="text" name="nombre-bloque" id="nombre-bloque"
-                                       placeholder="Nombre del Bloque" class="form-control form-control-sm">
+                                       placeholder="Nombre del Bloque"
+                                       class="input-bloque form-control form-control-sm">
                                  </div>
                               </div>
 
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control form-control-sm"
-                                       placeholder="Descripción del Bloque"></textarea>
-                                 </div>
+                              <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-bloque">
+                                 <p class="m-0"> ¡<b>Bloque creado:</b> se ha creado el bloque con éxito!</p>
                               </div>
 
-                              <div class="form-row">
-                                 <button type="submit"
-                                    class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                              <div class="form-row mt-3">
+                                 <div class="col-lg-2 text-center">
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                       <span class="sr-only">Loading...</span>
+                                    </div>
+                                 </div>
+
+                                 <button type="submit" name="submit"
+                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
                               </div>
 
                            </form>
@@ -219,63 +234,50 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                      </div>
                   </div>
 
+                  <!-- AÑADIR EXAMEN -->
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingThree">
                         <h2 class="mb-0">
-                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                              data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           <button id="aniadir-examen" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
+                              data-target="#collapseExamen" aria-expanded="false" aria-controls="collapseExamen">
                               <h5><i class="fas fa-plus-circle"></i> Añadir Examen</h5>
                            </button>
                         </h2>
                      </div>
-                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                     <div id="collapseExamen" class="collapse" aria-labelledby="headingThree"
                         data-parent="#accordionExample">
                         <div class="card-body">
-                           <form>
+                           <form id="registrar-examen">
+
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="cursos"
-                                       id="cursos-select">
-                                       <option selected value="">Elija el Curso</option>
-                                       <option value="">Curso 1</option>
-                                       <option value="">Curso 2</option>
-                                       <option value="">Curso 3</option>
-                                       <option value="">Curso 4</option>
-                                    </select>
+                                    <input type="text" name="nombre-examen" id="nombre-examen"
+                                       placeholder="Nombre del Examen" class="input-examen form-control form-control-sm">
                                  </div>
                               </div>
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <select class="custom-select form-control custom-select-sm" name="cursos"
-                                       id="cursos-select">
-                                       <option selected value="">Elija el Bloque</option>
-                                       <option value="">Bloque 1</option>
-                                       <option value="">Bloque 2</option>
-                                       <option value="">Bloque 3</option>
-                                       <option value="">Bloque 4</option>
-                                    </select>
-                                 </div>
-                              </div>
-
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <input type="text" name="nombre-bloque" id="nombre-bloque"
-                                       placeholder="Nombre del Examen" class="form-control form-control-sm">
-                                 </div>
-                              </div>
-
-                              <div class="form-row">
-                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control form-control-sm"
+                                    <textarea name="descripcion-examen" class="input-examen form-control form-control-sm"
                                        placeholder="Descripción del exámen"></textarea>
                                  </div>
                               </div>
 
-                              <div class="form-row">
-                                 <button type="submit"
-                                    class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                              <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-bloque">
+                                 <p class="m-0"> ¡<b>Exámen creado:</b> se ha creado el exámen con éxito!</p>
                               </div>
+
+                              <div class="form-row mt-3">
+                                 <div class="col-lg-2 text-center">
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                       <span class="sr-only">Loading...</span>
+                                    </div>
+                                 </div>
+
+                                 <button type="submit" name="submit"
+                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
+                              </div>
+
 
                            </form>
                         </div>
@@ -327,34 +329,6 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
             <div class="tab-pane fade" id="contenido-curso" role="tabpanel" aria-labelledby="contenido-curso-tab">
 
 
-               <!-- COMBO BOX SUPERIORES -->
-               <div class="row mb-5">
-
-                  <div class="col-lg-6">
-
-                     <select class="shadow custom-select form-control custom-select-lg text-danger" name="cursos"
-                        id="cursos-select">
-                        <option selected value="">Elija el Curso</option>
-                        <option value="">Curso 1</option>
-                        <option value="">Curso 2</option>
-                        <option value="">Curso 3</option>
-                        <option value="">Curso 4</option>
-                     </select>
-                  </div>
-
-                  <div class="col-lg-6">
-
-                     <select class="shadow custom-select form-control custom-select-lg text-danger" name="bloques"
-                        id="bloques-select">
-                        <option selected value="">Elija el Bloque</option>
-                        <option value="">Bloque 1</option>
-                        <option value="">Bloque 2</option>
-                        <option value="">Bloque 3</option>
-                        <option value="">Bloque 4</option>
-                     </select>
-
-                  </div>
-               </div>
 
 
                <!-- ACCORDION -->
