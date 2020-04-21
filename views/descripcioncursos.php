@@ -83,7 +83,7 @@ $pagina = "general";
                         <h3 class="text-white">Contenido del curso</h2>
                     </div>
                     <br>
-                    <div class="contenido-informacion">
+                    <div class="contenido-informacion pb-5">
                         <br>
                         <ul id="contenido-contenido">
                             <!-- Contenido -->
@@ -95,22 +95,22 @@ $pagina = "general";
     </div>
 
     <!-- #Scripts -->
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="../js/jquery.js"></script>
+    <script src="https://js.stripe.com/v3/" async></script>
+<!--     <script src="../js/jquery.js"></script> -->
     <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" async> </script>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script src="../js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="../js/vendor/bootstrap.min.js"></script>
-    <script src="../js/easing.min.js"></script>
+<!--     <script src="../js/easing.min.js"></script> -->
     <script src="../js/superfish.min.js"></script>
     <script src="../js/jquery.magnific-popup.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/main.js"></script>
-    <script src="../js/popper.js"></script>
+<!--     <script src="../js/popper.js"></script> -->
     <script src="../js/descripcion-cursos3.js"></script>
     <script src="../js/registro.js"></script>
     <script src="../js/login9.js"></script>

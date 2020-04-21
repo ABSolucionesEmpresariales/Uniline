@@ -6,24 +6,6 @@ $pagina = "mainpage";
 <html lang="zxx" class="no-js">
 
 <head>
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-W9KKRW5');
-  </script>
-  <!-- End Google Tag Manager -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" type="image/png" href="/img/favicon.png" />
@@ -237,11 +219,11 @@ $pagina = "mainpage";
   <div id="home-contacto"></div>
 
 
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="../js/jquery.js"></script> <!--  importante! -->
+  <script src="https://js.stripe.com/v3/" async></script>
+<!--   <script src="../js/jquery.js"></script>  --><!--  importante! -->
   <script src="../js/jquery-3.2.1.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
-  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" async> </script>
+<!--   <script src="https://player.vimeo.com/api/player.js" async></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <script src="../js/vendor/jquery-2.2.4.min.js"></script>

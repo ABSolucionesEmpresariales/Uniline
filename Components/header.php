@@ -16,7 +16,7 @@
               <?php
               if (isset($_SESSION['acceso'])) {
               ?>
-                <li class="mt-3"><a class="text-center" href="mainpage.php#home-banner" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#home-banner" style="font-size: 14px; text-decoration: none;" >Home</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>

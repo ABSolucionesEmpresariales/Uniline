@@ -9,15 +9,11 @@ $pagina = "general";
 <html lang="zxx" class="no-js">
 
 <head>
-  <!-- Mobile Specific Meta -->
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Author Meta -->
-  <meta name="author" content="colorlib">
-  <!-- Meta Description -->
-  <meta name="description" content="">
-  <!-- Meta Keyword -->
-  <meta name="keywords" content="">
-  <!-- meta character set -->
+  <link rel="icon" type="image/png" href="/img/favicon.png" />
+  <meta name="author" content="AB soluciones empresariales">
+  <meta name="description" content="Dashboard del curso">
   <meta charset="UTF-8">
   <!-- Site Title -->
   <title>Escuela Al Revés</title>
@@ -27,10 +23,9 @@ $pagina = "general";
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="../css/bootstrap.css">
+<!--   <link rel="stylesheet" href="../css/bootstrap.css"> -->
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/main_styles.css">
-  <link rel="stylesheet" href="../css/styles/login.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/icons/all.css">
   <link rel="stylesheet" href="../css/stylo.css">
@@ -145,8 +140,8 @@ $pagina = "general";
                       <!--contenido de los cursos cuando es responsive-->
                     </div>
                     <div class="tab-pane container text-justify h-scroll" id="descripcion" style=" padding-top:2rem; font-family: 'Poppins:100', sans-serif; font-size: 16px; color: rgb(87, 87, 87);">
-                      <div class="row">
-                        <div class="col-6">
+                      <div class="row sm-d-block">
+                        <div class="col-lg-6 sm-col-12">
                           <h2 id="titulo-curso" class="h2">Acerca de este curso</h2>
                           <br>
                           <div class="container descripcion-tema">
@@ -154,7 +149,7 @@ $pagina = "general";
                           </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-lg-6 sm-col-6">
                           <h2 class="font-weight-bold text-center h3">Progreso del curso</h2>
                           <div class=" single-sidebar-widget tag_cloud_widget m-0 ">
                             <div class="loaders m-0 flex justify-content-center">
@@ -353,44 +348,44 @@ $pagina = "general";
     </div>
   </div>
 
-  <script src="../js/jquery.js"></script>
+  <!--   <script src="../js/jquery.js"></script> -->
   <script src="../js/jquery-3.2.1.min.js"></script>
-<!--   <script src="../js/stellar.js"></script> -->
-<!--   <script src="../vendors/nice-select/js/jquery.nice-select.min.js"></script> -->
-<!--   <script src="../vendors/owl-carousel/owl.carousel.min.js"></script> -->
-<!--   <script src="../js/owl-carousel-thumb.min.js"></script> -->
-  <script src="../js/jquery.ajaxchimp.min.js"></script>
-<!--   <script src="../vendors/counter-up/jquery.counterup.js"></script> -->
-<!--   <script src="../js/mail-script.js"></script> -->
+  <!--   <script src="../js/stellar.js"></script> -->
+  <!--   <script src="../vendors/nice-select/js/jquery.nice-select.min.js"></script> -->
+  <!--   <script src="../vendors/owl-carousel/owl.carousel.min.js"></script> -->
+  <!--   <script src="../js/owl-carousel-thumb.min.js"></script> -->
+  <!--   <script src="../js/jquery.ajaxchimp.min.js"></script> -->
+  <!--   <script src="../vendors/counter-up/jquery.counterup.js"></script> -->
+  <!--   <script src="../js/mail-script.js"></script> -->
   <!--gmaps Js-->
-<!--   <script src="../js/gmaps.min.js"></script> -->
-<!--   <script src="../js/theme.js"></script> -->
-<!--   <script src="../js/popper.js"></script> -->
+  <!--   <script src="../js/gmaps.min.js"></script> -->
+  <!--   <script src="../js/theme.js"></script> -->
+  <!--   <script src="../js/popper.js"></script> -->
   <script src="../js/vendor/jquery-2.2.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="../js/vendor/bootstrap.min.js"></script>
 
-<!--   <script src="../js/easing.min.js"></script> -->
-<!--   <script src="../js/hoverIntent.js"></script> -->
+  <!--   <script src="../js/easing.min.js"></script> -->
+  <!--   <script src="../js/hoverIntent.js"></script> -->
   <script src="../js/superfish.min.js"></script>
-  <script src="../js/jquery.ajaxchimp.min.js"></script>
+  <!--   <script src="../js/jquery.ajaxchimp.min.js"></script> -->
   <script src="../js/jquery.magnific-popup.min.js"></script>
   <script src="../js/jquery.tabs.min.js"></script>
-<!--   <script src="../js/jquery.nice-select.min.js"></script> -->
+  <!--   <script src="../js/jquery.nice-select.min.js"></script> -->
   <script src="../js/owl.carousel.min.js"></script>
-<!--   <script src="../js/mail-script.js"></script> -->
+  <!--   <script src="../js/mail-script.js"></script> -->
   <script src="../js/main.js"></script>
 
   <!-- Course/Elements -->
 
-<!--   <script src="../plugins/greensock/TweenMax.min.js"></script> -->
-<!--   <script src="../plugins/greensock/TimelineMax.min.js"></script> -->
+  <!--   <script src="../plugins/greensock/TweenMax.min.js"></script> -->
+  <!--   <script src="../plugins/greensock/TimelineMax.min.js"></script> -->
   <script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>
-<!--   <script src="../plugins/greensock/animation.gsap.min.js"></script> -->
-<!--   <script src="../plugins/greensock/ScrollToPlugin.min.js"></script> -->
+  <!--   <script src="../plugins/greensock/animation.gsap.min.js"></script> -->
+  <!--   <script src="../plugins/greensock/ScrollToPlugin.min.js"></script> -->
   <script src="../plugins/progressbar/progressbar.min.js"></script>
-<!--   <script src="../plugins/scrollTo/jquery.scrollTo.min.js"></script> -->
-<!--   <script src="../plugins/easing/easing.js"></script> -->
+  <!--   <script src="../plugins/scrollTo/jquery.scrollTo.min.js"></script> -->
+  <!--   <script src="../plugins/easing/easing.js"></script> -->
   <script src="../js/elements_custom.js"></script>
   <script src="../js/jquery.confetti.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>

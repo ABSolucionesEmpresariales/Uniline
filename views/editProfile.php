@@ -72,15 +72,15 @@ $pagina = "general";
               <div>
                 <div class="input-group m-1">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input type="text" id="registrar-nombre" class="form-control text-success" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'">
+                  <input type="text" id="registrar-nombre2" class="form-control text-success" name="TNombre" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Nombre'">
                 </div>
                 <div class="input-group m-1">
                   <span class="input-group-addon"><i class="fas fa-phone"></i></span>
-                  <input type="phone" id="registrar-tel" class="form-control text-success" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'">
+                  <input type="phone" id="registrar-tel2" class="form-control text-success" name="TTelefono" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu telefono'">
                 </div>
                 <div class="input-group m-1">
                   <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-                  <input type="email" id="registrar-correo" class="form-control text-success" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'">
+                  <input type="email" id="registrar-correo2" class="form-control text-success" name="TEmail" placeholder="E-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Correo'">
                 </div>
                 <div class="input-group m-1">
                   <span class="input-group-addon"><i class="fas fa-sort-numeric-up-alt"></i></span>
@@ -118,7 +118,7 @@ $pagina = "general";
                   <p>Ingresa tu contrasena actual para poder editar la contrasena</p>
                   <div class="input-group m-1">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" id="registrar-pass" class="form-control text-success" name="TPass" placeholder=" Tu constraseña actual" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña actual'">
+                    <input type="password" id="registrar-pass2" class="form-control text-success" name="TPass" placeholder=" Tu constraseña actual" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tu Contraseña actual'">
                   </div>
                   <div class="input-group m-1">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -140,16 +140,16 @@ $pagina = "general";
   <br>
   <br>
 
-  <script src="../js/jquery.js"></script>
+<!--   <script src="../js/jquery.js"></script> -->
   <script src="../js/jquery-3.2.1.min.js"></script>
   <!-- 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
   <script src="../js/vendor/jquery-2.2.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="../js/vendor/bootstrap.min.js"></script>
-  <script src="../js/easing.min.js"></script>
+<!--   <script src="../js/easing.min.js"></script> -->
   <script src="../js/superfish.min.js"></script>
-  <script src="../js/jquery.ajaxchimp.min.js"></script>
+<!--   <script src="../js/jquery.ajaxchimp.min.js"></script> -->
   <script src="../js/jquery.magnific-popup.min.js"></script>
   <script src="../js/owl.carousel.min.js"></script>
   <script src="../js/main.js"></script>
