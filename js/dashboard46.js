@@ -1,5 +1,6 @@
 $(document).ready(function () {
     //lista_temas();
+    certificado();
     lista();
     let contador = 0;
     let contador2 = 500;
@@ -568,7 +569,7 @@ template_cometarios +=`
                 $("#jalaporfa2").html(template_video);
                 $(".descripcion-tema").html(datos_tema[0][2]);
                 $('.descarga').attr("download",dat);
-                leer_iframe();
+                /* leer_iframe(); */
                 confeti();
             }
         });
@@ -845,10 +846,11 @@ template_cometarios +=`
                 if(response == 'completado'){
                     if(contador == 0){
                         $('#startConfetti').click();
-                        swal("¡Felicidades!, haz completado este curso 🎉🎉");
+                        swal("¡Felicidades!, haz completado este curso 🎉🎉 Ya puedes decargar tu certificado!!");
                         setTimeout(function(){
                         $('#stopConfetti').click();
                         }, 5000);
+                        certificado();
                         contador++;
                     }
                 }
@@ -857,6 +859,29 @@ template_cometarios +=`
             }
         });
     }
+
+    function certificado(){
+        $.ajax({
+            url: "../controllers/dashboard.php",
+            type: "POST",
+            data: 'certificacion=certificacion',
+            
+            success: function (response) {
+                console.log(response);
+                if(response != "no"){
+                    datos = JSON.parse(response);
+                    $("#certificacion").attr("href","../archivos/"+datos[0][0]);
+                    $("#certificacion").attr("download",datos[0][0]);
+                    $("#certificacion").removeClass("certificado_msg");
+                }
+            }
+        });
+    }
+
+    $(document).on("click",".certificado_msg",function(e){
+        e.preventDefault();
+        swal("Aun no has completado el curso");
+    });
 
     
   
@@ -889,7 +914,7 @@ template_cometarios +=`
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
     
-    function leer_iframe(){
+/*     function leer_iframe(){
              setTimeout(function(){
         
         var iframe = $(document).find("#jalaporfa2 iframe");
@@ -926,6 +951,6 @@ template_cometarios +=`
    
         }); 
         }, 4000);   
-    }
+    } */
     
 });

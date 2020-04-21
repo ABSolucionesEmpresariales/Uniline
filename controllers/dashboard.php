@@ -3,6 +3,7 @@ session_start();
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
 include '../Modelos/Fecha.php';
+include '../controllers/pdf.php';
 
 
 if(isset($_POST['calificacio_curso_usuarion'])){
@@ -56,7 +57,7 @@ if (isset($_POST['datos_lista'])) {
         $consulta_temas_bloque = "SELECT a.idtema,a.nombre,a.descripcion,a.video,a.archivo,case when b.tema is null then 0 else 1 end as temas_vistos 
         FROM tema a LEFT JOIN (SELECT * FROM tema_completado tm WHERE tm.usuario = ?) b on a.idtema = b.tema 
         INNER JOIN bloque c ON c.idbloque = a.bloque
-        WHERE a.bloque = ? AND c.curso = ? ORDER BY preferencia";
+        WHERE a.bloque = ? AND c.curso = ? ORDER BY preferencia asc";
         $array_temporales_temas = $conexion->consultaPreparada($datos_consulta_temas, $consulta_temas_bloque, 2, "isi", false, null);
 
         // <<< consulta que trae las tareas del curso>>> 
@@ -271,6 +272,42 @@ if (isset($_POST['confeti'])) {
     $temas_vistos = $result2[0][0];
 
     if($temas_curso == $temas_vistos){
-        echo "completado";
+       $validacion = $conexion->consultaPreparada(
+            array($_SESSION['idcurso'], $_SESSION['idusuario']),
+            "SELECT finalizacion FROM inscripcion WHERE curso = ? AND alumno = ?",
+            2,
+            "ii",
+            false,
+            null
+       );
+       if($validacion[0][0] != "1"){
+           $conexion->consultaPreparada(
+               array(1,$_SESSION['idcurso'], $_SESSION['idusuario']),
+               "UPDATE inscripcion SET finalizacion = ? WHERE curso = ? AND alumno = ?",
+               1,
+               "iii",
+               false,
+               null
+           );
+           crear_certificado();
+       }
+       echo "completado";
+    }
+}
+
+if(isset($_POST['certificacion'])){
+    $conexion = new Modelos\Conexion();
+   $resultado = $conexion->consultaPreparada(
+        array($_SESSION['idcurso'], $_SESSION['idusuario']),
+        "SELECT url_certificado FROM inscripcion WHERE curso = ? AND alumno = ?",
+        2,
+        "ii",
+        false,
+        null
+    );
+    if($resultado[0][0] == ""){
+        echo "no";
+    }else{
+        echo json_encode($resultado);
     }
 }

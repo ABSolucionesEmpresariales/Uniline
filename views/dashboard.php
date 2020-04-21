@@ -225,14 +225,14 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                                 $conexion = new Modelos\Conexion();
                                 $datos_tema = array($_SESSION['idcurso']);
                                 $cosulta_temas_curso = "SELECT COUNT(idtema) AS cantidadTemas FROM tema t 
-            INNER JOIN bloque b ON t.bloque = b.idbloque WHERE b.curso = ?";
+                                INNER JOIN bloque b ON t.bloque = b.idbloque WHERE b.curso = ?";
                                 $result = $conexion->consultaPreparada($datos_tema, $cosulta_temas_curso, 2, "i", false, null);
 
                                 $temas_curso = $result[0][0];
 
                                 $consulta_temas_alumno = "SELECT COUNT(tema) FROM tema_completado tm 
-            INNER JOIN tema t ON t.idtema = tm.tema 
-            INNER JOIN bloque b ON b.idbloque = t.bloque WHERE b.curso = ? AND tm.usuario = ?";
+                                INNER JOIN tema t ON t.idtema = tm.tema 
+                                INNER JOIN bloque b ON b.idbloque = t.bloque WHERE b.curso = ? AND tm.usuario = ?";
                                 $datos_temas_vistos = array($_SESSION['idcurso'], $_SESSION['idusuario']);
 
                                 $result2 = $conexion->consultaPreparada($datos_temas_vistos, $consulta_temas_alumno, 2, "ii", false, null);
@@ -249,6 +249,7 @@ $_SESSION['idcurso'] = $_GET['idcurso'];
                                 }
                                 ?>
                                 <div id="progreso" class="loader mb-0" data-perc="<?php echo $colculo ?>"></div>
+                                <a id="certificacion" class="btn btn-primary certificado_msg ml-0" href="" download="">Obtener certificado</a>
                               </div>
                             </div>
                           </div>
