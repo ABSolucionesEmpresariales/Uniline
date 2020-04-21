@@ -384,6 +384,7 @@ include '../controllers/sessionCEO.php';
                                     <th scope="col">Calificacio</th>
                                     <th scope="col">Profesor</th>
                                     <th scope="col">Costo</th>
+                                    <th scope="col">Control</th>
                                 </tr>
                             </thead>
                             <tbody id="datos-cursos">
