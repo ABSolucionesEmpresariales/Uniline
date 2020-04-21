@@ -252,23 +252,32 @@ $(document).ready(function () {
               <td scope="row">${datos[i][2]}</td>
               <td scope="row"><img width="50%" src="${url_2}"></td>
               <td scope="row">${datos[i][4]}</td>
-              <td scope="row">${datos[i][5]}</td>`;
+              <td scope="row">${datos[i][5]}</td>
+              <td scope="row">${datos[i][6]}</td>
+              <td scope="row">${datos[i][7]}</td>
+              <td scope="row">${datos[i][8]}</td>
+              `;
           /*          if(datos[i][6] == "null" || datos[i][6] == null) {
                         template +=` <td scope="row">${dat}</td>`;
                         }else{
                         template +=` <td scope="row">${datos[i][6]}</td>`;
                         } */
-          template += `<td scope="row">${datos[i][6]}</td>
-              <td scope="row">${datos[i][7]}</td>
-              <td scope="row">${datos[i][8]}</td>
-            </tr>`;
+          if (datos[i][9] === 1) {
+            template += `
+            <td scope="row"><button class="btn btn-success btnestado"  value = "${datos[i][0]}=${datos[i][9]}">Ocultar</button></td>
+            </tr>
+            `;
+          } else {
+            template += `
+              <td scope="row"><button class="btn btn-warning btnestado" value = "${datos[i][0]}=${datos[i][9]}">Publicar</button></td>
+              </tr>
+              `;
+          }
         }
         $('#datos-cursos').html(template);
       }
     });
   }
-
-
   function datosBloques() {//PINTAR TABLA BLOQUES
     $.ajax({
       url: "../controllers/bloque.php",
@@ -575,6 +584,18 @@ $(document).ready(function () {
     }
 
   });
+  //ACTUALIZAR EL ESTADO DE LA PUBLICACION DEL CURSO
+  $(document).on('click', '.btnestado', function () {
+    const datos = $(this).val().split('=');
+    const recursosactualizacion = {
+      idcurso: datos[0],
+      publicacion: datos[1] != 0 ? datos[1] = 0 : datos[1] = 1,
+      accion: 'editarpublicacion'
+    }
+    $.post('../controllers/cursos.php', recursosactualizacion, (response) => { })
+    datosCursos();
+
+  });
 
   $("#registro-bloques").submit(function (e) {//INSERTAR BLOQUES A LA BASE DE DATOS
     e.preventDefault();
@@ -633,7 +654,6 @@ $(document).ready(function () {
         data: $(this).serialize() + "&preferencia=" + preferencia_nuevo_renglon,
 
         success: function (response) {
-          console.log(response);
           if (response == 1) {
             datosTemas();
             $('#registro-temas').trigger('reset');
@@ -873,8 +893,6 @@ $(document).ready(function () {
 
   $(document).on('submit', '#FCupones', function (e) {
     e.preventDefault();
-    console.log($('#cupones-input').val());
-    console.log($('#curso').val());
     if ($('#cupones-input').val().length != 0 && $('#curso').val().length != 0) {
       $.post("../controllers/cupones.php", $(this).serialize() + "&accion=insertar", function (response) {
         if (!response.includes('1')) {
