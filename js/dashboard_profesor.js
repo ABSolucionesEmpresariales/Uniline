@@ -243,4 +243,38 @@ $(document).ready(function () {
 
   }
 
+
+
+
+
+
+
+
+
+
+
+
+  ///////////////////////// TABLAS //////////////////////////////////////////
+
+  function renderizarTabla() {
+  $.post('../controllers/tablas_dashboard_profesores.php', {tabla: "tabla_cursos", profesor: "2"}, function(response){
+  const parseo =  JSON.parse(response);
+  console.log(parseo);
+  })
+  }
+
+
+renderizarTabla();
+
+  $(document).on('click', '#nuevo-curso', function () {
+    
+  });
+  $(document).on('click', '#aniadir-bloque', function () {
+    
+  });
+  $(document).on('click', '#aniadir-examen', function () {
+    
+  });
+
+
 })

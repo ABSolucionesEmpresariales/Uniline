@@ -14,7 +14,7 @@ class Conexion
     private $datos = array(
         "host" => "localhost",
         "user" => "root",
-        "pass" => "38271784",
+        "pass" => "",
         "db" => "uniline"
     );
 
@@ -29,23 +29,22 @@ class Conexion
             $this->datos['pass'],
             $this->datos['db']
         );
-        
 
-        
-        
+
+
+
         /* Comprueba la conexión */
         if ($this->con->connect_errno) {
             printf("Connect failed: %s\n", $this->con->connect_error);
             echo "fail";
             exit();
         }
-        
     }
 
 
-    public function consultaPreparada($datos, $consulta, $accion, $datatipe, $reestructurar_arreglo,$cambiar_filtro)
+    public function consultaPreparada($datos, $consulta, $accion, $datatipe, $reestructurar_arreglo, $cambiar_filtro)
     {
-        
+
         // el parametro cambiar filtro es para indicar a que objeto del arreglo se le va a aplicar el filtro de password
         if ($reestructurar_arreglo === true) {
             //se cambia el elemento que esta en la posicion 1 del array a la ultima posicion para hacer update
@@ -83,12 +82,16 @@ class Conexion
             // return $stmt->execute();
         } else if ($accion == 2) {
             //accion 2 para retornar datos en una matriz
-           $stmt->execute();
-         return mysqli_fetch_all($stmt->get_result());
+            $stmt->execute();
+            return mysqli_fetch_all($stmt->get_result());
+        } else if ($accion === 3) {
+            //accion para retornar en un arreglo asocitivo
+            $stmt->execute();
+            return mysqli_fetch_all($stmt->get_result(), MYSQLI_ASSOC);
         }
     }
 
-    
+
     public function optenerId()
     {
         return $this->con->insert_id;
@@ -147,9 +150,9 @@ class Conexion
             array(
                 "\\", "¨", "º", "~",
                 "|", "\"",
-                "·", "&","'",
-               "[", "<code>", "]",
-                 "}", "{", "¨", "´",";",
+                "·", "&", "'",
+                "[", "<code>", "]",
+                "}", "{", "¨", "´", ";",
                 "''"
             ),
             '',
@@ -163,8 +166,9 @@ class Conexion
         return mysqli_fetch_all($this->con->query($sql));
     }
 
-    public function cambiarDatos(){
-        mysqli_query($this->con,"SET lc_time_names = 'es_VE'");
+    public function cambiarDatos()
+    {
+        mysqli_query($this->con, "SET lc_time_names = 'es_VE'");
     }
 
     public function consultaSimple($sql)
