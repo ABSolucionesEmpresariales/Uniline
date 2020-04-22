@@ -35,3 +35,5 @@ if(isset($_POST['nombre-curso']) && isset($_POST['descripcion-curso']) && isset(
    
 
 }
+
+?>

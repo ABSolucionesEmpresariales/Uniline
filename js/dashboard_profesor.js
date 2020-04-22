@@ -32,18 +32,19 @@ $(document).ready(function () {
 
     if (this.value != 0) {
       $(this).addClass('text-primary');
-      $('#aniadir-examen').removeClass('disabled');
+      cargarFormExamen(this.value);
+      $('#aniadir-examen, #aniadir-tema, #aniadir-pregunta, #aniadir-tarea').removeClass('disabled');
 
     } else {
       $(this).addClass('text-danger');
-      $('#aniadir-examen').addClass('disabled');
-      $('#aniadir-examen').collapse('hide');
-      $('#collapseExamen').collapse('hide');
-      $('#collapseExamen').removeClass('show in');
+      $('#aniadir-examen, #aniadir-tema, #aniadir-pregunta, #aniadir-tarea').addClass('disabled');
+      $('#aniadir-examen, #aniadir-tema, #aniadir-pregunta, #aniadir-tarea').collapse('hide');
+      $('#collapseExamen, #collapseTema, #collapsePregunta, #collapseTarea').collapse('hide');
+      $('#collapseExamen, #collapseTema, #collapsePregunta, #collapseTarea').removeClass('show in');
     }
   });
 
-  /**************FORMULARIOS */
+  /*FORMULARIOS: */
 
   // CURSO FORM
   $("#registrar-curso").submit(function (e) {//INSERTAR CURSOS A LA BASE DE DATOS 
@@ -123,7 +124,7 @@ $(document).ready(function () {
 
   });
 
-  /* EXAMEN FORM */
+  //EXAMEN FORM
   $("#registrar-examen").submit(function (e) {//INSERTAR BLOQUES A DB
     e.preventDefault();
     if (verificar_campos('examen') == 'campo-vacio') {
@@ -137,32 +138,73 @@ $(document).ready(function () {
         descripcion_examen = $form.find("textarea[name='descripcion-examen']").val(),
         bloque = bloque = $('#bloques-select').val(),
         url = "../controllers/examen_profesor.php";
-      if (bloque) {
-        $.post(url, {
-          examen: nombre_examen,
-          descripcion: descripcion_examen,
-          nombre_bloque: bloque
+
+      $.post(url, {
+        examen: nombre_examen,
+        descripcion: descripcion_examen,
+        nombre_bloque: bloque
+      })
+        .done(function (data) {
+          console.log(data);
+          if (data == 'creado') {
+            $('#registrar-bloque').trigger('reset');
+            $('.spinner-border').addClass('d-none');
+            $("#alerta-bloque").removeClass("d-none");
+            $("#alerta-bloque").slideDown("slow");
+            setTimeout(function () {
+              $("#alerta-bloque").slideUp("slow");
+
+            }, 3000);
+          } else if (data == 'actualizado') {
+            alert('se ha actualizado');
+          }
         })
-          .done(function (data) {
-
-            if (data) {
-              $('#registrar-bloque').trigger('reset');
-              $('.spinner-border').addClass('d-none');
-              $("#alerta-bloque").removeClass("d-none");
-              $("#alerta-bloque").slideDown("slow");
-              setTimeout(function () {
-                $("#alerta-bloque").slideUp("slow");
-
-              }, 3000);
-            } else {
-              alert('no se registro el examen');
-            }
-          })
-      }
 
     }
 
   });
+
+  //TEMAS FORM
+  $("#registrar-tema").submit(function (e) {//INSERTAR TEMAS A LA BASE DE DATOS 
+    e.preventDefault();
+    if (verificar_campos('curso') == 'campo-vacio') {
+
+      alert('Por favor llene todos los campos');
+
+    } else {
+
+      $('.spinner-border').removeClass('d-none');
+      var formData = new FormData(this);
+      const url = '../controllers/tema_profesor.php'
+
+      $.post(url, formData)
+        .done(function (data) {
+          console.log(data);
+          if (data) {
+            $("#alerta").removeClass("d-none");
+            $('#registrar-tema').trigger('reset');
+            $('#archivo-name').text('Archivo');
+            $('.spinner-border').addClass('d-none');
+            $("#alerta-tema").slideDown("slow");
+            setTimeout(function () {
+              $("#alerta").slideUp("slow");
+            }, 3000);
+          } else {
+            $('.spinner-border').addClass('d-none');
+            
+            alert("datos no enviados, hubo un error");
+          }
+        });
+
+    }
+
+  });
+  $("#archivo-tema").change(function () {//CARGA LA VISTA PREVIA DEL INPUT FILE DE CURSOS
+    if(this.files && this.files[0]){
+     $('#archivo-name').text(this.files[0].name);
+    }
+  });
+
 
   /* FUNCIONES */
 
@@ -237,9 +279,22 @@ $(document).ready(function () {
       });
   }
 
-  function actualizarFormExamen(bloque_value) {
+  function cargarFormExamen(bloque_value) {
+
+    $.get("../controllers/select_examen.php", { bloque: bloque_value })
+      .done(function (data) {
+        if (data != 0) {
+          const datos_examen = JSON.parse(data);
+          $("input[name='nombre-examen'").val(datos_examen[0][0]);
+          $("textarea[name='descripcion-examen'").val(datos_examen[0][1]);
+          $("button[name='submit-examen'").removeClass('btn-success');
+          $("button[name='submit-examen'").addClass('btn-primary');
+          $("button[name='submit-examen'").html('Actualizar');
 
 
+        }
+
+      });
 
   }
 
