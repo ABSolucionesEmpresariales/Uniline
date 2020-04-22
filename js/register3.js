@@ -148,7 +148,9 @@ $(document).ready(function () {
       data: { 'accion': 'items' },
 
       success: function (response) {
+        console.log(response);
         datos = JSON.parse(response);
+        console.log(datos);
         template = '<option value="0">Selecciona uno</option>';
         if (datos != '') {
           for (i = 0; i < datos.length; i++) {
