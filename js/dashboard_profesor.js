@@ -167,23 +167,30 @@ $(document).ready(function () {
   //TEMAS FORM
   $("#registrar-tema").submit(function (e) {//INSERTAR TEMAS A LA BASE DE DATOS 
     e.preventDefault();
-    if (verificar_campos('curso') == 'campo-vacio') {
+    if (verificar_campos('tema') == 'campo-vacio') {
 
       alert('Por favor llene todos los campos');
 
     } else {
 
       $('.spinner-border').removeClass('d-none');
-      var formData = new FormData(this);
-      const url = '../controllers/tema_profesor.php'
 
-      $.post(url, formData)
-        .done(function (data) {
-          console.log(data);
+      const formData = new FormData(this);
+      const bloque = $('#bloques-select').val();
+      formData.append("bloque", bloque);
+
+      $.ajax({
+        url: '../controllers/tema_profesor.php',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (data) {
           if (data) {
+            console.log(data);
+            $('#archivo-tema-name').text('Archivo');
             $("#alerta").removeClass("d-none");
             $('#registrar-tema').trigger('reset');
-            $('#archivo-name').text('Archivo');
             $('.spinner-border').addClass('d-none');
             $("#alerta-tema").slideDown("slow");
             setTimeout(function () {
@@ -191,111 +198,113 @@ $(document).ready(function () {
             }, 3000);
           } else {
             $('.spinner-border').addClass('d-none');
-            
             alert("datos no enviados, hubo un error");
           }
+
+      }
         });
 
-    }
+}
 
   });
-  $("#archivo-tema").change(function () {//CARGA LA VISTA PREVIA DEL INPUT FILE DE CURSOS
-    if(this.files && this.files[0]){
-     $('#archivo-name').text(this.files[0].name);
+
+$("#archivo-tema").change(function () {//CARGA LA VISTA PREVIA DEL INPUT FILE DE CURSOS
+  if (this.files && this.files[0]) {
+    $('#archivo-tema-name').text(files[0].name);
+  }
+});
+
+
+/* FUNCIONES */
+
+/* VERIFICAR CAMPOS FORMULARIO */
+function verificar_campos(tipo) {
+  for (i = 0; i < $('.input-' + tipo).length; i++) {
+    if ($('.input-' + tipo).eq(i).val() == '') {
+      return 'campo-vacio';
+    }
+  }
+  return 'campos-llenos';
+}
+
+/* PREVISUALIZACION DE LA IMAGEN DEL CURSO */
+function leerUrl(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    const image_name = document.getElementById('image-name');
+    reader.onload = (e) => {
+      $('#foto-curso').attr('src', e.target.result);
+      image_name.innerHTML = input.files[0].name;
+    }
+
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+
+  }
+}
+
+/* OBTENER CURSOS */
+function actualizarSelectCursos() {
+  $.get("../controllers/select_cursos.php", function (data, status) {
+    if (status) {
+      $('#cursos-select').html(`<option value="0">Elige un curso</option>`);
+      if (data) {
+        const cursos = JSON.parse(data);
+
+        cursos.map(curso => {
+          $('#cursos-select').append(`<option value="${curso[0]}">${curso[1]}</option>`)
+        });
+      } else {
+        $('#cursos-select').append(`<option value="no-course">No tienes ningun Curso</option>`)
+      }
+
     }
   });
+}
 
+/* OBTENER BLOQUES */
+function actualizarSelectBloques(curso_value) {
+  /* obtendremos el valor del select 
+     curso como parametro 
+     para pasarlo como dato a
+     la peticion get */
 
-  /* FUNCIONES */
+  $.get("../controllers/select_bloques.php", { curso: curso_value })
+    .done(function (data) {
+      $('#bloques-select').html(`<option value="0">Elige un bloque</option>`);
+      if (curso_value != 0) {
+        if (data != 0) {
+          const bloques = JSON.parse(data);
 
-  /* VERIFICAR CAMPOS FORMULARIO */
-  function verificar_campos(tipo) {
-    for (i = 0; i < $('.input-' + tipo).length; i++) {
-      if ($('.input-' + tipo).eq(i).val() == '') {
-        return 'campo-vacio';
-      }
-    }
-    return 'campos-llenos';
-  }
-
-  /* PREVISUALIZACION DE LA IMAGEN DEL CURSO */
-  function leerUrl(input) {
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      const image_name = document.getElementById('image-name');
-      reader.onload = (e) => {
-        $('#foto-curso').attr('src', e.target.result);
-        image_name.innerHTML = input.files[0].name;
-      }
-
-      reader.readAsDataURL(input.files[0]); // convert to base64 string
-
-    }
-  }
-
-  /* OBTENER CURSOS */
-  function actualizarSelectCursos() {
-    $.get("../controllers/select_cursos.php", function (data, status) {
-      if (status) {
-        $('#cursos-select').html(`<option value="0">Elige un curso</option>`);
-        if (data) {
-          const cursos = JSON.parse(data);
-
-          cursos.map(curso => {
-            $('#cursos-select').append(`<option value="${curso[0]}">${curso[1]}</option>`)
+          bloques.map(bloque => {
+            $('#bloques-select').append(`<option value="${bloque[0]}">${bloque[1]}</option>`)
           });
         } else {
-          $('#cursos-select').append(`<option value="no-course">No tienes ningun Curso</option>`)
+          $('#bloques-select').html(`<option value="no-chapter">Curso no tiene bloques</option>`)
         }
+      } else {
+        $('#bloques-select').empty();//VACIAR EL SELECT SI NO HAY CURSO SELECCIONADO
+      }
+
+    });
+}
+
+function cargarFormExamen(bloque_value) {
+
+  $.get("../controllers/select_examen.php", { bloque: bloque_value })
+    .done(function (data) {
+      if (data != 0) {
+        const datos_examen = JSON.parse(data);
+        $("input[name='nombre-examen'").val(datos_examen[0][0]);
+        $("textarea[name='descripcion-examen'").val(datos_examen[0][1]);
+        $("button[name='submit-examen'").removeClass('btn-success');
+        $("button[name='submit-examen'").addClass('btn-primary');
+        $("button[name='submit-examen'").html('Actualizar');
+
 
       }
+
     });
-  }
 
-  /* OBTENER BLOQUES */
-  function actualizarSelectBloques(curso_value) {
-    /* obtendremos el valor del select 
-       curso como parametro 
-       para pasarlo como dato a
-       la peticion get */
-
-    $.get("../controllers/select_bloques.php", { curso: curso_value })
-      .done(function (data) {
-        $('#bloques-select').html(`<option value="0">Elige un bloque</option>`);
-        if (curso_value != 0) {
-          if (data != 0) {
-            const bloques = JSON.parse(data);
-
-            bloques.map(bloque => {
-              $('#bloques-select').append(`<option value="${bloque[0]}">${bloque[1]}</option>`)
-            });
-          } else {
-            $('#bloques-select').html(`<option value="no-chapter">Curso no tiene bloques</option>`)
-          }
-        } else {
-          $('#bloques-select').empty();//VACIAR EL SELECT SI NO HAY CURSO SELECCIONADO
-        }
-
-      });
-  }
-
-  function cargarFormExamen(bloque_value) {
-
-    $.get("../controllers/select_examen.php", { bloque: bloque_value })
-      .done(function (data) {
-        if (data != 0) {
-          const datos_examen = JSON.parse(data);
-          $("input[name='nombre-examen'").val(datos_examen[0][0]);
-          $("textarea[name='descripcion-examen'").val(datos_examen[0][1]);
-          $("button[name='submit-examen'").removeClass('btn-success');
-          $("button[name='submit-examen'").addClass('btn-primary');
-          $("button[name='submit-examen'").html('Actualizar');
-
-
-        }
-
-      });
-
-  }
+}
 
 })

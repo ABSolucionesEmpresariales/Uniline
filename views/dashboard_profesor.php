@@ -316,8 +316,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingOne">
                               <h2 class="mb-0">
-                                 <button id="aniadir-tema" class="btn btn-link disabled" type="button" data-toggle="collapse"
-                                    data-target="#collapseTema" aria-expanded="true" aria-controls="collapseTema">
+                                 <button id="aniadir-tema" class="btn btn-link disabled" type="button"
+                                    data-toggle="collapse" data-target="#collapseTema" aria-expanded="true"
+                                    aria-controls="collapseTema">
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Temas de Bloque
                                     </h5>
                                  </button>
@@ -333,29 +334,41 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
                                           <input type="text" class="input-tema form-control form-control-sm"
-                                             id="nombre-tema" placeholder="Nombre del Tema">
+                                             name="nombre-tema" placeholder="Nombre del Tema">
                                        </div>
                                        <div class="form-group col-md-12">
                                           <textarea class="input-tema form-control form-control-sm"
-                                             id="descripcion-tema" placeholder="Descripción del Tema"></textarea>
+                                             name="descripcion-tema" placeholder="Descripción del Tema"></textarea>
                                        </div>
                                     </div>
 
                                     <div class="form-group">
-                                       <input type="text" class="input-tema form-control form-control-sm" 
-                                          id="video-tema" placeholder="URL video">
+                                       <input type="text" class="input-tema form-control form-control-sm"
+                                          name="video-tema" placeholder="URL video">
                                     </div>
 
                                     <div class="form-group">
                                        <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="archivo-tema">
-                                          <label id="archivo-name" class="custom-file-label" for="customFile">Subir Archivo</label>
+                                          <input type="file" class="custom-file-input" name="archivo-tema"
+                                             id="#archivo-tema">
+                                          <label id="archivo-tema-name" class="custom-file-label" for="customFile">Subir
+                                             Archivo</label>
                                        </div>
                                     </div>
 
-                                    <div class="form-row">
-                                       <button type="submit"
-                                          class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                                    <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-bloque">
+                                       <p class="m-0"> ¡<b>Exámen creado:</b> se ha creado el exámen con éxito!</p>
+                                    </div>
+
+                                    <div class="form-row mt-3">
+                                       <div class="col-lg-2 text-center">
+                                          <div class="spinner-border text-primary d-none" role="status">
+                                             <span class="sr-only">Loading...</span>
+                                          </div>
+                                       </div>
+
+                                       <button type="submit" name="submit-tema"
+                                          class="col-lg-4 offset-lg-6 btn btn-success btn-md">Añadir</button>
                                     </div>
 
                                  </form>
@@ -368,8 +381,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingTwo">
                               <h2 class="mb-0">
-                                 <button id="aniadir-pregunta" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
-                                    data-target="#collapsePregunta" aria-expanded="false" aria-controls="collapsePregunta">
+                                 <button id="aniadir-pregunta" class="btn btn-link collapsed disabled" type="button"
+                                    data-toggle="collapse" data-target="#collapsePregunta" aria-expanded="false"
+                                    aria-controls="collapsePregunta">
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Pregunta Examen
                                     </h5>
                                  </button>
@@ -460,8 +474,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingThree">
                               <h2 class="mb-0">
-                                 <button id="aniadir-tarea" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
-                                    data-target="#collapseTarea" aria-expanded="false" aria-controls="collapseTarea">
+                                 <button id="aniadir-tarea" class="btn btn-link collapsed disabled" type="button"
+                                    data-toggle="collapse" data-target="#collapseTarea" aria-expanded="false"
+                                    aria-controls="collapseTarea">
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Tarea</h5>
                                  </button>
                               </h2>
