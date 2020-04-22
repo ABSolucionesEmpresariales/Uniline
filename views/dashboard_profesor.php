@@ -259,34 +259,14 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   </div>
                </div>
 
-               <table class="table my-5 w-100 shadow">
-                  <thead id="theadgrupo1" class="bg-info">
-                     <tr>
-                        <th scope="col" class="text-light">#</th>
-                        <th scope="col" class="text-light">First</th>
-                        <th scope="col" class="text-light">Last</th>
-                        <th scope="col" class="text-light">Handle</th>
+               <table class="table my-5 w-100 shadow table-responsive-sm">
+                  <thead class="bg-info">
+                     <tr id="tr-tablagrupo1">
+               
                      </tr>
                   </thead>
                   <tbody id="tbodygrupo1">
-                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                     </tr>
-                     <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                     </tr>
-                     <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                     </tr>
+         
                   </tbody>
                </table>
 

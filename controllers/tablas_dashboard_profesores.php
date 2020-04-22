@@ -10,7 +10,7 @@ if (!empty($_POST['tabla'])) {
         case "tabla_cursos":
             echo json_encode(
                 $conexion->consultaPreparada(
-                    array($_POST['profesor']),
+                    array($_SESSION['idusuario']),
                     "SELECT idcurso,nombre,descripcion,imagen,video,horas,calificacion,costo,publicacion FROM curso WHERE profesor = ?",
                     3,
                     's',
@@ -27,7 +27,7 @@ if (!empty($_POST['tabla'])) {
                 $conexion->consultaPreparada(
                     array($_POST['curso']),
                     "SELECT idbloque,nombre FROM bloque WHERE curso = ?",
-                    2,
+                    3,
                     's',
                     false,
                     null
@@ -40,8 +40,8 @@ if (!empty($_POST['tabla'])) {
             echo json_encode(
                 $conexion->consultaPreparada(
                     array($_POST['bloque']),
-                    "SELECT idexamen,nombre FROM examen WHERE bloque = ?",
-                    2,
+                    "SELECT idexamen,nombre,descripcion FROM examen WHERE bloque = ?",
+                    3,
                     's',
                     false,
                     null

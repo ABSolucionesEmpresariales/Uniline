@@ -256,25 +256,84 @@ $(document).ready(function () {
 
   ///////////////////////// TABLAS //////////////////////////////////////////
 
-  function renderizarTabla() {
-  $.post('../controllers/tablas_dashboard_profesores.php', {tabla: "tabla_cursos", profesor: "2"}, function(response){
-  const parseo =  JSON.parse(response);
-  console.log(parseo);
-  })
+  function renderizarTabla(objeto_peticion, idtr, idtbody) {
+    $.post('../controllers/tablas_dashboard_profesores.php', objeto_peticion, function (response) {
+      console.log(response);
+      const datos = JSON.parse(response);
+      let nombrescolumnas = [];
+      let trhead = ``;
+      let tbody = ``;
+      let botones = `<td><button class = "btn btn-danger">Eliminar</button></td>`;
+
+      datos.forEach(function (objeto_renglon_tabla, posicion) {
+        if (posicion === 0) { //se renderizan el thead de la tabla
+          nombrescolumnas = Object.keys(objeto_renglon_tabla);
+          nombrescolumnas.forEach(function (valor, posicion) {
+            if (valor != "publicacion") trhead += `<th scope="col" class="text-light${posicion === 0 ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
+          })
+        }
+        tbody += `<tr>`;
+        nombrescolumnas.forEach(function (nombre_propiedad_objeto, posicion) {
+          if (nombre_propiedad_objeto === "publicacion") {
+            if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
+              botones = `<td>
+                          <button class = "btn btn-success btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Ocultar</button>
+                          <button class = "btn btn-danger">Eliminar</button>
+                        </td>`;
+            } else {
+              botones = `<td>
+                          <button class = "btn btn-warning btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Publicar</button>
+                          <button class = "btn btn-danger">Eliminar</button>
+                         </td>`;
+            }
+
+          } else {
+            tbody += `<td class=${posicion === 0 ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
+          }
+        })
+
+        tbody += botones + `</tr>`;
+      });
+      $(idtr).html(trhead);
+      $(idtbody).html(tbody);
+    })
   }
 
 
-renderizarTabla();
+  renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
 
   $(document).on('click', '#nuevo-curso', function () {
-    
-  });
-  $(document).on('click', '#aniadir-bloque', function () {
-    
-  });
-  $(document).on('click', '#aniadir-examen', function () {
-    
+    renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
   });
 
+  $(document).on('click', '#aniadir-bloque', function () {
+    const objeto_peticion = {
+      tabla: "tabla_bloques",
+      curso: $('#cursos-select').val()
+    };
+    renderizarTabla(objeto_peticion, '#tr-tablagrupo1', '#tbodygrupo1');
+  });
+
+  $(document).on('click', '#aniadir-examen', function () {
+    const objeto_peticion = {
+      tabla: "tabla_examenes",
+      bloque: $('#bloques-select').val()
+    };
+    renderizarTabla(objeto_peticion, '#tr-tablagrupo1', '#tbodygrupo1');
+  });
+
+  //ACTUALIZAR EL ESTADO DE LA PUBLICACION DEL CURSO
+  $(document).on('click', '.btnestado', function () {
+    const datos = $(this).val().split('=');
+    const recursosactualizacion = {
+      idcurso: datos[0],
+      publicacion: datos[1] != 0 ? datos[1] = 0 : datos[1] = 1,
+      accion: 'editarpublicacion'
+    }
+    $.post('../controllers/cursos.php', recursosactualizacion, (response) => { })
+    renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
+
+  });
 
 })
+
