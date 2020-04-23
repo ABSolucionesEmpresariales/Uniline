@@ -4,10 +4,10 @@ include '../controllers/sesion.php';
 
 /* Damos formato a la url de la imagen del perfil */
 $url = "";
-if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
-   $split = explode("/",$_SESSION['imagen_perfil']);
-   $url = "../".$split[1]."/min_".$split[2];
-}else{
+if ($_SESSION['imagen_perfil'] != "../img/perfil.png") {
+   $split = explode("/", $_SESSION['imagen_perfil']);
+   $url = "../" . $split[1] . "/min_" . $split[2];
+} else {
    $url = $_SESSION['imagen_perfil'];
 }
 
@@ -27,8 +27,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
    <!--FONT AWESOME-->
 
    <!--BOOTSTRAP 4--->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
    <title>Dashboard Cursos</title>
 </head>
@@ -40,25 +39,21 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
       <div class="col-lg-3 py-5 vh-100 border-right navbar-expand shadow">
 
          <div class="media mb-5">
-            <img src=<?php echo $url?> alt="prof" class="mx-3 w-25 rounded-circle img-fluid align-self-center">
+            <img src=<?php echo $url ?> alt="prof" class="mx-3 w-25 rounded-circle img-fluid align-self-center">
 
             <div class="media-body">
-               <h5 class="mt-2"><?php echo $nombre?></h5>
-               <p class="mb-0"><?php echo $_SESSION['tipo']?></p>
+               <h5 class="mt-2"><?php echo $nombre ?></h5>
+               <p class="mb-0"><?php echo $_SESSION['tipo'] ?></p>
 
             </div>
 
          </div>
 
          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="cursos-tab" data-toggle="pill" href="#cursos" role="tab"
-               aria-controls="v-pills-cursos" aria-selected="true">Cursos</a>
-            <a class="nav-link" id="contenido-curso-tab" data-toggle="pill" href="#contenido-curso" role="tab"
-               aria-controls="v-pills-contenido-curso" aria-selected="false">Contenido del Curso</a>
-            <a class="nav-link" id="estadisticas-tab" data-toggle="pill" href="#v-pills-estadisticas" role="tab"
-               aria-controls="v-pills-estadisticas" aria-selected="false">Estadísticas</a>
-            <a class="nav-link" id="v-pills-ayuda-tab" data-toggle="pill" href="#v-pills-ayuda" role="tab"
-               aria-controls="v-pills-ayuda" aria-selected="false">Ayuda</a>
+            <a class="nav-link active" id="cursos-tab" data-toggle="pill" href="#cursos" role="tab" aria-controls="v-pills-cursos" aria-selected="true">Cursos</a>
+            <a class="nav-link" id="contenido-curso-tab" data-toggle="pill" href="#contenido-curso" role="tab" aria-controls="v-pills-contenido-curso" aria-selected="false">Contenido del Curso</a>
+            <a class="nav-link" id="estadisticas-tab" data-toggle="pill" href="#v-pills-estadisticas" role="tab" aria-controls="v-pills-estadisticas" aria-selected="false">Estadísticas</a>
+            <a class="nav-link" id="v-pills-ayuda-tab" data-toggle="pill" href="#v-pills-ayuda" role="tab" aria-controls="v-pills-ayuda" aria-selected="false">Ayuda</a>
          </div>
       </div>
 
@@ -72,16 +67,14 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
             <div class="col-lg-6">
 
                <p class="small m-0">&nbsp;</p>
-               <select class="shadow custom-select form-control custom-select-lg text-danger" name="cursos"
-                  id="cursos-select">
+               <select class="shadow custom-select form-control custom-select-lg text-danger" name="cursos" id="cursos-select">
 
                </select>
             </div>
 
             <div class="col-lg-6">
                <p id="info-select-bloque" class="small text-danger m-0">*Selecciona un curso para mostrar bloques</p>
-               <select class="shadow custom-select form-control custom-select-lg text-danger" name="bloques"
-                  id="bloques-select">
+               <select class="shadow custom-select form-control custom-select-lg text-danger" name="bloques" id="bloques-select">
                </select>
             </div>
          </div>
@@ -96,20 +89,17 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
-                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                              aria-expanded="true" aria-controls="collapseOne">
+                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                               <h5><i class="fas fa-plus-circle"></i> Nuevo Curso</h5>
                            </button>
                         </h2>
                      </div>
 
-                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                        data-parent="#accordionExample">
+                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                            <form id="registrar-curso">
                               <div class="text-center">
-                                 <img src="../img/cursos/no_course.png" id="foto-curso" alt="curso"
-                                    class="align-self-center  mb-3 w-25" />
+                                 <img src="../img/cursos/no_course.png" id="foto-curso" alt="curso" class="align-self-center  mb-3 w-25" />
                               </div>
                               <div class="form-group">
                                  <div class="custom-file">
@@ -122,27 +112,22 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <input type="text" class="input-curso form-control form-control-sm"
-                                       name="nombre-curso" placeholder="Nombre del Curso">
+                                    <input type="text" class="input-curso form-control form-control-sm" name="nombre-curso" placeholder="Nombre del Curso">
                                  </div>
                                  <div class="form-group col-md-12">
-                                    <textarea class="input-curso form-control form-control-sm" name="descripcion-curso"
-                                       placeholder="Descripción del curso"></textarea>
+                                    <textarea class="input-curso form-control form-control-sm" name="descripcion-curso" placeholder="Descripción del curso"></textarea>
                                  </div>
                               </div>
                               <div class="form-row">
                                  <div class="form-group col-md-6">
-                                    <input type="number" id="horas-curso" name="horas-curso"
-                                       placeholder="Horas del Curso" class="input-curso form-control form-control-sm">
+                                    <input type="number" id="horas-curso" name="horas-curso" placeholder="Horas del Curso" class="input-curso form-control form-control-sm">
                                  </div>
                                  <div class="form-group col-md-6">
-                                    <input type="number" id="costo-curso" name="costo-curso"
-                                       placeholder="Costo de Curso" class="input-curso form-control form-control-sm">
+                                    <input type="number" id="costo-curso" name="costo-curso" placeholder="Costo de Curso" class="input-curso form-control form-control-sm">
                                  </div>
                               </div>
                               <div class="form-group">
-                                 <input type="text" class="input-curso form-control form-control-sm" name="video-curso"
-                                    placeholder="URL video">
+                                 <input type="text" class="input-curso form-control form-control-sm" name="video-curso" placeholder="URL video">
                               </div>
 
                               <div class="alert alert-success mt-3 d-none" role="alert" id="alerta">
@@ -155,8 +140,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                        <span class="sr-only">Loading...</span>
                                     </div>
                                  </div>
-                                 <button type="submit" name="submit"
-                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
+                                 <button type="submit" name="submit" class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
                               </div>
 
                            </form>
@@ -169,23 +153,18 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingTwo">
                         <h2 class="mb-0">
-                           <button id="aniadir-bloque" class="btn btn-link collapsed disabled" type="button"
-                              data-toggle="collapse" data-target="#collapseBloque" aria-expanded="false"
-                              aria-controls="collapseBloque">
+                           <button id="aniadir-bloque" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse" data-target="#collapseBloque" aria-expanded="false" aria-controls="collapseBloque">
                               <h5><i class="fas fa-plus-circle"></i> Añadir Bloques</h5>
                            </button>
                         </h2>
                      </div>
-                     <div id="collapseBloque" class="collapse" aria-labelledby="headingTwo"
-                        data-parent="#accordionExample">
+                     <div id="collapseBloque" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
                            <form id="registrar-bloque">
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <input type="text" name="nombre-bloque" id="nombre-bloque"
-                                       placeholder="Nombre del Bloque"
-                                       class="input-bloque form-control form-control-sm">
+                                    <input type="text" name="nombre-bloque" id="nombre-bloque" placeholder="Nombre del Bloque" class="input-bloque form-control form-control-sm">
                                  </div>
                               </div>
 
@@ -200,8 +179,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
                                  </div>
 
-                                 <button type="submit" name="submit"
-                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
+                                 <button type="submit" name="submit" class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
                               </div>
 
                            </form>
@@ -213,31 +191,24 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingThree">
                         <h2 class="mb-0">
-                           <button id="aniadir-examen" class="btn btn-link collapsed disabled" type="button"
-                              data-toggle="collapse" data-target="#collapseExamen" aria-expanded="false"
-                              aria-controls="collapseExamen">
+                           <button id="aniadir-examen" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse" data-target="#collapseExamen" aria-expanded="false" aria-controls="collapseExamen">
                               <h5><i class="fas fa-plus-circle"></i> Añadir Examen</h5>
                            </button>
                         </h2>
                      </div>
-                     <div id="collapseExamen" class="collapse" aria-labelledby="headingThree"
-                        data-parent="#accordionExample">
+                     <div id="collapseExamen" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                         <div class="card-body">
                            <form id="registrar-examen">
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <input type="text" name="nombre-examen" id="nombre-examen"
-                                       placeholder="Nombre del Examen"
-                                       class="input-examen form-control form-control-sm">
+                                    <input type="text" name="nombre-examen" id="nombre-examen" placeholder="Nombre del Examen" class="input-examen form-control form-control-sm">
                                  </div>
                               </div>
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <textarea name="descripcion-examen"
-                                       class="input-examen form-control form-control-sm"
-                                       placeholder="Descripción del exámen"></textarea>
+                                    <textarea name="descripcion-examen" class="input-examen form-control form-control-sm" placeholder="Descripción del exámen"></textarea>
                                  </div>
                               </div>
 
@@ -252,8 +223,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
                                  </div>
 
-                                 <button type="submit" name="submit-examen"
-                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
+                                 <button type="submit" name="submit-examen" class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
                               </div>
 
 
@@ -316,8 +286,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingOne">
                               <h2 class="mb-0">
-                                 <button id="aniadir-tema" class="btn btn-link disabled" type="button" data-toggle="collapse"
-                                    data-target="#collapseTema" aria-expanded="true" aria-controls="collapseTema">
+                                 <button id="aniadir-tema" class="btn btn-link disabled" type="button" data-toggle="collapse" data-target="#collapseTema" aria-expanded="true" aria-controls="collapseTema">
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Temas de Bloque
                                     </h5>
                                  </button>
@@ -325,25 +294,21 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                            </div>
 
                            <!-- AÑADIR TEMA DE BLOQUE -->
-                           <div id="collapseTema" class="collapse" aria-labelledby="headingOne"
-                              data-parent="#accordionContenido">
+                           <div id="collapseTema" class="collapse" aria-labelledby="headingOne" data-parent="#accordionContenido">
                               <div class="card-body">
                                  <form id="registrar-tema">
 
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <input type="text" class="input-tema form-control form-control-sm"
-                                             id="nombre-tema" placeholder="Nombre del Tema">
+                                          <input type="text" class="input-tema form-control form-control-sm" id="nombre-tema" placeholder="Nombre del Tema">
                                        </div>
                                        <div class="form-group col-md-12">
-                                          <textarea class="input-tema form-control form-control-sm"
-                                             id="descripcion-tema" placeholder="Descripción del Tema"></textarea>
+                                          <textarea class="input-tema form-control form-control-sm" id="descripcion-tema" placeholder="Descripción del Tema"></textarea>
                                        </div>
                                     </div>
 
                                     <div class="form-group">
-                                       <input type="text" class="input-tema form-control form-control-sm" 
-                                          id="video-tema" placeholder="URL video">
+                                       <input type="text" class="input-tema form-control form-control-sm" id="video-tema" placeholder="URL video">
                                     </div>
 
                                     <div class="form-group">
@@ -354,8 +319,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
 
                                     <div class="form-row">
-                                       <button type="submit"
-                                          class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                                       <button type="submit" class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
                                     </div>
 
                                  </form>
@@ -368,15 +332,13 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingTwo">
                               <h2 class="mb-0">
-                                 <button id="aniadir-pregunta" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
-                                    data-target="#collapsePregunta" aria-expanded="false" aria-controls="collapsePregunta">
+                                 <button id="aniadir-pregunta" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse" data-target="#collapsePregunta" aria-expanded="false" aria-controls="collapsePregunta">
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Pregunta Examen
                                     </h5>
                                  </button>
                               </h2>
                            </div>
-                           <div id="collapsePregunta" class="collapse" aria-labelledby="headingTwo"
-                              data-parent="#accordionContenido">
+                           <div id="collapsePregunta" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionContenido">
                               <div class="card-body">
 
                                  <form id="registrar-pregunta">
@@ -384,70 +346,70 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <!-- PREGUNTA -->
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <input type="text" name="pregunta-examen" id="pregunta-examen"
-                                             placeholder="Escriba la pregunta" class="form-control form-control-sm">
+                                          <input type="text" name="pregunta-examen" id="pregunta-examen" placeholder="Escriba la pregunta" class="form-control form-control-sm input-preg-resp">
                                        </div>
                                     </div>
                                     <!-- RESPUESTA A -->
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio1" name="customRadio"
-                                                class="custom-control-input">
+                                             <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input radio-pregunta radio-in" data-correcta="1">
                                              <label class="custom-control-label" for="customRadio1"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta1" id="respuesta1" placeholder="Respuesta A"
-                                             class="form-control form-control-sm">
+                                          <input type="text" name="respuesta1" id="respuesta1" placeholder="Respuesta A" class="form-control form-control-sm input-preg-resp">
                                        </div>
                                     </div>
                                     <!-- RESPUESTA B -->
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio2" name="customRadio"
-                                                class="custom-control-input">
+                                             <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input radio-pregunta radio-in" data-correcta="2">
                                              <label class="custom-control-label" for="customRadio2"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta2" id="respuesta2" placeholder="Respuesta B"
-                                             class="form-control form-control-sm">
+                                          <input type="text" name="respuesta2" id="respuesta2" placeholder="Respuesta B" class="form-control form-control-sm input-preg-resp">
                                        </div>
                                     </div>
                                     <!-- RESPUESTA C -->
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio3" name="customRadio"
-                                                class="custom-control-input">
+                                             <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input radio-pregunta radio-in" data-correcta="3">
                                              <label class="custom-control-label" for="customRadio3"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta3" id="respuesta3" placeholder="Respuesta C"
-                                             class="form-control form-control-sm">
+                                          <input type="text" name="respuesta3" id="respuesta3" placeholder="Respuesta C" class="form-control form-control-sm input-preg-resp">
                                        </div>
                                     </div>
                                     <!-- RESPUESTA D -->
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio4" name="customRadio"
-                                                class="custom-control-input">
+                                             <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input radio-pregunta radio-in" data-correcta="4">
                                              <label class="custom-control-label" for="customRadio4"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta4" id="respuesta4" placeholder="Respuesta D"
-                                             class="form-control form-control-sm">
+                                          <input type="text" name="respuesta4" id="respuesta4" placeholder="Respuesta D" class="form-control form-control-sm input-preg-resp">
                                        </div>
                                     </div>
 
+                                    <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-pregunta">
+                                       <p class="m-0"> ¡<b>Listo!:</b> se han registrado las preguntas con éxito!</p>
+                                    </div>
+
                                     <div class="form-row">
-                                       <button type="submit"
-                                          class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                                       <div class="col-lg-2 text-center">
+                                          <div class="spinner-border text-primary d-none" role="status">
+                                             <span class="sr-only">Loading...</span>
+                                          </div>
+                                       </div>
+
+                                       <button type="submit" class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
                                     </div>
 
                                  </form>
@@ -460,21 +422,18 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingThree">
                               <h2 class="mb-0">
-                                 <button id="aniadir-tarea" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
-                                    data-target="#collapseTarea" aria-expanded="false" aria-controls="collapseTarea">
+                                 <button id="aniadir-tarea" class="btn btn-link collapsed disabled" type="button" data-toggle="collapse" data-target="#collapseTarea" aria-expanded="false" aria-controls="collapseTarea">
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Tarea</h5>
                                  </button>
                               </h2>
                            </div>
-                           <div id="collapseTarea" class="collapse" aria-labelledby="headingThree"
-                              data-parent="#accordionContenido">
+                           <div id="collapseTarea" class="collapse" aria-labelledby="headingThree" data-parent="#accordionContenido">
                               <div class="card-body">
 
                                  <form id="registrar-tarea">
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <select class="custom-select form-control custom-select-sm" name="cursos"
-                                             id="cursos-select">
+                                          <select class="custom-select form-control custom-select-sm" name="cursos" id="cursos-select">
                                              <option selected value="">Elija el Curso</option>
                                              <option value="">Curso 1</option>
                                              <option value="">Curso 2</option>
@@ -486,8 +445,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <select class="custom-select form-control custom-select-sm" name="cursos"
-                                             id="cursos-select">
+                                          <select class="custom-select form-control custom-select-sm" name="cursos" id="cursos-select">
                                              <option selected value="">Elija el Bloque</option>
                                              <option value="">Bloque 1</option>
                                              <option value="">Bloque 2</option>
@@ -499,15 +457,13 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <input type="text" name="nombre-tarea" id="nombre-tarea"
-                                             placeholder="Nombre de la Tarea" class="form-control form-control-sm">
+                                          <input type="text" name="nombre-tarea" id="nombre-tarea" placeholder="Nombre de la Tarea" class="form-control form-control-sm">
                                        </div>
                                     </div>
 
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <textarea class="form-control form-control-sm"
-                                             placeholder="Descripción de la Tarea"></textarea>
+                                          <textarea class="form-control form-control-sm" placeholder="Descripción de la Tarea"></textarea>
                                        </div>
                                     </div>
 
@@ -519,8 +475,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
 
                                     <div class="form-row">
-                                       <button type="submit"
-                                          class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
+                                       <button type="submit" class="col-lg-4 offset-lg-8 btn btn-success btn-md">Añadir</button>
                                     </div>
 
                                  </form>
@@ -587,14 +542,11 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
 
    <!--JAVASCRIPT BOOTSTRAP 4-->
-   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
    </script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
    </script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
    </script>
    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
    <!-- jQUERY -->

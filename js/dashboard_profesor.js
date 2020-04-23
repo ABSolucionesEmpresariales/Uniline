@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+  let correcta = '';
   /* CARGA DE DATOS A LOS SELECT */
 
 
@@ -164,6 +164,66 @@ $(document).ready(function () {
 
   });
 
+  //PREGUNTAS DE EXAMEN FORM
+  $(document).on('click', '.radio-in', function () { //INDICA QUE AL CLICKEAR UN RADIO SERA LA CORRECTA
+    correcta = $(this).data('correcta');
+  });
+  
+  $("#registrar-pregunta").submit(function (e) {//INSERTAR PREGUNTAS A DB
+    e.preventDefault();
+    if (verificar_campos('preg-resp') == 'campo-vacio') {
+      alert('Por favor llene todos los campos');
+    } else if (verificar_radios('pregunta') == 'radio-uncheck') {
+      alert('Por favor seleccione cual sera la respuesta correcta');
+    } else {
+      $('.spinner-border').removeClass('d-none');
+
+      let respuestas = '';
+      for (i = 1; i <= 4; i++) {
+        if (i == correcta && i == 4) {
+          respuestas += '###' + $('#respuesta' + i).val();
+        } else if (i == 4) {
+          respuestas += $('#respuesta' + i).val();
+        } else if (i == correcta) {
+          respuestas += '###' + $('#respuesta' + i).val() + '-*3';
+        } else {
+          respuestas += $('#respuesta' + i).val() + '-*3';
+        }
+      }
+
+      // Get some values from elements on the page:
+      var $form = $(this),
+        pregunta_examen = $form.find("input[name='pregunta-examen']").val(),
+        bloque = bloque = $('#bloques-select').val(),
+        url = "../controllers/preguntas_profesor.php";
+
+      $.post(url, {
+        pregunta: pregunta_examen,
+        respuesta: respuestas,
+        nombre_bloque: bloque
+      })
+        .done(function (data) {
+          if (data == 'creado') {
+            console.log("creado");
+            $('#registrar-pregunta').trigger('reset');
+            $('.spinner-border').addClass('d-none');
+            $("#alerta-pregunta").removeClass("d-none");
+            $("#alerta-pregunta").slideDown("slow");
+            setTimeout(function () {
+              $("#alerta-pregunta").slideUp("slow");
+
+            }, 3000); 
+          } else if (data == 'actualizado') {
+            alert('se ha actualizado');
+          } else {
+            console.log("error fataaaaaaal!!");
+          }
+        })
+
+    }
+
+  });
+
   //TEMAS FORM
   $("#registrar-tema").submit(function (e) {//INSERTAR TEMAS A LA BASE DE DATOS 
     e.preventDefault();
@@ -216,6 +276,14 @@ $(document).ready(function () {
       }
     }
     return 'campos-llenos';
+  }
+  function verificar_radios(clase_radio) {
+    for (i = 0; i < $('.radio-' + clase_radio).length; i++) {
+      if ($('.radio-' + clase_radio).eq(i).is(':checked')) {
+        return 'radio-checked';
+      }
+    }
+    return 'radio-uncheck';
   }
 
   /* PREVISUALIZACION DE LA IMAGEN DEL CURSO */
