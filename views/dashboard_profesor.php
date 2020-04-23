@@ -6,7 +6,7 @@ include '../controllers/sesion.php';
 $url = "";
 if($_SESSION['imagen_perfil'] != "../img/perfil.png"){
    $split = explode("/",$_SESSION['imagen_perfil']);
-   $url = "../".$split[1]."/min_".$splits[2];
+   $url = "../".$split[1]."/min_".$split[2];
 }else{
    $url = $_SESSION['imagen_perfil'];
 }
