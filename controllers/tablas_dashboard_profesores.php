@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../Modelos/Conexion.php';
-
 if (!empty($_POST['tabla'])) {
 
     $conexion = new Modelos\Conexion();
@@ -54,8 +53,8 @@ if (!empty($_POST['tabla'])) {
             echo json_encode(
                 $conexion->consultaPreparada(
                     array($_POST['bloque']),
-                    "SELECT idtema,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY preferencia ASC",
-                    2,
+                    "SELECT idtema,preferencia,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY preferencia ASC",
+                    3,
                     's',
                     false,
                     null
@@ -67,9 +66,9 @@ if (!empty($_POST['tabla'])) {
         case "tabla_preguntas":
             echo json_encode(
                 $conexion->consultaPreparada(
-                    array($_POST['examen']),
-                    "SELECT idpregunta,pregunta,respuestas FROM pregunta WHERE examen = ?",
-                    2,
+                    array($_POST['bloque']),
+                    "SELECT idpregunta,pregunta,respuestas FROM pregunta INNER JOIN examen ON idexamen = examen WHERE bloque = ?",
+                    3,
                     's',
                     false,
                     null
@@ -83,7 +82,7 @@ if (!empty($_POST['tabla'])) {
                 $conexion->consultaPreparada(
                     array($_POST['bloque']),
                     "SELECT idtarea,nombre,descripcion,archivo_bajada FROM tarea WHERE bloque = ?",
-                    2,
+                    3,
                     's',
                     false,
                     null
