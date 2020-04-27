@@ -2,38 +2,43 @@
 require_once '../Modelos/Conexion.php';
 $pregunta_examen = $_POST['pregunta'];
 $respuestas = $_POST['respuesta'];
-$bloque = $_POST['nombre_bloque'];
+$bloque = $_POST['nombre_bloque']; 
 
-$conexion = new Modelos\Conexion();
+/* $conexion = new Modelos\Conexion();
 
-$idexamen = json_encode($conexion->consultaPreparada(
+$existe_examen = $conexion->consultaPreparada(
     array($bloque),
     "SELECT idexamen FROM examen WHERE bloque = ?",
     2,
     "s",
     false,
     null
- ));
+ );
+ if ($existe_examen) {
+    $examen = $existe_examen[0][0];
+    
+    echo $conexion->consultaPreparada(
+        array($pregunta_examen, $respuestas, $examen),
+        "INSERT INTO pregunta (pregunta,respuestas,examen) VALUES (?,?,?)",
+        1,
+        "sss",
+        false,
+        null
+    );     
+ }else {
+     echo 'no existe';
+ } */
 
- $id = json_decode($idexamen);
+/* 
 
-if (isset($pregunta_examen) && isset($respuestas)) {
+if ($existe_examen) {
    
-    $conexion->consultaPreparada(
-         array($pregunta_examen, $respuestas, $id[0][0]),
-         "INSERT INTO pregunta (pregunta,respuestas,examen) VALUES (?,?,?)",
-         1,
-         "sss",
-         false,
-         null
-     );
-     
-      echo 'creado';     
+    
 
 } else {
       
-    echo 'error';
+    echo 'no existe';
    
-}
+} */
 
 ?>

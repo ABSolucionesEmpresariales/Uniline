@@ -1,5 +1,4 @@
-<?php 
-session_start();
+<?php
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
 
