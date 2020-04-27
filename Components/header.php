@@ -8,7 +8,7 @@
     <div class="container-fluid main-menu">
       <div class="row justify-content-between">
         <div id="logo" class="col-lg-4 d-none d-lg-block mr-auto">
-          <a href="mainpage.php"><img id="logo-imagen" src="../img/uniline3.png" width="25%" alt="" title="" /></a>
+          <a href="mainpage.php"><img id="logo-imagen" src="../img/uniline3.png" width="25%" alt="uniline" /></a>
         </div>
         <div class="float-right">
           <nav id="nav-menu-container">
@@ -16,7 +16,7 @@
               <?php
               if (isset($_SESSION['acceso'])) {
               ?>
-                <li class="mt-3"><a class="text-center" href="mainpage.php#home-banner" style="font-size: 14px; text-decoration: none;">Inicio</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#home-banner" style="font-size: 14px; text-decoration: none;" >Home</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>

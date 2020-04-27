@@ -14,7 +14,7 @@ class Conexion
     private $datos = array(
         "host" => "localhost",
         "user" => "root",
-        "pass" => "",
+        "pass" => "38271784",
         "db" => "uniline"
     );
 

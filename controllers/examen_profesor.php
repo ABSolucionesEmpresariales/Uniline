@@ -25,14 +25,23 @@ if (isset($nombre_examen) && isset($descripcion_examen)) {
          false,
          null
      );
-     if ($registro) {
-        echo 'creado';
-     } else {
-        echo 'no_creado';
-     }
+     
+      echo 'creado';
+     
 
    } else {
+      $actualizado = $conexion->consultaPreparada(
+         array($nombre_examen, $descripcion_examen, $bloque),
+         "UPDATE examen SET nombre = ?, descripcion = ? WHERE bloque = ? ",
+         1,
+         "sss",
+         false,
+         null
+      );
       
+      echo 'actualizado';
+      
+     
    }
    
 }

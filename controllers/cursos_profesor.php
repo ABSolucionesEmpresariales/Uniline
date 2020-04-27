@@ -11,7 +11,7 @@ if(isset($_POST['nombre-curso']) && isset($_POST['descripcion-curso']) && isset(
 
    $conexion = New Modelos\Conexion();
    $archivo = "";
-  
+   $publicacion = 0;
          
            $archivo = subir_imagen('imagen-curso');
            if ($archivo == "error al subir"){
@@ -24,10 +24,10 @@ if(isset($_POST['nombre-curso']) && isset($_POST['descripcion-curso']) && isset(
                $video .= end($idvideo);
                echo  $conexion->
                    consultaPreparada(
-                   array($_POST['nombre-curso'],$_POST['descripcion-curso'],$archivo,$video,$_POST['horas-curso'],$_SESSION['idusuario'],$_POST['costo-curso']), 
-                   "INSERT INTO curso (nombre,descripcion,imagen,video,horas,profesor,costo)VALUES(?,?,?,?,?,?,?)", 
+                   array($_POST['nombre-curso'],$_POST['descripcion-curso'],$archivo,$video,$_POST['horas-curso'],$_SESSION['idusuario'],$_POST['costo-curso'], $publicacion), 
+                   "INSERT INTO curso (nombre,descripcion,imagen,video,horas,profesor,costo, publicacion)VALUES(?,?,?,?,?,?,?,?)", 
                    1, 
-                   "ssssiid", 
+                   "ssssiidi", 
                    false, 
                    null);
            }
@@ -35,3 +35,5 @@ if(isset($_POST['nombre-curso']) && isset($_POST['descripcion-curso']) && isset(
    
 
 }
+
+?>
