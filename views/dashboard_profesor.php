@@ -298,13 +298,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingOne">
                               <h2 class="mb-0">
-<<<<<<< HEAD
-                                 <button id="anadir-tema" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-=======
                                  <button id="aniadir-tema" class="btn btn-link disabled" type="button"
                                     data-toggle="collapse" data-target="#collapseTema" aria-expanded="true"
                                     aria-controls="collapseTema">
->>>>>>> crud_cursos
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Temas de Bloque
                                     </h5>
                                  </button>
@@ -369,13 +365,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingTwo">
                               <h2 class="mb-0">
-<<<<<<< HEAD
-                                 <button id="anadir-pregunta" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-=======
                                  <button id="aniadir-pregunta" class="btn btn-link collapsed disabled" type="button"
                                     data-toggle="collapse" data-target="#collapsePregunta" aria-expanded="false"
                                     aria-controls="collapsePregunta">
->>>>>>> crud_cursos
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Pregunta Examen
                                     </h5>
                                  </button>
@@ -477,13 +469,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingThree">
                               <h2 class="mb-0">
-<<<<<<< HEAD
-                                 <button id="anadir-tarea"class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-=======
                                  <button id="aniadir-tarea" class="btn btn-link collapsed disabled" type="button"
                                     data-toggle="collapse" data-target="#collapseTarea" aria-expanded="false"
                                     aria-controls="collapseTarea">
->>>>>>> crud_cursos
                                     <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Tarea</h5>
                                  </button>
                               </h2>
@@ -572,21 +560,6 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
 
 
-<<<<<<< HEAD
-
-=======
-   <!--JAVASCRIPT BOOTSTRAP 4-->
-   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-   </script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-   </script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-   </script>
-   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
->>>>>>> crud_cursos
    <!-- jQUERY -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
