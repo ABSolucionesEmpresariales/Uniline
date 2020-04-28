@@ -13,27 +13,31 @@ $idexamen = json_encode($conexion->consultaPreparada(
     "s",
     false,
     null
- ));
+));
 
- $id = json_decode($idexamen);
+if($idexamen){
+    $id = json_decode($idexamen);
 
-if (isset($pregunta_examen) && isset($respuestas)) {
+    if (isset($pregunta_examen) && isset($respuestas)) {
    
-    $conexion->consultaPreparada(
-         array($pregunta_examen, $respuestas, $id[0][0]),
-         "INSERT INTO pregunta (pregunta,respuestas,examen) VALUES (?,?,?)",
-         1,
-         "sss",
-         false,
-         null
-     );
+        $conexion->consultaPreparada(
+            array($pregunta_examen, $respuestas, $id[0][0]),
+            "INSERT INTO pregunta (pregunta,respuestas,examen) VALUES (?,?,?)",
+            1,
+            "sss",
+            false,
+            null
+        );
      
-      echo 'creado';     
+        echo 'creado';     
 
-} else {
+    } else {
       
-    echo 'error';
+        echo 'error al insertar';
    
+    }
+}else {
+    echo 'no existe';
 }
 
 ?>

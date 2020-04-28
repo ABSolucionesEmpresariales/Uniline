@@ -17,17 +17,18 @@ if (isset($nombre_examen) && isset($descripcion_examen)) {
    );
 
    if (!$existe_examen) {
-      $registro = $conexion->consultaPreparada(
+      if($conexion->consultaPreparada(
          array($nombre_examen, $descripcion_examen, $bloque),
          "INSERT INTO examen (nombre,descripcion, bloque) VALUES (?,?,?)",
          1,
          "sss",
          false,
          null
-     );
+     )) {
      
       echo 'creado';
-     
+      
+     }
 
    } else {
       $actualizado = $conexion->consultaPreparada(

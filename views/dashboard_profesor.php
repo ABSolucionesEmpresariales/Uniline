@@ -99,11 +99,31 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                <div class="accordion" id="accordionExample">
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                              aria-expanded="true" aria-controls="collapseOne">
-                              <h5><i class="fas fa-plus-circle"></i> Nuevo Curso</h5>
-                           </button>
+                        <h2 class="mb-0 text-center">
+                           <div class="row">
+
+                              <div class="col-md-4">
+                                 <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h5><i class="fas fa-plus-circle"></i> Nuevo Curso</h5>
+                                 </button>
+                              </div>
+
+                              <div class="col-md-4">
+                                 <button class="btn btn-link disabled" type="button" id="editar-curso"
+                                    data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    <h5><i class="fas fa-edit"></i> Editar Curso</h5>
+                                 </button>
+                              </div>
+
+                              <div class="col-md-4">
+                                 <button class="btn btn-link" type="button" href="#seccion-tablas" id="nuevo-curso">
+                                    <h5><i class="fas fa-eye"></i> Ver Cursos</h5>
+                                 </button>
+                              </div>
+                           </div>
+
                         </h2>
                      </div>
 
@@ -172,12 +192,34 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   <!-- AÑADIR BLOQUES -->
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                           <button id="aniadir-bloque" class="btn btn-link collapsed disabled" type="button"
-                              data-toggle="collapse" data-target="#collapseBloque" aria-expanded="false"
-                              aria-controls="collapseBloque">
-                              <h5><i class="fas fa-plus-circle"></i> Añadir Bloques</h5>
-                           </button>
+                        <h2 class="mb-0 text-center">
+
+                           <div class="row">
+
+                              <div class="col-md-4">
+                                 <button id="aniadir-bloque" class="btn btn-link collapsed disabled" type="button"
+                                    data-toggle="collapse" data-target="#collapseBloque" aria-expanded="false"
+                                    aria-controls="collapseBloque">
+                                    <h5><i class="fas fa-plus-circle"></i> Añadir Bloques</h5>
+                                 </button>
+                              </div>
+
+                              <div class="col-md-4">
+                                 <button class="btn btn-link disabled" type="button" id="editar-bloque"
+                                    data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    <h5><i class="fas fa-edit"></i> Editar Bloque</h5>
+                                 </button>
+                              </div>
+
+                              <div class="col-md-4">
+                                 <button class="btn btn-link" type="button" href="#seccion-tablas" id="nuevo-curso">
+                                    <h5><i class="fas fa-eye"></i> Ver Bloques</h5>
+                                 </button>
+                              </div>
+
+                           </div>
+
                         </h2>
                      </div>
                      <div id="collapseBloque" class="collapse" aria-labelledby="headingTwo"
@@ -216,12 +258,26 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   <!-- AÑADIR EXAMEN -->
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                           <button id="aniadir-examen" class="btn btn-link collapsed disabled" type="button"
-                              data-toggle="collapse" data-target="#collapseExamen" aria-expanded="false"
-                              aria-controls="collapseExamen">
-                              <h5><i class="fas fa-plus-circle"></i> Añadir Examen</h5>
-                           </button>
+                        <h2 class="mb-0 text-center">
+
+                           <div class="row">
+
+                              <div class="col-md-4">
+                                 <button id="aniadir-examen" class="btn btn-link collapsed disabled" type="button"
+                                    data-toggle="collapse" data-target="#collapseExamen" aria-expanded="false"
+                                    aria-controls="collapseExamen">
+                                    <h5><i class="fas fa-plus-circle"></i> Añadir Examen</h5>
+                                 </button>
+                              </div>
+
+                              <div class="offset-md-4 col-md-4">
+                                 <button class="btn btn-link" type="button" href="#seccion-tablas" id="nuevo-curso">
+                                    <h5><i class="fas fa-eye"></i> Ver Examen</h5>
+                                 </button>
+                              </div>
+
+                           </div>
+
                         </h2>
                      </div>
                      <div id="collapseExamen" class="collapse" aria-labelledby="headingThree"
@@ -278,7 +334,6 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                   </tbody>
                </table>
-
 
             </div>
 
@@ -485,7 +540,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
                                           <input type="text" name="nombre-tarea" id="nombre-tarea"
-                                             placeholder="Nombre de la Tarea" class="input-tarea form-control form-control-sm">
+                                             placeholder="Nombre de la Tarea"
+                                             class="input-tarea form-control form-control-sm">
                                        </div>
                                     </div>
 
@@ -498,8 +554,10 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                                     <div class="form-group">
                                        <div class="custom-file">
-                                          <input type="file" class="input-tarea custom-file-input" id="archivo-tarea" name="archivo-tarea">
-                                          <label id="archivo-tarea-name" class="custom-file-label" for="customFile">Seleccionar Archivo</label>
+                                          <input type="file" class="input-tarea custom-file-input" id="archivo-tarea"
+                                             name="archivo-tarea">
+                                          <label id="archivo-tarea-name" class="custom-file-label"
+                                             for="customFile">Seleccionar Archivo</label>
                                        </div>
                                     </div>
 

@@ -34,7 +34,7 @@ $(document).ready(function () {
     if (this.value != 0) {
       $(this).addClass('text-primary');
       cargarFormExamen(this.value);
-      $('#aniadir-examen, #aniadir-tema, #aniadir-pregunta, #aniadir-tarea').removeClass('disabled');
+      $('#aniadir-examen, #aniadir-tema, #aniadir-tarea').removeClass('disabled');
 
     } else {
       $(this).addClass('text-danger');
@@ -268,7 +268,7 @@ $(document).ready(function () {
       })
         .done(function (data) {
           console.log(data);
-          if (data != 0) {
+          if (data == 'creado') {
 
             $('#registrar-pregunta').trigger('reset');
             $('.spinner-border').addClass('d-none');
@@ -278,8 +278,8 @@ $(document).ready(function () {
               $("#alerta-pregunta").slideUp("slow");
 
             }, 3000);
-          } else if (data == 'no existe') {
-            alert('ERROR al registrar el bloque no tiene examen');
+          } else {
+            alert(data);
           }
         })
 
@@ -437,8 +437,18 @@ $(document).ready(function () {
           $("button[name='submit-examen'").removeClass('btn-success');
           $("button[name='submit-examen'").addClass('btn-primary');
           $("button[name='submit-examen'").html('Actualizar');
+          $("#aniadir-pregunta").removeClass('disabled');
 
-
+        } else {
+          $("input[name='nombre-examen'").val('');
+          $("textarea[name='descripcion-examen'").val('');
+          $("button[name='submit-examen'").removeClass('btn-primary');
+          $("button[name='submit-examen'").addClass('btn-success');
+          $("button[name='submit-examen'").html('Crear');
+          $("#aniadir-pregunta").addClass('disabled');
+          $('#aniadir-pregunta').collapse('hide');
+          $('#collapsePregunta').collapse('hide');
+          $('#collapsePregunta').removeClass('show in');
         }
 
       });
@@ -470,7 +480,7 @@ $(document).ready(function () {
         if (posicion === 0) { //se renderizan el thead de la tabla
           nombrescolumnas = Object.keys(objeto_renglon_tabla);
           nombrescolumnas.forEach(function (valor, posicion) {
-            if (valor != "publicacion") trhead += `<th scope="col" class="text-light${posicion === 0 ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
+            if (valor != "publicacion") trhead += `<th scope="col" class="text-light ${posicion === 0 ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
           })
         }
         tbody += `<tr>`;
