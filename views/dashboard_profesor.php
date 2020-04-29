@@ -100,7 +100,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
-                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                           <button id="nuevo-curso"class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
                               aria-expanded="true" aria-controls="collapseOne">
                               <h5><i class="fas fa-plus-circle"></i> Nuevo Curso</h5>
                            </button>

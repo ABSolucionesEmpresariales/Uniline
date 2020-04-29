@@ -524,7 +524,7 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo1', '#tbodygrupo1');
   });
 
-  $(document).on('click', '#anadir-tema', function () {
+  $(document).on('click', '#aniadir-tema', function () {
     const objeto_peticion = {
       tabla: "tabla_temas",
       bloque: $('#bloques-select').val()
@@ -532,7 +532,7 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
   });
 
-  $(document).on('click', '#anadir-pregunta', function () {
+  $(document).on('click', '#aniadir-pregunta', function () {
     const objeto_peticion = {
       tabla: "tabla_preguntas",
       bloque: $('#bloques-select').val()
@@ -540,7 +540,7 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
   });
 
-  $(document).on('click', '#anadir-tarea', function () {
+  $(document).on('click', '#aniadir-tarea', function () {
     const objeto_peticion = {
       tabla: "tabla_tareas",
       bloque: $('#bloques-select').val()
