@@ -128,16 +128,8 @@ $pagina = "mainpage";
                 <div class="row">
                   <div class="col-12">
                     <div class="row">
-                        <div class="col-lg-6 col-md-12 mb-3 mb-md-2">
+                        <div class="col-md-12 mb-3 mb-md-2">
                           <input name="INCodigo" class="form-control" type="text" placeholder="Codigo" id="codigo">
-                        </div>
-                        <div class="col-lg-6 col-md-12">
-                          <select name="SCurso" class="form-control" 
-                            style="height:50px;
-                                    line-height:30px;
-                                    border-radius: 5px;" 
-                            id="curso">
-                          </select>
                         </div>
                     </div>
                   </div>

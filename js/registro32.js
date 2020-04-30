@@ -39,11 +39,11 @@ $(document).ready(function () {
         ) {
             switch (response) {
                 case "login":
-                            swal(
-                                "Alerta!",
-                                "Es necesario registrarse",
-                                "info"
-                            );
+                    swal(
+                        "Alerta!",
+                        "Es necesario registrarse",
+                        "info"
+                    );
                     break;
 
                 case "pagado":
@@ -119,7 +119,6 @@ $(document).ready(function () {
             data: "cursos=cursos",
             success: function (response) {
                 let datos = JSON.parse(response);
-                console.log(datos);
                 let templete = ``;
 
                 ocultar = "";
@@ -230,7 +229,7 @@ $(document).ready(function () {
     }
     /* <---------------------redirecciona a la pagina de los cursos segun el curso elegido -----------------------> */
     $(document).on("click", ".curso", function () {
-        if($(this).data("curso") != ""){
+        if ($(this).data("curso") != "") {
             window.location.replace('../views/descripcioncursos.php?idcurso=' + $(this).data("curso"));
         }
     });
@@ -284,7 +283,7 @@ $(document).ready(function () {
             setTimeout(function () {
                 $("#alertas").slideUp("slow");
             }, 3000);
-             $("#btnSubmit").attr("disabled", false);
+            $("#btnSubmit").attr("disabled", false);
         } else {
             if ($("#registrar-pass").val().length >= 8) {
                 $("#hope").removeClass("d-none");
@@ -315,7 +314,7 @@ $(document).ready(function () {
                             }, 3000);
                         } else {
                             $("#registro").trigger("reset");
-                            location.href ="info_correo.php";
+                            location.href = "info_correo.php";
                             $("#alertas").removeClass("alert-danger");
                             $("#alertas").addClass("alert-success");
                             $("#alertas").html(
@@ -338,7 +337,7 @@ $(document).ready(function () {
                 setTimeout(function () {
                     $("#alertas").slideUp("slow");
                 }, 2000);
-                 $("#btnSubmit").attr("disabled", false);
+                $("#btnSubmit").attr("disabled", false);
             }
         }
     });
@@ -351,15 +350,14 @@ $(document).ready(function () {
 
 });
 
-$(document).ready(function() {
-    let sesion = ""; 
+$(document).ready(function () {
+    let sesion = "";
 
     verisesion();
 
-    function verisesion(){
-    $.post("../controllers/registro.php","sesion=sesion", function(response) {
+    function verisesion() {
+        $.post("../controllers/registro.php", "sesion=sesion", function (response) {
             sesion = response;
-            console.log(sesion);
         });
     }
 
@@ -367,9 +365,9 @@ $(document).ready(function() {
         let template = `<option value="">Del Curso...</option>`;
         $.post("../controllers/cupones.php", {
             accion: "items"
-        }, function(response) {
+        }, function (response) {
             const datos = JSON.parse(response);
-            datos.forEach(function(item) {
+            datos.forEach(function (item) {
                 template += `
                     <option value="${item[0]}">${item[1]}</option>
                     `;
@@ -380,24 +378,23 @@ $(document).ready(function() {
     }
     pintarItems();
 
-    $(document).on('submit', '#FCupones', function(e) {
+    $(document).on('submit', '#FCupones', function (e) {
         e.preventDefault();
-        if(sesion != "" ){
-            if ($('#codigo').val().length != 0 && $('#curso').val().length != 0) {
-            $.post("../controllers/cupones.php", $(this).serialize() + "&accion=editar", function(response) {
-                console.log(response);
-                if (!response.includes('1')) {
-                    swal("Codigo Invalido", "Verifique sus datos o intentelo mas tarde", "warning");
-                } else {
-                   // pintarTabla(); descomentar ya que se haya integrado en un solo js
-                      window.location.replace("../views/misCursos.php");
-                }
-            })
-            $(this)[0].reset();
+        if (sesion != "") {
+            if ($('#codigo').val().length != 0) {
+                $.post("../controllers/cupones.php", $(this).serialize() + "&accion=editar", function (response) {
+                    if (!response.includes('1')) {
+                        swal("Codigo Invalido", "Verifique sus datos o intentelo mas tarde", "warning");
+                    } else {
+                        // pintarTabla(); descomentar ya que se haya integrado en un solo js
+                        window.location.replace("../views/misCursos.php");
+                    }
+                })
+                $(this)[0].reset();
             } else {
                 swal("Datos Incompletos", "Por favor llene todos los campos o inicie sesion", "warning");
             }
-        }else{
+        } else {
             swal("Datos Incompletos", "Es necesario tener cuenta para realizar esta accion", "warning");
         }
     })

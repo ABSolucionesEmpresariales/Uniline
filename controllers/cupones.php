@@ -1,12 +1,14 @@
 <?php
 session_start();
 require_once '../Modelos/Conexion.php';
+require_once '../Modelos/Fecha.php';
 
 
 
 if (!empty($_POST['accion'])) {
 
     $conexion = new Modelos\Conexion();
+    $fecha = new Modelos\Fecha();
 
     switch ($_POST['accion']) {
 
@@ -32,39 +34,39 @@ if (!empty($_POST['accion'])) {
             }
             break;
 
-            case "editar":
-                if (!empty($_POST['INCodigo']) && !empty($_POST['SCurso'])) {
-                    $result = $conexion->consultaPreparada(
-                        array($_POST['INCodigo'], "Pendiente"),
-                        "SELECT codigo,curso FROM cupones WHERE codigo = ? AND canjeo = ?",
-                        2,
-                        "ss",
-                        false,
-                        null
-                    );
-                    if (!empty($result)) {
-                        if ($result[0][0] === $_POST['INCodigo'] && $result[0][1] == $_POST['SCurso']) {
+        case "editar":
+            if (!empty($_POST['INCodigo'] && !empty($_SESSION['emailusuario']))) {
+                $result = $conexion->consultaPreparada(
+                    array($_POST['INCodigo'], "Pendiente"),
+                    "SELECT codigo,curso FROM cupones WHERE codigo = ? AND canjeo = ?",
+                    2,
+                    "ss",
+                    false,
+                    null
+                );
+                if (!empty($result)) {
+                    if (!empty($result[0][0]) && !empty($result[0][1])) {
 
-                            echo $conexion->consultaPreparada(
-                                array($_SESSION['idusuario'], $_POST['SCurso']),
-                                "INSERT INTO inscripcion (alumno,curso) VALUES (?,?)",
-                                1,
-                                "ss",
-                                false,
-                                null
-                            );
-                            echo $conexion->consultaPreparada(
-                                array('Realizado', $_SESSION['emailusuario'], $_POST['INCodigo']),
-                                "UPDATE cupones SET canjeo = ?, usuario = ? WHERE codigo = ?",
-                                1,
-                                "sss",
-                                false,
-                                null
-                            );
-                        }
+                        echo $conexion->consultaPreparada(
+                            array($_SESSION['idusuario'], $result[0][1], $fecha->getFecha()),
+                            "INSERT INTO inscripcion (alumno,curso,fecha_inicio) VALUES (?,?,?)",
+                            1,
+                            "sss",
+                            false,
+                            null
+                        );
+                        echo $conexion->consultaPreparada(
+                            array('Realizado', $_SESSION['emailusuario'], $_POST['INCodigo']),
+                            "UPDATE cupones SET canjeo = ?, usuario = ? WHERE codigo = ?",
+                            1,
+                            "sss",
+                            false,
+                            null
+                        );
                     }
-                } else echo "Codigo invalido";
-                break;
+                }
+            } else echo "Codigo invalido";
+            break;
 
         case "items":
             echo json_encode($conexion->obtenerDatosDeTabla("SELECT idcurso,nombre FROM curso ORDER BY nombre ASC "));
@@ -72,12 +74,12 @@ if (!empty($_POST['accion'])) {
 
         case 'tabla':
             $resultado = json_encode($conexion->obtenerDatosDeTabla("SELECT codigo, canjeo , curso.nombre , usuario FROM cupones INNER JOIN curso ON idcurso = curso ORDER BY id DESC"));
-            if($resultado != "[]"){
+            if ($resultado != "[]") {
                 echo $resultado;
-            }else{
+            } else {
                 echo "sinDatos";
             }
-        break;
+            break;
 
         default:
             echo "El tipo de accion no existe";
