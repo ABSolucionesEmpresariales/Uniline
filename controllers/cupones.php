@@ -35,7 +35,7 @@ if (!empty($_POST['accion'])) {
             break;
 
         case "editar":
-            if (!empty($_POST['INCodigo'] && !empty($_SESSION['emailusuario']))) {
+            if (!empty($_POST['INCodigo'] && !empty($_SESSION['emailusuario'])&& !empty($_SESSION['idusuario']))) {
                 $result = $conexion->consultaPreparada(
                     array($_POST['INCodigo'], "Pendiente"),
                     "SELECT codigo,curso FROM cupones WHERE codigo = ? AND canjeo = ?",
