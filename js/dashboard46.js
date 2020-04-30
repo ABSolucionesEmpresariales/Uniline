@@ -569,7 +569,7 @@ template_cometarios +=`
                 $("#jalaporfa2").html(template_video);
                 $(".descripcion-tema").html(datos_tema[0][2]);
                 $('.descarga').attr("download",dat);
-                /* leer_iframe(); */
+                 leer_iframe(); 
                 confeti();
             }
         });
@@ -867,7 +867,6 @@ template_cometarios +=`
             data: 'certificacion=certificacion',
             
             success: function (response) {
-                console.log(response);
                 if(response != "no"){
                     datos = JSON.parse(response);
                     $("#certificacion").attr("href","../archivos/"+datos[0][0]);
@@ -877,6 +876,7 @@ template_cometarios +=`
             }
         });
     }
+
 
     $(document).on("click",".certificado_msg",function(e){
         e.preventDefault();

@@ -13,9 +13,9 @@ class Conexion
     "db" => "u981877364_uniline" */
     private $datos = array(
         "host" => "localhost",
-        "user" => "u981877364_cool",
-        "pass" => "r!4AlT0D",
-        "db" => "u981877364_uniline"
+        "user" => "root",
+        "pass" => "",
+        "db" => "uniline"
     );
 
     public $con;

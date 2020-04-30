@@ -6,6 +6,7 @@ $pagina = "mainpage";
 <html lang="zxx" class="no-js">
 
 <head>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -138,39 +139,33 @@ $pagina = "mainpage";
   </div>
 
   <section class="dash-area" style="height: 250px;">
-    <div class="row overlay-bg p-0 px-md-5 px-sm-3" style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.664));">
-      <div class="col-lg-3 col-md-12 p-5 d-lg-block d-md-none d-none">
-        <i style="font-size: 200px" class="fas fa-laptop-code text-white"></i>
-      </div>
-      <div class="col-lg-6 col-md-12">
-        <form class="form-group" id="FCupones">
-          <p class="text-center h2 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea tu Codigo</p>
-          <div class="row">
-            <div class="col-12">
-              <div class="row">
-                <div class="col-lg-6 col-md-12 mb-3 mb-md-2">
-                  <input name="INCodigo" class="form-control" type="text" placeholder="Codigo" id="codigo">
-                </div>
-                <div class="col-lg-6 col-md-12">
-                  <select name="SCurso" class="form-control" style="height:50px;
-                                    line-height:30px;
-                                    border-radius: 5px;" id="curso">
-                  </select>
-                </div>
-              </div>
+        <div class="row p-0 px-md-5 px-sm-3" style="background: linear-gradient(transparent, rgba(0, 0, 0, 0.664));">
+            <div class="col-lg-3 col-md-12 p-5 d-lg-block d-md-none d-none" >
+              <i style="font-size: 200px" class="fas fa-laptop-code text-white"></i>
             </div>
-            <div class="col-lg-12 pt-5">
-              <button class="btn btn-block text-white" style="height:50px; font-size: 20px; background-color: #fd5601;" type="submit">Canjear codigo</button>
+            <div class="col-lg-6 col-md-12" >
+              <form class="form-group" id="FCupones">
+              <p class="text-center h2 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea tu Codigo</p>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-12 mb-3 mb-md-2">
+                          <input name="INCodigo" class="form-control" type="text" placeholder="Codigo" id="codigo">
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 pt-5">
+                      <button class="btn btn-block text-white" style="height:50px; font-size: 20px; background-color: #fd5601;"  type="submit">Canjear codigo</button>
+                  </div>
+                </div>
+              </form>
             </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-lg-3 col-md-12 p-5">
-        <p class="h3" style="color: #fd5601;text-shadow: 0.1em 0.1em 0.1em #000!important;">Ingresa tu código</p>
-        <p class="h3 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">y comienza a disfrutar sus beneficios.</p>
-      </div>
-    </div>
-  </section>
+            <div class="col-lg-3 col-md-12 p-5">
+                <p class="h3" style="color: #fd5601;text-shadow: 0.1em 0.1em 0.1em #000!important;">Utiliza tu codigo aqui!!</p>
+                <p class="h3 text-white" style="text-shadow: 0.1em 0.1em 0.1em #000!important;">Canjea el cupon para poder iniciar tu curso ahora!!</p>
+            </div>
+        </div>
+</section>
 
 
 

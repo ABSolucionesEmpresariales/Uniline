@@ -3,7 +3,7 @@ session_start();
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
 include '../Modelos/Fecha.php';
-include '../controllers/pdf.php';
+include '../controllers/pdf.php'; 
 
 
 if(isset($_POST['calificacio_curso_usuarion'])){
@@ -256,6 +256,7 @@ if (isset($_POST['comentariosCurso'])) {
 if (isset($_POST['confeti'])) {
 
     $conexion = new Modelos\Conexion();
+    $fecha= new Modelos\Fecha();
     $datos_tema = array($_SESSION['idcurso']);
     $cosulta_temas_curso = "SELECT COUNT(idtema) AS cantidadTemas FROM tema t 
                                   INNER JOIN bloque b ON t.bloque = b.idbloque WHERE b.curso = ?";
@@ -272,7 +273,7 @@ if (isset($_POST['confeti'])) {
     $temas_vistos = $result2[0][0];
 
     if($temas_curso == $temas_vistos){
-       $validacion = $conexion->consultaPreparada(
+        $validacion = $conexion->consultaPreparada(
             array($_SESSION['idcurso'], $_SESSION['idusuario']),
             "SELECT finalizacion FROM inscripcion WHERE curso = ? AND alumno = ?",
             2,
@@ -280,16 +281,18 @@ if (isset($_POST['confeti'])) {
             false,
             null
        );
+       
        if($validacion[0][0] != "1"){
-           $conexion->consultaPreparada(
-               array(1,$_SESSION['idcurso'], $_SESSION['idusuario']),
-               "UPDATE inscripcion SET finalizacion = ? WHERE curso = ? AND alumno = ?",
+             $conexion->consultaPreparada(
+               array(1,$fecha->getFecha(),$_SESSION['idcurso'], $_SESSION['idusuario']),
+               "UPDATE inscripcion SET finalizacion = ?, fecha_fin = ? WHERE curso = ? AND alumno = ?",
                1,
-               "iii",
+               "isii",
                false,
                null
            );
-           crear_certificado();
+            crear_certificado(); 
+           
        }
        echo "completado";
     }
