@@ -843,6 +843,7 @@ template_cometarios +=`
             data: 'confeti=confeti',
             
             success: function (response) {
+                console.log(response);
                 if(response == 'completado'){
                     if(contador == 0){
                         $('#startConfetti').click();
@@ -867,10 +868,8 @@ template_cometarios +=`
             data: 'certificacion=certificacion',
             
             success: function (response) {
-                if(response != "no"){
-                    datos = JSON.parse(response);
-                    $("#certificacion").attr("href","../archivos/"+datos[0][0]);
-                    $("#certificacion").attr("download",datos[0][0]);
+                if(response == "1"){
+                    $("#certificacion").attr("href","../controllers/pdf.php");
                     $("#certificacion").removeClass("certificado_msg");
                 }
             }

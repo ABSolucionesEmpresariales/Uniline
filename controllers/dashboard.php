@@ -3,7 +3,7 @@ session_start();
 require_once '../Modelos/Conexion.php';
 include '../Modelos/Archivos.php';
 include '../Modelos/Fecha.php';
-include '../controllers/pdf.php'; 
+
 
 
 if(isset($_POST['calificacio_curso_usuarion'])){
@@ -291,8 +291,6 @@ if (isset($_POST['confeti'])) {
                false,
                null
            );
-            crear_certificado(); 
-           
        }
        echo "completado";
     }
@@ -302,7 +300,7 @@ if(isset($_POST['certificacion'])){
     $conexion = new Modelos\Conexion();
    $resultado = $conexion->consultaPreparada(
         array($_SESSION['idcurso'], $_SESSION['idusuario']),
-        "SELECT url_certificado FROM inscripcion WHERE curso = ? AND alumno = ?",
+        "SELECT finalizacion FROM inscripcion WHERE curso = ? AND alumno = ?",
         2,
         "ii",
         false,
@@ -311,6 +309,6 @@ if(isset($_POST['certificacion'])){
     if($resultado[0][0] == ""){
         echo "no";
     }else{
-        echo json_encode($resultado);
+        echo json_encode($resultado[0][0]);
     }
 }
