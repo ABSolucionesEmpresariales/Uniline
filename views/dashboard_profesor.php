@@ -96,29 +96,30 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
             <!-- CURSOS TAB -->
             <div class="tab-pane fade show active" id="cursos" role="tabpanel" aria-labelledby="cursos-tab">
 
-               <div class="accordion" id="accordionExample">
+               <div class="accordion" id="accordionCurso">
                   <div class="card bg-light shadow">
                      <div class="card-header" id="headingOne">
                         <h2 class="mb-0 text-center">
                            <div class="row">
 
                               <div class="col-md-4">
-                                 <button class="btn btn-link" type="button" data-toggle="collapse"
-                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                 <button class="btn btn-link add-edit" type="button" id="nuevo-curso"
+                                    data-toggle="collapse" data-target="#collapseNewCurso" aria-expanded="true"
+                                    aria-controls="collapseOne">
                                     <h5><i class="fas fa-plus-circle"></i> Nuevo Curso</h5>
                                  </button>
                               </div>
 
                               <div class="col-md-4">
-                                 <button class="btn btn-link disabled" type="button" id="editar-curso"
-                                    data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
+                                 <button class="btn btn-link add-edit disabled" type="button" id="editar-curso"
+                                    data-toggle="collapse" data-target="#collapseEditCurso" aria-expanded="true"
+                                    aria-controls="collapseOne" name="edit-curso">
                                     <h5><i class="fas fa-edit"></i> Editar Curso</h5>
                                  </button>
                               </div>
 
                               <div class="col-md-4">
-                                 <button class="btn btn-link" type="button" href="#seccion-tablas" id="nuevo-curso">
+                                 <button class="btn btn-link" type="button" href="#seccion-tablas" id="ver-cursos">
                                     <h5><i class="fas fa-eye"></i> Ver Cursos</h5>
                                  </button>
                               </div>
@@ -127,8 +128,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         </h2>
                      </div>
 
-                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                        data-parent="#accordionExample">
+                     <div id="collapseNewCurso" class="collapse" aria-labelledby="headingOne"
+                        data-parent="#accordionCurso">
                         <div class="card-body">
                            <form id="registrar-curso">
                               <div class="text-center">
@@ -137,8 +138,10 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                               </div>
                               <div class="form-group">
                                  <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="file-image" name="imagen-curso">
-                                    <label class="custom-file-label" for="file-image" id="image-name">Imagen del
+                                    <input type="file" class="custom-file-input" id="file-image-curso"
+                                       name="imagen-curso">
+                                    <label class="custom-file-label" for="file-image-curso" id="image-name-curso">Subir
+                                       Imagen del
                                        Curso</label>
                                  </div>
                               </div>
@@ -169,8 +172,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     placeholder="URL video">
                               </div>
 
-                              <div class="alert alert-success mt-3 d-none" role="alert" id="alerta">
-                                 <p class="m-0"> ¡<b>Curso creado:</b> se ha creado el curso con éxito!</p>
+                              <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-nuevo-curso">
+                                 <p>¡<b>CURSO CREADO:</b> se ha registrado el curso con éxito.!</p>
                               </div>
 
                               <div class="form-row mt-3">
@@ -179,8 +182,72 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                        <span class="sr-only">Loading...</span>
                                     </div>
                                  </div>
-                                 <button type="submit" name="submit"
-                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
+                                 <button type="submit" name="submit" class="col-lg-4 offset-lg-6 btn btn-success btn-md"
+                                    id="boton-curso">Crear</button>
+                              </div>
+
+                           </form>
+
+                        </div>
+                     </div>
+
+                     <div id="collapseEditCurso" class="collapse" aria-labelledby="headingOne"
+                        data-parent="#accordionCurso">
+                        <div class="card-body">
+                           <form id="editar-curso-form">
+                              <div class="text-center">
+                                 <img src="../img/cursos/no_course.png" id="foto-curso-edit" alt="curso"
+                                    class="align-self-center  mb-3 w-25" />
+                              </div>
+                              <div class="form-group">
+                                 <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="file-image-edit-curso"
+                                       name="imagen-curso-edit">
+                                    <label class="custom-file-label" for="file-image-edit-curso" id="image-name">Cambiar
+                                       Imagen</label>
+                                 </div>
+                              </div>
+
+
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <input type="text" class="input-curso-edit form-control form-control-sm"
+                                       name="nombre-curso" placeholder="Nombre del Curso">
+                                 </div>
+                                 <div class="form-group col-md-12">
+                                    <textarea class="input-curso-edit form-control form-control-sm"
+                                       name="descripcion-curso" placeholder="Descripción del curso"></textarea>
+                                 </div>
+                              </div>
+                              <div class="form-row">
+                                 <div class="form-group col-md-6">
+                                    <input type="number" id="horas-curso" name="horas-curso"
+                                       placeholder="Horas del Curso"
+                                       class="input-curso-edit form-control form-control-sm">
+                                 </div>
+                                 <div class="form-group col-md-6">
+                                    <input type="number" id="costo-curso" name="costo-curso"
+                                       placeholder="Costo de Curso"
+                                       class="input-curso-edit form-control form-control-sm">
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <input type="text" class="input-curso-edit form-control form-control-sm"
+                                    name="video-curso" placeholder="URL video">
+                              </div>
+
+                              <div class="alert alert-primary mt-3 d-none" role="alert" id="alerta-curso-editado">
+                                 <p>¡<b>CURSO ACTUALIZADO:</b> se han realizado los cambios con éxito!</p>
+                              </div>
+
+                              <div class="form-row mt-3">
+                                 <div class="col-lg-2 text-center">
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                       <span class="sr-only">Loading...</span>
+                                    </div>
+                                 </div>
+                                 <button type="submit" name="submit" class="col-lg-4 offset-lg-6 btn btn-info btn-md"
+                                    id="boton-curso"><i class="fas fa-check"></i> Terminar Edicion</button>
                               </div>
 
                            </form>
@@ -197,23 +264,23 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                            <div class="row">
 
                               <div class="col-md-4">
-                                 <button id="aniadir-bloque" class="btn btn-link collapsed disabled" type="button"
-                                    data-toggle="collapse" data-target="#collapseBloque" aria-expanded="false"
-                                    aria-controls="collapseBloque">
+                                 <button id="aniadir-bloque" class="btn btn-link collapsed add-edit disabled"
+                                    type="button" data-toggle="collapse" data-target="#collapseBloque"
+                                    aria-expanded="false" aria-controls="collapseBloque">
                                     <h5><i class="fas fa-plus-circle"></i> Añadir Bloques</h5>
                                  </button>
                               </div>
 
                               <div class="col-md-4">
-                                 <button class="btn btn-link disabled" type="button" id="editar-bloque"
-                                    data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
+                                 <button class="btn btn-link add-edit disabled" type="button" id="editar-bloque"
+                                    data-toggle="collapse" data-target="#collapseBloqueEdit" aria-expanded="true"
+                                    aria-controls="collapseBloqueEdit">
                                     <h5><i class="fas fa-edit"></i> Editar Bloque</h5>
                                  </button>
                               </div>
 
                               <div class="col-md-4">
-                                 <button class="btn btn-link" type="button" href="#seccion-tablas" id="nuevo-curso">
+                                 <button class="btn btn-link disabled" type="button" id="ver-bloques">
                                     <h5><i class="fas fa-eye"></i> Ver Bloques</h5>
                                  </button>
                               </div>
@@ -223,7 +290,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         </h2>
                      </div>
                      <div id="collapseBloque" class="collapse" aria-labelledby="headingTwo"
-                        data-parent="#accordionExample">
+                        data-parent="#accordionCurso">
                         <div class="card-body">
                            <form id="registrar-bloque">
 
@@ -236,7 +303,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                               </div>
 
                               <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-bloque">
-                                 <p class="m-0"> ¡<b>Bloque creado:</b> se ha creado el bloque con éxito!</p>
+                                 <p>¡<b>BLOQUE CREADO:</b> se ha añadido el bloque con éxito!</p>
                               </div>
 
                               <div class="form-row mt-3">
@@ -246,8 +313,42 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
                                  </div>
 
-                                 <button type="submit" name="submit"
+                                 <button type="submit" name="submit" id="boton-bloque"
                                     class="col-lg-4 offset-lg-6 btn btn-success btn-md">Crear</button>
+                              </div>
+
+                           </form>
+                        </div>
+                     </div>
+
+                     <!-- EDITAR BLOQUE -->
+                     <div id="collapseBloqueEdit" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionCurso">
+                        <div class="card-body">
+                           <form id="editar-bloque-form">
+
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <input type="text" name="nombre-bloque" id="nombre-bloque"
+                                       placeholder="Nombre del Bloque"
+                                       class="input-bloque-edit form-control form-control-sm">
+                                 </div>
+                              </div>
+
+                              <div class="alert alert-primary mt-3 d-none" role="alert" id="alerta-bloque-edit">
+                                 <p>¡<b>BLOQUE ACTUALIZADO:</b> se han realizado los cambios con éxito!</p>
+                              </div>
+
+                              <div class="form-row mt-3">
+                                 <div class="col-lg-2 text-center">
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                       <span class="sr-only">Loading...</span>
+                                    </div>
+                                 </div>
+
+                                 <button type="submit" name="submit" id="boton-bloque"
+                                    class="col-lg-4 offset-lg-6 btn btn-info btn-md"><i class="fas fa-check"></i>
+                                    Terminar Edición</button>
                               </div>
 
                            </form>
@@ -263,15 +364,24 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                            <div class="row">
 
                               <div class="col-md-4">
-                                 <button id="aniadir-examen" class="btn btn-link collapsed disabled" type="button"
-                                    data-toggle="collapse" data-target="#collapseExamen" aria-expanded="false"
-                                    aria-controls="collapseExamen">
+                                 <button id="aniadir-examen" class="btn btn-link add-edit collapsed disabled"
+                                    type="button" data-toggle="collapse" data-target="#collapseExamen"
+                                    aria-expanded="false" aria-controls="collapseExamen">
                                     <h5><i class="fas fa-plus-circle"></i> Añadir Examen</h5>
                                  </button>
                               </div>
 
-                              <div class="offset-md-4 col-md-4">
-                                 <button class="btn btn-link" type="button" href="#seccion-tablas" id="nuevo-curso">
+                              <div class="col-md-4">
+                                 <button class="btn btn-link add-edit disabled" type="button" id="editar-examen"
+                                    data-toggle="collapse" data-target="#collapseExamenEdit" aria-expanded="true"
+                                    aria-controls="collapseExamenEdit">
+                                    <h5><i class="fas fa-edit"></i> Editar Exámen</h5>
+                                 </button>
+                              </div>
+
+                              <div class="col-md-4">
+                                 <button class="btn btn-link disabled" type="button" href="#seccion-tablas"
+                                    id="ver-examen">
                                     <h5><i class="fas fa-eye"></i> Ver Examen</h5>
                                  </button>
                               </div>
@@ -280,8 +390,9 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                         </h2>
                      </div>
+                     <!-- NUEVO EXAMEN -->
                      <div id="collapseExamen" class="collapse" aria-labelledby="headingThree"
-                        data-parent="#accordionExample">
+                        data-parent="#accordionCurso">
                         <div class="card-body">
                            <form id="registrar-examen">
 
@@ -302,7 +413,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                               </div>
 
                               <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-examen">
-                                 <p class="m-0"> ¡<b>Exámen creado:</b> se ha creado el exámen con éxito!</p>
+                                 <p class="m-0"> ¡<b>EXÁMEN CREADO:</b> se ha creado el exámen con éxito!</p>
                               </div>
 
                               <div class="form-row mt-3">
@@ -321,7 +432,51 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         </div>
                      </div>
 
+                     <!-- EDITAR EXAMEN -->
+                     <div id="collapseExamenEdit" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionCurso">
+                        <div class="card-body">
+                           <form id="editar-examen-form">
+
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <input type="text" name="nombre-examen-edit" id="nombre-examen"
+                                       placeholder="Nombre del Examen"
+                                       class="input-examen-edit form-control form-control-sm">
+                                 </div>
+                              </div>
+
+                              <div class="form-row">
+                                 <div class="form-group col-md-12">
+                                    <textarea name="descripcion-examen-edit"
+                                       class="input-examen-edit form-control form-control-sm"
+                                       placeholder="Descripción del exámen"></textarea>
+                                 </div>
+                              </div>
+
+                              <div class="alert alert-primary mt-3 d-none" role="alert" id="alerta-examen-edit">
+                                 <p class="m-0"> ¡<b>EXÁMEN ACTUALIZADO:</b> se han realizado los cambios con éxito!</p>
+                              </div>
+
+                              <div class="form-row mt-3">
+                                 <div class="col-lg-2 text-center">
+                                    <div class="spinner-border text-primary d-none" role="status">
+                                       <span class="sr-only">Loading...</span>
+                                    </div>
+                                 </div>
+
+                                 <button type="submit" name="submit-examen"
+                                    class="col-lg-4 offset-lg-6 btn btn-success btn-md"><i class="fas fa-check"></i>
+                                    Terminar Edición</button>
+                              </div>
+
+
+                           </form>
+                        </div>
+                     </div>
+
                   </div>
+
                </div>
 
                <table class="table my-5 w-100 shadow table-responsive-sm">
@@ -352,13 +507,35 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                      <div class="accordion" id="accordionContenido">
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingOne">
-                              <h2 class="mb-0">
-                                 <button id="aniadir-tema" class="btn btn-link disabled" type="button"
-                                    data-toggle="collapse" data-target="#collapseTema" aria-expanded="true"
-                                    aria-controls="collapseTema">
-                                    <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Temas de Bloque
-                                    </h5>
-                                 </button>
+                              <h2 class="mb-0 text-center">
+                                 <div class="row">
+
+                                    <div class="col-md-4">
+                                       <button id="aniadir-tema" class="btn btn-link disabled" type="button"
+                                          data-toggle="collapse" data-target="#collapseTema" aria-expanded="true"
+                                          aria-controls="collapseTema">
+                                          <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Temas
+                                          </h5>
+                                       </button>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                       <button id="editar-temas" class="btn btn-link disabled" type="button"
+                                          data-toggle="collapse" data-target="#collapseTemaEdit" aria-expanded="true"
+                                          aria-controls="collapseTemaEdit">
+                                          <h5 class="text-success"><i class="fas fa-edit"></i> Editar Temas</h5>
+                                       </button>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                       <button id="aniadir-tema" class="btn btn-link disabled" type="button"
+                                          data-target="#tabla-contenido">
+                                          <h5 class="text-success"><i class="fas fa-eye"></i> Ver Temas</h5>
+                                       </button>
+                                    </div>
+
+                                 </div>
+
                               </h2>
                            </div>
 
@@ -396,7 +573,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
 
                                     <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-tema">
-                                       <p class="m-0"> ¡<b>Tema creado:</b> se ha creado el tema con éxito!</p>
+                                       <p class="m-0"> ¡<b>TEMA CREADO:</b> se ha creado el tema con éxito!</p>
                                     </div>
 
                                     <div class="form-row mt-3">
@@ -414,20 +591,107 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                               </div>
                            </div>
+
+                           <!-- EDITAR TEMAS BLOQUE -->
+                           <div id="collapseTemaEdit" class="collapse" aria-labelledby="headingOne"
+                              data-parent="#accordionContenido">
+                              <div class="card-body">
+
+                                 <div class="row my-3">
+                                    <div class="col-md-12">
+                                       <select class="shadow custom-select form-control custom-select-sm text-danger"
+                                          id="temas-select">
+                                       </select>
+                                    </div>
+                                 </div>
+
+                                 <form id="editar-tema-form" class="d-none">
+
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <input type="text" class="input-tema-edit form-control form-control-sm"
+                                             id="nombre-tema" name="nombre-tema-edit" placeholder="Nombre del Tema">
+                                       </div>
+                                       <div class="form-group col-md-12">
+                                          <textarea class="input-tema-edit form-control form-control-sm"
+                                             id="descripcion-tema" name="descripcion-tema-edit"
+                                             placeholder="Descripción del Tema"></textarea>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                       <input type="text" class="input-tema-edit form-control form-control-sm"
+                                          id="video-tema" name="video-tema-edit" placeholder="URL video">
+                                    </div>
+
+                                    <div class="form-group">
+                                       <div class="custom-file">
+                                          <input type="file" class="custom-file-input" name="archivo-tema-edit"
+                                             id="archivo-tema-edit">
+                                          <label id="archivo-tema-name" class="custom-file-label"
+                                             for="customFile">Cambiar Archivo</label>
+                                       </div>
+                                    </div>
+
+
+                                    <div class="alert alert-primary mt-3 d-none" role="alert" id="alerta-tema-edit">
+                                       <p class="m-0"> ¡<b>TEMA ACTUALIZADO:</b> se ha actualizado el contenido con
+                                          éxito!</p>
+                                    </div>
+
+                                    <div class="form-row mt-3">
+                                       <div class="col-lg-2 text-center">
+                                          <div class="spinner-border text-primary d-none" role="status">
+                                             <span class="sr-only">Loading...</span>
+                                          </div>
+                                       </div>
+
+                                       <button type="submit" name="submit-tema"
+                                          class="col-lg-4 offset-lg-6 btn btn-primary btn-md"><i
+                                             class="fas fa-check"></i> Terminar Edición</button>
+                                    </div>
+
+                                 </form>
+
+                              </div>
+                           </div>
                         </div>
 
                         <!-- AÑADIR PREGUNTA DE EXAMEN -->
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingTwo">
-                              <h2 class="mb-0">
-                                 <button id="aniadir-pregunta" class="btn btn-link collapsed disabled" type="button"
-                                    data-toggle="collapse" data-target="#collapsePregunta" aria-expanded="false"
-                                    aria-controls="collapsePregunta">
-                                    <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Pregunta Examen
-                                    </h5>
-                                 </button>
+
+                              <h2 class="mb-0 text-center">
+                                 <div class="row">
+                                    <div class="col-md-4"><button id="aniadir-pregunta"
+                                          class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
+                                          data-target="#collapsePregunta" aria-expanded="false"
+                                          aria-controls="collapsePregunta">
+                                          <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Pregunta
+                                          </h5>
+                                       </button>
+                                    </div>
+
+                                    <div class="col-md-4"><button id="editar-pregunta"
+                                          class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
+                                          data-target="#collapsePreguntaEdit" aria-expanded="false"
+                                          aria-controls="collapsePreguntaEdit">
+                                          <h5 class="text-success"><i class="fas fa-edit"></i> Editar Preguntas
+                                          </h5>
+                                       </button>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                       <button id="aniadir-pregunta" class="btn btn-link collapsed disabled"
+                                          type="button" data-target="#tablas-contenido">
+                                          <h5 class="text-success"><i class="fas fa-eye"></i> Ver Preguntas
+                                          </h5>
+                                       </button>
+                                    </div>
+                                 </div>
                               </h2>
                            </div>
+                           <!-- CREAR PREGUNTA -->
                            <div id="collapsePregunta" class="collapse" aria-labelledby="headingTwo"
                               data-parent="#accordionContenido">
                               <div class="card-body">
@@ -500,7 +764,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
 
                                     <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-pregunta">
-                                       <p class="m-0"> ¡<b>Listo!:</b> se han registrado las preguntas con éxito!</p>
+                                       <p class="m-0"> ¡<b>PREGUNTA REGISTRADA:</b> se han se ha añadido la pregunta con
+                                          éxito!</p>
                                     </div>
 
                                     <div class="form-row">
@@ -517,18 +782,143 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                  </form>
                               </div>
                            </div>
+
+                           <!-- EDITAR PREGUNTA -->
+                           <div id="collapsePreguntaEdit" class="collapse" aria-labelledby="headingTwo"
+                              data-parent="#accordionContenido">
+                              <div class="card-body">
+                                 <div class="row my-3">
+                                    <div class="col-md-12">
+                                       <select class="shadow custom-select form-control custom-select-sm text-danger"
+                                          id="preguntas-select">
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <form id="editar-pregunta-form" class="d-none">
+
+                                    <!-- PREGUNTA -->
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <input type="text" name="pregunta-examen-edit" id="pregunta-examen"
+                                             placeholder="Escriba la pregunta"
+                                             class="form-control form-control-sm input-preg-resp-edit">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA A -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio1" name="customRadio"
+                                                class="custom-control-input radio-pregunta-edit radio-in"
+                                                data-correcta="1">
+                                             <label class="custom-control-label" for="customRadio1"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta1-edit" id="respuesta1"
+                                             placeholder="Respuesta A"
+                                             class="form-control form-control-sm input-preg-resp-edit">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA B -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio2" name="customRadio"
+                                                class="custom-control-input radio-pregunta-edit radio-in"
+                                                data-correcta="2">
+                                             <label class="custom-control-label" for="customRadio2"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta2" id="respuesta2" placeholder="Respuesta B"
+                                             class="form-control form-control-sm input-preg-resp-edit">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA C -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio3" name="customRadio"
+                                                class="custom-control-input radio-pregunta-edit radio-in"
+                                                data-correcta="3">
+                                             <label class="custom-control-label" for="customRadio3"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta3-edit" id="respuesta3"
+                                             placeholder="Respuesta C"
+                                             class="form-control form-control-sm input-preg-resp-edit">
+                                       </div>
+                                    </div>
+                                    <!-- RESPUESTA D -->
+                                    <div class="form-row">
+                                       <div class="form-group col-lg-1">
+                                          <div class="custom-control custom-radio">
+                                             <input type="radio" id="customRadio4" name="customRadio"
+                                                class="custom-control-input radio-pregunta-edit radio-in"
+                                                data-correcta="4">
+                                             <label class="custom-control-label" for="customRadio4"></label>
+                                          </div>
+                                       </div>
+                                       <div class="form-group col-lg-11">
+                                          <input type="text" name="respuesta4-edit" id="respuesta4"
+                                             placeholder="Respuesta D"
+                                             class="form-control form-control-sm input-preg-resp-edit">
+                                       </div>
+                                    </div>
+
+                                    <div class="alert alert-primary mt-3 d-none" role="alert" id="alerta-pregunta-edit">
+                                       <p class="m-0"> ¡<b>PREGUNTA ACTUALIZADA:</b> se han realizado los cambios con
+                                          éxito!</p>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <div class="col-lg-2 text-center">
+                                          <div class="spinner-border text-primary d-none" role="status">
+                                             <span class="sr-only">Loading...</span>
+                                          </div>
+                                       </div>
+
+                                       <button type="submit" class="col-lg-4 offset-lg-8 btn btn-success btn-md"><i
+                                             class="fas fa-check"></i>Terminar Edición</button>
+                                    </div>
+
+                                 </form>
+                              </div>
+                           </div>
+
                         </div>
 
 
                         <!-- AÑADIR TAREA -->
                         <div class="card bg-light shadow">
                            <div class="card-header" id="headingThree">
-                              <h2 class="mb-0">
-                                 <button id="aniadir-tarea" class="btn btn-link collapsed disabled" type="button"
-                                    data-toggle="collapse" data-target="#collapseTarea" aria-expanded="false"
-                                    aria-controls="collapseTarea">
-                                    <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Tarea</h5>
-                                 </button>
+                              <h2 class="mb-0 text-center">
+
+                                 <div class="row">
+                                    <div class="col-md-4"> <button id="aniadir-tarea"
+                                          class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
+                                          data-target="#collapseTarea" aria-expanded="false"
+                                          aria-controls="collapseTarea">
+                                          <h5 class="text-success"><i class="fas fa-plus-circle"></i> Añadir Tarea</h5>
+                                       </button>
+                                    </div>
+                                    <div class="col-md-4"> <button id="editar-tarea"
+                                          class="btn btn-link collapsed disabled" type="button" data-toggle="collapse"
+                                          data-target="#collapseTareaEdit" aria-expanded="false"
+                                          aria-controls="collapseTareaEdit">
+                                          <h5 class="text-success"><i class="fas fa-edit"></i> Editar Tarea</h5>
+                                       </button>
+                                    </div>
+                                    <div class="col-md-4"> <button id="aniadir-tarea"
+                                          class="btn btn-link collapsed disabled" type="button"
+                                          data-target="#tabla-contenido">
+                                          <h5 class="text-success"><i class="fas fa-eye"></i> Ver Tarea</h5>
+                                       </button>
+                                    </div>
+                                 </div>
+
                               </h2>
                            </div>
                            <div id="collapseTarea" class="collapse" aria-labelledby="headingThree"
@@ -562,7 +952,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
 
                                     <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-tarea">
-                                       <p class="m-0"> <b>¡Tarea Registrada!:</b> se ha añadido la tarea al bloque</p>
+                                       <p class="m-0"> <b>¡TAREA REGISTRADA:</b> se ha añadido la tarea al bloque!</p>
                                     </div>
 
                                     <div class="form-row">
@@ -580,6 +970,59 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                               </div>
                            </div>
 
+                           <!-- EDITAR TAREA -->
+                           <div id="collapseTareaEdit" class="collapse" aria-labelledby="headingThree"
+                              data-parent="#accordionContenido">
+                              <div class="card-body">
+
+                                 <form id="editar-tarea-form">
+
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <input type="text" name="nombre-tarea-edit" id="nombre-tarea"
+                                             placeholder="Nombre de la Tarea"
+                                             class="input-tarea-edit form-control form-control-sm">
+                                       </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <div class="form-group col-md-12">
+                                          <textarea class="input-tarea-edit form-control form-control-sm"
+                                             placeholder="Descripción de la Tarea"
+                                             name="descripcion-tarea-edit"></textarea>
+                                       </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                       <div class="custom-file">
+                                          <input type="file" class="custom-file-input"
+                                             id="archivo-tarea" name="archivo-tarea-edit">
+                                          <label id="archivo-tarea-name" class="custom-file-label"
+                                             for="customFile">
+                                             Cambiar Archivo</label>
+                                       </div>
+                                    </div>
+
+                                    <div class="alert alert-success mt-3 d-none" role="alert" id="alerta-tarea-edit">
+                                       <p class="m-0"> <b>¡TAREA ACTUALIZADA:</b> se han realizado los cambios con
+                                          éxito!</p>
+                                    </div>
+
+                                    <div class="form-row">
+                                       <div class="col-lg-2 text-center">
+                                          <div class="spinner-border text-primary d-none" role="status">
+                                             <span class="sr-only">Loading...</span>
+                                          </div>
+                                       </div>
+
+                                       <button type="submit" class="col-lg-4 offset-lg-8 btn btn-primary btn-md"><i
+                                             class="fas fa-check"></i> Terminar Edición</button>
+                                    </div>
+
+                                 </form>
+                              </div>
+                           </div>
+
                         </div>
                      </div>
                   </div>
@@ -587,7 +1030,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
 
 
-               <table class="table my-5 w-100 shadow">
+               <table class="table my-5 w-100 shadow" id="tabla-contenido">
                   <thead id="theadgrupo2" class="bg-success">
                      <tr>
                         <th scope="col" class="text-light">#</th>
