@@ -9,9 +9,10 @@ $request = $_SERVER['REQUEST_METHOD'];
 switch($request) {
 
    case "POST":
-      $bloque = $_POST['bloque'];
 
-      if(!isset($_POST['editar_tarea'])) {
+      if(!isset($_POST['editar_tarea']) && !isset($_POST['eliminar'])) {
+
+         $bloque = $_POST['bloque'];
 
          if(isset($bloque)){
             echo $conexion->consultaPreparada(
@@ -26,7 +27,23 @@ switch($request) {
             echo 0;
          }
 
+      }else if(!isset($_POST['editar_tarea']) && $_POST['eliminar']){
+         if($conexion->consultaPreparada(
+            array($_POST['id_eliminar']),
+            "DELETE tarea,tarea_completada,evaluacion_tarea_completada
+               FROM tarea
+               LEFT JOIN tarea_completada ON tarea.idtarea = tarea_completada.tarea
+               LEFT JOIN evaluacion_tarea_completada ON tarea_completada.id= tarea_completada
+               WHERE idtarea = ?",
+               1,
+               "s",
+               false,
+               null
+        )){
+        echo "eliminado";
+     }
       }else {
+         $bloque = $_POST['bloque'];
          $id_tarea = $conexion->consultaPreparada(
             array($bloque),
             "SELECT idtarea from tarea WHERE bloque = ?",

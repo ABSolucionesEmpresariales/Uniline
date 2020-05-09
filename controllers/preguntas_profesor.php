@@ -7,7 +7,8 @@ switch($request) {
 
     case "POST":
 
-        if(!isset($_POST['editar_pregunta'])) {
+        if(!isset($_POST['editar_pregunta']) && !isset($_POST['eliminar'])) {
+
             $pregunta_examen = $_POST['pregunta'];
             $respuestas = $_POST['respuesta'];
             $bloque = $_POST['nombre_bloque'];
@@ -20,8 +21,9 @@ switch($request) {
                 false,
                 null
             ));
-            
+
             if($idexamen){
+
                 $id = json_decode($idexamen);
             
                 if (isset($pregunta_examen) && isset($respuestas)) {
@@ -47,10 +49,40 @@ switch($request) {
             }else {
                 echo 'no existe';
             }
-        } else {
-
+        } else if(!isset($_POST['editar_pregunta']) && $_POST['eliminar']){
+            if($conexion->consultaPreparada(
+               array($_POST['id_eliminar']),
+               "DELETE pregunta, respuesta_usuario
+                   FROM pregunta, respuesta_usuario
+                   LEFT JOIN respuesta_usuario ON pregunta.idpregunta = respuesta_usuario.idpregunta
+                   WHERE idpregunta = ?",
+               1,
+               "s",
+               false,
+               null
+           )){
+           echo "eliminado";
+        }else {
+            echo "algo salio mal";
+        }
+      } else {
+            $pregunta_examen = $_POST['pregunta'];
+            $respuestas = $_POST['respuesta'];
             /* Aqui va el codigo cuando vamos a editar UPDATE */
+            $id_pregunta = $_POST['idpregunta'];
 
+            if($conexion->consultaPreparada(
+                array($pregunta_examen, $respuestas, $id_pregunta),
+                "UPDATE pregunta SET pregunta = ?, respuestas = ? WHERE idpregunta = ?",
+                1,
+                "sss",
+                false,
+                null
+            ) == 1) {
+                echo 'actualizado';   
+            }else {
+                 echo 'No se pudo insertar';
+            }  
         }
 
     break;

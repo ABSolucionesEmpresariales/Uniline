@@ -8,9 +8,9 @@ switch($request) {
 
    case "POST":
 
-      $bloque = $_POST['bloque'];
 
-     if(!isset($_POST['editar_tema'])){
+     if(!isset($_POST['editar_tema']) && !isset($_POST['eliminar'])){
+         $bloque = $_POST['bloque'];
          $preferencia = 0;
          $nombre_tema = $_POST['nombre-tema'];
          $descripcion_tema = $_POST['descripcion-tema'];
@@ -38,7 +38,22 @@ switch($request) {
             false,
             null
          );
+      }else if(!isset($_POST['editar_tema']) && $_POST['eliminar']){
+            if($conexion->consultaPreparada(
+               array($_POST['id_eliminar']),
+               "DELETE tema_completado,tema
+                   FROM tema
+                   LEFT JOIN tema_completado ON tema.idtema = tema_completado.tema
+                   WHERE idtema = ?",
+               1,
+               "s",
+               false,
+               null
+           )){
+           echo "eliminado";
+        }
       } else {
+         $bloque = $_POST['bloque'];
          $nombre_tema = $_POST['nombre-tema-edit'];
          $descripcion_tema = $_POST['descripcion-tema-edit'];
          $video = 'https://player.vimeo.com/video/';

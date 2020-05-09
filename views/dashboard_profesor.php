@@ -479,6 +479,10 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                </div>
 
+               <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert" id="alerta-elim">
+
+               </div>
+
                <table class="table my-5 w-100 shadow table-responsive-sm">
                   <thead class="bg-info">
                      <tr id="tr-tablagrupo1">
@@ -528,7 +532,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
 
                                     <div class="col-md-4">
-                                       <button id="aniadir-tema" class="btn btn-link disabled" type="button"
+                                       <button id="ver-temas" class="btn btn-link disabled" type="button"
                                           data-target="#tabla-contenido">
                                           <h5 class="text-success"><i class="fas fa-eye"></i> Ver Temas</h5>
                                        </button>
@@ -682,7 +686,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
 
                                     <div class="col-md-4">
-                                       <button id="aniadir-pregunta" class="btn btn-link collapsed disabled"
+                                       <button id="ver-preguntas" class="btn btn-link collapsed disabled"
                                           type="button" data-target="#tablas-contenido">
                                           <h5 class="text-success"><i class="fas fa-eye"></i> Ver Preguntas
                                           </h5>
@@ -799,7 +803,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <!-- PREGUNTA -->
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <input type="text" name="pregunta-examen-edit" id="pregunta-examen"
+                                          <input type="text" name="pregunta-examen-edit" id="pregunta-examen-edit"
                                              placeholder="Escriba la pregunta"
                                              class="form-control form-control-sm input-preg-resp-edit">
                                        </div>
@@ -808,14 +812,14 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio1" name="customRadio"
+                                             <input type="radio" id="customRadio1-edit" name="customRadio1"
                                                 class="custom-control-input radio-pregunta-edit radio-in"
                                                 data-correcta="1">
-                                             <label class="custom-control-label" for="customRadio1"></label>
+                                             <label class="custom-control-label" for="customRadio1-edit"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta1-edit" id="respuesta1"
+                                          <input type="text" name="respuesta1-edit" id="respuesta-1"
                                              placeholder="Respuesta A"
                                              class="form-control form-control-sm input-preg-resp-edit">
                                        </div>
@@ -824,14 +828,14 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio2" name="customRadio"
+                                             <input type="radio" id="customRadio2-edit" name="customRadio2"
                                                 class="custom-control-input radio-pregunta-edit radio-in"
                                                 data-correcta="2">
-                                             <label class="custom-control-label" for="customRadio2"></label>
+                                             <label class="custom-control-label" for="customRadio2-edit"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta2" id="respuesta2" placeholder="Respuesta B"
+                                          <input type="text" name="respuesta2-edit" id="respuesta-2" placeholder="Respuesta B"
                                              class="form-control form-control-sm input-preg-resp-edit">
                                        </div>
                                     </div>
@@ -839,14 +843,14 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio3" name="customRadio"
+                                             <input type="radio" id="customRadio3-edit" name="customRadio3"
                                                 class="custom-control-input radio-pregunta-edit radio-in"
                                                 data-correcta="3">
-                                             <label class="custom-control-label" for="customRadio3"></label>
+                                             <label class="custom-control-label" for="customRadio3-edit"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta3-edit" id="respuesta3"
+                                          <input type="text" name="respuesta3-edit" id="respuesta-3"
                                              placeholder="Respuesta C"
                                              class="form-control form-control-sm input-preg-resp-edit">
                                        </div>
@@ -855,14 +859,14 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <div class="form-row">
                                        <div class="form-group col-lg-1">
                                           <div class="custom-control custom-radio">
-                                             <input type="radio" id="customRadio4" name="customRadio"
+                                             <input type="radio" id="customRadio4-edit" name="customRadio4"
                                                 class="custom-control-input radio-pregunta-edit radio-in"
                                                 data-correcta="4">
-                                             <label class="custom-control-label" for="customRadio4"></label>
+                                             <label class="custom-control-label" for="customRadio4-edit"></label>
                                           </div>
                                        </div>
                                        <div class="form-group col-lg-11">
-                                          <input type="text" name="respuesta4-edit" id="respuesta4"
+                                          <input type="text" name="respuesta4-edit" id="respuesta-4"
                                              placeholder="Respuesta D"
                                              class="form-control form-control-sm input-preg-resp-edit">
                                        </div>
@@ -911,7 +915,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                           <h5 class="text-success"><i class="fas fa-edit"></i> Editar Tarea</h5>
                                        </button>
                                     </div>
-                                    <div class="col-md-4"> <button id="aniadir-tarea"
+                                    <div class="col-md-4"> <button id="ver-tareas"
                                           class="btn btn-link collapsed disabled" type="button"
                                           data-target="#tabla-contenido">
                                           <h5 class="text-success"><i class="fas fa-eye"></i> Ver Tarea</h5>
@@ -1028,39 +1032,22 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   </div>
                </div>
 
+               <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert" id="alerta-elim">
 
+               </div>
 
                <table class="table my-5 w-100 shadow" id="tabla-contenido">
-                  <thead id="theadgrupo2" class="bg-success">
-                     <tr>
-                        <th scope="col" class="text-light">#</th>
-                        <th scope="col" class="text-light">First</th>
-                        <th scope="col" class="text-light">Last</th>
-                        <th scope="col" class="text-light">Handle</th>
+                  <thead class="bg-success">
+                     <tr id="tr-tablagrupo2">
+
                      </tr>
                   </thead>
                   <tbody id="tbodygrupo2">
-                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                     </tr>
-                     <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                     </tr>
-                     <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                     </tr>
+                     
                   </tbody>
                </table>
             </div>
+
 
 
             <!-- ESTADÍSTICAS TAB -->

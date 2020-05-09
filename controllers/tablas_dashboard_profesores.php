@@ -55,7 +55,7 @@ if (!empty($_POST['tabla'])) {
                 $conexion->consultaPreparada(
                     array($_POST['bloque']),
                     "SELECT idtema,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY preferencia ASC",
-                    2,
+                    3,
                     's',
                     false,
                     null
@@ -65,11 +65,21 @@ if (!empty($_POST['tabla'])) {
             break;
 
         case "tabla_preguntas":
+            $idexamen = json_encode($conexion->consultaPreparada(
+                array($_POST['bloque']),
+                "SELECT idexamen FROM examen WHERE bloque = ?",
+                2,
+                "s",
+                false,
+                null
+            ));
+            $id = json_decode($idexamen);
+
             echo json_encode(
                 $conexion->consultaPreparada(
-                    array($_POST['examen']),
+                    array($id[0][0]),
                     "SELECT idpregunta,pregunta,respuestas FROM pregunta WHERE examen = ?",
-                    2,
+                    3,
                     's',
                     false,
                     null
@@ -83,7 +93,7 @@ if (!empty($_POST['tabla'])) {
                 $conexion->consultaPreparada(
                     array($_POST['bloque']),
                     "SELECT idtarea,nombre,descripcion,archivo_bajada FROM tarea WHERE bloque = ?",
-                    2,
+                    3,
                     's',
                     false,
                     null

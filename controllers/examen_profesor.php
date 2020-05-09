@@ -6,13 +6,13 @@ $conexion = new Modelos\Conexion();
 switch ($request) {
 
    case "POST":
-
-      $nombre_examen = $_POST['examen'];
-      $descripcion_examen = $_POST['descripcion'];
-      $bloque = $_POST['nombre_bloque'];
       
-      if(isset($nombre_examen) && isset($descripcion_examen) && isset($bloque)){
-         if(!isset($_POST['editar_examen'])){
+/*       if(isset($nombre_examen) && isset($descripcion_examen) && isset($bloque)){ */
+         if(!isset($_POST['editar_examen']) && !isset($_POST['eliminar'])){
+            $nombre_examen = $_POST['examen'];
+            $descripcion_examen = $_POST['descripcion'];
+            $bloque = $_POST['nombre_bloque'];
+
             echo $conexion->consultaPreparada(
                array($nombre_examen, $descripcion_examen, $bloque),
                "INSERT INTO examen (nombre,descripcion, bloque) VALUES (?,?,?)",
@@ -21,7 +21,27 @@ switch ($request) {
                false,
                null
             );
-         }else {
+         }else if($_POST['eliminar']){
+            if($conexion->consultaPreparada(
+               array($_POST['id_eliminar']),
+               "DELETE examen,examen_completado,pregunta,respuesta_usuario
+                  FROM examen
+                  LEFT JOIN examen_completado ON idexamen = examen_completado.examen
+                  LEFT JOIN pregunta ON pregunta.examen = idexamen
+                  LEFT JOIN respuesta_usuario ON pregunta.idpregunta = respuesta_usuario.idpregunta
+                  WHERE idexamen = ?",
+                  1,
+                  "s",
+                  false,
+                  null
+           )){
+           echo "eliminado";
+        }
+      }else {
+            $nombre_examen = $_POST['examen'];
+            $descripcion_examen = $_POST['descripcion'];
+            $bloque = $_POST['nombre_bloque'];
+
             $id_examen = $conexion->consultaPreparada(
                array($bloque),
                "SELECT idexamen from examen WHERE bloque = ?",
@@ -40,7 +60,7 @@ switch ($request) {
                null
            );
          }
-      }
+      /* } */
    
    break;
 
