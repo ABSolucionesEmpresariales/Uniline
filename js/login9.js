@@ -47,6 +47,8 @@ $(document).ready(function () {
     $("#arrow").addClass("d-none");
     e.preventDefault();
     if ($('#ingresar-email2').val() == '') {
+      $("#arrow").removeClass("d-none");
+      $("#spiner-reset").addClass("d-none");
       alert('debes ingresar algún correo electronico');
     } else {
       $.ajax({

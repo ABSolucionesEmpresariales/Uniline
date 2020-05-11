@@ -6,10 +6,11 @@
 
 function resizeImagen($ruta, $nombre, $alto, $ancho, $nombreN, $extension)
 {
+    $img_original = "";
     $rutaImagenOriginal = $ruta . $nombre;
     if ($extension == 'GIF' || $extension == 'gif') {
         $img_original = imagecreatefromgif($rutaImagenOriginal);
-    } else if ($extension == 'jpg' || $extension == 'JPG') {
+    } else if ($extension == 'jpg' || $extension == 'JPG' || $extension == 'jpeg') {
         $img_original = imagecreatefromjpeg($rutaImagenOriginal);
     } else if ($extension == 'png' || $extension == 'PNG') {
         $img_original = imagecreatefrompng($rutaImagenOriginal);
@@ -108,4 +109,5 @@ function subir_archivo($nombre)
     } else {
         return NULL;
     }
+    
 }
