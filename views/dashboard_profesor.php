@@ -221,12 +221,12 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                               </div>
                               <div class="form-row">
                                  <div class="form-group col-md-6">
-                                    <input type="number" id="horas-curso" name="horas-curso"
+                                    <input type="number" id="horas-curso-edit" name="horas-curso"
                                        placeholder="Horas del Curso"
                                        class="input-curso-edit form-control form-control-sm">
                                  </div>
                                  <div class="form-group col-md-6">
-                                    <input type="number" id="costo-curso" name="costo-curso"
+                                    <input type="number" id="costo-curso-edit" name="costo-curso"
                                        placeholder="Costo de Curso"
                                        class="input-curso-edit form-control form-control-sm">
                                  </div>
@@ -247,7 +247,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
                                  </div>
                                  <button type="submit" name="submit" class="col-lg-4 offset-lg-6 btn btn-info btn-md"
-                                    id="boton-curso"><i class="fas fa-check"></i> Terminar Edicion</button>
+                                    id="boton-curso-edit"><i class="fas fa-check"></i> Terminar Edicion</button>
                               </div>
 
                            </form>
@@ -329,7 +329,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <input type="text" name="nombre-bloque" id="nombre-bloque"
+                                    <input type="text" name="nombre-bloque" id="nombre-bloque-edit"
                                        placeholder="Nombre del Bloque"
                                        class="input-bloque-edit form-control form-control-sm">
                                  </div>
@@ -346,7 +346,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     </div>
                                  </div>
 
-                                 <button type="submit" name="submit" id="boton-bloque"
+                                 <button type="submit" name="submit" id="boton-bloque-edit"
                                     class="col-lg-4 offset-lg-6 btn btn-info btn-md"><i class="fas fa-check"></i>
                                     Terminar Edición</button>
                               </div>
@@ -440,7 +440,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                               <div class="form-row">
                                  <div class="form-group col-md-12">
-                                    <input type="text" name="nombre-examen-edit" id="nombre-examen"
+                                    <input type="text" name="nombre-examen-edit" id="nombre-examen-edit"
                                        placeholder="Nombre del Examen"
                                        class="input-examen-edit form-control form-control-sm">
                                  </div>
@@ -614,18 +614,18 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
                                           <input type="text" class="input-tema-edit form-control form-control-sm"
-                                             id="nombre-tema" name="nombre-tema-edit" placeholder="Nombre del Tema">
+                                             id="nombre-tema-edit" name="nombre-tema-edit" placeholder="Nombre del Tema">
                                        </div>
                                        <div class="form-group col-md-12">
                                           <textarea class="input-tema-edit form-control form-control-sm"
-                                             id="descripcion-tema" name="descripcion-tema-edit"
+                                             id="descripcion-tema-edit" name="descripcion-tema-edit"
                                              placeholder="Descripción del Tema"></textarea>
                                        </div>
                                     </div>
 
                                     <div class="form-group">
                                        <input type="text" class="input-tema-edit form-control form-control-sm"
-                                          id="video-tema" name="video-tema-edit" placeholder="URL video">
+                                          id="video-tema-edit" name="video-tema-edit" placeholder="URL video">
                                     </div>
 
                                     <div class="form-group">
@@ -983,7 +983,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                                     <div class="form-row">
                                        <div class="form-group col-md-12">
-                                          <input type="text" name="nombre-tarea-edit" id="nombre-tarea"
+                                          <input type="text" name="nombre-tarea-edit" id="nombre-tarea-edit"
                                              placeholder="Nombre de la Tarea"
                                              class="input-tarea-edit form-control form-control-sm">
                                        </div>
