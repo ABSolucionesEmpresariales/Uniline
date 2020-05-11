@@ -7,7 +7,7 @@ $conexion = new Modelos\Conexion();
 switch($request) {
 
     case "POST":
-        if (isset($_POST['nombre_bloque']) && isset($_POST['id_curso'])) {
+
             if(!isset($_POST['editar_bloque']) && !isset($_POST['eliminar'])){
                 echo $conexion->consultaPreparada(
                     array($_POST['nombre_bloque'], $_POST['id_curso']),
@@ -17,7 +17,7 @@ switch($request) {
                     false,
                     null
                 );
-            } else if(!isset($_POST['editar_bloque']) && $_POST['eliminar']){
+            } else if($_POST['eliminar']){
                 if($conexion->consultaPreparada(
                    array($_POST['id_eliminar']),
                    "DELETE bloque,tema,tema_completado,tarea,tarea_completada,evaluacion_tarea_completada,examen ,examen_completado,pregunta,respuesta_usuario
@@ -51,7 +51,6 @@ switch($request) {
                     null
                 );
             }
-         }
     break;
 
     case "GET":

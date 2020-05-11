@@ -53,9 +53,9 @@ switch($request) {
             if($conexion->consultaPreparada(
                array($_POST['id_eliminar']),
                "DELETE pregunta, respuesta_usuario
-                   FROM pregunta, respuesta_usuario
+                   FROM pregunta
                    LEFT JOIN respuesta_usuario ON pregunta.idpregunta = respuesta_usuario.idpregunta
-                   WHERE idpregunta = ?",
+                   WHERE pregunta.idpregunta = ?",
                1,
                "s",
                false,

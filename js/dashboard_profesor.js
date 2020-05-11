@@ -1155,9 +1155,6 @@ $(document).ready(function () {
   $(document).on('click', '.eliminar', function () {
     getid = $(this).val();
 
-    console.log(identificador_tablas)
-    console.log(getid)
-
     if(identificador_tablas == 'tabla_temas'){
       eliminarContenido('tema_profesor.php', 'tabla_temas', 'bloque', '#bloques-select'); //ELIMINA TEMAS
 
@@ -1181,7 +1178,6 @@ $(document).ready(function () {
   });
 
   function eliminarContenido(controller, tabla, bloq, select){///////////FUNCION PARA ELIMINAR CONTENIDOS
-    console.log("llega aqui")
     if(confirm("Estas seguro que quieres eliminar")){
       var eliminar = true,
       id = getid
@@ -1201,15 +1197,14 @@ $(document).ready(function () {
         };
       }
 
-      console.log(objeto_peticion)
 
       $.post(url, {
         eliminar: eliminar,
         id_eliminar: id
       })
         .done(function (data) {
-          console.log(data)
           if (data == 'eliminado') {
+            actualizarSelectBloques($('#cursos-select').val())
             actualizarSelectTemas($('#bloques-select').val())
             actualizarSelectPreguntas($('#bloques-select').val())
             renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
