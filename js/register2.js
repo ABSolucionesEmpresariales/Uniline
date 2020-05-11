@@ -565,7 +565,7 @@ $(document).ready(function () {
         processData: false,
 
         success: function (response) {
-
+          console.log(response);
           if (response == 1) {
             datosCursos();
             $('#registro-curso').trigger('reset');
