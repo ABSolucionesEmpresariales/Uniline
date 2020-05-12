@@ -16,6 +16,33 @@
               <?php
               if (isset($_SESSION['acceso'])) {
               ?>
+              <?php
+                  if (($_SESSION['tipo']) == 'Maestro') {
+                ?>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#home-banner" style="font-size: 14px; text-decoration: none;" >Home</a></li>
+                <li class="mt-3"><a class="text-center" href="dashboard_profesor.php" style="font-size: 14px; text-decoration: none;">Cursos Impartidos</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
+                <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
+                <li class="mt-3"><a class="text-center" href="mainpage.php#home-contacto" style="font-size: 14px; text-decoration: none;">Contacto</a></li>
+                <a role="button" class="dropdown-toggle d-flex justify-content-center" data-toggle="dropdown">
+                  <?php
+                  $url = "";
+                  if ($_SESSION['imagen_perfil'] != "../img/perfil.png") {
+                    $exlpode = explode("/", $_SESSION['imagen_perfil']);
+                    $url = "../" . $exlpode[1] . "/min_" . $exlpode[2];
+                  } else {
+                    $url = $_SESSION['imagen_perfil'];
+                  }
+                  ?>
+                  <img src=<?php echo $url ?> alt="perfil" class="course_author_image">
+                </a>
+                <div id="drop" class="dropdown-menu opciones-perfil">
+                  <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
+                  <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
+                </div>
+              <?php
+                }else {
+              ?>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#home-banner" style="font-size: 14px; text-decoration: none;" >Home</a></li>
                 <li class="mt-3"><a class="text-center" href="mainpage.php#all-cursos" style="font-size: 14px; text-decoration: none;">Cursos disponibles</a></li>
                 <li class="mt-3"><a class="text-center" href="misCursos.php" style="font-size: 14px; text-decoration: none;">Mis cursos</a></li>
@@ -36,7 +63,9 @@
                   <li><a class="enlaces-perfil" href="editProfile.php">Mi perfil</a></li>
                   <li><a class="enlaces-perfil" href="../controllers/sesion-destroy.php?cerrar=true">Cerrar sesión</a></li>
                 </div>
-
+                <?php
+                }
+              ?>
               <?php
               } else {
               ?>

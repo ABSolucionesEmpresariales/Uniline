@@ -11,7 +11,7 @@ if (!empty($_POST['tabla'])) {
             echo json_encode(
                 $conexion->consultaPreparada(
                     array($_SESSION['idusuario']),
-                    "SELECT idcurso,nombre,descripcion,imagen,video,horas,calificacion,costo,publicacion FROM curso WHERE profesor = ?",
+                    "SELECT idcurso,nombre,descripcion,imagen,video,horas,costo,publicacion FROM curso WHERE profesor = ?",
                     3,
                     's',
                     false,
