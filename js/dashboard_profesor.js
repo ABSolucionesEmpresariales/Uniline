@@ -744,7 +744,7 @@ $(document).ready(function () {
     const value_selected = $(cursos_select).val();
     $.get("../controllers/select_cursos.php", function (data, status) {
       if (status) {
-        $(cursos_select).html(`<option value="">Elige un curso</option>`);
+        $(cursos_select).html(`<option value="0">Elige un curso</option>`);
         $(cursos_select).addClass('text-danger');
         $(cursos_select).removeClass('text-info');
         if (data) {
@@ -775,7 +775,7 @@ $(document).ready(function () {
     $.get("../controllers/select_bloques.php", { curso: curso_value })//curso como parametro 
       .done(function (data) {                                         //para pasarlo como dato a
         $('#aniadir-pregunta, #ver-examen').addClass('disabled');     //la peticion get
-        $('#bloques-select').html(`<option value="">Elige un bloque</option>`);
+        $('#bloques-select').html(`<option value="0">Elige un bloque</option>`);
         if (curso_value != 0) {
           if (data != 0) {
             $('#ver-bloques').removeClass('disabled');
