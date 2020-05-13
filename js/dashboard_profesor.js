@@ -744,7 +744,7 @@ $(document).ready(function () {
     const value_selected = $(cursos_select).val();
     $.get("../controllers/select_cursos.php", function (data, status) {
       if (status) {
-        $(cursos_select).html(`<option value="0">Elige un curso</option>`);
+        $(cursos_select).html(`<option value="">Elige un curso</option>`);
         $(cursos_select).addClass('text-danger');
         $(cursos_select).removeClass('text-info');
         if (data) {
@@ -775,7 +775,7 @@ $(document).ready(function () {
     $.get("../controllers/select_bloques.php", { curso: curso_value })//curso como parametro 
       .done(function (data) {                                         //para pasarlo como dato a
         $('#aniadir-pregunta, #ver-examen').addClass('disabled');     //la peticion get
-        $('#bloques-select').html(`<option value="0">Elige un bloque</option>`);
+        $('#bloques-select').html(`<option value="">Elige un bloque</option>`);
         if (curso_value != 0) {
           if (data != 0) {
             $('#ver-bloques').removeClass('disabled');
@@ -1053,48 +1053,50 @@ $(document).ready(function () {
   function renderizarTabla(objeto_peticion, idtr, idtbody) {
     $.post('../controllers/tablas_dashboard_profesores.php', objeto_peticion, function (response) {
       const datos = JSON.parse(response);
-      let nombrescolumnas = [];
-      let trhead = ``;
-      let tbody = ``;
-      let botones = ``;
-      identificador_tablas = objeto_peticion['tabla'];
-      nombre_tabla = identificador_tablas.split('_');
+      if (datos.length > 0) {
+        let nombrescolumnas = [];
+        let trhead = ``;
+        let tbody = ``;
+        let botones = ``;
+        identificador_tablas = objeto_peticion['tabla'];
+        nombre_tabla = identificador_tablas.split('_');
 
-      datos.forEach(function (objeto_renglon_tabla, posicion) {
-        if (posicion === 0) { //se renderizan el thead de la tabla
-          nombrescolumnas = Object.keys(objeto_renglon_tabla);
-          nombrescolumnas.forEach(function (valor, posicion) {
-            if (valor != "publicacion") trhead += `<th scope="col" class="text-light ${posicion === 0 || valor === "preferencia" ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
-          })
-        }
+        datos.forEach(function (objeto_renglon_tabla, posicion) {
+          if (posicion === 0) { //se renderizan el thead de la tabla
+            nombrescolumnas = Object.keys(objeto_renglon_tabla);
+            nombrescolumnas.forEach(function (valor, posicion) {
+              if (valor != "publicacion") trhead += `<th scope="col" class="text-light ${posicion === 0 || valor === "preferencia" ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
+            })
+          }
 
-        posicion_renglon = Object.values(objeto_renglon_tabla);
-        botones = `<td><button value="${posicion_renglon[0]}" class="btn btn-danger eliminar">Eliminar</button></td>`;
+          posicion_renglon = Object.values(objeto_renglon_tabla);
+          botones = `<td><button value="${posicion_renglon[0]}" class="btn btn-danger eliminar">Eliminar</button></td>`;
 
-        tbody += `<tr>`;
-        nombrescolumnas.forEach(function (nombre_propiedad_objeto, posicion) {
-          if (nombre_propiedad_objeto === "publicacion") {
-            if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
-              botones = `<td>
+          tbody += `<tr>`;
+          nombrescolumnas.forEach(function (nombre_propiedad_objeto, posicion) {
+            if (nombre_propiedad_objeto === "publicacion") {
+              if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
+                botones = `<td>
                           <button class = "btn btn-success btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Ocultar</button>
                         </td>`;
-            } else {
-              botones = `<td>
+              } else {
+                botones = `<td>
                           <button class = "btn btn-warning btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Publicar</button>
                          </td>`;
+              }
+
+            } else {
+              tbody += `<td class=${posicion === 0 || nombre_propiedad_objeto === "preferencia" ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
             }
+          })
+          tbody += botones + `</tr>`;
 
-          } else {
-            tbody += `<td class=${posicion === 0 || nombre_propiedad_objeto === "preferencia" ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
-          }
-        })
-        tbody += botones + `</tr>`;
-
-      });
-      if (datos[0].preferencia) trhead += `<th><button id="btnorden" class="btn btn-primary" disabled >Save</button></th>`
-      $(idtr).html(trhead);
-      $(idtbody).html(tbody);
-      $('.titulo-tablas').html(nombre_tabla[1]);
+        });
+        if (datos[0].hasOwnProperty('preferencia')) trhead += `<th><button id="btnorden" class="btn btn-primary" disabled >Save</button></th>`
+        $(idtr).html(trhead);
+        $(idtbody).html(tbody);
+        $('.titulo-tablas').html(nombre_tabla[1]);
+      }
     })
   }
 
@@ -1105,11 +1107,15 @@ $(document).ready(function () {
   });
 
   $(document).on('click', '#contenido-curso-tab', function () {
-    const objeto_peticion = {
-      tabla: "tabla_temas",
-      bloque: $('#bloques-select').val()
-    };
-    renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
+    if ($('#bloques-select').val()) {
+      const objeto_peticion = {
+        tabla: "tabla_temas",
+        bloque: $('#bloques-select').val()
+      };
+      renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
+    } else {
+      $('.titulo-tablas').html("");
+    }
   });
 
 
