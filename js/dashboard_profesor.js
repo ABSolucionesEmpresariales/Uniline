@@ -1064,7 +1064,7 @@ $(document).ready(function () {
         if (posicion === 0) { //se renderizan el thead de la tabla
           nombrescolumnas = Object.keys(objeto_renglon_tabla);
           nombrescolumnas.forEach(function (valor, posicion) {
-            if (valor != "publicacion") trhead += `<th scope="col" class="text-light ${posicion === 0 ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
+            if (valor != "publicacion") trhead += `<th scope="col" class="text-light ${posicion === 0 || valor === "preferencia" ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
           })
         }
 
@@ -1151,6 +1151,45 @@ $(document).ready(function () {
     $('html, body').animate({
       scrollTop: $(document).height()
     }, 'slow');
+  });
+
+  // reordenamiento dinamico de la tabla
+  $("#tbodygrupo2").sortable({
+    containerSelector: ' table ',
+    itemPath: ' > tbody ',
+    itemSelector: ' tr ',
+    cursor: 'pointer',
+    axis: 'y',
+    dropOnEmpty: false,
+    start: function (e, ui) {
+      ui.item.addClass("selected");
+    },
+    stop: function (e, ui) {
+      reordenamientorows = [];
+      $("#btnorden").prop('disabled', false);
+      ui.item.removeClass("selected");
+      $(this).find("tr").each(function (index) {
+        const id = $(this).find("td").eq(0).html();
+        $(this).find("td").eq(1).html(index + 1);
+        const preferencia = $(this).find("td").eq(1).html();
+        reordenamientorows.push({
+          idtema: id,
+          preferencia: preferencia
+        });
+      });
+    }
+  });
+
+  // enviar el nuevo orden de la tabla
+  $(document).on('click', '#btnorden', function () {
+    $("#btnorden").prop('disabled', true);
+    $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (response) {
+      if (response == "") {
+        swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
+      } else {
+        swal("Ups!", "Algo salio mal!", "warning")
+      }
+    })
   });
 
   $(document).on('click', '#ver-preguntas', function () {
