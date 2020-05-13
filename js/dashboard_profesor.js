@@ -4,7 +4,6 @@ $(document).ready(function () {
   let identificador_tablas;
   let nombre_tabla;
   let getid;
-  let reordenamientorows = [];
   // /* CARGA DE DATOS A LOS SELECT */
 
 
@@ -1074,7 +1073,6 @@ $(document).ready(function () {
 
         tbody += `<tr>`;
         nombrescolumnas.forEach(function (nombre_propiedad_objeto, posicion) {
-
           if (nombre_propiedad_objeto === "publicacion") {
             if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
               botones = `<td>
@@ -1087,11 +1085,13 @@ $(document).ready(function () {
             }
 
           } else {
-            tbody += `<td class=${posicion === 0 ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
+            tbody += `<td class=${posicion === 0 || nombre_propiedad_objeto === "preferencia" ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
           }
         })
         tbody += botones + `</tr>`;
+
       });
+      if (datos[0].preferencia) trhead += `<th><button id="btnorden" class="btn btn-primary" disabled >Save</button></th>`
       $(idtr).html(trhead);
       $(idtbody).html(tbody);
       $('.titulo-tablas').html(nombre_tabla[1]);
@@ -1152,45 +1152,6 @@ $(document).ready(function () {
       scrollTop: $(document).height()
     }, 'slow');
   });
-
-  // enviar el nuevo orden de la tabla
-  $(document).on('click', '#btnorden', function () {
-    $("#btnorden").prop('disabled', true);
-    $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (response) {
-      if (response == "") {
-        swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
-      } else {
-        swal("Ups!", "Algo salio mal!", "warning")
-      }
-    })
-  });
-
- /*  // reordenamiento dinamico de la tabla
-  $("#tbodygrupo2").sortable({
-    containerSelector: ' table ',
-    itemPath: ' > tbody ',
-    itemSelector: ' tr ',
-    cursor: 'pointer',
-    axis: 'y',
-    dropOnEmpty: false,
-    start: function (e, ui) {
-      ui.item.addClass("selected");
-    },
-    stop: function (e, ui) {
-      reordenamientorows = [];
-      $("#btnorden").prop('disabled', false);
-      ui.item.removeClass("selected");
-      $(this).find("tr").each(function (index) {
-        const id = $(this).find("td").eq(0).html();
-        $(this).find("td").eq(1).html(index + 1);
-        const preferencia = $(this).find("td").eq(1).html();
-        reordenamientorows.push({
-          idtema: id,
-          preferencia: preferencia
-        });
-      });
-    }
-  }); */
 
   $(document).on('click', '#ver-preguntas', function () {
     const objeto_peticion = {
