@@ -969,6 +969,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
    <!-- sweet alert -->
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+   
+
    <!-- LOCAL SCRIPTS -->
    <script src="../js/dashboard_profesor.js"></script>
 </body>
