@@ -54,7 +54,7 @@ if (!empty($_POST['tabla'])) {
             echo json_encode(
                 $conexion->consultaPreparada(
                     array($_POST['bloque']),
-                    "SELECT idtema,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY preferencia ASC",
+                    "SELECT idtema,preferencia,nombre,descripcion,video,archivo FROM tema WHERE bloque = ? ORDER BY preferencia ASC",
                     3,
                     's',
                     false,

@@ -35,8 +35,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
       #ir-arriba {
          color: #0275d8;
          font-size: 40px;
-         bottom:10px;
-         left:10px;
+         bottom: 10px;
+         left: 10px;
          display: none;
          cursor: pointer;
          max-width: 60px;
@@ -441,7 +441,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert" id="alerta-elim">
 
                </div>
-               
+
                <h2 class="titulo-tablas mt-5"></h2>
 
                <table class="table my-5 w-100 shadow table-responsive-sm">
@@ -916,7 +916,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert" id="alerta-elim">
 
                </div>
-               
+
                <h2 class="titulo-tablas mt-5"></h2>
 
                <table class="table my-5 w-100 shadow" id="tabla-contenido">
@@ -954,7 +954,6 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
    <i id="ir-arriba" class="fas fa-arrow-alt-circle-up fixed-bottom "></i>
 
 
-
    <!--JAVASCRIPT BOOTSTRAP 4-->
    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
    </script>
@@ -965,6 +964,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
    <!-- jQUERY -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    <!-- sweet alert -->
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -973,6 +973,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
    <!-- LOCAL SCRIPTS -->
    <script src="../js/dashboard_profesor.js"></script>
+
 </body>
 
 </html>

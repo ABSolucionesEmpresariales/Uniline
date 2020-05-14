@@ -88,7 +88,7 @@ $(document).ready(function () {
   $("#registrar-curso").submit(function (e) {//INSERTAR CURSOS A LA BASE DE DATOS 
     e.preventDefault();
     if (verificar_campos('curso') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
       var formData = new FormData(this);
@@ -115,7 +115,7 @@ $(document).ready(function () {
               $("#alerta-nuevo-curso").slideUp("slow");
             }, 3000);
           } else {
-            swal("Ups...","Hubo un error, los datos no fueron enviados", "error");
+            swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
             $('.spinner-border').addClass('d-none');
           }
         }
@@ -133,7 +133,7 @@ $(document).ready(function () {
   $("#editar-curso-form").submit(function (e) {//EDITAR CURSOS
     e.preventDefault();
     if (verificar_campos('curso-edit') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
       var formData = new FormData(this);
@@ -161,7 +161,7 @@ $(document).ready(function () {
             }, 3000);
 
           } else {
-            swal("Ups...","Hubo un error, los datos no fueron enviados", "error");
+            swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
             $('.spinner-border').addClass('d-none');
           }
         }
@@ -178,7 +178,7 @@ $(document).ready(function () {
   $("#registrar-bloque").submit(function (e) {//INSERTAR BLOQUES A DB
     e.preventDefault();
     if (verificar_campos('bloque') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -208,7 +208,7 @@ $(document).ready(function () {
 
               }, 3000);
             } else {
-              swal("Ups...","Hubo un error, los datos no fueron enviados", "error");
+              swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
             }
           })
       }
@@ -221,7 +221,7 @@ $(document).ready(function () {
   $("#editar-bloque-form").submit(function (e) {//INSERTAR BLOQUES A DB
     e.preventDefault();
     if (verificar_campos('bloque-edit') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -254,7 +254,7 @@ $(document).ready(function () {
               }, 3000);
             } else {
               $('.spinner-border').addClass('d-none');
-              swal("Ups...","Hubo un error, los datos no fueron enviados", "error");
+              swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
             }
           });
       }
@@ -267,7 +267,7 @@ $(document).ready(function () {
   $("#registrar-examen").submit(function (e) {//INSERTAR BLOQUES A DB
     e.preventDefault();
     if (verificar_campos('examen') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -278,10 +278,10 @@ $(document).ready(function () {
         bloque = bloque = $('#bloques-select').val(),
         url = "../controllers/examen_profesor.php";
 
-        const objeto_peticion = {
-          tabla: "tabla_examenes",
-          bloque: $('#bloques-select').val()
-        }; 
+      const objeto_peticion = {
+        tabla: "tabla_examenes",
+        bloque: $('#bloques-select').val()
+      };
 
       $.post(url, {
         examen: nombre_examen,
@@ -302,7 +302,7 @@ $(document).ready(function () {
             }, 3000);
           } else {
             $('.spinner-border').addClass('d-none');
-            swal("Ups...","este bloque ya contiene un examen o los datos no fueron enviados", "error");
+            swal("Ups...", "este bloque ya contiene un examen o los datos no fueron enviados", "error");
           }
 
         });
@@ -315,7 +315,7 @@ $(document).ready(function () {
   $("#editar-examen-form").submit(function (e) {//INSERTAR BLOQUES A DB
     e.preventDefault();
     if (verificar_campos('examen-edit') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -327,10 +327,10 @@ $(document).ready(function () {
         edit = true,
         url = "../controllers/examen_profesor.php";
 
-        const objeto_peticion = {
-          tabla: "tabla_examenes",
-          bloque: $('#bloques-select').val()
-        };    
+      const objeto_peticion = {
+        tabla: "tabla_examenes",
+        bloque: $('#bloques-select').val()
+      };
 
       $.post(url, {
         examen: nombre_examen,
@@ -351,7 +351,7 @@ $(document).ready(function () {
             editarExamen(bloque);
           } else {
             $('.spinner-border').addClass('d-none');
-            swal("Ups...","este bloque ya contiene un examen o los datos no fueron enviados", "error");
+            swal("Ups...", "este bloque ya contiene un examen o los datos no fueron enviados", "error");
           }
 
         });
@@ -365,7 +365,7 @@ $(document).ready(function () {
   $("#registrar-tema").submit(function (e) {//INSERTAR TEMAS A LA BASE DE DATOS 
     e.preventDefault();
     if (verificar_campos('tema') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -376,7 +376,7 @@ $(document).ready(function () {
       const objeto_peticion = {
         tabla: "tabla_temas",
         bloque: $('#bloques-select').val()
-      };      
+      };
 
       $.ajax({
         url: '../controllers/tema_profesor.php',
@@ -395,10 +395,10 @@ $(document).ready(function () {
             $("#alerta-tema").slideDown("slow");
             setTimeout(function () {
               $("#alerta-tema").slideUp("slow");
-            }, 3000);           
+            }, 3000);
           } else {
             $('.spinner-border').addClass('d-none');
-            swal("","Hubo un error, los datos no fueron enviados", "error");
+            swal("", "Hubo un error, los datos no fueron enviados", "error");
           }
 
         }
@@ -419,7 +419,7 @@ $(document).ready(function () {
   $("#editar-tema-form").submit(function (e) {//INSERTAR TEMAS A LA BASE DE DATOS 
     e.preventDefault();
     if (verificar_campos('tema-edit') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -453,7 +453,7 @@ $(document).ready(function () {
             }, 3000);
           } else {
             $('.spinner-border').addClass('d-none');
-            swal("","Hubo un error, los datos no fueron enviados", "warning");
+            swal("", "Hubo un error, los datos no fueron enviados", "warning");
           }
 
         }
@@ -472,9 +472,9 @@ $(document).ready(function () {
   $("#registrar-pregunta").submit(function (e) {//INSERTAR PREGUNTAS A DB
     e.preventDefault();
     if (verificar_campos('preg-resp') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else if (verificar_radios('pregunta') == 'radio-uncheck') {
-      swal("","Por favor seleccione la respuesta correcta", "warning");
+      swal("", "Por favor seleccione la respuesta correcta", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -497,10 +497,10 @@ $(document).ready(function () {
         bloque = bloque = $('#bloques-select').val(),
         url = "../controllers/preguntas_profesor.php";
 
-        const objeto_peticion = {
-          tabla: "tabla_preguntas",
-          bloque: $('#bloques-select').val()
-        };       
+      const objeto_peticion = {
+        tabla: "tabla_preguntas",
+        bloque: $('#bloques-select').val()
+      };
 
       $.post(url, {
         pregunta: pregunta_examen,
@@ -520,7 +520,7 @@ $(document).ready(function () {
 
             }, 3000);
           } else {
-            swal("","Hubo un error, los datos no fueron enviados", "error");
+            swal("", "Hubo un error, los datos no fueron enviados", "error");
           }
         })
 
@@ -533,9 +533,9 @@ $(document).ready(function () {
     e.preventDefault();
 
     if (verificar_campos('preg-resp-edit') == 'campo-vacio') {
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
     } else if (verificar_radios('pregunta-edit') == 'radio-uncheck') {
-      swal("","Por favor seleccione la respuesta correcta", "warning");
+      swal("", "Por favor seleccione la respuesta correcta", "warning");
     } else {
       $('.spinner-border').removeClass('d-none');
 
@@ -558,10 +558,10 @@ $(document).ready(function () {
         edit = true,
         url = "../controllers/preguntas_profesor.php";
 
-        const objeto_peticion = {
-          tabla: "tabla_preguntas",
-          bloque: $('#bloques-select').val()
-        };
+      const objeto_peticion = {
+        tabla: "tabla_preguntas",
+        bloque: $('#bloques-select').val()
+      };
 
       $.post(url, {
         pregunta: pregunta_examen,
@@ -583,7 +583,7 @@ $(document).ready(function () {
             }, 3000);
 
           } else {
-            swal("","Hubo un error, los datos no fueron enviados", "error");
+            swal("", "Hubo un error, los datos no fueron enviados", "error");
           }
         })
 
@@ -598,7 +598,7 @@ $(document).ready(function () {
 
     if (verificar_campos('tarea') == 'campo-vacio') {
 
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
 
     } else {
 
@@ -633,7 +633,7 @@ $(document).ready(function () {
             }, 3000);
           } else {
             $('.spinner-border').addClass('d-none');
-            swal("","Hubo un error, los datos no fueron enviados", "error");
+            swal("", "Hubo un error, los datos no fueron enviados", "error");
           }
 
         }
@@ -649,7 +649,7 @@ $(document).ready(function () {
 
     if (verificar_campos('tarea-edit') == 'campo-vacio') {
 
-      swal("","Por favor llene todos los campos", "warning");
+      swal("", "Por favor llene todos los campos", "warning");
 
     } else {
 
@@ -663,7 +663,7 @@ $(document).ready(function () {
       const objeto_peticion = {
         tabla: "tabla_tareas",
         bloque: $('#bloques-select').val()
-      };    
+      };
 
       $.ajax({
         url: '../controllers/tarea_profesor.php',
@@ -685,7 +685,7 @@ $(document).ready(function () {
             }, 3000);
           } else {
             $('.spinner-border').addClass('d-none');
-            swal("","Hubo un error, los datos no fueron enviados", "warning");
+            swal("", "Hubo un error, los datos no fueron enviados", "warning");
           }
 
         }
@@ -864,7 +864,7 @@ $(document).ready(function () {
 
           if (value_selected != 0 && value_selected) {
             $(`#preguntas-select option[value='${value_selected}']`).prop('selected', true);
-          }else {
+          } else {
             $('#editar-pregunta-form').addClass('d-none')
           }
 
@@ -989,19 +989,19 @@ $(document).ready(function () {
 
             $("input[name='pregunta-examen-edit'").val(datos_pregunta[0]['pregunta']);
 
-            respuestas.forEach(function(respuesta, index) {
-              if(respuesta.includes('###')){
+            respuestas.forEach(function (respuesta, index) {
+              if (respuesta.includes('###')) {
                 respuesta_correcta = respuesta.split('###');
-                $(`input[name='respuesta${index+1}-edit'`).val(respuesta_correcta[1]);
-                $(`input[name='customRadio${index+1}'`).prop('checked', false);
-/*                 $(`input[name='customRadio${index+1}'`).prop('checked', true); */
-              }else {
-                $(`input[name='respuesta${index+1}-edit'`).val(respuesta);
-                $(`input[name='respuesta${index+1}-edit'`).val(respuesta);
-                $(`input[name='respuesta${index+1}-edit'`).val(respuesta);
-                $(`input[name='customRadio${index+1}'`).prop('checked', false);
+                $(`input[name='respuesta${index + 1}-edit'`).val(respuesta_correcta[1]);
+                $(`input[name='customRadio${index + 1}'`).prop('checked', false);
+                /*                 $(`input[name='customRadio${index+1}'`).prop('checked', true); */
+              } else {
+                $(`input[name='respuesta${index + 1}-edit'`).val(respuesta);
+                $(`input[name='respuesta${index + 1}-edit'`).val(respuesta);
+                $(`input[name='respuesta${index + 1}-edit'`).val(respuesta);
+                $(`input[name='customRadio${index + 1}'`).prop('checked', false);
               }
-            });  
+            });
           }
         });
     } else {
@@ -1037,7 +1037,7 @@ $(document).ready(function () {
           $('#collapseTareaEdit').removeClass('show in');
         }
 
-        if(bloque_value == 0) {
+        if (bloque_value == 0) {
           $("#aniadir-tarea, #editar-tarea, #ver-tareas").addClass('disabled');
           $('#aniadir-tarea, #editar-tarea, #ver-tareas').collapse('hide');
           $('#collapseTarea, #collapseTareaEdit').collapse('hide');
@@ -1053,70 +1053,114 @@ $(document).ready(function () {
   function renderizarTabla(objeto_peticion, idtr, idtbody) {
     $.post('../controllers/tablas_dashboard_profesores.php', objeto_peticion, function (response) {
       const datos = JSON.parse(response);
-      let nombrescolumnas = [];
-      let trhead = ``;
-      let tbody = ``;
-      let botones = ``;
-      identificador_tablas = objeto_peticion['tabla'];
-      nombre_tabla = identificador_tablas.split('_');
+      if (datos.length > 0) {
+        let nombrescolumnas = [];
+        let trhead = ``;
+        let tbody = ``;
+        let botones = ``;
+        identificador_tablas = objeto_peticion['tabla'];
+        nombre_tabla = identificador_tablas.split('_');
 
-      datos.forEach(function (objeto_renglon_tabla, posicion) {
-        if (posicion === 0) { //se renderizan el thead de la tabla
-          nombrescolumnas = Object.keys(objeto_renglon_tabla);
-          nombrescolumnas.forEach(function (valor, posicion) {
-            if (valor != "publicacion") trhead += `<th scope="col" class="text-light ${posicion === 0 ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
-          })
-        }
+        datos.forEach(function (objeto_renglon_tabla, posicion) {
+          if (posicion === 0) { //se renderizan el thead de la tabla
+            nombrescolumnas = Object.keys(objeto_renglon_tabla);
+            nombrescolumnas.forEach(function (valor, posicion) {
+              if (valor != "publicacion") trhead += `<th scope="col" class="text-light ${posicion === 0 || valor === "preferencia" ? " d-none" : ""}">${valor.charAt(0).toLocaleUpperCase() + valor.slice(1)}</th>`
+            })
+          }
 
-        posicion_renglon = Object.values(objeto_renglon_tabla);
-        botones = `<td><button value="${posicion_renglon[0]}" class="btn btn-danger eliminar">Eliminar</button></td>`;
+          posicion_renglon = Object.values(objeto_renglon_tabla);
+          botones = `<td><button value="${posicion_renglon[0]}" class="btn btn-danger eliminar">Eliminar</button></td>`;
 
-        tbody += `<tr>`;
-        nombrescolumnas.forEach(function (nombre_propiedad_objeto, posicion) {
-          trhead += `<th scope="col" class="bg-info text-light> </th>`;
-          if (nombre_propiedad_objeto === "publicacion") {
-            if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
-              botones = `<td>
-                          <button class = "btn btn-success btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Ocultar</button>
-                        </td>`;
-            } else {
-              botones = `<td>
-                          <button class = "btn btn-warning btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Publicar</button>
-                         </td>`;
+          tbody += `<tr>`;
+          nombrescolumnas.forEach(function (nombre_propiedad_objeto, posicion) {
+
+            switch (nombre_propiedad_objeto) {
+
+              case "publicacion":
+                if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
+                  botones = `<td>
+                            <button class = "btn btn-success btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Ocultar</button>
+                          </td>`;
+                } else {
+                  botones = `<td>
+                            <button class = "btn btn-warning btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Publicar</button>
+                           </td>`;
+                }
+                break;
+
+              case "respuestas":
+                const filtrogatos = objeto_renglon_tabla[nombre_propiedad_objeto].split('###');
+                const respuestas_lado_derecho = filtrogatos[1].split('-*3');
+                const respuestas_lado_izquierdo = filtrogatos[0].split('-*3');
+                let respuestas = '';
+
+                respuestas_lado_izquierdo.forEach(function (valor) {
+                  if (valor != "") respuestas += " ✘ " + valor;
+                });
+
+                respuestas_lado_derecho.forEach(function (valor, posicion) {
+                  if (valor != "") {
+                    if (posicion === 0) {
+                      respuestas += " ✔ " + valor;
+                    } else {
+                      respuestas += " ✘ " + valor;
+                    }
+                  }
+                })
+                tbody += `<td>${respuestas}</td>`;
+                break;
+
+              case "imagen":
+                const componentes_ruta = objeto_renglon_tabla[nombre_propiedad_objeto].split('/');
+                const imagen = 'min_' + componentes_ruta[2];
+                const ruta = componentes_ruta[0] + '/' + componentes_ruta[1] + '/' + imagen;
+                tbody += `<td><img src="${ruta}" alt="curso escuelaalreves"></td>>`;
+                break;
+
+              default:
+                tbody += `<td class=${posicion === 0 || nombre_propiedad_objeto === "preferencia" ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
+                break;
+
             }
 
-          } else {
-            tbody += `<td class=${posicion === 0 ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
-          }
-        })
-        tbody += botones + `</tr>`;
-      });
-      $(idtr).html(trhead);
-      $(idtbody).html(tbody);
-      $('.titulo-tablas').html(nombre_tabla[1]);
+
+          })
+          tbody += botones + `</tr>`;
+
+        });
+        if (datos[0].hasOwnProperty('preferencia')) trhead += `<th><button id="btnorden" class="btn btn-primary" disabled >Guardar</button></th>`
+        $(idtr).html(trhead);
+        $(idtbody).html(tbody);
+        $('.titulo-tablas').html(nombre_tabla[1]);
+      }
     })
   }
 
   renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
 
-  $(document).on('click', '#cursos-tab', function(){
+  $(document).on('click', '#cursos-tab', function () {
     renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
   });
 
-  $(document).on('click', '#contenido-curso-tab', function(){
-    const objeto_peticion = {
-      tabla: "tabla_temas",
-      bloque: $('#bloques-select').val()
-    };
-    renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
+  $(document).on('click', '#contenido-curso-tab', function () {
+    if ($('#bloques-select').val()) {
+      const objeto_peticion = {
+        tabla: "tabla_temas",
+        bloque: $('#bloques-select').val()
+      };
+      renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
+    } else {
+      $('.titulo-tablas').html("");
+    }
   });
-  
+
 
   $(document).on('click', '#ver-cursos', function () {
     renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
     $('html, body').animate({
       scrollTop: $(document).height()
-   }, 'slow');
+    }, 'slow');
   });
 
   $(document).on('click', '#ver-bloques', function () {
@@ -1127,7 +1171,7 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo1', '#tbodygrupo1');
     $('html, body').animate({
       scrollTop: $(document).height()
-   }, 'slow');
+    }, 'slow');
   });
 
   $(document).on('click', '#ver-examen', function () {
@@ -1138,7 +1182,7 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo1', '#tbodygrupo1');
     $('html, body').animate({
       scrollTop: $(document).height()
-   }, 'slow');
+    }, 'slow');
   });
 
   $(document).on('click', '#ver-temas', function () {
@@ -1149,7 +1193,46 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
     $('html, body').animate({
       scrollTop: $(document).height()
-   }, 'slow');
+    }, 'slow');
+  });
+
+  // reordenamiento dinamico de la tabla
+  $("#tbodygrupo2").sortable({
+    containerSelector: ' table ',
+    itemPath: ' > tbody ',
+    itemSelector: ' tr ',
+    cursor: 'pointer',
+    axis: 'y',
+    dropOnEmpty: false,
+    start: function (e, ui) {
+      ui.item.addClass("selected");
+    },
+    stop: function (e, ui) {
+      reordenamientorows = [];
+      $("#btnorden").prop('disabled', false);
+      ui.item.removeClass("selected");
+      $(this).find("tr").each(function (index) {
+        const id = $(this).find("td").eq(0).html();
+        $(this).find("td").eq(1).html(index + 1);
+        const preferencia = $(this).find("td").eq(1).html();
+        reordenamientorows.push({
+          idtema: id,
+          preferencia: preferencia
+        });
+      });
+    }
+  });
+
+  // enviar el nuevo orden de la tabla
+  $(document).on('click', '#btnorden', function () {
+    $("#btnorden").prop('disabled', true);
+    $.post("../controllers/tema.php", { accion: "reordenaritemstabla", reordenamientorows: reordenamientorows }, function (response) {
+      if (response == "") {
+        swal("Cambios realizados!", "Los cambios se guardaron exitosamente", "success")
+      } else {
+        swal("Ups!", "Algo salio mal!", "warning")
+      }
+    })
   });
 
   $(document).on('click', '#ver-preguntas', function () {
@@ -1160,7 +1243,7 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
     $('html, body').animate({
       scrollTop: $(document).height()
-   }, 'slow');
+    }, 'slow');
   });
 
   $(document).on('click', '#ver-tareas', function () {
@@ -1171,7 +1254,7 @@ $(document).ready(function () {
     renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
     $('html, body').animate({
       scrollTop: $(document).height()
-   }, 'slow');
+    }, 'slow');
   });
 
   //ACTUALIZAR EL ESTADO DE LA PUBLICACION DEL CURSO
@@ -1191,25 +1274,25 @@ $(document).ready(function () {
   $(document).on('click', '.eliminar', function () {
     getid = $(this).val();
 
-    if(identificador_tablas == 'tabla_temas'){
+    if (identificador_tablas == 'tabla_temas') {
       eliminarContenido('tema_profesor.php', 'tabla_temas', 'bloque', '#bloques-select'); //ELIMINA TEMAS
 
-    } else if(identificador_tablas == 'tabla_preguntas'){
+    } else if (identificador_tablas == 'tabla_preguntas') {
       eliminarContenido('preguntas_profesor.php', 'tabla_preguntas', 'bloque', '#bloques-select'); //ELIMINA PREGUNTAS
 
-    } else if(identificador_tablas == 'tabla_tareas'){//ELIMINA TAREAS
+    } else if (identificador_tablas == 'tabla_tareas') {//ELIMINA TAREAS
       eliminarContenido('tarea_profesor.php', 'tabla_tareas', 'bloque', '#bloques-select')
 
-    } else if(identificador_tablas == 'tabla_examenes'){//ELIMINA EXAMENES
+    } else if (identificador_tablas == 'tabla_examenes') {//ELIMINA EXAMENES
       eliminarContenido('examen_profesor.php', 'tabla_examenes', 'bloque', '#bloques-select')
 
-    } else if(identificador_tablas == 'tabla_bloques'){
-        eliminarContenido('bloques_profesor.php', 'tabla_bloques', 'curso', '#cursos-select');//ELIMINA BLOQUES
+    } else if (identificador_tablas == 'tabla_bloques') {
+      eliminarContenido('bloques_profesor.php', 'tabla_bloques', 'curso', '#cursos-select');//ELIMINA BLOQUES
     }
-    
+
   });
 
-  function eliminarContenido(controller, tabla, bloq, select){///////////FUNCION PARA ELIMINAR CONTENIDOS
+  function eliminarContenido(controller, tabla, bloq, select) {///////////FUNCION PARA ELIMINAR CONTENIDOS
     swal("¿Estás seguro de eliminar?", {
       buttons: {
         cancel: "No, Cancelar",
@@ -1219,74 +1302,74 @@ $(document).ready(function () {
         }
       }
     })
-    .then((value) => {
-      if(value == "catch"){
-        var eliminar = true,
-        id = getid
-        url = "../controllers/" + controller;
-  
-        let objeto_peticion;
-        
-        if(bloq == 'bloque'){
-          objeto_peticion = {
-            tabla: tabla,
-            bloque: $(select).val()
-          };
-        }else{
-          objeto_peticion = {
-            tabla: tabla,
-            curso: $(select).val()
-          };
-        }
-  
-  
-        $.post(url, {
-          eliminar: eliminar,
-          id_eliminar: id
-        })
-          .done(function (data) {
-            if (data == 'eliminado') {
-              editarTarea($('#bloques-select').val())
-              editarExamen($('#bloques-select').val())
-              actualizarSelectBloques($('#cursos-select').val())
-              actualizarSelectTemas($('#bloques-select').val())
-              actualizarSelectPreguntas($('#bloques-select').val())
-              renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
-              renderizarTabla(objeto_peticion, '#tr-tablagrupo1', '#tbodygrupo1');
-              $('.spinner-border').addClass('d-none');
-              $(".alerta-elim").removeClass("d-none");
-              $('.alerta-elim').html(`<p class="m-0"> ¡<b>Eliminado</b>!</p>`)
-              $(".alerta-elim").slideDown("slow");
-              setTimeout(function () {
-                $(".alerta-elim").slideUp("slow");
-              }, 3000);
-  
-            } else  {
-              swal("","Hubo un error, los datos no fueron eliminados", "warning");
-            }
+      .then((value) => {
+        if (value == "catch") {
+          var eliminar = true,
+            id = getid
+          url = "../controllers/" + controller;
+
+          let objeto_peticion;
+
+          if (bloq == 'bloque') {
+            objeto_peticion = {
+              tabla: tabla,
+              bloque: $(select).val()
+            };
+          } else {
+            objeto_peticion = {
+              tabla: tabla,
+              curso: $(select).val()
+            };
+          }
+
+
+          $.post(url, {
+            eliminar: eliminar,
+            id_eliminar: id
           })
-      }
-      
-    })
+            .done(function (data) {
+              if (data == 'eliminado') {
+                editarTarea($('#bloques-select').val())
+                editarExamen($('#bloques-select').val())
+                actualizarSelectBloques($('#cursos-select').val())
+                actualizarSelectTemas($('#bloques-select').val())
+                actualizarSelectPreguntas($('#bloques-select').val())
+                renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
+                renderizarTabla(objeto_peticion, '#tr-tablagrupo1', '#tbodygrupo1');
+                $('.spinner-border').addClass('d-none');
+                $(".alerta-elim").removeClass("d-none");
+                $('.alerta-elim').html(`<p class="m-0"> ¡<b>Eliminado</b>!</p>`)
+                $(".alerta-elim").slideDown("slow");
+                setTimeout(function () {
+                  $(".alerta-elim").slideUp("slow");
+                }, 3000);
+
+              } else {
+                swal("", "Hubo un error, los datos no fueron eliminados", "warning");
+              }
+            })
+        }
+
+      })
     return 1;
   }
-/* <--------------------- cuando de clic a ver tablas se da scroll hacia abajo a la tabla-----------------------> */
-  $(document).on('click', '#ir-arriba', function(){
+  /* <--------------------- cuando de clic a ver tablas se da scroll hacia abajo a la tabla-----------------------> */
+  $(document).on('click', '#ir-arriba', function () {
     $('html, body').animate({
       scrollTop: 0
-   }, 'fast');
+    }, 'fast');
   })
   /* <---------------------scroll para aparecer el boton de 'ir hacia arriba'-----------------------> */
   $(function () {
     $(document).scroll(function () {
-        if ($(this).scrollTop() > 120) {
-            $('#ir-arriba').show('fast')
-        }
-        if ($(this).scrollTop() < 120) {
-          $('#ir-arriba').hide('fast')
-        }
+      if ($(this).scrollTop() > 120) {
+        $('#ir-arriba').show('fast')
+      }
+      if ($(this).scrollTop() < 120) {
+        $('#ir-arriba').hide('fast')
+      }
     });
-});
+  });
 
 })
 
