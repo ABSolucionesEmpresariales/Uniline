@@ -1074,25 +1074,62 @@ $(document).ready(function () {
 
           tbody += `<tr>`;
           nombrescolumnas.forEach(function (nombre_propiedad_objeto, posicion) {
-            if (nombre_propiedad_objeto === "publicacion") {
-              if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
-                botones = `<td>
-                          <button class = "btn btn-success btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Ocultar</button>
-                        </td>`;
-              } else {
-                botones = `<td>
-                          <button class = "btn btn-warning btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Publicar</button>
-                         </td>`;
-              }
 
-            } else {
-              tbody += `<td class=${posicion === 0 || nombre_propiedad_objeto === "preferencia" ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
+            switch (nombre_propiedad_objeto) {
+
+              case "publicacion":
+                if (objeto_renglon_tabla[nombre_propiedad_objeto] === 1) {
+                  botones = `<td>
+                            <button class = "btn btn-success btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Ocultar</button>
+                          </td>`;
+                } else {
+                  botones = `<td>
+                            <button class = "btn btn-warning btnestado" value="${objeto_renglon_tabla.idcurso + '=' + objeto_renglon_tabla.publicacion}">Publicar</button>
+                           </td>`;
+                }
+                break;
+
+              case "respuestas":
+                const filtrogatos = objeto_renglon_tabla[nombre_propiedad_objeto].split('###');
+                const respuestas_lado_derecho = filtrogatos[1].split('-*3');
+                const respuestas_lado_izquierdo = filtrogatos[0].split('-*3');
+                let respuestas = '';
+
+                respuestas_lado_izquierdo.forEach(function (valor) {
+                  if (valor != "") respuestas += " ✘ " + valor;
+                });
+
+                respuestas_lado_derecho.forEach(function (valor, posicion) {
+                  if (valor != "") {
+                    if (posicion === 0) {
+                      respuestas += " ✔ " + valor;
+                    } else {
+                      respuestas += " ✘ " + valor;
+                    }
+                  }
+                })
+                tbody += `<td>${respuestas}</td>`;
+                break;
+
+              case "imagen":
+                const componentes_ruta = objeto_renglon_tabla[nombre_propiedad_objeto].split('/');
+                const imagen = 'min_' + componentes_ruta[2];
+                const ruta = componentes_ruta[0] + '/' + componentes_ruta[1] + '/' + imagen;
+                tbody += `<td><img src="${ruta}" alt="curso escuelaalreves"></td>>`;
+                break;
+
+              default:
+                tbody += `<td class=${posicion === 0 || nombre_propiedad_objeto === "preferencia" ? "d-none" : ""}>${objeto_renglon_tabla[nombre_propiedad_objeto]}</td>`;
+                break;
+
             }
+
+
           })
           tbody += botones + `</tr>`;
 
         });
-        if (datos[0].hasOwnProperty('preferencia')) trhead += `<th><button id="btnorden" class="btn btn-primary" disabled >Save</button></th>`
+        if (datos[0].hasOwnProperty('preferencia')) trhead += `<th><button id="btnorden" class="btn btn-primary" disabled >Guardar</button></th>`
         $(idtr).html(trhead);
         $(idtbody).html(tbody);
         $('.titulo-tablas').html(nombre_tabla[1]);
