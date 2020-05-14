@@ -37,7 +37,7 @@ $(document).ready(function () {
 
   /* SELECT BLOQUES */
   $(document).on('change', '#bloques-select', function () {
-
+    
     $(this).removeClass('text-danger');
     actualizarSelectTemas(this.value);
     actualizarSelectPreguntas(this.value);
@@ -47,7 +47,6 @@ $(document).ready(function () {
       editarExamen(this.value);
       editarTarea(this.value);
       $('#aniadir-examen, #aniadir-tema, #aniadir-tarea, #editar-bloque').removeClass('disabled');
-
     } else {
       $(this).addClass('text-danger');
       editarBloques(0);
@@ -102,7 +101,10 @@ $(document).ready(function () {
 
         success: function (response) {
           if (response != 0) {
-
+            renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
+            $('html, body').animate({
+              scrollTop: $(document).height()
+            }, 'slow');
             $("#alerta-nuevo-curso").removeClass("d-none");
             $('#registrar-curso').trigger('reset');
             $('#foto-curso').attr('src', '../img/cursos/no_course.png');
@@ -1006,6 +1008,7 @@ $(document).ready(function () {
         });
     } else {
       $('#editar-pregunta').addClass('disabled');
+      $('#ver-pregunta').addClass('disabled');
       $('#editar-pregunta, #collapsePreguntaEdit').collapse('hide');
       $('#editar-pregunta, #collapsePreguntaEdit').removeClass('show in');
     }
@@ -1133,6 +1136,13 @@ $(document).ready(function () {
         $(idtr).html(trhead);
         $(idtbody).html(tbody);
         $('.titulo-tablas').html(nombre_tabla[1]);
+      }else{
+        let trhead = ``;
+        let tbody = ``;
+        trhead += `<th class="text-white h3">No hay datos en este tabla todavia</th>`
+        tbody += `<td></td>`
+        $(idtr).html(trhead);
+        $(idtbody).html(tbody);
       }
     })
   }
@@ -1270,6 +1280,18 @@ $(document).ready(function () {
 
   });
 
+  $(document).on('change', '#bloques-select', function(){
+    if($('#contenido-curso-tab').hasClass('active')){
+      const objeto_peticion = {
+      tabla: "tabla_temas",
+      bloque: $('#bloques-select').val()
+    };
+    renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
+/*     $('.titulo-tablas').html("temas"); */
+    }
+    
+  })
+
   //################################################## ELIMINAR CONTENIDO ##############################
   $(document).on('click', '.eliminar', function () {
     getid = $(this).val();
@@ -1331,7 +1353,7 @@ $(document).ready(function () {
               if (data == 'eliminado') {
                 editarTarea($('#bloques-select').val())
                 editarExamen($('#bloques-select').val())
-                actualizarSelectBloques($('#cursos-select').val())
+                /* actualizarSelectBloques($('#cursos-select').val()) */
                 actualizarSelectTemas($('#bloques-select').val())
                 actualizarSelectPreguntas($('#bloques-select').val())
                 renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
