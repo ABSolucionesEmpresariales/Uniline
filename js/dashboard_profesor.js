@@ -117,7 +117,12 @@ $(document).ready(function () {
               $("#alerta-nuevo-curso").slideUp("slow");
             }, 3000);
           } else {
-            swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
+            $(".alerta-error").removeClass("d-none");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
             $('.spinner-border').addClass('d-none');
           }
         }
@@ -128,6 +133,23 @@ $(document).ready(function () {
 
   $("#file-image-curso").change(function () {//CARGA LA VISTA PREVIA DEL INPUT FILE DE CURSOS
     leerUrl(this, '#foto-curso', '#image-name-curso');
+  });
+
+  ////////#################### previsualizar imagen antes de cargar (CURSOS)
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      
+      reader.onload = function(e) {
+        $('.img').attr('src', e.target.result);
+      }
+      
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+  }
+  
+  $(".imagen").change(function() {
+    readURL(this);
   });
 
 
@@ -154,7 +176,10 @@ $(document).ready(function () {
 
             const old_select = $("#cursos-select").val();
             actualizarSelectCursos('#cursos-select');//DESPUES DE REGISTRAR UN CURSO ACTUALIZA EL SELECT CON EL NUEVO CURSO AÑADIDO
-
+            renderizarTabla({ tabla: 'tabla_cursos' }, '#tr-tablagrupo1', '#tbodygrupo1');
+            $('html, body').animate({
+              scrollTop: $(document).height()
+            }, 'slow');
             $("#alerta-curso-editado").removeClass("d-none");
             $('.spinner-border').addClass('d-none');
             $("#alerta-curso-editado").slideDown("slow");
@@ -163,7 +188,12 @@ $(document).ready(function () {
             }, 3000);
 
           } else {
-            swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
+            $(".alerta-error").removeClass("d-none");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
             $('.spinner-border').addClass('d-none');
           }
         }
@@ -210,7 +240,13 @@ $(document).ready(function () {
 
               }, 3000);
             } else {
-              swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
+              $('.spinner-border').addClass('d-none');
+              $(".alerta-error").removeClass("d-none");
+              $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+              $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
             }
           })
       }
@@ -255,8 +291,13 @@ $(document).ready(function () {
 
               }, 3000);
             } else {
+              $(".alerta-error").removeClass("d-none");
               $('.spinner-border').addClass('d-none');
-              swal("Ups...", "Hubo un error, los datos no fueron enviados", "error");
+              $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+              $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
             }
           });
       }
@@ -303,8 +344,13 @@ $(document).ready(function () {
               $("#alerta-examen").slideUp("slow");
             }, 3000);
           } else {
+            $(".alerta-error").removeClass("d-none");
             $('.spinner-border').addClass('d-none');
-            swal("Ups...", "este bloque ya contiene un examen o los datos no fueron enviados", "error");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
 
         });
@@ -352,8 +398,13 @@ $(document).ready(function () {
             const bloque = $('#bloques-select').val();
             editarExamen(bloque);
           } else {
+            $(".alerta-error").removeClass("d-none");
             $('.spinner-border').addClass('d-none');
-            swal("Ups...", "este bloque ya contiene un examen o los datos no fueron enviados", "error");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
 
         });
@@ -399,8 +450,13 @@ $(document).ready(function () {
               $("#alerta-tema").slideUp("slow");
             }, 3000);
           } else {
+            $(".alerta-error").removeClass("d-none");
             $('.spinner-border').addClass('d-none');
-            swal("", "Hubo un error, los datos no fueron enviados", "error");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
 
         }
@@ -454,8 +510,13 @@ $(document).ready(function () {
               $("#alerta-tema-edit").slideUp("slow");
             }, 3000);
           } else {
+            $(".alerta-error").removeClass("d-none");
             $('.spinner-border').addClass('d-none');
-            swal("", "Hubo un error, los datos no fueron enviados", "warning");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
 
         }
@@ -522,7 +583,13 @@ $(document).ready(function () {
 
             }, 3000);
           } else {
-            swal("", "Hubo un error, los datos no fueron enviados", "error");
+            $('.spinner-border').addClass('d-none');
+            $(".alerta-error").removeClass("d-none");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
         })
 
@@ -585,7 +652,13 @@ $(document).ready(function () {
             }, 3000);
 
           } else {
-            swal("", "Hubo un error, los datos no fueron enviados", "error");
+            $('.spinner-border').addClass('d-none');
+            $(".alerta-error").removeClass("d-none");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
         })
 
@@ -634,8 +707,13 @@ $(document).ready(function () {
               $("#alerta-tarea").slideUp("slow");
             }, 3000);
           } else {
+            $(".alerta-error").removeClass("d-none");
             $('.spinner-border').addClass('d-none');
-            swal("", "Hubo un error, los datos no fueron enviados", "error");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
 
         }
@@ -678,16 +756,21 @@ $(document).ready(function () {
             editarTarea(bloque);
             renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
             $('#archivo-tarea-name').text('Subir Archivo');
-            $("#alerta-tarea").removeClass("d-none");
+            $("#alerta-tarea-edit").removeClass("d-none");
             $('#registrar-tarea').trigger('reset');
             $('.spinner-border').addClass('d-none');
-            $("#alerta-tarea").slideDown("slow");
+            $("#alerta-tarea-edit").slideDown("slow");
             setTimeout(function () {
-              $("#alerta-tarea").slideUp("slow");
+              $("#alerta-tarea-edit").slideUp("slow");
             }, 3000);
           } else {
+            $(".alerta-error").removeClass("d-none");
             $('.spinner-border').addClass('d-none');
-            swal("", "Hubo un error, los datos no fueron enviados", "warning");
+            $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron enviados!</p>')
+            $(".alerta-error").slideDown("slow");
+            setTimeout(function () {
+              $(".alerta-error").slideUp("slow");
+            }, 3000);
           }
 
         }
@@ -1161,8 +1244,9 @@ $(document).ready(function () {
       };
       renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
     } else {
-      $('.titulo-tablas').html("");
+      $('.titulo-tablas').html("temas");
     }
+    
   });
 
 
@@ -1367,7 +1451,11 @@ $(document).ready(function () {
                 }, 3000);
 
               } else {
-                swal("", "Hubo un error, los datos no fueron eliminados", "warning");
+                $('.alerta-error').html('<p class="m-0"> <b>Hubo un error: </b>los datos no fueron eliminados!</p>')
+                $(".alerta-error").slideDown("slow");
+                setTimeout(function () {
+                  $(".alerta-error").slideUp("slow");
+                }, 3000);
               }
             })
         }

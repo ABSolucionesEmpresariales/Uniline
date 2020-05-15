@@ -61,17 +61,32 @@ switch($request) {
          $video .= end($idvideo);
          $archivo = subir_archivo('archivo-tema-edit');
 
+         $id_tema = $conexion->consultaPreparada(
+            array($bloque),
+            "SELECT idtema,archivo from tema WHERE bloque = ?",
+            2,
+            "i",
+            false, // se reestructira la fila se cambia el id que esta en la primera columna hacia la ultima para que el bind de las variables en la consulta coincida
+            null
+         );
+         
+         if (!empty($id_tema) && empty($archivo)) {
+            $archivo = $id_tema[0][1]; //si hay una archivo registrado en el sistema y si no hay una carga nueva de archivo optene el archivo existente registrado
+         } else if (!empty($id_tema) && !empty($archivo)) {
+            unlink($id_tema[0][1]);
+         }
+
          $query = "UPDATE tema SET nombre = ?, descripcion = ?, video = ? , archivo = ? , bloque = ? WHERE idtema = ? ";
          $posted_data = array($_POST['tema_id'], $nombre_tema, $descripcion_tema, $video, $archivo, $bloque);
          $params = "ssssss";
                 
-         if($archivo == "") {
+        /*  if($archivo == "") {
             $query = "UPDATE tema SET nombre = ?, descripcion = ?, video = ?, bloque = ? WHERE idtema = ? ";
             unset($posted_data[4]); //eliminamos la imagen del arreglo para no tener problemas en la consulta
             $tmp = array_values($posted_data);
             $posted_data = $tmp;
             $params = "sssss";
-         }
+         } */
 
          echo $conexion->consultaPreparada(
             $posted_data,

@@ -12,9 +12,13 @@ $request = $_SERVER['REQUEST_METHOD'];
 switch($request) {
 
     case "POST":
+        $accion_imagen = 'imagen-curso';
+        if(isset($_POST['editar'])){
+           $accion_imagen =  'imagen-curso-edit';
+        }
         $nombre = $_POST['nombre-curso'];
         $descripcion = $_POST['descripcion-curso'];
-        $imagen = subir_imagen('imagen-curso');
+        $imagen = subir_imagen($accion_imagen);
         $video = 'https://player.vimeo.com/video/';
         $horas = $_POST['horas-curso'];
         $costo = $_POST['costo-curso'];
@@ -52,7 +56,22 @@ switch($request) {
                     $tmp = array_values($posted_data);
                     $posted_data = $tmp;
                     $params = "ssssss";
+                }else{
+                    $url_curso = $conexion->consultaPreparada(
+                        array($_POST['id_curso']),
+                        "SELECT imagen FROM curso WHERE idcurso = ?",
+                        2,
+                        "s",
+                        false,
+                        null
+                    );
+                    $url_img_curso = explode('/', $url_curso[0][0]);
+                    $imagen_res = "../img/res_".end($url_img_curso);
+                    $imagen_min = "../img/min_".end($url_img_curso);
+                    unlink($imagen_res);
+                    unlink($imagen_min);
                 }
+                
                 echo $conexion->consultaPreparada(
                     $posted_data,
                     $query,

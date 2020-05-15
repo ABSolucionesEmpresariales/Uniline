@@ -53,10 +53,11 @@ switch ($request) {
          );
 
          $ruta = subir_archivo('archivo-tarea-edit');
+         
          if (!empty($id_tarea) && empty($ruta)) {
             $ruta = $id_tarea[0][1]; //si hay una archivo registrado en el sistema y si no hay una carga nueva de archivo optene el archivo existente registrado
          } else if (!empty($id_tarea) && !empty($ruta)) {
-            unlink($ruta);
+            unlink($id_tarea[0][1]);
          }
 
          echo $conexion->consultaPreparada(

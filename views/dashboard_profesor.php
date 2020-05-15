@@ -139,12 +139,12 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card-body">
                            <form id="registrar-curso">
                               <div class="text-center">
-                                 <img src="../img/cursos/no_course.png" id="foto-curso" alt="curso" class="align-self-center  mb-3 w-25" />
+                                 <img src="../img/cursos/no_course.png" id="foto-curso" alt="curso" class="img align-self-center  mb-3 w-25" />
                               </div>
                               <div class="form-group">
                                  <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="file-image-curso" name="imagen-curso">
-                                    <label class="custom-file-label" for="file-image-curso" id="image-name-curso">Subir
+                                    <label class="custom-file-label imagen" for="file-image-curso" id="image-name-curso">Subir
                                        Imagen del
                                        Curso</label>
                                  </div>
@@ -193,12 +193,12 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                         <div class="card-body">
                            <form id="editar-curso-form">
                               <div class="text-center">
-                                 <img src="../img/cursos/no_course.png" id="foto-curso-edit" alt="curso" class="align-self-center  mb-3 w-25" />
+                                 <img src="../img/cursos/no_course.png" id="foto-curso-edit" alt="curso" class="img align-self-center  mb-3 w-25" />
                               </div>
                               <div class="form-group">
                                  <label>Imagen del curso</label>
                                  <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="file-image-edit-curso" name="imagen-curso-edit">
+                                    <input type="file" class="custom-file-input imagen" id="file-image-edit-curso" name="imagen-curso-edit">
                                     <label class="custom-file-label" for="file-image-edit-curso" id="image-name">Cambiar
                                        Imagen</label>
                                  </div>
@@ -438,9 +438,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
 
                </div>
 
-               <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert" id="alerta-elim">
-
-               </div>
+               <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert"></div>
+               <div class="alert alert-danger mt-3 d-none alerta-error" role="alert"></div>
 
                <h2 class="titulo-tablas mt-5"></h2>
 
@@ -913,9 +912,8 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                   </div>
                </div>
 
-               <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert" id="alerta-elim">
-
-               </div>
+               <div class="alert alert-primary mt-3 d-none alerta-elim" role="alert"></div>
+               <div class="alert alert-danger mt-3 d-none alerta-error" role="alert"></div>
 
                <h2 class="titulo-tablas mt-5"></h2>
 
