@@ -37,7 +37,7 @@ $(document).ready(function () {
 
   /* SELECT BLOQUES */
   $(document).on('change', '#bloques-select', function () {
-    
+
     $(this).removeClass('text-danger');
     actualizarSelectTemas(this.value);
     actualizarSelectPreguntas(this.value);
@@ -150,6 +150,7 @@ $(document).ready(function () {
         processData: false,
 
         success: function (response) {
+          console.log(response);
           if (response != 0) {
 
             const old_select = $("#cursos-select").val();
@@ -1136,7 +1137,7 @@ $(document).ready(function () {
         $(idtr).html(trhead);
         $(idtbody).html(tbody);
         $('.titulo-tablas').html(nombre_tabla[1]);
-      }else{
+      } else {
         let trhead = ``;
         let tbody = ``;
         trhead += `<th class="text-white h3">No hay datos en este tabla todavia</th>`
@@ -1280,16 +1281,16 @@ $(document).ready(function () {
 
   });
 
-  $(document).on('change', '#bloques-select', function(){
-    if($('#contenido-curso-tab').hasClass('active')){
+  $(document).on('change', '#bloques-select', function () {
+    if ($('#contenido-curso-tab').hasClass('active')) {
       const objeto_peticion = {
-      tabla: "tabla_temas",
-      bloque: $('#bloques-select').val()
-    };
-    renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
-/*     $('.titulo-tablas').html("temas"); */
+        tabla: "tabla_temas",
+        bloque: $('#bloques-select').val()
+      };
+      renderizarTabla(objeto_peticion, '#tr-tablagrupo2', '#tbodygrupo2');
+      /*     $('.titulo-tablas').html("temas"); */
     }
-    
+
   })
 
   //################################################## ELIMINAR CONTENIDO ##############################
