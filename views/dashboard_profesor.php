@@ -138,13 +138,13 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                      <div id="collapseNewCurso" class="collapse" aria-labelledby="headingOne" data-parent="#accordionCurso">
                         <div class="card-body">
                            <form id="registrar-curso">
-                              <div class="text-center">
+                              <div class="text-center" id="imagen-default">
                                  <img src="../img/cursos/no_course.png" id="foto-curso" alt="curso" class="img align-self-center  mb-3 w-25" />
                               </div>
                               <div class="form-group">
-                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="file-image-curso" name="imagen-curso">
-                                    <label class="custom-file-label imagen" for="file-image-curso" id="image-name-curso">Subir
+                                 <div class="custom-file" id="archivo-default">
+                                    <input type="file" class="input-curso custom-file-input imagen" id="file-image-curso" name="imagen-curso">
+                                    <label class="custom-file-label" for="file-image-curso" id="image-name-curso">Subir
                                        Imagen del
                                        Curso</label>
                                  </div>
@@ -198,7 +198,7 @@ $nombre = (sizeof($nombres_separados) > 2) ? $nombres_separados[0] . ' ' . $nomb
                               <div class="form-group">
                                  <label>Imagen del curso</label>
                                  <div class="custom-file">
-                                    <input type="file" class="custom-file-input imagen" id="file-image-edit-curso" name="imagen-curso-edit">
+                                    <input type="file" class=" custom-file-input imagen" id="file-image-edit-curso" name="imagen-curso-edit">
                                     <label class="custom-file-label" for="file-image-edit-curso" id="image-name">Cambiar
                                        Imagen</label>
                                  </div>

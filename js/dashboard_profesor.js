@@ -152,6 +152,16 @@ $(document).ready(function () {
     readURL(this);
   });
 
+  $(document).on('click', '#nuevo-curso', function(){//#####restablece los campos de la imagen para que no se quede con la anterior
+    /* $('#foto-curso').attr('src','../img/cursos/no_course.png') */
+    /* $('#file-image-curso').val('') */
+
+   /*  $('#archivo-default').html(`<input type="file" class="input-curso custom-file-input imagen" id="file-image-curso" name="imagen-curso">
+    <label class="custom-file-label" for="file-image-curso" id="image-name-curso">Subir
+       Imagen del
+       Curso</label>`) */
+  })
+
 
   /* EDIT-CURSO FORM */
   $("#editar-curso-form").submit(function (e) {//EDITAR CURSOS
